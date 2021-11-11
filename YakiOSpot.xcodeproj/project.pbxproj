@@ -11,6 +11,8 @@
 		86D68112273D0B31001E7BE6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D68111273D0B31001E7BE6 /* ContentView.swift */; };
 		86D68114273D0B32001E7BE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86D68113273D0B32001E7BE6 /* Assets.xcassets */; };
 		86D68117273D0B32001E7BE6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86D68116273D0B32001E7BE6 /* Preview Assets.xcassets */; };
+		86D6811E273D0C5A001E7BE6 /* ConnexionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6811D273D0C5A001E7BE6 /* ConnexionView.swift */; };
+		86D68120273D11B5001E7BE6 /* RegistrationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6811F273D11B5001E7BE6 /* RegistrationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +21,8 @@
 		86D68111273D0B31001E7BE6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		86D68113273D0B32001E7BE6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		86D68116273D0B32001E7BE6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		86D6811D273D0C5A001E7BE6 /* ConnexionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnexionView.swift; sourceTree = "<group>"; };
+		86D6811F273D11B5001E7BE6 /* RegistrationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,8 @@
 				86D68111273D0B31001E7BE6 /* ContentView.swift */,
 				86D68113273D0B32001E7BE6 /* Assets.xcassets */,
 				86D68115273D0B32001E7BE6 /* Preview Content */,
+				86D6811D273D0C5A001E7BE6 /* ConnexionView.swift */,
+				86D6811F273D11B5001E7BE6 /* RegistrationView.swift */,
 			);
 			path = YakiOSpot;
 			sourceTree = "<group>";
@@ -139,6 +145,8 @@
 			files = (
 				86D68112273D0B31001E7BE6 /* ContentView.swift in Sources */,
 				86D68110273D0B31001E7BE6 /* YakiOSpotApp.swift in Sources */,
+				86D6811E273D0C5A001E7BE6 /* ConnexionView.swift in Sources */,
+				86D68120273D11B5001E7BE6 /* RegistrationView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
