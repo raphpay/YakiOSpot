@@ -33,8 +33,7 @@ struct RegistrationView: View {
             
             
             Button(action: {
-                // TODO: To be done after a registration
-                isConnected.toggle()
+                didTapRegister()
             }) {
                 ButtonView(title: "Inscription", color: .green)
             }
@@ -47,6 +46,15 @@ struct RegistrationView: View {
         .fullScreenCover(isPresented: $isConnected) {
             SpotListView()
         }
+    }
+    
+    func didTapRegister() {
+        API.Auth.createUser(email: email, password: password) { userUID in
+            print(userUID)
+        } onError: { error in
+            print(error)
+        }
+
     }
 }
 
