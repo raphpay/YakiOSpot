@@ -11,7 +11,7 @@ struct RegistrationView: View {
     @State var pseudo: String = ""
     @State var email: String = ""
     @State var password: String = ""
-
+    @State var isConnected: Bool = false
     var body: some View {
         VStack {
             VStack {
@@ -31,13 +31,21 @@ struct RegistrationView: View {
             
             Spacer()
             
-            Button(action: {}) {
+            
+            Button(action: {
+                // TODO: To be done after a registration
+                isConnected.toggle()
+            }) {
                 ButtonView(title: "Inscription", color: .green)
             }
-            Text("Vous avez un compte")
+            Text("Vous avez un compte ?")
+                .padding(.top)
             Button(action: {}) {
                 Text("Connectez-vous")
             }
+        }
+        .fullScreenCover(isPresented: $isConnected) {
+            SpotListView()
         }
     }
 }

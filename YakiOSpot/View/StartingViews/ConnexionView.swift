@@ -10,6 +10,7 @@ import SwiftUI
 struct ConnexionView: View {
     @State var identifier: String = ""
     @State var password: String = ""
+    @State var isConnected: Bool = false
     
     var body: some View {
         VStack {
@@ -33,14 +34,21 @@ struct ConnexionView: View {
             }
             
             Spacer()
-            
-            Button(action: {}) {
+
+            Button(action: {
+                // TODO: To be done after a connection
+                isConnected.toggle()
+            }) {
                 ButtonView(title: "Connexion")
             }
-            Text("Pas encore de compte")
+            Text("Pas encore de compte ?")
+                .padding(.top)
             Button(action: {}) {
                 Text("Inscrivez-vous")
             }
+        }
+        .fullScreenCover(isPresented: $isConnected) {
+            SpotListView()
         }
     }
 }

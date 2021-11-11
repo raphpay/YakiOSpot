@@ -1,5 +1,5 @@
 //
-//  ContentView.swift
+//  StartingView.swift
 //  YakiOSpot
 //
 //  Created by Raphaël Payet on 11/11/2021.
@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct StartingView: View {
     @State var selection = 0
+    
     var body: some View {
         VStack {
             Spacer(minLength: 50)
@@ -33,6 +34,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        StartingView()
     }
 }
