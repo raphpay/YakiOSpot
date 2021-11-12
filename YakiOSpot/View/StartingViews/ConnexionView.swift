@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ConnexionView: View {
+    @Binding var selection: Int
+    
     @State var email: String = ""
     @State var password: String = ""
     @State var isConnected: Bool = false
@@ -44,7 +46,9 @@ struct ConnexionView: View {
             }
             Text("Pas encore de compte ?")
                 .padding(.top)
-            Button(action: {}) {
+            Button(action: {
+                selection = 1
+            }) {
                 Text("Inscrivez-vous")
             }
         }
@@ -77,7 +81,7 @@ struct ConnexionView: View {
 
 struct ConnexionView_Previews: PreviewProvider {
     static var previews: some View {
-        ConnexionView()
+        ConnexionView(selection: .constant(0))
     }
 }
 

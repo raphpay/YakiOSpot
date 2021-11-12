@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct RegistrationView: View {
+    @Binding var selection: Int
+    
     @State var pseudo: String = ""
     @State var email: String = ""
     @State var password: String = ""
@@ -43,7 +45,9 @@ struct RegistrationView: View {
             }
             Text("Vous avez un compte ?")
                 .padding(.top)
-            Button(action: {}) {
+            Button(action: {
+                selection = 0
+            }) {
                 Text("Connectez-vous")
             }
         }
@@ -78,6 +82,6 @@ struct RegistrationView: View {
 
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView()
+        RegistrationView(selection: .constant(1))
     }
 }

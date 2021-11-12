@@ -20,12 +20,13 @@ struct StartingView: View {
                             Text("Inscription").tag(1)
                         }
                         .pickerStyle(.segmented)
+                        .padding(.horizontal)
             Spacer(minLength: 100)
             ZStack {
                 if selection == 0 {
-                    ConnexionView()
+                    ConnexionView(selection: $selection)
                 } else if selection == 1 {
-                    RegistrationView()
+                    RegistrationView(selection: $selection)
                 }
             }
         }
