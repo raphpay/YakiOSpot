@@ -36,4 +36,27 @@ class UserService {
         
         onSuccess()
     }
+    
+    // MARK: - Fetch
+    func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void)) {
+        USERS_REF.document(id).getDocument { snapshot, error in
+            guard error == nil else {
+                onError(error!.localizedDescription)
+                return
+            }
+            
+            guard let snapshot = snapshot else {
+                onError("User not found")
+                return
+            }
+            
+            guard let user = snapshot.data(),
+                  let pseudo = user["pseudo"] as? String else {
+                onError("User not found")
+                return
+            }
+            
+            onSuccess(pseudo)
+        }
+    }
 }

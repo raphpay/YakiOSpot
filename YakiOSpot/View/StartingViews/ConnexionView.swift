@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ConnexionView: View {
-    @State var identifier: String = ""
+    @State var email: String = ""
     @State var password: String = ""
     @State var isConnected: Bool = false
     @State var showAlert: Bool = false
@@ -17,7 +17,7 @@ struct ConnexionView: View {
     var body: some View {
         VStack {
             VStack {
-                TextField("Pseudo ou adresse mail", text: $identifier)
+                TextField("Pseudo ou adresse mail", text: $email)
                                 .textFieldStyle(.roundedBorder)
                                 .frame(height: 55)
                                 .padding(.horizontal)
@@ -57,10 +57,17 @@ struct ConnexionView: View {
     }
     
     func didTapConnect() {
-        API.Auth.signIn(email: identifier, password: password) { userID in
-            identifier = ""
-            password = ""
-            isConnected.toggle()
+        API.Auth.signIn(email: email, password: password) { userID in
+            API.User.getUserPseudo(with: userID) { pseudo in
+                email = ""
+                password = ""
+                let user = User(id: userID, pseudo: pseudo, mail: email)
+                UserDefaults.standard.set(user, forKey: DefaultKeys.CONNECTED_USER)
+                isConnected.toggle()
+            } onError: { error in
+                alertMessage = error
+                showAlert.toggle()
+            }
         } onError: { error in
             alertMessage = error
             showAlert.toggle()

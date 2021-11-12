@@ -31,6 +31,7 @@ struct SpotListView: View {
     func didTapLogOut() {
         API.Auth.signOut {
             isConnected = false
+            UserDefaults.standard.removeObject(forKey: DefaultKeys.CONNECTED_USER)
         } onError: { error in
             alertMessage = error
             showAlert.toggle()
