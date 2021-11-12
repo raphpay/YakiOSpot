@@ -11,6 +11,8 @@ struct ConnexionView: View {
     @State var identifier: String = ""
     @State var password: String = ""
     @State var isConnected: Bool = false
+    @State var showAlert: Bool = false
+    @State var alertMessage: String = ""
     
     var body: some View {
         VStack {
@@ -36,8 +38,7 @@ struct ConnexionView: View {
             Spacer()
 
             Button(action: {
-                // TODO: To be done after a connection
-                isConnected.toggle()
+                
             }) {
                 ButtonView(title: "Connexion")
             }
@@ -48,8 +49,23 @@ struct ConnexionView: View {
             }
         }
         .fullScreenCover(isPresented: $isConnected) {
-            SpotListView()
+            SpotListView(isConnected: $isConnected)
         }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Oups"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        }
+    }
+    
+    func didTapConnect() {
+        API.Auth.signIn(email: identifier, password: password) { userID in
+            identifier = ""
+            password = ""
+            isConnected.toggle()
+        } onError: { error in
+            alertMessage = error
+            showAlert.toggle()
+        }
+
     }
 }
 

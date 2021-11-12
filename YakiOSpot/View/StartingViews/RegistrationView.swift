@@ -48,7 +48,7 @@ struct RegistrationView: View {
             }
         }
         .fullScreenCover(isPresented: $isConnected) {
-            SpotListView()
+            SpotListView(isConnected: $isConnected)
         }
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Oups"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
@@ -59,6 +59,9 @@ struct RegistrationView: View {
         API.Auth.createUser(email: email, password: password) { userUID in
             let user = User(id: userUID, pseudo: pseudo, mail: email)
             API.User.addUserToDatabase(user) {
+                pseudo      = ""
+                email       = ""
+                password    = ""
                 isConnected.toggle()
             } onError: { error in
                 alertMessage = error
