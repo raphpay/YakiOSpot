@@ -13,15 +13,17 @@ class AuthService {
     private init() {}
     
     // MARK: Registration
-    func createUser(email: String, password: String, onSuccess: @escaping ((String) -> Void), onError: @escaping ((String) -> Void)) {
-        Auth.auth().createUser(withEmail: email, password: password) { result, error in
-            guard error == nil else {
-                onError("Erreur: \(error!.localizedDescription)")
+    func createUser(email: String, password: String,
+                    onSuccess: @escaping ((_ userID: String) -> Void), onError: @escaping ((_ error: String) -> Void)) {
+        Auth.auth().createUser(withEmail: email, password: password) { _result, _error in
+            guard _error == nil else {
+                let errorString = Helper.convertAuthErrorFromFirebase(_error!)
+                onError(errorString)
                 return
             }
             
-            guard let result = result else {
-                onError("Pas de résultats")
+            guard let result = _result else {
+                onError(AuthError.userCreation.description)
                 return
             }
             
@@ -32,14 +34,15 @@ class AuthService {
     // MARK: - Log in / out
     func signIn(email: String, password: String,
                 onSuccess: @escaping ((_ userID : String) -> Void), onError: @escaping ((_ error: String) -> Void)) {
-        Auth.auth().signIn(withEmail: email, password: password) { result, error in
-            guard error == nil else {
-                onError("Erreur: \(error!.localizedDescription)")
+        Auth.auth().signIn(withEmail: email, password: password) { _result, _error in
+            guard _error == nil else {
+                let errorString = Helper.convertAuthErrorFromFirebase(_error!)
+                onError(errorString)
                 return
             }
             
-            guard let result = result else {
-                onError("Pas de résultat")
+            guard let result = _result else {
+                onError(AuthError.signIn.description)
                 return
             }
             
@@ -54,7 +57,7 @@ class AuthService {
             try Auth.auth().signOut()
             onSuccess()
         } catch {
-            onError("Error")
+            onError(AuthError.signOut.description)
         }
     }
 }

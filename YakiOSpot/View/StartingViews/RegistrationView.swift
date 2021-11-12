@@ -12,6 +12,10 @@ struct RegistrationView: View {
     @State var email: String = ""
     @State var password: String = ""
     @State var isConnected: Bool = false
+    @State var showAlert: Bool = false
+    @State var alertMessage: String = ""
+    
+    
     var body: some View {
         VStack {
             VStack {
@@ -46,13 +50,24 @@ struct RegistrationView: View {
         .fullScreenCover(isPresented: $isConnected) {
             SpotListView()
         }
+        .alert(isPresented: $showAlert) {
+            Alert(title: Text("Oups"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        }
     }
     
     func didTapRegister() {
         API.Auth.createUser(email: email, password: password) { userUID in
-            print(userUID)
+            let user = User(id: userUID, pseudo: pseudo, mail: email)
+            API.User.addUserToDatabase(user) {
+                isConnected.toggle()
+            } onError: { error in
+                alertMessage = error
+                showAlert.toggle()
+            }
+
         } onError: { error in
-            print(error)
+            alertMessage = error
+            showAlert.toggle()
         }
 
     }

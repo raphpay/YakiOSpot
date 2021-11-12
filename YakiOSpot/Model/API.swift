@@ -9,4 +9,5 @@ import Foundation
 
 struct API {
     static let Auth = AuthService.shared
+    static let User = UserService.shared
 }
