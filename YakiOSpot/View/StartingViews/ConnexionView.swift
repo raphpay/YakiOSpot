@@ -38,7 +38,7 @@ struct ConnexionView: View {
             Spacer()
 
             Button(action: {
-                
+                didTapConnect()
             }) {
                 ButtonView(title: "Connexion")
             }
@@ -65,7 +65,6 @@ struct ConnexionView: View {
             alertMessage = error
             showAlert.toggle()
         }
-
     }
 }
 

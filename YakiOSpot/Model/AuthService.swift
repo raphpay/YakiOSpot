@@ -40,12 +40,12 @@ class AuthService {
                 onError(errorString)
                 return
             }
-            
+
             guard let result = _result else {
                 onError(AuthError.signIn.description)
                 return
             }
-            
+
             let userID = result.user.uid
             onSuccess(userID)
         }
