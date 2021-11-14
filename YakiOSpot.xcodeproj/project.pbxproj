@@ -24,6 +24,7 @@
 		86D68122273D2229001E7BE6 /* SpotListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D68121273D2229001E7BE6 /* SpotListView.swift */; };
 		86F3667E273D2845009CBDC9 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3667D273D2845009CBDC9 /* AuthService.swift */; };
 		86F81D1D2741741100AB69DB /* ConnexionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F81D1C2741741100AB69DB /* ConnexionViewViewModel.swift */; };
+		86F81D202741772200AB69DB /* RegistrationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F81D1F2741772200AB69DB /* RegistrationViewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		86D68121273D2229001E7BE6 /* SpotListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListView.swift; sourceTree = "<group>"; };
 		86F3667D273D2845009CBDC9 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		86F81D1C2741741100AB69DB /* ConnexionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnexionViewViewModel.swift; sourceTree = "<group>"; };
+		86F81D1F2741772200AB69DB /* RegistrationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewViewModel.swift; sourceTree = "<group>"; };
 		C502FD5B851ACEE90CA8394D /* Pods-YakiOSpot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpot.debug.xcconfig"; path = "Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot.debug.xcconfig"; sourceTree = "<group>"; };
 		F907B8BCAFF86EFD71C34F78 /* Pods_YakiOSpot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YakiOSpot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -150,7 +152,7 @@
 			children = (
 				86D68111273D0B31001E7BE6 /* StartingView.swift */,
 				86F81D1B2741740500AB69DB /* ConnexionView */,
-				86D6811F273D11B5001E7BE6 /* RegistrationView.swift */,
+				86F81D1E2741771600AB69DB /* RegistrationView */,
 			);
 			path = StartingViews;
 			sourceTree = "<group>";
@@ -189,6 +191,15 @@
 				86F81D1C2741741100AB69DB /* ConnexionViewViewModel.swift */,
 			);
 			path = ConnexionView;
+			sourceTree = "<group>";
+		};
+		86F81D1E2741771600AB69DB /* RegistrationView */ = {
+			isa = PBXGroup;
+			children = (
+				86D6811F273D11B5001E7BE6 /* RegistrationView.swift */,
+				86F81D1F2741772200AB69DB /* RegistrationViewViewModel.swift */,
+			);
+			path = RegistrationView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -312,6 +323,7 @@
 				86BB95C6273EF6190029C39A /* AuthErrors.swift in Sources */,
 				86D68122273D2229001E7BE6 /* SpotListView.swift in Sources */,
 				86BB95D0273F043F0029C39A /* UserDefaultsKeys.swift in Sources */,
+				86F81D202741772200AB69DB /* RegistrationViewViewModel.swift in Sources */,
 				86F3667E273D2845009CBDC9 /* AuthService.swift in Sources */,
 				86BB95CA273EF6630029C39A /* Helper.swift in Sources */,
 				86D6811E273D0C5A001E7BE6 /* ConnexionView.swift in Sources */,
