@@ -8,5 +8,8 @@
 import Foundation
 
 enum DefaultKeys {
-    static let CONNECTED_USER = "CONNECTED_USER"
+    static let IS_USER_CONNECTED     = "IS_USER_CONNECTED"
+    static let CONNECTED_USER_MAIL   = "CONNECTED_USER_MAIL"
+    static let CONNECTED_USER_ID     = "CONNECTED_USER_ID"
+    static let CONNECTED_USER_PSEUDO = "CONNECTED_USER_PSEUDO"
 }

@@ -25,10 +25,14 @@ struct RegistrationView: View {
                                 .textFieldStyle(.roundedBorder)
                                 .frame(height: 55)
                                 .padding(.horizontal)
+                                .autocapitalization(.none)
+                                .disableAutocorrection(true)
                 TextField("Email", text: $email)
                                 .textFieldStyle(.roundedBorder)
                                 .frame(height: 55)
                                 .padding(.horizontal)
+                                .autocapitalization(.none)
+                                .disableAutocorrection(true)
                 SecureField("Mot de passe", text: $password)
                     .frame(height: 55)
                     .textFieldStyle(.roundedBorder)
@@ -67,6 +71,7 @@ struct RegistrationView: View {
                 email       = ""
                 password    = ""
                 isConnected.toggle()
+                setUserDefaultsValues(userUID: userUID)
             } onError: { error in
                 alertMessage = error
                 showAlert.toggle()
@@ -76,7 +81,13 @@ struct RegistrationView: View {
             alertMessage = error
             showAlert.toggle()
         }
-
+    }
+    
+    private func setUserDefaultsValues(userUID: String) {
+        UserDefaults.standard.setValue(email, forKey: DefaultKeys.CONNECTED_USER_MAIL)
+        UserDefaults.standard.setValue(pseudo, forKey: DefaultKeys.CONNECTED_USER_PSEUDO)
+        UserDefaults.standard.setValue(userUID, forKey: DefaultKeys.CONNECTED_USER_ID)
+        UserDefaults.standard.set(true, forKey: DefaultKeys.IS_USER_CONNECTED)
     }
 }
 

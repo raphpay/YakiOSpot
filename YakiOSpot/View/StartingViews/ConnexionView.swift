@@ -23,10 +23,14 @@ struct ConnexionView: View {
                                 .textFieldStyle(.roundedBorder)
                                 .frame(height: 55)
                                 .padding(.horizontal)
+                                .autocapitalization(.none)
+                                .disableAutocorrection(true)
                 SecureField("Mot de passe", text: $password)
                     .frame(height: 55)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
+                    .autocapitalization(.none)
+                    .disableAutocorrection(true)
                 HStack {
                     Spacer()
                     Button(action: {}) {
@@ -52,6 +56,15 @@ struct ConnexionView: View {
                 Text("Inscrivez-vous")
             }
         }
+        .onAppear(perform: {
+            if let isUserConnected = UserDefaults.standard.value(forKey: DefaultKeys.IS_USER_CONNECTED) as? Bool {
+                isConnected = isUserConnected
+                print("onAppear \(isConnected)")
+            } else {
+                isConnected = false
+                print("onAppear else \(isConnected)")
+            }
+        })
         .fullScreenCover(isPresented: $isConnected) {
             SpotListView(isConnected: $isConnected)
         }
@@ -63,10 +76,9 @@ struct ConnexionView: View {
     func didTapConnect() {
         API.Auth.signIn(email: email, password: password) { userID in
             API.User.getUserPseudo(with: userID) { pseudo in
+                setUserDefaultsValues(pseudo: pseudo, userID: userID)
                 email = ""
                 password = ""
-                let user = User(id: userID, pseudo: pseudo, mail: email)
-                UserDefaults.standard.set(user, forKey: DefaultKeys.CONNECTED_USER)
                 isConnected.toggle()
             } onError: { error in
                 alertMessage = error
@@ -76,6 +88,13 @@ struct ConnexionView: View {
             alertMessage = error
             showAlert.toggle()
         }
+    }
+    
+    func setUserDefaultsValues(pseudo: String, userID: String) {
+        UserDefaults.standard.set(true, forKey: DefaultKeys.IS_USER_CONNECTED)
+        UserDefaults.standard.set(pseudo, forKey: DefaultKeys.CONNECTED_USER_PSEUDO)
+        UserDefaults.standard.set(email, forKey: DefaultKeys.CONNECTED_USER_MAIL)
+        UserDefaults.standard.set(userID, forKey: DefaultKeys.CONNECTED_USER_ID)
     }
 }
 
