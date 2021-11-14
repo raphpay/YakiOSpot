@@ -19,20 +19,28 @@ struct SpotListView: View {
     
     var body: some View {
         NavigationView {
-            List {
-                Section {
-                    ForEach(mySpots, id: \.self) { spot in
-                        Text(spot)
-                    }
-                } header: {
-                    Text("Mes Spots préférés")
+            VStack {
+                Button {
+                    didTapLogOut()
+                } label: {
+                    Text("Sign Out")
+                        .foregroundColor(.red)
                 }
-                Section {
-                    ForEach(topSpots, id: \.self) { spot in
-                        Text(spot)
+                List {
+                    Section {
+                        ForEach(mySpots, id: \.self) { spot in
+                            Text(spot)
+                        }
+                    } header: {
+                        Text("Mes Spots préférés")
                     }
-                } header: {
-                    Text("Top Spots")
+                    Section {
+                        ForEach(topSpots, id: \.self) { spot in
+                            Text(spot)
+                        }
+                    } header: {
+                        Text("Top Spots")
+                    }
                 }
             }
         }

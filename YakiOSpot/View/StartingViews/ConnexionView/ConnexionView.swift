@@ -10,22 +10,18 @@ import SwiftUI
 struct ConnexionView: View {
     @Binding var selection: Int
     
-    @State var email: String = ""
-    @State var password: String = ""
-    @State var isConnected: Bool = false
-    @State var showAlert: Bool = false
-    @State var alertMessage: String = ""
+    @StateObject var viewModel = ConnexionViewViewModel()
     
     var body: some View {
         VStack {
             VStack {
-                TextField("Pseudo ou adresse mail", text: $email)
+                TextField("Pseudo ou adresse mail", text: $viewModel.email)
                                 .textFieldStyle(.roundedBorder)
                                 .frame(height: 55)
                                 .padding(.horizontal)
                                 .autocapitalization(.none)
                                 .disableAutocorrection(true)
-                SecureField("Mot de passe", text: $password)
+                SecureField("Mot de passe", text: $viewModel.password)
                     .frame(height: 55)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal)
@@ -44,7 +40,7 @@ struct ConnexionView: View {
             Spacer()
 
             Button(action: {
-                didTapConnect()
+                viewModel.didTapConnect()
             }) {
                 ButtonView(title: "Connexion")
             }
@@ -57,44 +53,18 @@ struct ConnexionView: View {
             }
         }
         .onAppear(perform: {
-            if let isUserConnected = UserDefaults.standard.value(forKey: DefaultKeys.IS_USER_CONNECTED) as? Bool {
-                isConnected = isUserConnected
-                print("onAppear \(isConnected)")
+            if viewModel.isUserConnected {
+                viewModel.isShowingTabBar = true
             } else {
-                isConnected = false
-                print("onAppear else \(isConnected)")
+                viewModel.isShowingTabBar = false
             }
         })
-        .fullScreenCover(isPresented: $isConnected) {
-            SpotListView(isConnected: $isConnected)
+        .fullScreenCover(isPresented: $viewModel.isShowingTabBar) {
+            SpotListView(isConnected: $viewModel.isShowingTabBar)
         }
-        .alert(isPresented: $showAlert) {
-            Alert(title: Text("Oups"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(title: Text("Oups"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
-    }
-    
-    func didTapConnect() {
-        API.Auth.signIn(email: email, password: password) { userID in
-            API.User.getUserPseudo(with: userID) { pseudo in
-                setUserDefaultsValues(pseudo: pseudo, userID: userID)
-                email = ""
-                password = ""
-                isConnected.toggle()
-            } onError: { error in
-                alertMessage = error
-                showAlert.toggle()
-            }
-        } onError: { error in
-            alertMessage = error
-            showAlert.toggle()
-        }
-    }
-    
-    func setUserDefaultsValues(pseudo: String, userID: String) {
-        UserDefaults.standard.set(true, forKey: DefaultKeys.IS_USER_CONNECTED)
-        UserDefaults.standard.set(pseudo, forKey: DefaultKeys.CONNECTED_USER_PSEUDO)
-        UserDefaults.standard.set(email, forKey: DefaultKeys.CONNECTED_USER_MAIL)
-        UserDefaults.standard.set(userID, forKey: DefaultKeys.CONNECTED_USER_ID)
     }
 }
 
