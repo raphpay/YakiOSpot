@@ -12,10 +12,8 @@ struct SpotListView: View {
     
     @State var showAlert: Bool = false
     @State var alertMessage: String = ""
-    
-    // TODO: To be removed
-    var mySpots = ["Spot 1", "Spot2"]
-    var topSpots = ["Spot 1", "Spot2", "Spot 3"]
+    @State var mySpots: [Spot] =  []
+    @State var topSpots: [Spot] = []
     
     var body: some View {
         NavigationView {
@@ -26,30 +24,29 @@ struct SpotListView: View {
                     Text("Sign Out")
                         .foregroundColor(.red)
                 }
+                
                 List {
                     Section {
                         ForEach(mySpots, id: \.self) { spot in
-                            Text(spot)
+                            NavigationLink(destination: Text("Hello \(spot.name)")) {
+                                SpotView(spot: spot)
+                            }
                         }
                     } header: {
-                        Text("Mes Spots préférés")
+                        Text("Mes spots préférés")
                     }
+                    
                     Section {
                         ForEach(topSpots, id: \.self) { spot in
-                            Text(spot)
+                            SpotView(spot: spot)
                         }
                     } header: {
                         Text("Top Spots")
                     }
                 }
             }
+            .navigationTitle("Yaki O Spot")
         }
-        .onAppear(perform: {
-            print("On apopei \(UserDefaults.standard.value(forKey: DefaultKeys.IS_USER_CONNECTED))")
-            print("On apopei \(UserDefaults.standard.value(forKey: DefaultKeys.CONNECTED_USER_MAIL))")
-            print("On apopei \(UserDefaults.standard.value(forKey: DefaultKeys.CONNECTED_USER_PSEUDO))")
-        })
-        .navigationTitle("Yaki O Spot")
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Oups"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
         }
@@ -75,6 +72,6 @@ struct SpotListView: View {
 
 struct SpotListView_Previews: PreviewProvider {
     static var previews: some View {
-        SpotListView(isConnected: .constant(true))
+        SpotListView(isConnected: .constant(true), mySpots: Spot.mockMySpots, topSpots: Spot.mockTopSpots)
     }
 }
