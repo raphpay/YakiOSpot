@@ -1,5 +1,5 @@
 //
-//  SpotView.swift
+//  SpotCellView.swift
 //  YakiOSpot
 //
 //  Created by Raphaël Payet on 14/11/2021.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct SpotView: View {
+struct SpotCellView: View {
     var spot: Spot
     
     var body: some View {
@@ -35,8 +35,8 @@ struct SpotView: View {
 }
 
 
-struct SpotView_Previews: PreviewProvider {
+struct SpotCellView_Previews: PreviewProvider {
     static var previews: some View {
-        SpotView(spot: Spot.dummySpot)
+        SpotCellView(spot: Spot.dummySpot)
     }
 }

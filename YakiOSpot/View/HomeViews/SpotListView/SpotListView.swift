@@ -10,11 +10,7 @@ import SwiftUI
 struct SpotListView: View {
     @Binding var isConnected: Bool
     
-    @State var showAlert: Bool = false
-    @State var alertMessage: String = ""
-    @State var isShowingSearch: Bool = false
-    @State var mySpots: [Spot] =  []
-    @State var topSpots: [Spot] = []
+    @StateObject private var viewModel = SpotListViewViewModel()
     
     var body: some View {
         NavigationView {
@@ -28,9 +24,9 @@ struct SpotListView: View {
                 
                 List {
                     Section {
-                        ForEach(mySpots, id: \.self) { spot in
+                        ForEach(viewModel.mySpots, id: \.self) { spot in
                             NavigationLink(destination: Text("Hello \(spot.name)")) {
-                                SpotView(spot: spot)
+                                SpotCellView(spot: spot)
                             }
                         }
                     } header: {
@@ -38,9 +34,9 @@ struct SpotListView: View {
                     }
                     
                     Section {
-                        ForEach(topSpots, id: \.self) { spot in
+                        ForEach(viewModel.topSpots, id: \.self) { spot in
                             NavigationLink(destination: Text("Hello \(spot.name)")) {
-                                SpotView(spot: spot)
+                                SpotCellView(spot: spot)
                             }
                         }
                     } header: {
@@ -52,7 +48,7 @@ struct SpotListView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {
                     Button(action: {
-                        isShowingSearch = true
+                        viewModel.isShowingSearch = true
                     }) {
                         Image(systemName: "magnifyingglass")
                             .foregroundColor(.black)
@@ -68,13 +64,13 @@ struct SpotListView: View {
                 }
             }
         }
-        .alert(isPresented: $showAlert) {
-            Alert(title: Text("Oups"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        .alert(isPresented: $viewModel.showAlert) {
+            Alert(title: Text("Oups"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
-        .sheet(isPresented: $isShowingSearch, onDismiss: {
-            isShowingSearch = false
+        .sheet(isPresented: $viewModel.isShowingSearch, onDismiss: {
+            viewModel.isShowingSearch = false
         }) {
-            Text("Search view")
+            SearchView()
         }
     }
     
@@ -83,8 +79,8 @@ struct SpotListView: View {
             isConnected = false
             removeUserDefaultsValues()
         } onError: { error in
-            alertMessage = error
-            showAlert.toggle()
+            viewModel.alertMessage = error
+            viewModel.showAlert.toggle()
         }
     }
     
@@ -98,6 +94,6 @@ struct SpotListView: View {
 
 struct SpotListView_Previews: PreviewProvider {
     static var previews: some View {
-        SpotListView(isConnected: .constant(true), mySpots: Spot.mockMySpots, topSpots: Spot.mockTopSpots)
+        SpotListView(isConnected: .constant(true))
     }
 }
