@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import SwiftUI
 
 final class SpotListViewViewModel: ObservableObject {
     // TODO: Find a way to add the Binding var into the viewModel

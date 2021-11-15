@@ -9,43 +9,26 @@ import SwiftUI
 
 struct SearchView: View {
     
-    @State var spots: [Spot] = []
-    @State private var searchedName = ""
+    @StateObject private var viewModel = SearchViewModel()
     
     var body: some View {
         NavigationView {
             List {
-                ForEach(searchResults, id: \.self) { spot in
+                ForEach(viewModel.searchResults, id: \.self) { spot in
                     NavigationLink(destination: Text(spot.name)) {
                         Text(spot.name)
                     }
                 }
             }
-            .searchable(text: $searchedName)
+            .searchable(text: $viewModel.searchedName)
             .navigationTitle("Rechercher")
             .navigationBarTitleDisplayMode(.inline)
         }.onAppear {
-            fetchSpots()
+            viewModel.fetchSpots()
         }
     }
     
-    var searchResults: [Spot] {
-        if searchedName.isEmpty {
-            return spots
-        } else {
-            return spots.filter { $0.name.contains(searchedName) }
-        }
-    }
     
-    func fetchSpots() {
-        // TODO: Search for spots in firebase
-        API.Spot.getAllSpots { fetchedSpots in
-            self.spots = fetchedSpots
-        } onError: { error in
-            print(error)
-        }
-
-    }
 }
 
 struct SearchView_Previews: PreviewProvider {

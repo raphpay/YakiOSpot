@@ -25,6 +25,7 @@
 		86E1F8772742873400C983EC /* SpotListViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1F8762742873400C983EC /* SpotListViewViewModel.swift */; };
 		86E1F8792742897600C983EC /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1F8782742897600C983EC /* SearchView.swift */; };
 		86E1F87B27428B4A00C983EC /* SpotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1F87A27428B4A00C983EC /* SpotService.swift */; };
+		86E1F87E2742905500C983EC /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1F87D2742905500C983EC /* SearchViewModel.swift */; };
 		86F3667E273D2845009CBDC9 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3667D273D2845009CBDC9 /* AuthService.swift */; };
 		86F81D1D2741741100AB69DB /* ConnexionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F81D1C2741741100AB69DB /* ConnexionViewViewModel.swift */; };
 		86F81D202741772200AB69DB /* RegistrationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F81D1F2741772200AB69DB /* RegistrationViewViewModel.swift */; };
@@ -52,6 +53,7 @@
 		86E1F8762742873400C983EC /* SpotListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListViewViewModel.swift; sourceTree = "<group>"; };
 		86E1F8782742897600C983EC /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		86E1F87A27428B4A00C983EC /* SpotService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotService.swift; sourceTree = "<group>"; };
+		86E1F87D2742905500C983EC /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		86F3667D273D2845009CBDC9 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		86F81D1C2741741100AB69DB /* ConnexionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnexionViewViewModel.swift; sourceTree = "<group>"; };
 		86F81D1F2741772200AB69DB /* RegistrationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewViewModel.swift; sourceTree = "<group>"; };
@@ -173,7 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				86E1F8752742872700C983EC /* SpotListView */,
-				86E1F8782742897600C983EC /* SearchView.swift */,
+				86E1F87C2742904800C983EC /* SearchView */,
 			);
 			path = HomeViews;
 			sourceTree = "<group>";
@@ -205,6 +207,15 @@
 				86E1F8762742873400C983EC /* SpotListViewViewModel.swift */,
 			);
 			path = SpotListView;
+			sourceTree = "<group>";
+		};
+		86E1F87C2742904800C983EC /* SearchView */ = {
+			isa = PBXGroup;
+			children = (
+				86E1F8782742897600C983EC /* SearchView.swift */,
+				86E1F87D2742905500C983EC /* SearchViewModel.swift */,
+			);
+			path = SearchView;
 			sourceTree = "<group>";
 		};
 		86F81D1B2741740500AB69DB /* ConnexionView */ = {
@@ -346,6 +357,7 @@
 				86BB95C6273EF6190029C39A /* AuthErrors.swift in Sources */,
 				86D68122273D2229001E7BE6 /* SpotListView.swift in Sources */,
 				86BB95D0273F043F0029C39A /* UserDefaultsKeys.swift in Sources */,
+				86E1F87E2742905500C983EC /* SearchViewModel.swift in Sources */,
 				86F81D202741772200AB69DB /* RegistrationViewViewModel.swift in Sources */,
 				86F81D242741800400AB69DB /* Spot.swift in Sources */,
 				86F3667E273D2845009CBDC9 /* AuthService.swift in Sources */,
