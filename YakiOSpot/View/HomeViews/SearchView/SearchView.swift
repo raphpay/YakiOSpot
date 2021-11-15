@@ -15,8 +15,13 @@ struct SearchView: View {
         NavigationView {
             List {
                 ForEach(viewModel.searchResults, id: \.self) { spot in
-                    NavigationLink(destination: Text(spot.name)) {
-                        Text(spot.name)
+                    NavigationLink(destination: SpotView(spot: spot)) {
+                        VStack {
+                            Text(spot.name)
+                            Label("\(spot.tracks) Pistes", systemImage: "bicycle")
+                                .foregroundColor(.black)
+                                .padding(.top, 5)
+                        }
                     }
                 }
             }

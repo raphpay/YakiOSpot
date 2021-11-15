@@ -26,6 +26,7 @@
 		86E1F8792742897600C983EC /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1F8782742897600C983EC /* SearchView.swift */; };
 		86E1F87B27428B4A00C983EC /* SpotService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1F87A27428B4A00C983EC /* SpotService.swift */; };
 		86E1F87E2742905500C983EC /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1F87D2742905500C983EC /* SearchViewModel.swift */; };
+		86E1F8802742914700C983EC /* SpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1F87F2742914700C983EC /* SpotView.swift */; };
 		86F3667E273D2845009CBDC9 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3667D273D2845009CBDC9 /* AuthService.swift */; };
 		86F81D1D2741741100AB69DB /* ConnexionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F81D1C2741741100AB69DB /* ConnexionViewViewModel.swift */; };
 		86F81D202741772200AB69DB /* RegistrationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F81D1F2741772200AB69DB /* RegistrationViewViewModel.swift */; };
@@ -54,6 +55,7 @@
 		86E1F8782742897600C983EC /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		86E1F87A27428B4A00C983EC /* SpotService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotService.swift; sourceTree = "<group>"; };
 		86E1F87D2742905500C983EC /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
+		86E1F87F2742914700C983EC /* SpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotView.swift; sourceTree = "<group>"; };
 		86F3667D273D2845009CBDC9 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		86F81D1C2741741100AB69DB /* ConnexionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnexionViewViewModel.swift; sourceTree = "<group>"; };
 		86F81D1F2741772200AB69DB /* RegistrationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewViewModel.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				86E1F8752742872700C983EC /* SpotListView */,
 				86E1F87C2742904800C983EC /* SearchView */,
+				86E1F87F2742914700C983EC /* SpotView.swift */,
 			);
 			path = HomeViews;
 			sourceTree = "<group>";
@@ -362,6 +365,7 @@
 				86F81D242741800400AB69DB /* Spot.swift in Sources */,
 				86F3667E273D2845009CBDC9 /* AuthService.swift in Sources */,
 				86BB95CA273EF6630029C39A /* Helper.swift in Sources */,
+				86E1F8802742914700C983EC /* SpotView.swift in Sources */,
 				86E1F8792742897600C983EC /* SearchView.swift in Sources */,
 				86F81D26274184CD00AB69DB /* SpotCellView.swift in Sources */,
 				86D6811E273D0C5A001E7BE6 /* ConnexionView.swift in Sources */,
