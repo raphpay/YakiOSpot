@@ -12,6 +12,7 @@ struct SpotListView: View {
     
     @State var showAlert: Bool = false
     @State var alertMessage: String = ""
+    @State var isShowingSearch: Bool = false
     @State var mySpots: [Spot] =  []
     @State var topSpots: [Spot] = []
     
@@ -38,7 +39,9 @@ struct SpotListView: View {
                     
                     Section {
                         ForEach(topSpots, id: \.self) { spot in
-                            SpotView(spot: spot)
+                            NavigationLink(destination: Text("Hello \(spot.name)")) {
+                                SpotView(spot: spot)
+                            }
                         }
                     } header: {
                         Text("Top Spots")
@@ -46,9 +49,32 @@ struct SpotListView: View {
                 }
             }
             .navigationTitle("Yaki O Spot")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Button(action: {
+                        isShowingSearch = true
+                    }) {
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.black)
+                    }
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: Text("Profile")) {
+                        Image(systemName: "person.circle")
+                            .foregroundColor(.black)
+                    }
+                }
+            }
         }
         .alert(isPresented: $showAlert) {
             Alert(title: Text("Oups"), message: Text(alertMessage), dismissButton: .default(Text("OK")))
+        }
+        .sheet(isPresented: $isShowingSearch, onDismiss: {
+            isShowingSearch = false
+        }) {
+            Text("Search view")
         }
     }
     
