@@ -24,6 +24,8 @@ struct Spot: Codable, Hashable {
     var tracks: Int
     var members: Int
     var peoplePresent: Int
+    var favorites: Int?
+    var isFavorited: Bool = false
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)

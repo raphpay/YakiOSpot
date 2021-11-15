@@ -16,6 +16,16 @@ class UserService {
     // MARK: - Properties
     let database = Firestore.firestore()
     lazy var USERS_REF = database.collection("users")
+    lazy var SPOTS_REF = database.collection("spots")
+    
+    var currentUserID: String? {
+        guard let id =  UserDefaults.standard.value(forKey: DefaultKeys.CONNECTED_USER_ID) as? String else {
+            return nil
+        }
+        
+        return id
+    }
+    
     
     // MARK: - Post
     func addUserToDatabase(_ user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
@@ -57,6 +67,27 @@ class UserService {
             }
             
             onSuccess(pseudo)
+        }
+    }
+    
+    func getUsersFavoritedSpots(onSuccess: @escaping ((_ spots: [Spot]) -> Void), onError: @escaping((_ error: String) -> Void)) {
+        guard let currentUserID = currentUserID else {
+            onError("No connected User")
+            return
+        }
+        
+        USERS_REF.document(currentUserID).getDocument { snapshot, error in
+            guard error == nil else {
+                onError(error!.localizedDescription)
+                return
+            }
+            
+            guard let snapshot = snapshot else {
+                onError("No user snapshot")
+                return
+            }
+            
+            print(snapshot.data())
         }
     }
 }

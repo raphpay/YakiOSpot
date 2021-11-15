@@ -13,8 +13,13 @@ struct SpotCellView: View {
     var body: some View {
         VStack(alignment: .leading) {
             HStack {
-                Image(systemName: "star.fill")
-                    .foregroundColor(.yellow)
+                Button {
+                    didTapStarButton()
+                } label: {
+                    Image(systemName: spot.isFavorited ? "star.fill" : "star")
+                        .foregroundColor(.yellow)
+                }
+
                 Spacer()
                 Text(spot.name)
                     .font(.title2)
@@ -31,6 +36,14 @@ struct SpotCellView: View {
                 .foregroundColor(.black)
                 .padding(.top, 5)
         }
+    }
+    
+    func didTapStarButton() {
+        // Find the spot ID
+        // Check if the ID is in the users favorited spots
+        // Star or unstar
+        // Toggle on firebase
+        print("didTapStarButton")
     }
 }
 
