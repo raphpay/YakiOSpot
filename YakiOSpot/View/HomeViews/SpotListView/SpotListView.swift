@@ -9,12 +9,11 @@ import SwiftUI
 
 struct SpotListView: View {
     @Binding var isConnected: Bool
-    
-    @StateObject private var viewModel = SpotListViewViewModel()
+    @StateObject private var userSettings   = UserSettings()
+    @StateObject private var viewModel      = SpotListViewViewModel()
     
     var body: some View {
         NavigationView {
-            
             List {
                 Section {
                     if viewModel.mySpots.isEmpty {
@@ -57,7 +56,7 @@ struct SpotListView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: Text("Profile")) {
+                    NavigationLink(destination: ProfileView(isConnected: $isConnected)) {
                         Image(systemName: "person.circle")
                             .foregroundColor(.black)
                     }
@@ -89,23 +88,6 @@ struct SpotListView: View {
     
     func fetchTopSpots() {
         
-    }
-    
-    func didTapLogOut() {
-        API.Auth.signOut {
-            isConnected = false
-            removeUserDefaultsValues()
-        } onError: { error in
-            viewModel.alertMessage = error
-            viewModel.showAlert.toggle()
-        }
-    }
-    
-    func removeUserDefaultsValues() {
-        UserDefaults.standard.setValue(false, forKey: DefaultKeys.IS_USER_CONNECTED)
-        UserDefaults.standard.removeObject(forKey: DefaultKeys.CONNECTED_USER_ID)
-        UserDefaults.standard.removeObject(forKey: DefaultKeys.CONNECTED_USER_PSEUDO)
-        UserDefaults.standard.removeObject(forKey: DefaultKeys.CONNECTED_USER_MAIL)
     }
 }
 

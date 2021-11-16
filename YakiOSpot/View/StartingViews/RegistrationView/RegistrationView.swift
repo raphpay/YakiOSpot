@@ -9,8 +9,8 @@ import SwiftUI
 
 struct RegistrationView: View {
     @Binding var selection: Int
-    
-    @StateObject private var viewModel = RegistrationViewViewModel()
+    @StateObject private var userSettings   = UserSettings()
+    @StateObject private var viewModel      = RegistrationViewViewModel()
     
     var body: some View {
         VStack {
@@ -37,7 +37,9 @@ struct RegistrationView: View {
             
             
             Button(action: {
-                viewModel.didTapRegister()
+                viewModel.didTapRegister { user in
+                    userSettings.saveUser(user)
+                }
             }) {
                 ButtonView(title: "Inscription", color: .green)
             }
@@ -51,9 +53,13 @@ struct RegistrationView: View {
                 Text("Connectez-vous")
             }
         }
-        .fullScreenCover(isPresented: $viewModel.isConnected) {
-            SpotListView(isConnected: $viewModel.isConnected)
-        }
+        .onAppear(perform: {
+            if viewModel.isUserConnected {
+                viewModel.isShowingTabBar = true
+            } else {
+                viewModel.isShowingTabBar = false
+            }
+        })
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Oups"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }

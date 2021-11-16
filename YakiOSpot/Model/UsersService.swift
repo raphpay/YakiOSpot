@@ -17,27 +17,21 @@ class UserService {
     let database = Firestore.firestore()
     lazy var USERS_REF = database.collection("users")
     lazy var SPOTS_REF = database.collection("spots")
+    var userSettings = UserSettings()
     
     var currentUserID: String? {
-        guard let id =  UserDefaults.standard.value(forKey: DefaultKeys.CONNECTED_USER_ID) as? String else {
-            return nil
-        }
-        
+        let id = userSettings.currentUser.id
+        guard id != "" else { return nil }
         return id
     }
     
     
     // MARK: - Post
     func addUserToDatabase(_ user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
-        guard let id = user.id else {
-            onError("User not created.")
-            return
-        }
-        
-        let specificUserRef = USERS_REF.document(id)
+        let specificUserRef = USERS_REF.document(user.id)
         
         let user: [String: Any] = [
-            "uid" : id,
+            "uid" : user.id,
             "pseudo": user.pseudo,
             "mail": user.mail
         ]

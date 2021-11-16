@@ -22,20 +22,17 @@ final class ConnexionViewViewModel: ObservableObject {
     }
     
     var isUserConnected: Bool {
-        if UserDefaults.standard.value(forKey: DefaultKeys.IS_USER_CONNECTED) as? Bool == true {
-            return true
-        } else {
-            return false
-        }
+        return UserDefaults.standard.bool(forKey: DefaultKeys.IS_USER_CONNECTED)
     }
     
-    func didTapConnect() {
+    func didTapConnect(onSuccess: @escaping ((_ user: User) -> Void)) {
         API.Auth.signIn(email: email, password: password) { userID in
             API.User.getUserPseudo(with: userID) { pseudo in
-                self.setUserDefaultsValues(pseudo: pseudo, userID: userID)
+                self.isShowingTabBar.toggle()
+                let user = User(id: userID, pseudo: pseudo, mail: self.email)
                 self.email = ""
                 self.password = ""
-                self.isShowingTabBar.toggle()
+                onSuccess(user)
             } onError: { error in
                 self.alertMessage = error
                 self.showAlert.toggle()
@@ -44,12 +41,5 @@ final class ConnexionViewViewModel: ObservableObject {
             self.alertMessage = error
             self.showAlert.toggle()
         }
-    }
-    
-    func setUserDefaultsValues(pseudo: String, userID: String) {
-        UserDefaults.standard.set(true, forKey: DefaultKeys.IS_USER_CONNECTED)
-        UserDefaults.standard.set(pseudo, forKey: DefaultKeys.CONNECTED_USER_PSEUDO)
-        UserDefaults.standard.set(email, forKey: DefaultKeys.CONNECTED_USER_MAIL)
-        UserDefaults.standard.set(userID, forKey: DefaultKeys.CONNECTED_USER_ID)
     }
 }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ConnexionView: View {
     @Binding var selection: Int
-    
+    @StateObject var userSettings = UserSettings()
     @StateObject var viewModel = ConnexionViewViewModel()
     
     var body: some View {
@@ -40,7 +40,10 @@ struct ConnexionView: View {
             Spacer()
 
             Button(action: {
-                viewModel.didTapConnect()
+                viewModel.didTapConnect { user in
+                    userSettings.saveUser(user)
+                }
+
             }) {
                 ButtonView(title: "Connexion")
             }

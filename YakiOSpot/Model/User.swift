@@ -17,8 +17,8 @@ The user documentation
 */
 
 struct User: Codable {
-    var id: String?
-    var pseudo: String
-    var mail: String
+    var id: String = ""
+    var pseudo: String = ""
+    var mail: String = ""
     var favoritedSpotsIDs: [String]?
 }
