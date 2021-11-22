@@ -10,10 +10,11 @@ import SwiftUI
 struct ProfileView: View {
     @Binding var isConnected: Bool
     @StateObject var userSettings = UserSettings()
+    @State var displayName: String = ""
     
     var body: some View {
         VStack {
-            Text("Hello, World!")
+            Text("Hello, \(displayName)!")
             Button {
                 didTapLogOut {
                     userSettings.removeLoggedInUser()
@@ -24,6 +25,7 @@ struct ProfileView: View {
         }
         .onAppear {
             userSettings.retrieveUser()
+            displayName = userSettings.currentUser.pseudo
             print("isConnected :", UserDefaults.standard.bool(forKey: DefaultKeys.IS_USER_CONNECTED))
         }
     }
@@ -41,6 +43,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(isConnected: .constant(true))
+        ProfileView(isConnected: .constant(true), displayName: "World")
     }
 }
