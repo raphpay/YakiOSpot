@@ -10,6 +10,7 @@
 		54D94993E175939CC29ED04E /* Pods_YakiOSpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F907B8BCAFF86EFD71C34F78 /* Pods_YakiOSpot.framework */; };
 		862D8433273D2AE60081BA83 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862D8432273D2AE60081BA83 /* API.swift */; };
 		862D8435273D2BC30081BA83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 862D8434273D2BC30081BA83 /* GoogleService-Info.plist */; };
+		86804670274C227500AAFC83 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680466F274C227500AAFC83 /* FormTextField.swift */; };
 		869E350F274304EB007CF366 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869E350E274304EB007CF366 /* UserSettings.swift */; };
 		869E351127430602007CF366 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869E351027430602007CF366 /* ProfileView.swift */; };
 		86BB95C6273EF6190029C39A /* AuthErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB95C5273EF6190029C39A /* AuthErrors.swift */; };
@@ -40,6 +41,7 @@
 		0D56678A2F43227BAD14E92F /* Pods-YakiOSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpot.release.xcconfig"; path = "Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot.release.xcconfig"; sourceTree = "<group>"; };
 		862D8432273D2AE60081BA83 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		862D8434273D2BC30081BA83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		8680466F274C227500AAFC83 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		869E350E274304EB007CF366 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		869E351027430602007CF366 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		86BB95C5273EF6190029C39A /* AuthErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrors.swift; sourceTree = "<group>"; };
@@ -110,6 +112,32 @@
 				869E350E274304EB007CF366 /* UserSettings.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		86804671274C22A000AAFC83 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				86804672274C22A900AAFC83 /* Atoms */,
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		86804672274C22A900AAFC83 /* Atoms */ = {
+			isa = PBXGroup;
+			children = (
+				8680466F274C227500AAFC83 /* FormTextField.swift */,
+			);
+			path = Atoms;
+			sourceTree = "<group>";
+		};
+		86804673274C22B600AAFC83 /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				86D68123273D23A5001E7BE6 /* StartingViews */,
+				86D68124273D23B4001E7BE6 /* HomeViews */,
+				86F81D25274184CD00AB69DB /* SpotCellView.swift */,
+			);
+			path = Screens;
 			sourceTree = "<group>";
 		};
 		86BB95C7273EF6250029C39A /* Utils */ = {
@@ -192,9 +220,8 @@
 		86D68125273D23C4001E7BE6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				86D68123273D23A5001E7BE6 /* StartingViews */,
-				86D68124273D23B4001E7BE6 /* HomeViews */,
-				86F81D25274184CD00AB69DB /* SpotCellView.swift */,
+				86804671274C22A000AAFC83 /* Components */,
+				86804673274C22B600AAFC83 /* Screens */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -379,6 +406,7 @@
 				86E1F8772742873400C983EC /* SpotListViewViewModel.swift in Sources */,
 				869E351127430602007CF366 /* ProfileView.swift in Sources */,
 				86BB95CC273EF8820029C39A /* UsersService.swift in Sources */,
+				86804670274C227500AAFC83 /* FormTextField.swift in Sources */,
 				862D8433273D2AE60081BA83 /* API.swift in Sources */,
 				86E1F87B27428B4A00C983EC /* SpotService.swift in Sources */,
 				86BB95CE273EF8B90029C39A /* User.swift in Sources */,

@@ -7,40 +7,35 @@
 
 import SwiftUI
 
+enum RegistrationFormTextField {
+    case pseudo, email, password
+}
+
 struct RegistrationView: View {
     @Binding var selection: Int
     @StateObject private var userSettings   = UserSettings()
     @StateObject private var viewModel      = RegistrationViewViewModel()
+    @FocusState private var focus: RegistrationFormTextField?
     
     var body: some View {
         VStack {
             VStack {
-                TextField("Pseudo", text: $viewModel.pseudo)
-                                .textFieldStyle(.roundedBorder)
-                                .frame(height: 55)
-                                .padding(.horizontal)
-                                .autocapitalization(.none)
-                                .disableAutocorrection(true)
-                TextField("Email", text: $viewModel.email)
-                                .textFieldStyle(.roundedBorder)
-                                .frame(height: 55)
-                                .padding(.horizontal)
-                                .autocapitalization(.none)
-                                .disableAutocorrection(true)
-                SecureField("Mot de passe", text: $viewModel.password)
-                    .frame(height: 55)
-                    .textFieldStyle(.roundedBorder)
-                    .padding(.horizontal)
+                FormTextField(placeholder: "Pseudo", text: $viewModel.pseudo) {
+                    focus = .email
+                }.focused($focus, equals: .pseudo)
+                FormTextField(placeholder: "Email", text: $viewModel.email) {
+                    focus = .password
+                }.focused($focus, equals: .email)
+                FormTextField(isSecured: true, placeholder: "Password", text: $viewModel.password) {
+                    startRegistrationProcess()
+                }.focused($focus, equals: .password)
             }
             
             Spacer()
             
             
             Button(action: {
-                viewModel.didTapRegister { user in
-                    userSettings.saveUser(user)
-                    selection = 0
-                }
+                startRegistrationProcess()
             }) {
                 ButtonView(title: "Inscription", color: .green)
             }
@@ -61,6 +56,13 @@ struct RegistrationView: View {
             Alert(title: Text("Oups"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
     }
+    
+    private func startRegistrationProcess() {
+        viewModel.didTapRegister { user in
+            userSettings.saveUser(user)
+            selection = 0
+        }
+    }
 }
 
 struct RegistrationView_Previews: PreviewProvider {
@@ -68,3 +70,4 @@ struct RegistrationView_Previews: PreviewProvider {
         RegistrationView(selection: .constant(1))
     }
 }
+

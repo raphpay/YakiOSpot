@@ -7,26 +7,25 @@
 
 import SwiftUI
 
+enum ConnexionFormTextField {
+    case mail, password
+}
+
 struct ConnexionView: View {
     @Binding var selection: Int
     @StateObject var userSettings = UserSettings()
     @StateObject var viewModel = ConnexionViewViewModel()
+    @FocusState private var focus: ConnexionFormTextField?
     
     var body: some View {
         VStack {
             VStack {
-                TextField("Pseudo", text: $viewModel.email)
-                                .textFieldStyle(.roundedBorder)
-                                .frame(height: 55)
-                                .padding(.horizontal)
-                                .autocapitalization(.none)
-                                .disableAutocorrection(true)
-                SecureField("Mot de passe", text: $viewModel.password)
-                    .frame(height: 55)
-                    .textFieldStyle(.roundedBorder)
-                    .padding(.horizontal)
-                    .autocapitalization(.none)
-                    .disableAutocorrection(true)
+                FormTextField(placeholder: "Adresse email", text: $viewModel.email) {
+                    focus = .password
+                }.focused($focus, equals: .mail)
+                FormTextField(isSecured: true, placeholder: "Mot de passe", text: $viewModel.password, submitLabel: .done) {
+                    startConnexionProcess()
+                }.focused($focus, equals: .password)
                 HStack {
                     Spacer()
                     Button(action: {}) {
@@ -40,10 +39,7 @@ struct ConnexionView: View {
             Spacer()
 
             Button(action: {
-                viewModel.didTapConnect { user in
-                    userSettings.saveUser(user)
-                }
-
+                startConnexionProcess()
             }) {
                 ButtonView(title: "Connexion")
             }
@@ -67,6 +63,13 @@ struct ConnexionView: View {
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Oups"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
+        }
+    }
+    
+    
+    private func startConnexionProcess() {
+        viewModel.didTapConnect { user in
+            userSettings.saveUser(user)
         }
     }
 }
