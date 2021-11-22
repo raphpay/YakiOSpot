@@ -15,7 +15,7 @@ struct ConnexionView: View {
     var body: some View {
         VStack {
             VStack {
-                TextField("Pseudo ou adresse mail", text: $viewModel.email)
+                TextField("Pseudo", text: $viewModel.email)
                                 .textFieldStyle(.roundedBorder)
                                 .frame(height: 55)
                                 .padding(.horizontal)
