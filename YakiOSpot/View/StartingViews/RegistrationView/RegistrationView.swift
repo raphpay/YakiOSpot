@@ -39,6 +39,7 @@ struct RegistrationView: View {
             Button(action: {
                 viewModel.didTapRegister { user in
                     userSettings.saveUser(user)
+                    selection = 0
                 }
             }) {
                 ButtonView(title: "Inscription", color: .green)
