@@ -28,6 +28,7 @@ final class RegistrationViewViewModel: ObservableObject {
                 self.pseudo      = ""
                 self.email       = ""
                 self.password    = ""
+                self.isShowingTabBar = true
                 onSuccess(user)
             } onError: { error in
                 self.alertMessage = error

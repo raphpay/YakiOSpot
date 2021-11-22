@@ -53,13 +53,9 @@ struct RegistrationView: View {
                 Text("Connectez-vous")
             }
         }
-        .onAppear(perform: {
-            if viewModel.isUserConnected {
-                viewModel.isShowingTabBar = true
-            } else {
-                viewModel.isShowingTabBar = false
-            }
-        })
+        .fullScreenCover(isPresented: $viewModel.isShowingTabBar) {
+            SpotListView(isConnected: $viewModel.isShowingTabBar)
+        }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Oups"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
         }
