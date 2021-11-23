@@ -21,7 +21,7 @@ final class AuthEngineService {
     var session: AuthEngine
     
     static let shared = AuthEngineService()
-    private init(session: AuthEngine = AuthService.shared) {
+    init(session: AuthEngine = AuthService.shared) {
         self.session = session
     }
 }
@@ -30,8 +30,11 @@ class AuthService: AuthEngine {
     // MARK: - Singleton
     static let shared = AuthService()
     private init() {}
-    
-    // MARK: Registration
+}
+
+
+// MARK: Registration
+extension AuthService {
     func createUser(email: String, password: String,
                     onSuccess: @escaping ((_ userID: String) -> Void), onError: @escaping ((_ error: String) -> Void)) {
         Auth.auth().createUser(withEmail: email, password: password) { _result, _error in
@@ -49,8 +52,11 @@ class AuthService: AuthEngine {
             onSuccess(result.user.uid)
         }
     }
-    
-    // MARK: - Log in / out
+}
+
+
+// MARK: - Log in / out
+extension AuthService {
     func signIn(email: String, password: String,
                 onSuccess: @escaping ((_ userID : String) -> Void), onError: @escaping ((_ error: String) -> Void)) {
         Auth.auth().signIn(withEmail: email, password: password) { _result, _error in
