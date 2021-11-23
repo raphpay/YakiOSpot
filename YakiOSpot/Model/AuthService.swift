@@ -7,7 +7,26 @@
 import Foundation
 import FirebaseAuth
 
-class AuthService {
+protocol AuthEngine {
+    func createUser(email: String, password: String,
+                    onSuccess: @escaping ((_ userID: String) -> Void), onError: @escaping ((_ error: String) -> Void))
+    
+    func signIn(email: String, password: String,
+                onSuccess: @escaping ((_ userID : String) -> Void), onError: @escaping ((_ error: String) -> Void))
+    
+    func signOut(onSuccess: @escaping (() -> Void), onError: @escaping ((_ error: String) -> Void))
+}
+
+final class AuthEngineService {
+    var session: AuthEngine
+    
+    static let shared = AuthEngineService()
+    private init(session: AuthEngine = AuthService.shared) {
+        self.session = session
+    }
+}
+
+class AuthService: AuthEngine {
     // MARK: - Singleton
     static let shared = AuthService()
     private init() {}

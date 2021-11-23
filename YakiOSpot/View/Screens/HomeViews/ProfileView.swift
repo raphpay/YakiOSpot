@@ -31,7 +31,7 @@ struct ProfileView: View {
     }
     
     func didTapLogOut(onSuccess: @escaping (() -> Void)) {
-        API.Auth.signOut {
+        API.Auth.session.signOut {
             isConnected = false
             onSuccess()
         } onError: { error in

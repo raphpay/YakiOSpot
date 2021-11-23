@@ -22,7 +22,7 @@ final class RegistrationViewViewModel: ObservableObject {
     }
     
     func didTapRegister(onSuccess: @escaping ((_ user: User) -> Void)) {
-        API.Auth.createUser(email: email, password: password) { userUID in
+        API.Auth.session.createUser(email: email, password: password) { userUID in
             let user = User(id: userUID, pseudo: self.pseudo, mail: self.email)
             API.User.addUserToDatabase(user) {
                 self.pseudo      = ""
