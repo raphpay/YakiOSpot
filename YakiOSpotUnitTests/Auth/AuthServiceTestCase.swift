@@ -143,7 +143,7 @@ extension AuthServiceTestCase {
 }
 
 
-// MARK: - Log in / out
+// MARK: - Log in
 extension AuthServiceTestCase {
     func testGivenEmailAndPasswordAreCorrect_WhenLoggingUserIn_ThenOnSuccessIsCalled() {
         let expectation = XCTestExpectation(description: "Success when logging user in with correct mail and password")
@@ -238,6 +238,22 @@ extension AuthServiceTestCase {
             expectation.fulfill()
         })
         
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+}
+
+
+// MARK: - Log out
+extension AuthServiceTestCase {
+    func testGivenUserIsCorrect_WhenLoggingOut_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when logging out")
+        
+        service?.session.signOut(onSuccess: {
+            expectation.fulfill()
+        }, onError: { _ in
+            //
+        })
         
         wait(for: [expectation], timeout: 0.01)
     }
