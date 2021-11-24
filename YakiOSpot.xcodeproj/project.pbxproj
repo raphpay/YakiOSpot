@@ -19,7 +19,7 @@
 		869E351127430602007CF366 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869E351027430602007CF366 /* ProfileView.swift */; };
 		86BB95C6273EF6190029C39A /* AuthErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB95C5273EF6190029C39A /* AuthErrors.swift */; };
 		86BB95CA273EF6630029C39A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB95C9273EF6630029C39A /* Helper.swift */; };
-		86BB95CC273EF8820029C39A /* UsersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB95CB273EF8820029C39A /* UsersService.swift */; };
+		86BB95CC273EF8820029C39A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB95CB273EF8820029C39A /* UserService.swift */; };
 		86BB95CE273EF8B90029C39A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB95CD273EF8B90029C39A /* User.swift */; };
 		86BB95D0273F043F0029C39A /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB95CF273F043F0029C39A /* UserDefaultsKeys.swift */; };
 		86D68110273D0B31001E7BE6 /* YakiOSpotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6810F273D0B31001E7BE6 /* YakiOSpotApp.swift */; };
@@ -65,7 +65,7 @@
 		869E351027430602007CF366 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		86BB95C5273EF6190029C39A /* AuthErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrors.swift; sourceTree = "<group>"; };
 		86BB95C9273EF6630029C39A /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
-		86BB95CB273EF8820029C39A /* UsersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersService.swift; sourceTree = "<group>"; };
+		86BB95CB273EF8820029C39A /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		86BB95CD273EF8B90029C39A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		86BB95CF273F043F0029C39A /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		86D6810C273D0B31001E7BE6 /* YakiOSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YakiOSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,7 +131,7 @@
 			children = (
 				862D8432273D2AE60081BA83 /* API.swift */,
 				86F3667D273D2845009CBDC9 /* AuthService.swift */,
-				86BB95CB273EF8820029C39A /* UsersService.swift */,
+				86BB95CB273EF8820029C39A /* UserService.swift */,
 				86E1F87A27428B4A00C983EC /* SpotService.swift */,
 				86BB95CD273EF8B90029C39A /* User.swift */,
 				86F81D232741800400AB69DB /* Spot.swift */,
@@ -493,7 +493,7 @@
 				86E1F8772742873400C983EC /* SpotListViewViewModel.swift in Sources */,
 				869E351127430602007CF366 /* ProfileView.swift in Sources */,
 				8692FC53274D7ADE00C8F7CF /* String+Ext.swift in Sources */,
-				86BB95CC273EF8820029C39A /* UsersService.swift in Sources */,
+				86BB95CC273EF8820029C39A /* UserService.swift in Sources */,
 				86804670274C227500AAFC83 /* FormTextField.swift in Sources */,
 				862D8433273D2AE60081BA83 /* API.swift in Sources */,
 				86E1F87B27428B4A00C983EC /* SpotService.swift in Sources */,

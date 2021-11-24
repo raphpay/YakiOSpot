@@ -27,7 +27,7 @@ final class ConnexionViewViewModel: ObservableObject {
     
     func didTapConnect(onSuccess: @escaping ((_ user: User) -> Void)) {
         API.Auth.session.signIn(email: email, password: password) { userID in
-            API.User.getUserPseudo(with: userID) { pseudo in
+            API.User.session.getUserPseudo(with: userID) { pseudo in
                 self.isShowingTabBar.toggle()
                 let user = User(id: userID, pseudo: pseudo, mail: self.email)
                 self.email = ""

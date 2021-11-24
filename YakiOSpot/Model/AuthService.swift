@@ -26,7 +26,7 @@ final class AuthEngineService {
     }
 }
 
-class AuthService: AuthEngine {
+final class AuthService: AuthEngine {
     // MARK: - Singleton
     static let shared = AuthService()
     private init() {}

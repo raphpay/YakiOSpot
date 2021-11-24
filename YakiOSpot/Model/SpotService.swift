@@ -8,7 +8,20 @@
 import Foundation
 import FirebaseFirestore
 
-class SpotService {
+protocol SpotEngine {
+    func getAllSpots(onSuccess: @escaping ((_ spots: [Spot]) -> Void), onError: @escaping((_ error: String) -> Void))
+}
+
+final class SpotEngineService {
+    var session: SpotEngine
+    
+    static let shared = SpotEngineService()
+    init(session: SpotEngine = SpotService.shared) {
+        self.session = session
+    }
+}
+
+final class SpotService: SpotEngine {
     // MARK: - Singleton
     static let shared = SpotService()
     private init() {}
@@ -16,11 +29,17 @@ class SpotService {
     // MARK: - Properties
     let database = Firestore.firestore()
     lazy var SPOTS_REF = database.collection("spots")
-    
-    // MARK: - Post
+}
+
+
+// MARK: - Post
+extension SpotService {
     // TODO: To be done when a screen to add a spot has been made
-    
-    // MARK: - Fetch
+}
+
+
+// MARK: - Fetch
+extension SpotService {
 //    func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void)) {
 //        USERS_REF.document(id).getDocument { snapshot, error in
 //            guard error == nil else {
@@ -55,7 +74,7 @@ class SpotService {
             
             guard let snapshot = snapshot else {
                 onError("No spots found")
-                return 
+                return
             }
             
             var spots: [Spot] = []

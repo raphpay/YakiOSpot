@@ -78,7 +78,7 @@ struct SpotListView: View {
     }
     
     func fetchMySpots() {
-        API.User.getUsersFavoritedSpots { spots in
+        API.User.session.getUsersFavoritedSpots { spots in
             print(spots)
         } onError: { error in
             print(error)

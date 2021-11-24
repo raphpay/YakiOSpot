@@ -8,7 +8,22 @@
 import Foundation
 import FirebaseFirestore
 
-class UserService {
+protocol UserEngine {
+    func addUserToDatabase(_ user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
+    func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void))
+    func getUsersFavoritedSpots(onSuccess: @escaping ((_ spots: [Spot]) -> Void), onError: @escaping((_ error: String) -> Void))
+}
+
+final class UserEngineService {
+    var session: UserEngine
+    
+    static let shared = UserEngineService()
+    init(session: UserEngine = UserService.shared) {
+        self.session = session
+    }
+}
+
+final class UserService: UserEngine {
     // MARK: - Singleton
     static let shared = UserService()
     private init() {}
@@ -24,9 +39,11 @@ class UserService {
         guard id != "" else { return nil }
         return id
     }
-    
-    
-    // MARK: - Post
+}
+
+
+// MARK: - Post
+extension UserService {
     func addUserToDatabase(_ user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
         let specificUserRef = USERS_REF.document(user.id)
         
@@ -40,8 +57,11 @@ class UserService {
         
         onSuccess()
     }
-    
-    // MARK: - Fetch
+}
+
+
+// MARK: - Fetch
+extension UserService {
     func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void)) {
         USERS_REF.document(id).getDocument { snapshot, error in
             guard error == nil else {

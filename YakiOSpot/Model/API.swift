@@ -9,6 +9,6 @@ import Foundation
 
 struct API {
     static let Auth = AuthEngineService.shared
-    static let User = UserService.shared
-    static let Spot = SpotService.shared
+    static let User = UserEngineService.shared
+    static let Spot = SpotEngineService.shared
 }
