@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		54D94993E175939CC29ED04E /* Pods_YakiOSpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F907B8BCAFF86EFD71C34F78 /* Pods_YakiOSpot.framework */; };
 		8603298F274EF0360075C31A /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8603298E274EF0360075C31A /* Track.swift */; };
+		86032991274EF2320075C31A /* TrackRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86032990274EF2320075C31A /* TrackRowView.swift */; };
 		862D8433273D2AE60081BA83 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862D8432273D2AE60081BA83 /* API.swift */; };
 		862D8435273D2BC30081BA83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 862D8434273D2BC30081BA83 /* GoogleService-Info.plist */; };
 		86804670274C227500AAFC83 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680466F274C227500AAFC83 /* FormTextField.swift */; };
@@ -55,6 +56,7 @@
 /* Begin PBXFileReference section */
 		0D56678A2F43227BAD14E92F /* Pods-YakiOSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpot.release.xcconfig"; path = "Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot.release.xcconfig"; sourceTree = "<group>"; };
 		8603298E274EF0360075C31A /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
+		86032990274EF2320075C31A /* TrackRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackRowView.swift; sourceTree = "<group>"; };
 		862D8432273D2AE60081BA83 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		862D8434273D2BC30081BA83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8680466F274C227500AAFC83 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
@@ -147,6 +149,7 @@
 			isa = PBXGroup;
 			children = (
 				86804672274C22A900AAFC83 /* Atoms */,
+				86032990274EF2320075C31A /* TrackRowView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -486,6 +489,7 @@
 				86E1F87E2742905500C983EC /* SearchViewModel.swift in Sources */,
 				86F81D202741772200AB69DB /* RegistrationViewViewModel.swift in Sources */,
 				86F81D242741800400AB69DB /* Spot.swift in Sources */,
+				86032991274EF2320075C31A /* TrackRowView.swift in Sources */,
 				86F3667E273D2845009CBDC9 /* AuthService.swift in Sources */,
 				86BB95CA273EF6630029C39A /* Helper.swift in Sources */,
 				86E1F8802742914700C983EC /* SpotView.swift in Sources */,

@@ -14,7 +14,7 @@ struct SpotView: View {
     
     private let infos = "Toutes info importante sera consignée ici :\n- Annonces,\n- Contest / Jam\n- Fermeture exceptionnelle\n- Autres"
     
-    var tracks: [String] = ["Piste 1", "Piste 2", "Piste 3"]
+    var tracks: [Track] = Track.mockTracks
     
     var body: some View {
         VStack {
@@ -41,7 +41,7 @@ struct SpotView: View {
                     }
                     Section {
                         ForEach(tracks, id: \.self) { track in
-                            Text(track)
+                            TrackRowView(track: track)
                         }
                     } header: {
                         Text("Les pistes")
