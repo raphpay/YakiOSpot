@@ -10,6 +10,10 @@
 		54D94993E175939CC29ED04E /* Pods_YakiOSpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F907B8BCAFF86EFD71C34F78 /* Pods_YakiOSpot.framework */; };
 		8603298F274EF0360075C31A /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8603298E274EF0360075C31A /* Track.swift */; };
 		86032991274EF2320075C31A /* TrackRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86032990274EF2320075C31A /* TrackRowView.swift */; };
+		86032993274EF4D50075C31A /* SpotInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86032992274EF4D50075C31A /* SpotInfoView.swift */; };
+		86032997274EF5550075C31A /* SpotFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86032996274EF5550075C31A /* SpotFeedView.swift */; };
+		8603299B274EF5C90075C31A /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8603299A274EF5C90075C31A /* PostView.swift */; };
+		8603299D274EF80E0075C31A /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8603299C274EF80E0075C31A /* Post.swift */; };
 		862D8433273D2AE60081BA83 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862D8432273D2AE60081BA83 /* API.swift */; };
 		862D8435273D2BC30081BA83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 862D8434273D2BC30081BA83 /* GoogleService-Info.plist */; };
 		86804670274C227500AAFC83 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680466F274C227500AAFC83 /* FormTextField.swift */; };
@@ -57,6 +61,10 @@
 		0D56678A2F43227BAD14E92F /* Pods-YakiOSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpot.release.xcconfig"; path = "Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot.release.xcconfig"; sourceTree = "<group>"; };
 		8603298E274EF0360075C31A /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		86032990274EF2320075C31A /* TrackRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackRowView.swift; sourceTree = "<group>"; };
+		86032992274EF4D50075C31A /* SpotInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotInfoView.swift; sourceTree = "<group>"; };
+		86032996274EF5550075C31A /* SpotFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotFeedView.swift; sourceTree = "<group>"; };
+		8603299A274EF5C90075C31A /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
+		8603299C274EF80E0075C31A /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		862D8432273D2AE60081BA83 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		862D8434273D2BC30081BA83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8680466F274C227500AAFC83 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
@@ -130,6 +138,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		86032998274EF5A00075C31A /* Molecules */ = {
+			isa = PBXGroup;
+			children = (
+				86032990274EF2320075C31A /* TrackRowView.swift */,
+			);
+			path = Molecules;
+			sourceTree = "<group>";
+		};
+		86032999274EF5AB0075C31A /* Organisms */ = {
+			isa = PBXGroup;
+			children = (
+				8603299A274EF5C90075C31A /* PostView.swift */,
+			);
+			path = Organisms;
+			sourceTree = "<group>";
+		};
 		862D8431273D2ADF0081BA83 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -141,6 +165,7 @@
 				86F81D232741800400AB69DB /* Spot.swift */,
 				869E350E274304EB007CF366 /* UserSettings.swift */,
 				8603298E274EF0360075C31A /* Track.swift */,
+				8603299C274EF80E0075C31A /* Post.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -149,7 +174,8 @@
 			isa = PBXGroup;
 			children = (
 				86804672274C22A900AAFC83 /* Atoms */,
-				86032990274EF2320075C31A /* TrackRowView.swift */,
+				86032998274EF5A00075C31A /* Molecules */,
+				86032999274EF5AB0075C31A /* Organisms */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -265,6 +291,8 @@
 				86E1F8752742872700C983EC /* SpotListView */,
 				86E1F87C2742904800C983EC /* SearchView */,
 				86E1F87F2742914700C983EC /* SpotView.swift */,
+				86032992274EF4D50075C31A /* SpotInfoView.swift */,
+				86032996274EF5550075C31A /* SpotFeedView.swift */,
 				869E351027430602007CF366 /* ProfileView.swift */,
 			);
 			path = HomeViews;
@@ -490,6 +518,7 @@
 				86F81D202741772200AB69DB /* RegistrationViewViewModel.swift in Sources */,
 				86F81D242741800400AB69DB /* Spot.swift in Sources */,
 				86032991274EF2320075C31A /* TrackRowView.swift in Sources */,
+				86032997274EF5550075C31A /* SpotFeedView.swift in Sources */,
 				86F3667E273D2845009CBDC9 /* AuthService.swift in Sources */,
 				86BB95CA273EF6630029C39A /* Helper.swift in Sources */,
 				86E1F8802742914700C983EC /* SpotView.swift in Sources */,
@@ -499,13 +528,16 @@
 				86D68120273D11B5001E7BE6 /* RegistrationView.swift in Sources */,
 				86E1F8772742873400C983EC /* SpotListViewViewModel.swift in Sources */,
 				869E351127430602007CF366 /* ProfileView.swift in Sources */,
+				8603299D274EF80E0075C31A /* Post.swift in Sources */,
 				8692FC53274D7ADE00C8F7CF /* String+Ext.swift in Sources */,
 				86BB95CC273EF8820029C39A /* UserService.swift in Sources */,
+				86032993274EF4D50075C31A /* SpotInfoView.swift in Sources */,
 				86804670274C227500AAFC83 /* FormTextField.swift in Sources */,
 				862D8433273D2AE60081BA83 /* API.swift in Sources */,
 				86E1F87B27428B4A00C983EC /* SpotService.swift in Sources */,
 				8603298F274EF0360075C31A /* Track.swift in Sources */,
 				86BB95CE273EF8B90029C39A /* User.swift in Sources */,
+				8603299B274EF5C90075C31A /* PostView.swift in Sources */,
 				869E350F274304EB007CF366 /* UserSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

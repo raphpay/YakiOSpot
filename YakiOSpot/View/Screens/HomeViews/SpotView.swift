@@ -12,8 +12,6 @@ struct SpotView: View {
     var spot: Spot
     @State var selection: Int = 0
     
-    private let infos = "Toutes info importante sera consignée ici :\n- Annonces,\n- Contest / Jam\n- Fermeture exceptionnelle\n- Autres"
-    
     var tracks: [Track] = Track.mockTracks
     
     var body: some View {
@@ -26,32 +24,9 @@ struct SpotView: View {
             .padding(.horizontal)
             
             if selection == 0 {
-                
-                Form {
-                    Section {
-                        Text(infos)
-                    } header: {
-                        Text("Informations importantes")
-                    }
-                    
-                    Section {
-                        Text("Ouvert tous les jours")
-                    } header: {
-                        Text("Ouverture")
-                    }
-                    Section {
-                        ForEach(tracks, id: \.self) { track in
-                            TrackRowView(track: track)
-                        }
-                    } header: {
-                        Text("Les pistes")
-                    }
-                }
-                
-                
-                
+                SpotInfoView(tracks: tracks)
             } else if selection == 1 {
-                Text("Feed")
+                SpotFeedView()
             }
             Spacer()
         }.navigationTitle(spot.name)
