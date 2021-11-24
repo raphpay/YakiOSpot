@@ -42,35 +42,36 @@ extension FakeAuthService {
         FakeAuthData.mutableUsers.append(user)
         onSuccess(newID)
     }
-    
-//    func createUser(email: String, password: String,
-//                    onSuccess: @escaping ((_ userID: String) -> Void), onError: @escaping ((_ error: String) -> Void)) {
-//        Auth.auth().createUser(withEmail: email, password: password) { _result, _error in
-//            guard _error == nil else {
-//                let errorString = Helper.convertAuthErrorFromFirebase(_error!)
-//                onError(errorString)
-//                return
-//            }
-//
-//            guard let result = _result else {
-//                onError(AuthError.userCreation.description)
-//                return
-//            }
-//
-//            onSuccess(result.user.uid)
-//        }
-//    }
 }
 
 
 // MARK: - Log in / out
 extension FakeAuthService {
     func signIn(email: String, password: String, onSuccess: @escaping ((String) -> Void), onError: @escaping ((String) -> Void)) {
-        //
+        // Verify email
+        guard self.verifyEmail(email) == nil else {
+            onError(self.verifyEmail(email)!)
+            return
+        }
+        
+        guard FakeAuthData.mutableUsers.contains(where: { $0.mail == email}),
+              let user = FakeAuthData.mutableUsers.first(where: { $0.mail == email}) else {
+            onError(FakeAuthData.alreadySignedInError)
+            return
+        }
+        
+        // Verify password
+        guard self.verifyPassword(password) == nil else {
+            onError(self.verifyPassword(password)!)
+            return
+        }
+        
+        onSuccess(user.id)
     }
     
     func signOut(onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
-        //
+        FakeAuthData.mutableUsers.removeFirst()
+        onSuccess()
     }
 }
 

@@ -141,3 +141,104 @@ extension AuthServiceTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
 }
+
+
+// MARK: - Log in / out
+extension AuthServiceTestCase {
+    func testGivenEmailAndPasswordAreCorrect_WhenLoggingUserIn_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when logging user in with correct mail and password")
+        
+        service?.session.signIn(email: FakeAuthData.correctEmail, password: FakeAuthData.correctPassword, onSuccess: { userID in
+            XCTAssertEqual(userID, FakeAuthData.mutableUsers[0].id)
+            expectation.fulfill()
+        }, onError: { _ in
+            //
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenEmailIsIncorrectAndPasswordIsCorrect_WhenLoggingUserIn_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when logging user in with incorrect mail and correct password")
+        
+        service?.session.signIn(email: FakeAuthData.incorrectEmail, password: FakeAuthData.correctPassword, onSuccess: { _ in
+            //
+        }, onError: { error in
+            XCTAssertEqual(error, FakeAuthData.invalidMailError)
+            expectation.fulfill()
+        })
+        
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenEmailIsEmptyAndPasswordIsCorrect_WhenLoggingUserIn_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when logging user in with empty mail and correct password")
+        
+        service?.session.signIn(email: FakeAuthData.emptyMail, password: FakeAuthData.correctPassword, onSuccess: { _ in
+            //
+        }, onError: { error in
+            XCTAssertEqual(error, FakeAuthData.emptyMailError)
+            expectation.fulfill()
+        })
+        
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenEmailIsCorrectAndPasswordIsIncorrect_WhenLoggingUserIn_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when logging user in with correct mail and incorrect password")
+        
+        service?.session.signIn(email: FakeAuthData.correctEmail, password: FakeAuthData.incorrectPassword, onSuccess: { _ in
+            //
+        }, onError: { error in
+            XCTAssertEqual(error, FakeAuthData.invalidPasswordError)
+            expectation.fulfill()
+        })
+        
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenEmailIsCorrectAndPasswordIsEmpty_WhenLoggingUserIn_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when logging user in with correct mail and empty password")
+        
+        service?.session.signIn(email: FakeAuthData.correctEmail, password: FakeAuthData.emptyPassword, onSuccess: { _ in
+            //
+        }, onError: { error in
+            XCTAssertEqual(error, FakeAuthData.emptyPasswordError)
+            expectation.fulfill()
+        })
+        
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenEmailAndPasswordAreIncorrect_WhenLoggingUserIn_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when logging user in with correct mail and incorrect password")
+        
+        service?.session.signIn(email: FakeAuthData.incorrectEmail, password: FakeAuthData.incorrectPassword, onSuccess: { _ in
+            //
+        }, onError: { error in
+            XCTAssertEqual(error, FakeAuthData.invalidMailError)
+            expectation.fulfill()
+        })
+        
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenEmailAndPasswordAreEmpty_WhenLoggingUserIn_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when logging user in with correct mail and incorrect password")
+        
+        service?.session.signIn(email: FakeAuthData.emptyMail, password: FakeAuthData.emptyPassword, onSuccess: { _ in
+            //
+        }, onError: { error in
+            XCTAssertEqual(error, FakeAuthData.emptyMailError)
+            expectation.fulfill()
+        })
+        
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+}
