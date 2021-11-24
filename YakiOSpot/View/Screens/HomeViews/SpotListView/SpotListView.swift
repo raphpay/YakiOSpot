@@ -34,7 +34,7 @@ struct SpotListView: View {
                 
                 Section {
                     ForEach(viewModel.topSpots, id: \.self) { spot in
-                        NavigationLink(destination: Text("Hello \(spot.name)")) {
+                        NavigationLink(destination: SpotView(spot: spot)) {
                             SpotCellView(spot: spot)
                         }
                     }

@@ -26,7 +26,7 @@ struct SpotCellView: View {
                 Spacer()
             }
             
-            Label("\(spot.tracks) Pistes", systemImage: "bicycle")
+            Label("\(spot.tracks.count) Pistes", systemImage: "bicycle")
                 .foregroundColor(.black)
                 .padding(.top, 5)
             Label("\(spot.members) Membres", systemImage: "person.3")

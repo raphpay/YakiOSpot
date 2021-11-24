@@ -82,12 +82,11 @@ extension SpotService {
             for doc in snapshot.documents {
                 let data = doc.data()
                 
-                if let tracks = data["tracks"] as? Int,
-                    let peoplePresent = data["peoplePresent"] as? Int,
+                if let peoplePresent = data["peoplePresent"] as? Int,
                    let members = data["members"] as? Int,
                    let name = data["name"] as? String,
                    let id = data["id"] as? String {
-                    let spot = Spot(id: id, name: name, tracks: tracks, members: members, peoplePresent: peoplePresent)
+                    let spot = Spot(id: id, name: name, tracks: Track.mockTracks, members: members, peoplePresent: peoplePresent)
                     spots.append(spot)
                 }
             }
