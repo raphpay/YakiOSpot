@@ -40,29 +40,6 @@ extension SpotService {
 
 // MARK: - Fetch
 extension SpotService {
-//    func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void)) {
-//        USERS_REF.document(id).getDocument { snapshot, error in
-//            guard error == nil else {
-//                onError(error!.localizedDescription)
-//                return
-//            }
-//
-//            guard let snapshot = snapshot else {
-//                onError("User not found")
-//                return
-//            }
-//
-//            guard let user = snapshot.data(),
-//                  let pseudo = user["pseudo"] as? String else {
-//                onError("User not found")
-//                return
-//            }
-//
-//            onSuccess(pseudo)
-//        }
-//    }
-    
-    
     func getAllSpots(onSuccess: @escaping ((_ spots: [Spot]) -> Void), onError: @escaping((_ error: String) -> Void)) {
         print("getAllSpots")
         SPOTS_REF.getDocuments { snapshot, error in
@@ -80,15 +57,13 @@ extension SpotService {
             var spots: [Spot] = []
             
             for doc in snapshot.documents {
-                let data = doc.data()
                 
-                if let tracks = data["tracks"] as? Int,
-                    let peoplePresent = data["peoplePresent"] as? Int,
-                   let members = data["members"] as? Int,
-                   let name = data["name"] as? String,
-                   let id = data["id"] as? String {
-                    let spot = Spot(id: id, name: name, tracks: tracks, members: members, peoplePresent: peoplePresent)
-                    spots.append(spot)
+                do {
+                    if let spot = try doc.data(as: Spot.self) {
+                        spots.append(spot)
+                    }
+                } catch let error {
+                    onError(error.localizedDescription)
                 }
             }
             

@@ -47,27 +47,13 @@ extension UserService {
     func addUserToDatabase(_ user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
         let specificUserRef = USERS_REF.document(user.id)
         
-        let user: [String: Any] = [
-            "uid" : user.id,
-            "pseudo": user.pseudo,
-            "mail": user.mail
-        ]
-        
-        specificUserRef.setData(user)
+        do {
+            try specificUserRef.setData(from: user)
+        } catch let error {
+            onError(error.localizedDescription)
+        }
         
         onSuccess()
-    }
-    
-    func newAdd() {
-        let user = User(id: "Id", pseudo: "Pseaudo", mail: "mail")
-        
-        let ref = USERS_REF.document(user.id)
-        
-        do {
-            try ref.setData(from: user)
-        } catch {
-            //
-        }
     }
 }
 
@@ -84,6 +70,14 @@ extension UserService {
             guard let snapshot = snapshot else {
                 onError("User not found")
                 return
+            }
+            
+            do {
+                if let user = try snapshot.data(as: User.self) {
+                    onSuccess(user.pseudo)
+                }
+            } catch let error {
+                onError(error.localizedDescription)
             }
             
             guard let user = snapshot.data(),

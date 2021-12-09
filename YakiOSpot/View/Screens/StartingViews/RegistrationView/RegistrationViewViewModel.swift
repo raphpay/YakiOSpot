@@ -25,9 +25,7 @@ final class RegistrationViewViewModel: ObservableObject {
         API.Auth.session.createUser(email: email, password: password) { userUID in
             let user = User(id: userUID, pseudo: self.pseudo, mail: self.email)
             API.User.session.addUserToDatabase(user) {
-                self.pseudo      = ""
-                self.email       = ""
-                self.password    = ""
+                self.resetFields()
                 self.isShowingTabBar = true
                 onSuccess(user)
             } onError: { error in
@@ -39,5 +37,11 @@ final class RegistrationViewViewModel: ObservableObject {
             self.alertMessage = error
             self.showAlert.toggle()
         }
+    }
+    
+    private func resetFields() {
+        self.pseudo      = ""
+        self.email       = ""
+        self.password    = ""
     }
 }
