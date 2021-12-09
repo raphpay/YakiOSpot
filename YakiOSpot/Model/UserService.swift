@@ -57,6 +57,18 @@ extension UserService {
         
         onSuccess()
     }
+    
+    func newAdd() {
+        let user = User(id: "Id", pseudo: "Pseaudo", mail: "mail")
+        
+        let ref = USERS_REF.document(user.id)
+        
+        do {
+            try ref.setData(from: user)
+        } catch {
+            //
+        }
+    }
 }
 
 
