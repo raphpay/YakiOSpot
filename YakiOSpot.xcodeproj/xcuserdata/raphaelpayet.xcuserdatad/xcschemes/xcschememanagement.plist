@@ -7,7 +7,20 @@
 		<key>YakiOSpot.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
-			<integer>20</integer>
+			<integer>21</integer>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>8692FC41274D74C700C8F7CF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>86D6810B273D0B31001E7BE6</key>
+		<dict>
+			<key>primary</key>
+			<true/>
 		</dict>
 	</dict>
 </dict>
