@@ -10,7 +10,58 @@ import SwiftUI
 struct InfoView: View {
     var body: some View {
         NavigationView {
-            Text("Infos")
+            List {
+                Section {
+                    NavigationLink {
+                        // TODO: Add a web view
+                        Text("Link destination")
+                    } label: {
+                        HStack {
+                            Text(SampleText.membership)
+                                .foregroundColor(.red)
+                            Spacer()
+                            Text("29€/an")
+                                .foregroundColor(.secondary)
+                        }
+                    }
+
+                } header: {
+                    Text("Adhésion")
+                }
+                
+                Section {
+                    Text(SampleText.spotInfo)
+                } header: {
+                    Text("Infos")
+                }
+                
+                Section {
+                    Text(SampleText.spotOpen)
+                } header: {
+                    Text("Ouverture")
+                }
+                
+                Section {
+                    ForEach(DummySpot.cornillon.tracks, id: \.self) { track in
+                        NavigationLink(destination: Text(track.name)) {
+                            HStack {
+                                Image(systemName: "flag.fill")
+                                    .foregroundColor(track.difficulty.color)
+                                Spacer()
+                                Text(track.name)
+                                Spacer()
+                                HStack {
+                                    Image(systemName: "hand.thumbsup.fill")
+                                        .foregroundColor(.blue)
+                                    Text("\(track.likes)")
+                                }
+                            }
+                        }
+                    }
+                } header: {
+                    Text("Pistes")
+                }
+            }
                 .navigationTitle("Yaki O Spot")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {

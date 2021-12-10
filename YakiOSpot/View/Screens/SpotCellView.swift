@@ -16,7 +16,7 @@ struct SpotCellView: View {
                 Button {
                     didTapStarButton()
                 } label: {
-                    Image(systemName: spot.isFavorited ? "star.fill" : "star")
+                    Image(systemName: "star.fill")
                         .foregroundColor(.yellow)
                 }
 
@@ -26,15 +26,15 @@ struct SpotCellView: View {
                 Spacer()
             }
             
-            Label("\(spot.tracks) Pistes", systemImage: "bicycle")
-                .foregroundColor(.black)
-                .padding(.top, 5)
-            Label("\(spot.members) Membres", systemImage: "person.3")
-                .foregroundColor(.black)
-                .padding(.top, 5)
-            Label("\(spot.peoplePresent) Présents", systemImage: "hand.raised")
-                .foregroundColor(.black)
-                .padding(.top, 5)
+//            Label("\(spot.tracks) Pistes", systemImage: "bicycle")
+//                .foregroundColor(.black)
+//                .padding(.top, 5)
+//            Label("\(spot.members) Membres", systemImage: "person.3")
+//                .foregroundColor(.black)
+//                .padding(.top, 5)
+//            Label("\(spot.peoplePresent) Présents", systemImage: "hand.raised")
+//                .foregroundColor(.black)
+//                .padding(.top, 5)
         }
     }
     
@@ -50,6 +50,8 @@ struct SpotCellView: View {
 
 struct SpotCellView_Previews: PreviewProvider {
     static var previews: some View {
-        SpotCellView(spot: Spot.dummySpot)
+        SpotCellView(spot: Spot(id: UUID().uuidString, name: "Spot",
+                                tracks: [Track(id: UUID().uuidString, name: "Track", difficulty: .blue, likes: 0, distance: 0, averageTime: 0)],
+                                members: 0, peoplePresent: 0))
     }
 }

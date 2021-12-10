@@ -18,9 +18,9 @@ struct SearchView: View {
                     NavigationLink(destination: SpotView(spot: spot)) {
                         VStack {
                             Text(spot.name)
-                            Label("\(spot.tracks) Pistes", systemImage: "bicycle")
-                                .foregroundColor(.black)
-                                .padding(.top, 5)
+//                            Label("\(spot.tracks) Pistes", systemImage: "bicycle")
+//                                .foregroundColor(.black)
+//                                .padding(.top, 5)
                         }
                     }
                 }

@@ -33,11 +33,11 @@ struct SpotListView: View {
                 }
                 
                 Section {
-                    ForEach(viewModel.topSpots, id: \.self) { spot in
-                        NavigationLink(destination: Text("Hello \(spot.name)")) {
-                            SpotCellView(spot: spot)
-                        }
-                    }
+//                    ForEach(viewModel.topSpots, id: \.self) { spot in
+//                        NavigationLink(destination: Text("Hello \(spot.name)")) {
+//                            SpotCellView(spot: spot)
+//                        }
+//                    }
                 } header: {
                     Text("Top Spots")
                 }

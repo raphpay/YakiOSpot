@@ -15,5 +15,5 @@ final class SpotListViewViewModel: ObservableObject {
     @Published var alertMessage: String = ""
     @Published var isShowingSearch: Bool = false
     @Published var mySpots: [Spot] = []
-    @Published var topSpots: [Spot] = Spot.mockTopSpots
+//    @Published var topSpots: [Spot] = Spot.mockTopSpots
 }
