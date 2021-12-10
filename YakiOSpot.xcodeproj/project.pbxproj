@@ -10,6 +10,8 @@
 		54D94993E175939CC29ED04E /* Pods_YakiOSpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F907B8BCAFF86EFD71C34F78 /* Pods_YakiOSpot.framework */; };
 		862D8433273D2AE60081BA83 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862D8432273D2AE60081BA83 /* API.swift */; };
 		862D8435273D2BC30081BA83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 862D8434273D2BC30081BA83 /* GoogleService-Info.plist */; };
+		86529B5127636C8E00BD44B6 /* FakeUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5027636C8E00BD44B6 /* FakeUserData.swift */; };
+		86529B5327636E6C00BD44B6 /* UserServiceTestsCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */; };
 		86804670274C227500AAFC83 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680466F274C227500AAFC83 /* FormTextField.swift */; };
 		8682613F27627CB100C3018E /* FakeUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8682613E27627CB100C3018E /* FakeUserService.swift */; };
 		8692FC4C274D757E00C8F7CF /* FakeAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692FC4B274D757E00C8F7CF /* FakeAuthService.swift */; };
@@ -56,6 +58,8 @@
 		0D56678A2F43227BAD14E92F /* Pods-YakiOSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpot.release.xcconfig"; path = "Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot.release.xcconfig"; sourceTree = "<group>"; };
 		862D8432273D2AE60081BA83 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		862D8434273D2BC30081BA83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		86529B5027636C8E00BD44B6 /* FakeUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserData.swift; sourceTree = "<group>"; };
+		86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTestsCase.swift; sourceTree = "<group>"; };
 		8680466F274C227500AAFC83 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		8682613E27627CB100C3018E /* FakeUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserService.swift; sourceTree = "<group>"; };
 		8692FC42274D74C700C8F7CF /* YakiOSpotUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YakiOSpotUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +176,8 @@
 			isa = PBXGroup;
 			children = (
 				8682613E27627CB100C3018E /* FakeUserService.swift */,
+				86529B5027636C8E00BD44B6 /* FakeUserData.swift */,
+				86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */,
 			);
 			path = User;
 			sourceTree = "<group>";
@@ -483,9 +489,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				86529B5127636C8E00BD44B6 /* FakeUserData.swift in Sources */,
 				8692FC51274D759D00C8F7CF /* AuthServiceTestCase.swift in Sources */,
 				8692FC4F274D759000C8F7CF /* FakeAuthData.swift in Sources */,
 				8692FC4C274D757E00C8F7CF /* FakeAuthService.swift in Sources */,
+				86529B5327636E6C00BD44B6 /* UserServiceTestsCase.swift in Sources */,
 				8682613F27627CB100C3018E /* FakeUserService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
