@@ -12,21 +12,11 @@ struct InfoView: View {
         NavigationView {
             List {
                 Section {
-                    NavigationLink {
-                        // TODO: Add a web view
-                        Text("Link destination")
-                    } label: {
-                        HStack {
-                            Text(SampleText.membership)
-                                .foregroundColor(.red)
-                            Spacer()
-                            Text("29€/an")
-                                .foregroundColor(.secondary)
-                        }
-                    }
-
+                    MembershipRow(description: SampleText.annualMembership, price: SampleText.annualPrice)
+                    MembershipRow(description: SampleText.dailyMembership, price: SampleText.dayPrice)
                 } header: {
-                    Text("Adhésion")
+                    Text(SampleText.membership)
+                        .foregroundColor(.red)
                 }
                 
                 Section {
@@ -43,20 +33,7 @@ struct InfoView: View {
                 
                 Section {
                     ForEach(DummySpot.cornillon.tracks, id: \.self) { track in
-                        NavigationLink(destination: Text(track.name)) {
-                            HStack {
-                                Image(systemName: "flag.fill")
-                                    .foregroundColor(track.difficulty.color)
-                                Spacer()
-                                Text(track.name)
-                                Spacer()
-                                HStack {
-                                    Image(systemName: "hand.thumbsup.fill")
-                                        .foregroundColor(.blue)
-                                    Text("\(track.likes)")
-                                }
-                            }
-                        }
+                        TrackRow(track: track)
                     }
                 } header: {
                     Text("Pistes")
@@ -65,12 +42,8 @@ struct InfoView: View {
                 .navigationTitle("Yaki O Spot")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
-                        Button(action: {
-                            //
-                        }) {
-                            Image(systemName: "magnifyingglass")
-                                .foregroundColor(.black)
-                        }
+                        Image(systemName: "magnifyingglass")
+                            .foregroundColor(.black)
                     }
                 }
                 .toolbar {
@@ -88,5 +61,48 @@ struct InfoView: View {
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
         InfoView()
+    }
+}
+
+
+// MARK: - Subviews
+struct MembershipRow : View {
+//    let link : URL
+    let description: String
+    let price: String
+    
+    var body: some View {
+        NavigationLink {
+            // TODO: Add a web view
+            Text(description)
+        } label: {
+            HStack {
+                Text(description)
+                Spacer()
+                Text(price)
+                    .foregroundColor(.secondary)
+            }
+        }
+    }
+}
+
+struct TrackRow: View {
+    let track: Track
+    
+    var body: some View {
+        NavigationLink(destination: Text(track.name)) {
+            HStack {
+                Image(systemName: "flag.fill")
+                    .foregroundColor(track.difficulty.color)
+                Spacer()
+                Text(track.name)
+                Spacer()
+                HStack {
+                    Image(systemName: "hand.thumbsup.fill")
+                        .foregroundColor(.blue)
+                    Text("\(track.likes)")
+                }
+            }
+        }
     }
 }
