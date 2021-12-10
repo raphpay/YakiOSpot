@@ -42,7 +42,6 @@ struct SpotListView: View {
                     Text("Top Spots")
                 }
             }
-            
             .navigationTitle("Yaki O Spot")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

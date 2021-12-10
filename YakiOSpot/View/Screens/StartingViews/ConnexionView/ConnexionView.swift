@@ -59,7 +59,7 @@ struct ConnexionView: View {
             }
         })
         .fullScreenCover(isPresented: $viewModel.isShowingTabBar) {
-            SpotListView(isConnected: $viewModel.isShowingTabBar)
+            HomeTabView()
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Oups"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
