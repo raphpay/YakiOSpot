@@ -12,8 +12,10 @@ struct InfoView: View {
         NavigationView {
             List {
                 Section {
-                    MembershipRow(description: SampleText.annualMembership, price: SampleText.annualPrice)
-                    MembershipRow(description: SampleText.dailyMembership, price: SampleText.dayPrice)
+                    MembershipRow(link: URL(string: SampleText.annualLink)!,
+                                  description: SampleText.annualMembership, price: SampleText.annualPrice)
+                    MembershipRow(link: URL(string: SampleText.dayLink)!,
+                                  description: SampleText.dailyMembership, price: SampleText.dayPrice)
                 } header: {
                     Text(SampleText.membership)
                         .foregroundColor(.red)
@@ -67,15 +69,12 @@ struct InfoView_Previews: PreviewProvider {
 
 // MARK: - Subviews
 struct MembershipRow : View {
-//    let link : URL
+    let link : URL
     let description: String
     let price: String
     
     var body: some View {
-        NavigationLink {
-            // TODO: Add a web view
-            Text(description)
-        } label: {
+        Link(destination: link) {
             HStack {
                 Text(description)
                 Spacer()
