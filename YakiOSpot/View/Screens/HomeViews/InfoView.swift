@@ -35,7 +35,9 @@ struct InfoView: View {
                 
                 Section {
                     ForEach(DummySpot.cornillon.tracks, id: \.self) { track in
-                        TrackRow(track: track)
+                        NavigationLink(destination: TrackView(track: track)) {
+                            TrackRow(track: track)
+                        }
                     }
                 } header: {
                     Text("Pistes")

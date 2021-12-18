@@ -33,6 +33,20 @@ struct Track: Codable, Hashable {
                 return Color.black
             }
         }
+        var description: String {
+            switch self {
+            case .green:
+                return "Verte"
+            case .blue:
+                return "Bleue"
+            case .red:
+                return "Rouge"
+            case .black:
+                return "Noire"
+            case .diamond:
+                return "Double-Noire"
+            }
+        }
     }
     
     func hash(into hasher: inout Hasher) {
