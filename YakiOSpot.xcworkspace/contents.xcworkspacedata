@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:VideoPlayer.swift">
+   </FileRef>
+   <FileRef
       location = "group:YakiOSpot.xcodeproj">
    </FileRef>
    <FileRef

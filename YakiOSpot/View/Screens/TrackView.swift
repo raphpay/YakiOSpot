@@ -57,9 +57,7 @@ struct TrackView: View {
                     .font(.body)
                     .foregroundColor(.secondary)
                     .padding(.horizontal)
-                Rectangle()
-                    .frame(height: 190)
-                    .foregroundColor(.black.opacity(0.95))
+                Player()
             }
             
             Spacer()

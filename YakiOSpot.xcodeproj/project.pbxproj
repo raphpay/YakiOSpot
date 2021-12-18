@@ -23,12 +23,15 @@
 		8692FC53274D7ADE00C8F7CF /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692FC52274D7ADE00C8F7CF /* String+Ext.swift */; };
 		869E350F274304EB007CF366 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869E350E274304EB007CF366 /* UserSettings.swift */; };
 		869E351127430602007CF366 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869E351027430602007CF366 /* ProfileView.swift */; };
+		86ADDDE9276E66A60063BE29 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADDDE8276E66A60063BE29 /* VideoPlayer.swift */; };
 		86BB95C6273EF6190029C39A /* AuthErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB95C5273EF6190029C39A /* AuthErrors.swift */; };
 		86BB95CA273EF6630029C39A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB95C9273EF6630029C39A /* Helper.swift */; };
 		86BB95CC273EF8820029C39A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB95CB273EF8820029C39A /* UserService.swift */; };
 		86BB95CE273EF8B90029C39A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB95CD273EF8B90029C39A /* User.swift */; };
 		86BB95D0273F043F0029C39A /* UserDefaultsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB95CF273F043F0029C39A /* UserDefaultsKeys.swift */; };
 		86C4FFA9276E41CE00E04B36 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C4FFA8276E41CE00E04B36 /* AppDelegate.swift */; };
+		86C4FFAD276E462900E04B36 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C4FFAC276E462900E04B36 /* TrackView.swift */; };
+		86C4FFAF276E472000E04B36 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C4FFAE276E472000E04B36 /* Assets.swift */; };
 		86D68110273D0B31001E7BE6 /* YakiOSpotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6810F273D0B31001E7BE6 /* YakiOSpotApp.swift */; };
 		86D68112273D0B31001E7BE6 /* StartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D68111273D0B31001E7BE6 /* StartingView.swift */; };
 		86D68114273D0B32001E7BE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86D68113273D0B32001E7BE6 /* Assets.xcassets */; };
@@ -78,12 +81,15 @@
 		8692FC52274D7ADE00C8F7CF /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 		869E350E274304EB007CF366 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		869E351027430602007CF366 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		86ADDDE8276E66A60063BE29 /* VideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		86BB95C5273EF6190029C39A /* AuthErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrors.swift; sourceTree = "<group>"; };
 		86BB95C9273EF6630029C39A /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		86BB95CB273EF8820029C39A /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		86BB95CD273EF8B90029C39A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		86BB95CF273F043F0029C39A /* UserDefaultsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsKeys.swift; sourceTree = "<group>"; };
 		86C4FFA8276E41CE00E04B36 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		86C4FFAC276E462900E04B36 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
+		86C4FFAE276E472000E04B36 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		86D6810C273D0B31001E7BE6 /* YakiOSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YakiOSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86D6810F273D0B31001E7BE6 /* YakiOSpotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakiOSpotApp.swift; sourceTree = "<group>"; };
 		86D68111273D0B31001E7BE6 /* StartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingView.swift; sourceTree = "<group>"; };
@@ -185,6 +191,7 @@
 				86D68123273D23A5001E7BE6 /* StartingViews */,
 				86D68124273D23B4001E7BE6 /* HomeViews */,
 				86F81D25274184CD00AB69DB /* SpotCellView.swift */,
+				86C4FFAC276E462900E04B36 /* TrackView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -226,6 +233,14 @@
 			path = Auth;
 			sourceTree = "<group>";
 		};
+		86ADDDEA276E66C10063BE29 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				86ADDDE8276E66A60063BE29 /* VideoPlayer.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
 		86BB95C7273EF6250029C39A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -242,6 +257,7 @@
 				86BB95C5273EF6190029C39A /* AuthErrors.swift */,
 				86BB95CF273F043F0029C39A /* UserDefaultsKeys.swift */,
 				86D989482763C60F009908D8 /* SampleText.swift */,
+				86C4FFAE276E472000E04B36 /* Assets.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -335,6 +351,7 @@
 		86D68125273D23C4001E7BE6 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				86ADDDEA276E66C10063BE29 /* UIKit */,
 				86804671274C22A000AAFC83 /* Components */,
 				86804673274C22B600AAFC83 /* Screens */,
 			);
@@ -566,12 +583,15 @@
 				86D6811E273D0C5A001E7BE6 /* ConnexionView.swift in Sources */,
 				860598CC2763AEC7000ACB3B /* HomeTabView.swift in Sources */,
 				86D68120273D11B5001E7BE6 /* RegistrationView.swift in Sources */,
+				86ADDDE9276E66A60063BE29 /* VideoPlayer.swift in Sources */,
 				86E1F8772742873400C983EC /* SpotListViewViewModel.swift in Sources */,
 				869E351127430602007CF366 /* ProfileView.swift in Sources */,
 				86C4FFA9276E41CE00E04B36 /* AppDelegate.swift in Sources */,
+				86C4FFAF276E472000E04B36 /* Assets.swift in Sources */,
 				86D989492763C60F009908D8 /* SampleText.swift in Sources */,
 				8692FC53274D7ADE00C8F7CF /* String+Ext.swift in Sources */,
 				86BB95CC273EF8820029C39A /* UserService.swift in Sources */,
+				86C4FFAD276E462900E04B36 /* TrackView.swift in Sources */,
 				86804670274C227500AAFC83 /* FormTextField.swift in Sources */,
 				862D8433273D2AE60081BA83 /* API.swift in Sources */,
 				86E1F87B27428B4A00C983EC /* SpotService.swift in Sources */,
@@ -779,7 +799,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N96T5K2D2H;
 				ENABLE_PREVIEWS = YES;
-				EXCLUDED_ARCHS = arm64;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "/Users/raphaelpayet/Documents/Code/YakiOSpot - Project/YakiOSpot/YakiOSpot/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -812,7 +831,6 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N96T5K2D2H;
 				ENABLE_PREVIEWS = YES;
-				EXCLUDED_ARCHS = arm64;
 				GENERATE_INFOPLIST_FILE = NO;
 				INFOPLIST_FILE = "/Users/raphaelpayet/Documents/Code/YakiOSpot - Project/YakiOSpot/YakiOSpot/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
