@@ -12,28 +12,32 @@ struct TrackView: View {
     
     var body: some View {
         VStack {
-            ZStack(alignment: .bottom) {
+            ZStack() {
                 Image(Assets.DCF)
                     .resizable()
                     .frame(height: 190)
                     .aspectRatio(contentMode: .fit)
-                Rectangle()
-                    .frame(height: 140)
-                    .foregroundColor(.black.opacity(0.85))
-                
-                VStack(alignment: .leading) {
-                    Text(track.name)
-                        .font(.title2)
-                        .bold()
-                        .foregroundColor(.white)
-                        .padding(.bottom)
-                    HStack {
-                        Text("Difficulté: \(track.difficulty.description)")
-                            .font(.body)
+                    .overlay(alignment: .bottom) {
+                        Rectangle()
+                            .frame(height: 140)
+                            .foregroundColor(.black.opacity(0.85))
+                    }
+                HStack {
+                    VStack {
+                        Text(track.name)
+                            .font(.title2)
+                            .bold()
                             .foregroundColor(.white)
-                        Image(systemName: "flag.fill")
-                            .foregroundColor(track.difficulty.color)
-                    }.padding(.bottom)
+                        HStack {
+                            Text("Difficulté: \(track.difficulty.description)")
+                                .font(.body)
+                                .foregroundColor(.white)
+                            Image(systemName: "flag.fill")
+                                .foregroundColor(track.difficulty.color)
+                        }.padding(.horizontal)
+                    }.frame(height: 140)
+                    
+                    Spacer()
                 }
             }
             
