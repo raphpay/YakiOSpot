@@ -43,18 +43,18 @@ struct InfoView: View {
                     Text("Pistes")
                 }
             }
-                .navigationTitle("Yaki O Spot")
+                .navigationTitle("DCF Cornillon")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {
                         Image(systemName: "magnifyingglass")
-                            .foregroundColor(.black)
+                            .foregroundColor(Color(UIColor.label))
                     }
                 }
                 .toolbar {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         NavigationLink(destination: Text("Profile")) {
                             Image(systemName: "person.circle")
-                                .foregroundColor(.black)
+                                .foregroundColor(Color(UIColor.label))
                         }
                     }
                 }

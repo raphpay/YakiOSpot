@@ -26,7 +26,7 @@ struct FeedView: View {
                     ToolbarItem(placement: .navigationBarTrailing) {
                         NavigationLink(destination: Text("Profile")) {
                             Image(systemName: "person.circle")
-                                .foregroundColor(.black)
+                                .foregroundColor(Color(UIColor.label))
                         }
                     }
                 }
