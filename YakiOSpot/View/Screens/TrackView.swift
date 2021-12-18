@@ -64,3 +64,5 @@ struct TrackView: View {
         }.navigationBarTitle("Détails", displayMode: .inline)
     }
 }
+
+//VideoPlayer(player: AVPlayer(url: Bundle.main.url(forResource: "nyan", withExtension: "mp4")!))
