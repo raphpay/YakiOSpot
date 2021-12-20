@@ -9,8 +9,8 @@ import SwiftUI
 
 struct HomeTabView: View {
     
-    @ObservedObject var viewModel: HomeTabViewViewModel
-    @ObservedObject var buttonState: ButtonState
+    @ObservedObject private var viewModel = HomeTabViewViewModel()
+    @ObservedObject private var buttonState = ButtonState()
     
     var body: some View {
         VStack {
@@ -34,7 +34,7 @@ struct HomeTabView: View {
                         Button {
                             if number != 1 {
                                 viewModel.selectedIndex = number
-                                buttonState.showButton = false  
+                                buttonState.showButton = false
                             } else {
                                 buttonState.showButton.toggle()
                             }

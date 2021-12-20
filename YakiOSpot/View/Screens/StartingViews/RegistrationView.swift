@@ -50,7 +50,7 @@ struct RegistrationView: View {
             }
         }
         .fullScreenCover(isPresented: $viewModel.isShowingTabBar) {
-            HomeTabView(viewModel: HomeTabViewViewModel(), buttonState: ButtonState())
+            HomeTabView()
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Oups"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
