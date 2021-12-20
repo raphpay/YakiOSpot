@@ -10,7 +10,19 @@ import Firebase
 
 class AppDelegate: NSObject, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+        
         FirebaseApp.configure()
+        
+        if let firUser = API.User.CURRENT_USER {
+            // A user is connected
+            API.User.session.getUserFromUID(firUser.uid) { user in
+                API.User.CURRENT_USER_OBJECT = user
+            }
+        } else {
+            // No user connected
+            API.User.CURRENT_USER_OBJECT = nil
+        }
+        
         return true
     }
 }

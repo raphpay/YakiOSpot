@@ -13,8 +13,7 @@ enum RegistrationFormTextField {
 
 struct RegistrationView: View {
     @Binding var selection: Int
-    @StateObject private var userSettings   = UserSettings()
-    @StateObject private var viewModel      = RegistrationViewViewModel()
+    @StateObject private var viewModel = RegistrationViewViewModel()
     @FocusState private var focus: RegistrationFormTextField?
     
     var body: some View {
@@ -58,8 +57,7 @@ struct RegistrationView: View {
     }
     
     private func startRegistrationProcess() {
-        viewModel.didTapRegister { user in
-            userSettings.saveUser(user)
+        viewModel.didTapRegister {
             selection = 0
         }
     }

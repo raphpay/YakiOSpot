@@ -15,7 +15,17 @@ struct YakiOSpotApp: App {
     
     var body: some Scene {
         WindowGroup {
-            StartingView()
+            if API.User.CURRENT_USER != nil {
+                HomeTabView()
+                    .onAppear {
+                        print("appear HomeTabView")
+                    }
+            } else {
+                StartingView()
+                    .onAppear {
+                        print("appear StartingView")
+                    }
+            }
         }
     }
 }

@@ -7,11 +7,12 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseAuth
 
 protocol UserEngine {
     func addUserToDatabase(_ user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void))
-    func getUsersFavoritedSpots(onSuccess: @escaping ((_ spots: [Spot]) -> Void), onError: @escaping((_ error: String) -> Void))
+    func getUserFromUID(_ uid: String, onSuccess: @escaping ((_ user: User) -> Void))
 }
 
 final class UserEngineService {
@@ -21,6 +22,16 @@ final class UserEngineService {
     init(session: UserEngine = UserService.shared) {
         self.session = session
     }
+    
+    var CURRENT_USER: FirebaseAuth.User? {
+        // We get the current logged in User from Firebase
+        if let currentUser = Auth.auth().currentUser {
+            return currentUser
+        }
+        return nil
+    }
+    
+    var CURRENT_USER_OBJECT: User?
 }
 
 final class UserService: UserEngine {
@@ -32,13 +43,6 @@ final class UserService: UserEngine {
     let database = Firestore.firestore()
     lazy var USERS_REF = database.collection("users")
     lazy var SPOTS_REF = database.collection("spots")
-    var userSettings = UserSettings()
-    
-    var currentUserID: String? {
-        let id = userSettings.currentUser.id
-        guard id != "" else { return nil }
-        return id
-    }
 }
 
 
@@ -90,24 +94,19 @@ extension UserService {
         }
     }
     
-    func getUsersFavoritedSpots(onSuccess: @escaping ((_ spots: [Spot]) -> Void), onError: @escaping((_ error: String) -> Void)) {
-        guard let currentUserID = currentUserID else {
-            onError("No connected User")
-            return
-        }
-        
-        USERS_REF.document(currentUserID).getDocument { snapshot, error in
-            guard error == nil else {
-                onError(error!.localizedDescription)
-                return
+    func getUserFromUID(_ uid: String, onSuccess: @escaping ((User) -> Void)) {
+        USERS_REF.document(uid).getDocument { snapshot, error in
+            guard error == nil else { return }
+            guard let snapshot = snapshot else { return }
+            
+            do {
+                if let user = try snapshot.data(as: User.self) {
+                    onSuccess(user)
+                }
+            } catch let error {
+                print("Error getting user from uid \(uid). Error: \(error.localizedDescription)")
             }
             
-            guard let snapshot = snapshot else {
-                onError("No user snapshot")
-                return
-            }
-            
-            print(snapshot.data())
         }
     }
 }

@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SpotListView: View {
     @Binding var isConnected: Bool
-    @StateObject private var userSettings   = UserSettings()
     @StateObject private var viewModel      = SpotListViewViewModel()
     
     var body: some View {
@@ -76,18 +75,9 @@ struct SpotListView: View {
         }
     }
     
-    func fetchMySpots() {
-        API.User.session.getUsersFavoritedSpots { spots in
-            print(spots)
-        } onError: { error in
-            print(error)
-        }
-        
-    }
+    func fetchMySpots() {}
     
-    func fetchTopSpots() {
-        
-    }
+    func fetchTopSpots() {}
 }
 
 struct SpotListView_Previews: PreviewProvider {

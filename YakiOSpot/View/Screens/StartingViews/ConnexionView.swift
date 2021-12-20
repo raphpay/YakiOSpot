@@ -13,7 +13,6 @@ enum ConnexionFormTextField {
 
 struct ConnexionView: View {
     @Binding var selection: Int
-    @StateObject var userSettings = UserSettings()
     @StateObject var viewModel = ConnexionViewViewModel()
     @FocusState private var focus: ConnexionFormTextField?
     
@@ -68,9 +67,7 @@ struct ConnexionView: View {
     
     
     private func startConnexionProcess() {
-        viewModel.didTapConnect { user in
-            userSettings.saveUser(user)
-        }
+        viewModel.didTapConnect()
     }
 }
 

@@ -9,34 +9,27 @@ import SwiftUI
 
 struct ProfileView: View {
     @Binding var isConnected: Bool
-    @StateObject var userSettings = UserSettings()
     @State var displayName: String = ""
     
     var body: some View {
         VStack {
             Text("Hello, \(displayName)!")
             Button {
-                didTapLogOut {
-                    userSettings.removeLoggedInUser()
-                }
+                didTapLogOut()
             } label: {
                 Text("Se déconnecter")
             }
         }
         .onAppear {
-            userSettings.retrieveUser()
-            displayName = userSettings.currentUser.pseudo
             print("isConnected :", UserDefaults.standard.bool(forKey: DefaultKeys.IS_USER_CONNECTED))
         }
     }
     
-    func didTapLogOut(onSuccess: @escaping (() -> Void)) {
+    func didTapLogOut() {
         API.Auth.session.signOut {
             isConnected = false
-            onSuccess()
         } onError: { error in
-//            viewModel.alertMessage = error
-//            viewModel.showAlert.toggle()
+            isConnected = true
         }
     }
 }

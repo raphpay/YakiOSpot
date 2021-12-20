@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 final class RegistrationViewViewModel: ObservableObject {
-    @StateObject private var userSettings = UserSettings()
     @Published var pseudo: String = ""
     @Published var email: String = ""
     @Published var isShowingTabBar = false
@@ -21,13 +20,13 @@ final class RegistrationViewViewModel: ObservableObject {
         return UserDefaults.standard.bool(forKey: DefaultKeys.IS_USER_CONNECTED)
     }
     
-    func didTapRegister(onSuccess: @escaping ((_ user: User) -> Void)) {
+    func didTapRegister(onSuccess: @escaping (() -> Void)) {
         API.Auth.session.createUser(email: email, password: password) { userUID in
             let user = User(id: userUID, pseudo: self.pseudo, mail: self.email)
             API.User.session.addUserToDatabase(user) {
                 self.resetFields()
                 self.isShowingTabBar = true
-                onSuccess(user)
+                onSuccess()
             } onError: { error in
                 self.alertMessage = error
                 self.showAlert.toggle()
