@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct InfoView: View {
+    @ObservedObject var buttonState: ButtonState
+    
     var body: some View {
         NavigationView {
             List {
@@ -43,28 +45,28 @@ struct InfoView: View {
                     Text("Pistes")
                 }
             }
-                .navigationTitle("DCF Cornillon")
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarLeading) {
-                        Image(systemName: "magnifyingglass")
+            .navigationTitle("DCF Cornillon")
+            .toolbar {
+                ToolbarItem(placement: .navigationBarLeading) {
+                    Image(systemName: "magnifyingglass")
+                        .foregroundColor(Color(UIColor.label))
+                }
+            }
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    NavigationLink(destination: Text("Profile")) {
+                        Image(systemName: "person.circle")
                             .foregroundColor(Color(UIColor.label))
                     }
                 }
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        NavigationLink(destination: Text("Profile")) {
-                            Image(systemName: "person.circle")
-                                .foregroundColor(Color(UIColor.label))
-                        }
-                    }
-                }
+            }
         }
     }
 }
 
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
-        InfoView()
+        InfoView(buttonState: ButtonState())
     }
 }
 
