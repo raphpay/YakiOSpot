@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SpotListView: View {
     @Binding var isConnected: Bool
-    @StateObject private var viewModel      = SpotListViewViewModel()
+    @StateObject private var viewModel = SpotListViewViewModel()
     
     var body: some View {
         NavigationView {

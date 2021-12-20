@@ -12,8 +12,5 @@ final class HomeTabViewViewModel: ObservableObject {
     let titles = ["Info", "", "Feed"]
     
     @Published var selectedIndex: Int = 0
-}
-
-final class ButtonState: ObservableObject {
     @Published var showButton: Bool = false
 }

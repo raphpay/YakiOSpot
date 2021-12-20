@@ -13,6 +13,7 @@ enum ConnexionFormTextField {
 
 struct ConnexionView: View {
     @Binding var selection: Int
+    @ObservedObject var appState: AppState
     @StateObject var viewModel = ConnexionViewViewModel()
     @FocusState private var focus: ConnexionFormTextField?
     
@@ -50,15 +51,8 @@ struct ConnexionView: View {
                 Text("Inscrivez-vous")
             }
         }
-        .onAppear(perform: {
-            if viewModel.isUserConnected {
-                viewModel.isShowingTabBar = true
-            } else {
-                viewModel.isShowingTabBar = false
-            }
-        })
         .fullScreenCover(isPresented: $viewModel.isShowingTabBar) {
-            HomeTabView()
+            HomeTabView(appState: appState)
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Oups"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
@@ -67,13 +61,15 @@ struct ConnexionView: View {
     
     
     private func startConnexionProcess() {
-        viewModel.didTapConnect()
+        viewModel.didTapConnect {
+            appState.isConnected = true
+        }
     }
 }
 
 struct ConnexionView_Previews: PreviewProvider {
     static var previews: some View {
-        ConnexionView(selection: .constant(0))
+        ConnexionView(selection: .constant(0), appState: AppState())
     }
 }
 

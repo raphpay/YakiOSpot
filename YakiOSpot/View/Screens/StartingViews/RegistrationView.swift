@@ -13,6 +13,7 @@ enum RegistrationFormTextField {
 
 struct RegistrationView: View {
     @Binding var selection: Int
+    @ObservedObject var appState: AppState
     @StateObject private var viewModel = RegistrationViewViewModel()
     @FocusState private var focus: RegistrationFormTextField?
     
@@ -49,7 +50,7 @@ struct RegistrationView: View {
             }
         }
         .fullScreenCover(isPresented: $viewModel.isShowingTabBar) {
-            HomeTabView()
+            HomeTabView(appState: appState)
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Oups"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
@@ -58,6 +59,7 @@ struct RegistrationView: View {
     
     private func startRegistrationProcess() {
         viewModel.didTapRegister {
+            appState.isConnected = true
             selection = 0
         }
     }
@@ -65,7 +67,7 @@ struct RegistrationView: View {
 
 struct RegistrationView_Previews: PreviewProvider {
     static var previews: some View {
-        RegistrationView(selection: .constant(1))
+        RegistrationView(selection: .constant(1), appState: AppState())
     }
 }
 

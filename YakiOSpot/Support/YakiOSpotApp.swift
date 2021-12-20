@@ -12,16 +12,17 @@ import Firebase
 struct YakiOSpotApp: App {
     
     @UIApplicationDelegateAdaptor private var appDelegate: AppDelegate
+    @ObservedObject private var appState = AppState()
     
     var body: some Scene {
         WindowGroup {
             if API.User.CURRENT_USER != nil {
-                HomeTabView()
+                HomeTabView(appState: appState)
                     .onAppear {
                         print("appear HomeTabView")
                     }
             } else {
-                StartingView()
+                StartingView(appState: appState)
                     .onAppear {
                         print("appear StartingView")
                     }

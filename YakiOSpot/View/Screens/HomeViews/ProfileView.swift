@@ -8,12 +8,12 @@
 import SwiftUI
 
 struct ProfileView: View {
+    @AppStorage("pseudo") var pseudo: String = ""
     @Binding var isConnected: Bool
-    @State var displayName: String = ""
     
     var body: some View {
         VStack {
-            Text("Hello, \(displayName)!")
+            Text("Hello, \(pseudo)!")
             Button {
                 didTapLogOut()
             } label: {
@@ -36,6 +36,6 @@ struct ProfileView: View {
 
 struct ProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        ProfileView(isConnected: .constant(true), displayName: "World")
+        ProfileView(isConnected: .constant(true))
     }
 }

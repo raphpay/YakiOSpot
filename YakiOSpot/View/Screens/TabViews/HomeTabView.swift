@@ -10,14 +10,14 @@ import SwiftUI
 struct HomeTabView: View {
     
     @ObservedObject private var viewModel = HomeTabViewViewModel()
-    @ObservedObject private var buttonState = ButtonState()
+    @ObservedObject var appState: AppState
     
     var body: some View {
         VStack {
             ZStack {
                 switch viewModel.selectedIndex {
                 case 0:
-                    InfoView(buttonState: buttonState)
+                    InfoView(appState: appState)
                 case 1:
                     FeedView()
                 case 2:
@@ -34,9 +34,9 @@ struct HomeTabView: View {
                         Button {
                             if number != 1 {
                                 viewModel.selectedIndex = number
-                                buttonState.showButton = false
+                                viewModel.showButton = false
                             } else {
-                                buttonState.showButton.toggle()
+                                viewModel.showButton.toggle()
                             }
                         } label: {
                             if number == 1 {
@@ -70,9 +70,9 @@ struct HomeTabView: View {
                         .background(Color.blue)
                         .cornerRadius(10)
                 }
-                .offset(y: buttonState.showButton ? -100 : 0)
-                .opacity(buttonState.showButton ? 1 : 0)
-                .animation(.easeInOut(duration: 0.25), value: buttonState.showButton)
+                .offset(y: appState.showButton ? -100 : 0)
+                .opacity(appState.showButton ? 1 : 0)
+                .animation(.easeInOut(duration: 0.25), value: appState.showButton)
             }
         }
     }

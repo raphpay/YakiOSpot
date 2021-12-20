@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct StartingView: View {
+    @ObservedObject var appState: AppState
     @State var selection = 0
     
     var body: some View {
@@ -24,17 +25,11 @@ struct StartingView: View {
             Spacer(minLength: 100)
             ZStack {
                 if selection == 0 {
-                    ConnexionView(selection: $selection)
+                    ConnexionView(selection: $selection, appState: appState)
                 } else if selection == 1 {
-                    RegistrationView(selection: $selection)
+                    RegistrationView(selection: $selection, appState: appState)
                 }
             }
         }
-    }
-}
-
-struct StartingView_Previews: PreviewProvider {
-    static var previews: some View {
-        StartingView()
     }
 }

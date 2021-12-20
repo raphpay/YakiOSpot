@@ -21,16 +21,13 @@ final class ConnexionViewViewModel: ObservableObject {
         return true
     }
     
-    var isUserConnected: Bool {
-        return UserDefaults.standard.bool(forKey: DefaultKeys.IS_USER_CONNECTED)
-    }
-    
-    func didTapConnect() {
+    func didTapConnect(onSuccess: @escaping (() -> Void)) {
         API.Auth.session.signIn(email: email, password: password) { userID in
             API.User.session.getUserPseudo(with: userID) { pseudo in
-                self.isShowingTabBar.toggle()
+                self.isShowingTabBar = true
                 self.email = ""
                 self.password = ""
+                onSuccess()
             } onError: { error in
                 self.alertMessage = error
                 self.showAlert.toggle()
