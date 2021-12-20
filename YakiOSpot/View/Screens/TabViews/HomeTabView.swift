@@ -8,6 +8,10 @@
 import SwiftUI
 
 struct HomeTabView: View {
+    
+    let icons = ["info.circle", "hand.raised.fill", "bicycle"]
+    let titles = ["Info", "", "Feed"]
+    
     var body: some View {
         TabView {
             InfoView()
