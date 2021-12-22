@@ -61,6 +61,9 @@ struct InfoView: View {
                 }
             }
         }
+        .onTapGesture {
+            appState.showButton = false
+        }
     }
 }
 

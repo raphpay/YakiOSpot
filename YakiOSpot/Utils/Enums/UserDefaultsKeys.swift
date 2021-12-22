@@ -10,4 +10,5 @@ import Foundation
 enum DefaultKeys {
     static let IS_USER_CONNECTED     = "IS_USER_CONNECTED"
     static let CONNECTED_USER        = "CONNECTED_USER"
+    static let IS_USER_PRESENT       = "IS_USER_PRESENT"
 }

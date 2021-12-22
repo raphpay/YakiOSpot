@@ -11,6 +11,7 @@ struct HomeTabView: View {
     
     @ObservedObject private var viewModel = HomeTabViewViewModel()
     @ObservedObject var appState: AppState
+    @AppStorage(DefaultKeys.IS_USER_PRESENT) var isUserPresent: Bool = false
     
     var body: some View {
         VStack {
@@ -32,11 +33,12 @@ struct HomeTabView: View {
                     ForEach(0..<viewModel.icons.count, id: \.self) { number in
                         Spacer()
                         Button {
-                            if number != 1 {
-                                viewModel.selectedIndex = number
-                                viewModel.showButton = false
+                            print("======= \n tap selectedIndex : \(number) \n=====")
+                            if number == 1 {
+                                appState.showButton.toggle()
                             } else {
-                                viewModel.showButton.toggle()
+                                viewModel.selectedIndex = number
+                                appState.showButton = false
                             }
                         } label: {
                             if number == 1 {
@@ -62,9 +64,15 @@ struct HomeTabView: View {
                     }
                 }
                 Button {
-                    print("Im here")
+                    guard let user = API.User.CURRENT_USER_OBJECT else { return }
+                    API.User.session.toggleUserPresence(user) { isPresent in
+                        // Show alert
+                    } onError: { error in
+                        // Show alert
+                        print("error", error)
+                    }
                 } label: {
-                    Text("Je suis là !")
+                    Text(isUserPresent ? "Je m'en vais !" : "Je suis là !")
                         .frame(width: 150, height: 55)
                         .foregroundColor(.white)
                         .background(Color.blue)

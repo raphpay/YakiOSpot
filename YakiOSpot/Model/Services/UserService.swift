@@ -11,6 +11,7 @@ import FirebaseAuth
 
 protocol UserEngine {
     func addUserToDatabase(_ user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
+    func toggleUserPresence(_ user: User, onSuccess: @escaping ((_ isPresent: Bool) -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserFromUID(_ uid: String, onSuccess: @escaping ((_ user: User) -> Void))
 }
@@ -59,6 +60,27 @@ extension UserService {
         }
         
         onSuccess()
+    }
+    
+    func toggleUserPresence(_ user: User, onSuccess: @escaping ((_ isPresent: Bool) -> Void), onError: @escaping((_ error: String) -> Void)) {
+        let specificUserRef = USERS_REF.document(user.id)
+        
+        var artificialUser = user
+        let userIsPresentValue = UserDefaults.standard.bool(forKey: DefaultKeys.IS_USER_PRESENT)
+        if userIsPresentValue == true {
+            artificialUser.isPresent = false
+            UserDefaults.standard.set(false, forKey: DefaultKeys.IS_USER_PRESENT)
+        } else {
+            artificialUser.isPresent = true
+            UserDefaults.standard.set(true, forKey: DefaultKeys.IS_USER_PRESENT)
+        }
+        
+        do {
+            try specificUserRef.setData(from: artificialUser, merge: true)
+            onSuccess(artificialUser.isPresent!)
+        } catch let error {
+            onError(error.localizedDescription)
+        }
     }
 }
 

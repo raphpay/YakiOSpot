@@ -21,9 +21,10 @@
 		8692FC4F274D759000C8F7CF /* FakeAuthData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692FC4E274D759000C8F7CF /* FakeAuthData.swift */; };
 		8692FC51274D759D00C8F7CF /* AuthServiceTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692FC50274D759D00C8F7CF /* AuthServiceTestCase.swift */; };
 		8692FC53274D7ADE00C8F7CF /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692FC52274D7ADE00C8F7CF /* String+Ext.swift */; };
-		869E350F274304EB007CF366 /* UserSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869E350E274304EB007CF366 /* UserSettings.swift */; };
 		869E351127430602007CF366 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869E351027430602007CF366 /* ProfileView.swift */; };
 		86ADDDE9276E66A60063BE29 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADDDE8276E66A60063BE29 /* VideoPlayer.swift */; };
+		86ADDE0B2770EFAB0063BE29 /* HomeTabViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADDE0A2770EFAB0063BE29 /* HomeTabViewViewModel.swift */; };
+		86ADDE0E2771008F0063BE29 /* AppState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADDE0D2771008F0063BE29 /* AppState.swift */; };
 		86BB95C6273EF6190029C39A /* AuthErrors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB95C5273EF6190029C39A /* AuthErrors.swift */; };
 		86BB95CA273EF6630029C39A /* Helper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB95C9273EF6630029C39A /* Helper.swift */; };
 		86BB95CC273EF8820029C39A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86BB95CB273EF8820029C39A /* UserService.swift */; };
@@ -79,9 +80,10 @@
 		8692FC4E274D759000C8F7CF /* FakeAuthData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeAuthData.swift; sourceTree = "<group>"; };
 		8692FC50274D759D00C8F7CF /* AuthServiceTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceTestCase.swift; sourceTree = "<group>"; };
 		8692FC52274D7ADE00C8F7CF /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
-		869E350E274304EB007CF366 /* UserSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSettings.swift; sourceTree = "<group>"; };
 		869E351027430602007CF366 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		86ADDDE8276E66A60063BE29 /* VideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
+		86ADDE0A2770EFAB0063BE29 /* HomeTabViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewViewModel.swift; sourceTree = "<group>"; };
+		86ADDE0D2771008F0063BE29 /* AppState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppState.swift; sourceTree = "<group>"; };
 		86BB95C5273EF6190029C39A /* AuthErrors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthErrors.swift; sourceTree = "<group>"; };
 		86BB95C9273EF6630029C39A /* Helper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helper.swift; sourceTree = "<group>"; };
 		86BB95CB273EF8820029C39A /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -189,6 +191,7 @@
 			isa = PBXGroup;
 			children = (
 				86D68123273D23A5001E7BE6 /* StartingViews */,
+				86ADDE092770EEDE0063BE29 /* TabViews */,
 				86D68124273D23B4001E7BE6 /* HomeViews */,
 				86F81D25274184CD00AB69DB /* SpotCellView.swift */,
 				86C4FFAC276E462900E04B36 /* TrackView.swift */,
@@ -241,6 +244,43 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
+		86ADDE072770EE8D0063BE29 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				86ADDE082770EE9D0063BE29 /* StartingViews */,
+				86ADDE0C2770EFB10063BE29 /* TabViews */,
+				86ADDE0D2771008F0063BE29 /* AppState.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		86ADDE082770EE9D0063BE29 /* StartingViews */ = {
+			isa = PBXGroup;
+			children = (
+				86F81D1C2741741100AB69DB /* ConnexionViewViewModel.swift */,
+				86F81D1F2741772200AB69DB /* RegistrationViewViewModel.swift */,
+			);
+			path = StartingViews;
+			sourceTree = "<group>";
+		};
+		86ADDE092770EEDE0063BE29 /* TabViews */ = {
+			isa = PBXGroup;
+			children = (
+				860598CB2763AEC7000ACB3B /* HomeTabView.swift */,
+				863507E82763C14F00145505 /* InfoView.swift */,
+				863507EA2763C17F00145505 /* FeedView.swift */,
+			);
+			path = TabViews;
+			sourceTree = "<group>";
+		};
+		86ADDE0C2770EFB10063BE29 /* TabViews */ = {
+			isa = PBXGroup;
+			children = (
+				86ADDE0A2770EFAB0063BE29 /* HomeTabViewViewModel.swift */,
+			);
+			path = TabViews;
+			sourceTree = "<group>";
+		};
 		86BB95C7273EF6250029C39A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
@@ -279,7 +319,6 @@
 				86BB95CD273EF8B90029C39A /* User.swift */,
 				86F81D232741800400AB69DB /* Spot.swift */,
 				86D9894A2763C78B009908D8 /* Track.swift */,
-				869E350E274304EB007CF366 /* UserSettings.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -309,6 +348,7 @@
 			children = (
 				862D8431273D2ADF0081BA83 /* Model */,
 				86D68125273D23C4001E7BE6 /* View */,
+				86ADDE072770EE8D0063BE29 /* ViewModel */,
 				86D68126273D23CC001E7BE6 /* Support */,
 				86BB95C7273EF6250029C39A /* Utils */,
 				862D8434273D2BC30081BA83 /* GoogleService-Info.plist */,
@@ -329,8 +369,8 @@
 			isa = PBXGroup;
 			children = (
 				86D68111273D0B31001E7BE6 /* StartingView.swift */,
-				86F81D1B2741740500AB69DB /* ConnexionView */,
-				86F81D1E2741771600AB69DB /* RegistrationView */,
+				86D6811D273D0C5A001E7BE6 /* ConnexionView.swift */,
+				86D6811F273D11B5001E7BE6 /* RegistrationView.swift */,
 			);
 			path = StartingViews;
 			sourceTree = "<group>";
@@ -338,12 +378,9 @@
 		86D68124273D23B4001E7BE6 /* HomeViews */ = {
 			isa = PBXGroup;
 			children = (
-				863507E72763C13900145505 /* To Be Saved */,
 				86E1F87F2742914700C983EC /* SpotView.swift */,
 				869E351027430602007CF366 /* ProfileView.swift */,
-				860598CB2763AEC7000ACB3B /* HomeTabView.swift */,
-				863507E82763C14F00145505 /* InfoView.swift */,
-				863507EA2763C17F00145505 /* FeedView.swift */,
+				863507E72763C13900145505 /* To Be Saved */,
 			);
 			path = HomeViews;
 			sourceTree = "<group>";
@@ -385,24 +422,6 @@
 				86E1F87D2742905500C983EC /* SearchViewModel.swift */,
 			);
 			path = SearchView;
-			sourceTree = "<group>";
-		};
-		86F81D1B2741740500AB69DB /* ConnexionView */ = {
-			isa = PBXGroup;
-			children = (
-				86D6811D273D0C5A001E7BE6 /* ConnexionView.swift */,
-				86F81D1C2741741100AB69DB /* ConnexionViewViewModel.swift */,
-			);
-			path = ConnexionView;
-			sourceTree = "<group>";
-		};
-		86F81D1E2741771600AB69DB /* RegistrationView */ = {
-			isa = PBXGroup;
-			children = (
-				86D6811F273D11B5001E7BE6 /* RegistrationView.swift */,
-				86F81D1F2741772200AB69DB /* RegistrationViewViewModel.swift */,
-			);
-			path = RegistrationView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -573,11 +592,13 @@
 				86E1F87E2742905500C983EC /* SearchViewModel.swift in Sources */,
 				863507E92763C14F00145505 /* InfoView.swift in Sources */,
 				86F81D202741772200AB69DB /* RegistrationViewViewModel.swift in Sources */,
+				86ADDE0B2770EFAB0063BE29 /* HomeTabViewViewModel.swift in Sources */,
 				86F81D242741800400AB69DB /* Spot.swift in Sources */,
 				86D9894B2763C78B009908D8 /* Track.swift in Sources */,
 				86F3667E273D2845009CBDC9 /* AuthService.swift in Sources */,
 				86BB95CA273EF6630029C39A /* Helper.swift in Sources */,
 				86E1F8802742914700C983EC /* SpotView.swift in Sources */,
+				86ADDE0E2771008F0063BE29 /* AppState.swift in Sources */,
 				86E1F8792742897600C983EC /* SearchView.swift in Sources */,
 				86F81D26274184CD00AB69DB /* SpotCellView.swift in Sources */,
 				86D6811E273D0C5A001E7BE6 /* ConnexionView.swift in Sources */,
@@ -596,7 +617,6 @@
 				862D8433273D2AE60081BA83 /* API.swift in Sources */,
 				86E1F87B27428B4A00C983EC /* SpotService.swift in Sources */,
 				86BB95CE273EF8B90029C39A /* User.swift in Sources */,
-				869E350F274304EB007CF366 /* UserSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -22,4 +22,5 @@ struct User: Codable {
     var pseudo: String = ""
     var mail: String = ""
     var favoritedSpotsIDs: [String]?
+    var isPresent: Bool? = false
 }

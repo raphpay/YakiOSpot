@@ -30,6 +30,8 @@ struct FeedView: View {
                         }
                     }
                 }
+        }.onTapGesture {
+            print("Tap feed view")
         }
     }
 }
