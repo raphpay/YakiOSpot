@@ -8,19 +8,17 @@
 import SwiftUI
 
 struct HomeTabView: View {
-    
+    @AppStorage(DefaultKeys.IS_USER_PRESENT) var isUserPresent: Bool = false
     @ObservedObject private var viewModel = HomeTabViewViewModel()
     @ObservedObject var appState: AppState
-    @AppStorage(DefaultKeys.IS_USER_PRESENT) var isUserPresent: Bool = false
+    @State private var selectedIndex: Int = 0
     
     var body: some View {
         VStack {
             ZStack {
-                switch viewModel.selectedIndex {
+                switch selectedIndex {
                 case 0:
                     InfoView(appState: appState)
-                case 1:
-                    FeedView()
                 case 2:
                     FeedView()
                 default:
@@ -33,11 +31,10 @@ struct HomeTabView: View {
                     ForEach(0..<viewModel.icons.count, id: \.self) { number in
                         Spacer()
                         Button {
-                            print("======= \n tap selectedIndex : \(number) \n=====")
                             if number == 1 {
                                 appState.showButton.toggle()
                             } else {
-                                viewModel.selectedIndex = number
+                                selectedIndex = number
                                 appState.showButton = false
                             }
                         } label: {
@@ -53,10 +50,10 @@ struct HomeTabView: View {
                                 VStack {
                                     Image(systemName: viewModel.icons[number])
                                         .font(.system(size: 25, weight: .regular, design: .default))
-                                        .foregroundColor(viewModel.selectedIndex == number ? .blue : .secondary)
+                                        .foregroundColor(selectedIndex == number ? .blue : .secondary)
                                         .frame(width: 60)
                                     Text(viewModel.titles[number])
-                                        .foregroundColor(viewModel.selectedIndex == number ? .blue : .secondary)
+                                        .foregroundColor(selectedIndex == number ? .blue : .secondary)
                                 }
                             }
                         }.padding(.top, 20)

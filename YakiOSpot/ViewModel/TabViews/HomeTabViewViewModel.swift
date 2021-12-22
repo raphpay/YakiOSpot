@@ -10,6 +10,4 @@ import Foundation
 final class HomeTabViewViewModel: ObservableObject {
     let icons = ["info.circle", "hand.raised.fill", "bicycle"]
     let titles = ["Info", "", "Feed"]
-    
-    @Published var selectedIndex: Int = 0
 }
