@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct FeedView: View {
+
+    @ObservedObject var appState: AppState
+    
     var body: some View {
         NavigationView {
             Text("Plus de fonctionnalités bientôt ! Restez connectés !")
@@ -33,14 +36,12 @@ struct FeedView: View {
                         }
                     }
                 }
-        }.onTapGesture {
-            print("Tap feed view")
         }
     }
 }
 
 struct FeedView_Previews: PreviewProvider {
     static var previews: some View {
-        FeedView()
+        FeedView(appState: AppState())
     }
 }

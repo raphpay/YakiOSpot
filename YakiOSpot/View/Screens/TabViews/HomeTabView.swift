@@ -20,7 +20,7 @@ struct HomeTabView: View {
                 case 0:
                     InfoView(appState: appState)
                 case 2:
-                    FeedView()
+                    FeedView(appState: appState)
                 default:
                     Text("Another screen")
                 }

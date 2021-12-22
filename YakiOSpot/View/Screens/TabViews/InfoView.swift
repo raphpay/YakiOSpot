@@ -45,13 +45,7 @@ struct InfoView: View {
                     Text("Pistes")
                 }
             }
-            .navigationTitle("DCF Cornillon")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Image(systemName: "magnifyingglass")
-                        .foregroundColor(Color(UIColor.label))
-                }
-            }
+            .navigationBarTitle("DCF Cornillon")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: ProfileView(isConnected: $appState.isConnected)) {
@@ -60,9 +54,6 @@ struct InfoView: View {
                     }
                 }
             }
-        }
-        .onTapGesture {
-            appState.showButton = false
         }
     }
 }
@@ -96,18 +87,16 @@ struct TrackRow: View {
     let track: Track
     
     var body: some View {
-        NavigationLink(destination: Text(track.name)) {
+        HStack {
+            Image(systemName: "flag.fill")
+                .foregroundColor(track.difficulty.color)
+            Spacer()
+            Text(track.name)
+            Spacer()
             HStack {
-                Image(systemName: "flag.fill")
-                    .foregroundColor(track.difficulty.color)
-                Spacer()
-                Text(track.name)
-                Spacer()
-                HStack {
-                    Image(systemName: "hand.thumbsup.fill")
-                        .foregroundColor(.blue)
-                    Text("\(track.likes)")
-                }
+                Image(systemName: "hand.thumbsup.fill")
+                    .foregroundColor(.blue)
+                Text("\(track.likes)")
             }
         }
     }
