@@ -17,10 +17,14 @@ The user documentation
     - `mail: The email of the user. Set when creating a user.`
 */
 
-struct User: Codable {
+struct User: Codable, Hashable {
     var id: String = ""
     var pseudo: String = ""
     var mail: String = ""
     var favoritedSpotsIDs: [String]?
     var isPresent: Bool? = false
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }

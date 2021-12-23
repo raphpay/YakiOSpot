@@ -20,11 +20,11 @@ final class SearchViewModel: ObservableObject {
     }
     
     func fetchSpots() {
-        API.Spot.session.getAllSpots { fetchedSpots in
-            self.spots = fetchedSpots
-        } onError: { error in
-            print(error)
-        }
+//        API.Spot.session.getAllSpots { fetchedSpots in
+//            self.spots = fetchedSpots
+//        } onError: { error in
+//            print(error)
+//        }
 
     }
 }

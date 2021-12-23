@@ -20,17 +20,17 @@ The spot documentation
 */
 
 struct Spot: Codable, Hashable {
-    var id: String?
+    var id: String
     var name: String
     var tracks: [Track]
     var members: Int
-    var peoplePresent: Int
+    var peoplePresent: [User]?
 //    var favorites: Int?
 //    var isFavorited: Bool = false
     
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(id)
-    }
+   func hash(into hasher: inout Hasher) {
+       hasher.combine(id)
+   }
 }
 
 
@@ -50,7 +50,7 @@ struct DummySpot {
                              distance: nil, averageTime: nil)
     
     // Spot
-    static let cornillon = Spot(id: UUID().uuidString, name: "DCF Cornillon",
+    static let cornillon = Spot(id: "CornillonID", name: "DCF Cornillon",
                                 tracks: [slake, oldSchool, moria, blaize, airCore, scred],
-                                members: 159, peoplePresent: 12)
+                                members: 159, peoplePresent: [])
 }

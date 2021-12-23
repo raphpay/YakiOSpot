@@ -52,6 +52,6 @@ struct SpotCellView_Previews: PreviewProvider {
     static var previews: some View {
         SpotCellView(spot: Spot(id: UUID().uuidString, name: "Spot",
                                 tracks: [Track(id: UUID().uuidString, name: "Track", difficulty: .blue, likes: 0, distance: 0, averageTime: 0)],
-                                members: 0, peoplePresent: 0))
+                                members: 0))
     }
 }

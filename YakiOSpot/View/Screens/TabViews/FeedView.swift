@@ -13,10 +13,12 @@ struct FeedView: View {
     
     var body: some View {
         NavigationView {
-            Text("Plus de fonctionnalités bientôt ! Restez connectés !")
-                .multilineTextAlignment(.center)
-                .lineLimit(2)
-                .padding()
+            VStack {
+                Text("Plus de fonctionnalités bientôt ! Restez connectés !")
+                    .multilineTextAlignment(.center)
+                    .lineLimit(2)
+                    .padding()
+            }
                 .navigationTitle("Yaki O Spot")
                 .toolbar {
                     ToolbarItem(placement: .navigationBarLeading) {

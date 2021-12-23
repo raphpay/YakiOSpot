@@ -62,11 +62,19 @@ struct HomeTabView: View {
                 }
                 Button {
                     guard let user = API.User.CURRENT_USER_OBJECT else { return }
-                    API.User.session.toggleUserPresence(user) { isPresent in
-                        // Show alert
+                    API.User.session.toggleUserPresence(user) {
+                        API.Spot.session.getSpot { spot in
+                            API.Spot.session.toggleUserPresence(from: spot, user: user) {
+                                print("toggleUserPresence success")
+                            } onError: { error in
+                                print("toggleUserPresence error")
+                            }
+                        } onError: { error in
+                            print("getSpot", error)
+                        }
                     } onError: { error in
                         // Show alert
-                        print("error", error)
+                        print("getSpot toggleUserPresence error")
                     }
                 } label: {
                     Text(isUserPresent ? "Je m'en vais !" : "Je suis là !")
