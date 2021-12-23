@@ -10172,6 +10172,7 @@
 		86A449FAC9D4D49C7495D246F2820824 /* bn.c */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.c; name = bn.c; path = src/crypto/fipsmodule/bn/bn.c; sourceTree = "<group>"; };
 		86D5643A643F06D7F7D7110128A5852F /* FIRQuerySnapshot.mm */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.objcpp; name = FIRQuerySnapshot.mm; path = Firestore/Source/API/FIRQuerySnapshot.mm; sourceTree = "<group>"; };
 		86E830E99535CF23C28B5CAC14462EAB /* dbformat.cc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = dbformat.cc; path = db/dbformat.cc; sourceTree = "<group>"; };
+		86F528E9277505D700CDAA8C /* PersonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PersonListView.swift; path = ../YakiOSpot/ViewModel/TabViews/PersonListView.swift; sourceTree = "<group>"; };
 		86F79CA20765E9ECA3608643D1C377A4 /* FirebaseCoreDiagnostics-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "FirebaseCoreDiagnostics-umbrella.h"; sourceTree = "<group>"; };
 		8701C1E2E91A5892B4AB8D4880DEB24A /* uri_parser.cc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = uri_parser.cc; path = src/core/lib/uri/uri_parser.cc; sourceTree = "<group>"; };
 		871BA864D64938F8FF69967B149633EB /* log_reader.cc */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.cpp.cpp; name = log_reader.cc; path = db/log_reader.cc; sourceTree = "<group>"; };
@@ -15432,6 +15433,7 @@
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
+				86F528E9277505D700CDAA8C /* PersonListView.swift */,
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
 				03C5C200A0787E300053CFA8F53CA094 /* Frameworks */,
 				7953DD63A84945B79ED2CA741765B9CA /* Pods */,

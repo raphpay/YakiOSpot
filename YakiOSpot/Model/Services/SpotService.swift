@@ -11,6 +11,7 @@ import FirebaseFirestore
 protocol SpotEngine {
     func getSpot(onSuccess: @escaping ((_ spot: Spot) -> Void), onError: @escaping((_ error: String) -> Void))
     func toggleUserPresence(from spot: Spot, user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
+    func getPeoplePresent(onSuccess: @escaping ((_ users: [User]) -> Void), onError: @escaping((_ error: String) -> Void))
 }
 
 final class SpotEngineService {
@@ -81,9 +82,33 @@ extension SpotService {
                 onError("No data")
                 return
             }
+            
             do {
                 if let spot = try snapshot.data(as: Spot.self) {
                     onSuccess(spot)
+                }
+            } catch let error {
+                onError(error.localizedDescription)
+            }
+        }
+    }
+    
+    func getPeoplePresent(onSuccess: @escaping ((_ users: [User]) -> Void), onError: @escaping((_ error: String) -> Void)) {
+        // TODO: Add a listener instead to have realtime updates
+        cornillonRef.getDocument { snapshot, error in
+            guard error == nil else {
+                onError(error!.localizedDescription)
+                return
+            }
+            guard let snapshot = snapshot else {
+                onError("No data")
+                return
+            }
+            
+            do {
+                if let spot = try snapshot.data(as: Spot.self),
+                   let users = spot.peoplePresent {
+                    onSuccess(users)
                 }
             } catch let error {
                 onError(error.localizedDescription)
