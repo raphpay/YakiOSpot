@@ -56,7 +56,7 @@ struct HomeTabView: View {
                     }
                 }
                 Button {
-                    viewModel.toggleUserPresence()
+                    viewModel.showAlert.toggle()
                 } label: {
                     Text(isUserPresent ? "Je m'en vais !" : "Je suis là !")
                         .frame(width: 150, height: 55)
@@ -67,6 +67,18 @@ struct HomeTabView: View {
                 .offset(y: appState.showButton ? -100 : 0)
                 .opacity(appState.showButton ? 1 : 0)
                 .animation(.easeInOut(duration: 0.25), value: appState.showButton)
+            }
+        }
+        .alert(isUserPresent ? "Tu confirme ne plus être au spot ?" : "Tu confirme être au spot ?",
+               isPresented: $viewModel.showAlert) {
+            Button {
+                viewModel.toggleUserPresence()
+            } label: {
+                Text(isUserPresent ? "Tu t'en vas déjà ?" : "Tu es vraiment au spot ?")
+            }
+            
+            Button {} label: {
+                Text(isUserPresent ? "Non, je reste !" : "Non, je ne suis pas au spot")
             }
         }
     }
@@ -84,4 +96,3 @@ extension HomeTabView {
         }
     }
 }
-

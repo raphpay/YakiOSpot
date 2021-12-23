@@ -11,6 +11,8 @@ final class HomeTabViewViewModel: ObservableObject {
     let icons = ["info.circle", "hand.raised.fill", "bicycle"]
     let titles = ["Info", "", "Feed"]
     
+    @Published var showAlert: Bool = false
+    
     func toggleUserPresence() {
         guard let user = API.User.CURRENT_USER_OBJECT else { return }
         API.User.session.toggleUserPresence(user) {
