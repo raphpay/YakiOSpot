@@ -10,4 +10,22 @@ import Foundation
 final class HomeTabViewViewModel: ObservableObject {
     let icons = ["info.circle", "hand.raised.fill", "bicycle"]
     let titles = ["Info", "", "Feed"]
+    
+    func toggleUserPresence() {
+        guard let user = API.User.CURRENT_USER_OBJECT else { return }
+        API.User.session.toggleUserPresence(user) {
+            API.Spot.session.getSpot { spot in
+                API.Spot.session.toggleUserPresence(from: spot, user: user) {
+                    print("toggleUserPresence success")
+                } onError: { error in
+                    print("toggleUserPresence error")
+                }
+            } onError: { error in
+                print("getSpot", error)
+            }
+        } onError: { error in
+            // Show alert
+            print("getSpot toggleUserPresence error")
+        }
+    }
 }

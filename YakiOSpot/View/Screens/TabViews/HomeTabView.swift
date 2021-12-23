@@ -31,12 +31,7 @@ struct HomeTabView: View {
                     ForEach(0..<viewModel.icons.count, id: \.self) { number in
                         Spacer()
                         Button {
-                            if number == 1 {
-                                appState.showButton.toggle()
-                            } else {
-                                selectedIndex = number
-                                appState.showButton = false
-                            }
+                            changeTab(number)
                         } label: {
                             if number == 1 {
                                 Image(systemName: viewModel.icons[number])
@@ -61,21 +56,7 @@ struct HomeTabView: View {
                     }
                 }
                 Button {
-                    guard let user = API.User.CURRENT_USER_OBJECT else { return }
-                    API.User.session.toggleUserPresence(user) {
-                        API.Spot.session.getSpot { spot in
-                            API.Spot.session.toggleUserPresence(from: spot, user: user) {
-                                print("toggleUserPresence success")
-                            } onError: { error in
-                                print("toggleUserPresence error")
-                            }
-                        } onError: { error in
-                            print("getSpot", error)
-                        }
-                    } onError: { error in
-                        // Show alert
-                        print("getSpot toggleUserPresence error")
-                    }
+                    viewModel.toggleUserPresence()
                 } label: {
                     Text(isUserPresent ? "Je m'en vais !" : "Je suis là !")
                         .frame(width: 150, height: 55)
@@ -87,6 +68,19 @@ struct HomeTabView: View {
                 .opacity(appState.showButton ? 1 : 0)
                 .animation(.easeInOut(duration: 0.25), value: appState.showButton)
             }
+        }
+    }
+}
+
+
+// MARK: - Private methods
+extension HomeTabView {
+    func changeTab(_ index: Int) {
+        if index == 1 {
+            appState.showButton.toggle()
+        } else {
+            selectedIndex = index
+            appState.showButton = false
         }
     }
 }
