@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		54D94993E175939CC29ED04E /* Pods_YakiOSpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F907B8BCAFF86EFD71C34F78 /* Pods_YakiOSpot.framework */; };
+		2772EEC67204D9EBFB56E339 /* Pods_YakiOSpotUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99892E6DAB45A7B613EC893C /* Pods_YakiOSpotUnitTests.framework */; };
+		614835F073F3162A3FE83EBB /* Pods_YakiOSpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B444877AA95C6A72C1441CF /* Pods_YakiOSpot.framework */; };
 		860598CC2763AEC7000ACB3B /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860598CB2763AEC7000ACB3B /* HomeTabView.swift */; };
 		862D8433273D2AE60081BA83 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862D8432273D2AE60081BA83 /* API.swift */; };
 		862D8435273D2BC30081BA83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 862D8434273D2BC30081BA83 /* GoogleService-Info.plist */; };
@@ -66,8 +67,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0D56678A2F43227BAD14E92F /* Pods-YakiOSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpot.release.xcconfig"; path = "Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot.release.xcconfig"; sourceTree = "<group>"; };
+		52ABF5C600F58F0B20973C6C /* Pods-YakiOSpotUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpotUnitTests.debug.xcconfig"; path = "Target Support Files/Pods-YakiOSpotUnitTests/Pods-YakiOSpotUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
+		6B444877AA95C6A72C1441CF /* Pods_YakiOSpot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YakiOSpot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F8464A06CF1375F7807B7AD /* Pods-YakiOSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpot.release.xcconfig"; path = "Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot.release.xcconfig"; sourceTree = "<group>"; };
 		860598CB2763AEC7000ACB3B /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
+		86266F3E2775DA3D002900EF /* YakiOSpot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YakiOSpot.entitlements; sourceTree = "<group>"; };
 		862D8432273D2AE60081BA83 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		862D8434273D2BC30081BA83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		863507E82763C14F00145505 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
@@ -115,8 +119,9 @@
 		86F81D1F2741772200AB69DB /* RegistrationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewViewModel.swift; sourceTree = "<group>"; };
 		86F81D232741800400AB69DB /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
 		86F81D25274184CD00AB69DB /* SpotCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotCellView.swift; sourceTree = "<group>"; };
-		C502FD5B851ACEE90CA8394D /* Pods-YakiOSpot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpot.debug.xcconfig"; path = "Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot.debug.xcconfig"; sourceTree = "<group>"; };
-		F907B8BCAFF86EFD71C34F78 /* Pods_YakiOSpot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YakiOSpot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		99892E6DAB45A7B613EC893C /* Pods_YakiOSpotUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YakiOSpotUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE08A21D6488705B12EBD2B9 /* Pods-YakiOSpotUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpotUnitTests.release.xcconfig"; path = "Target Support Files/Pods-YakiOSpotUnitTests/Pods-YakiOSpotUnitTests.release.xcconfig"; sourceTree = "<group>"; };
+		ED4BD3C65FDAAF45FC7A3F5E /* Pods-YakiOSpot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpot.debug.xcconfig"; path = "Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -124,6 +129,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2772EEC67204D9EBFB56E339 /* Pods_YakiOSpotUnitTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -131,7 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				54D94993E175939CC29ED04E /* Pods_YakiOSpot.framework in Frameworks */,
+				614835F073F3162A3FE83EBB /* Pods_YakiOSpot.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,16 +147,19 @@
 		442FABC32475C2BEB228CD8A /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C502FD5B851ACEE90CA8394D /* Pods-YakiOSpot.debug.xcconfig */,
-				0D56678A2F43227BAD14E92F /* Pods-YakiOSpot.release.xcconfig */,
+				ED4BD3C65FDAAF45FC7A3F5E /* Pods-YakiOSpot.debug.xcconfig */,
+				6F8464A06CF1375F7807B7AD /* Pods-YakiOSpot.release.xcconfig */,
+				52ABF5C600F58F0B20973C6C /* Pods-YakiOSpotUnitTests.debug.xcconfig */,
+				CE08A21D6488705B12EBD2B9 /* Pods-YakiOSpotUnitTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		79BFC13CAB8B55F2C5922DD9 /* Frameworks */ = {
+		69AA0A965D1DA4B48AACE5FC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				F907B8BCAFF86EFD71C34F78 /* Pods_YakiOSpot.framework */,
+				6B444877AA95C6A72C1441CF /* Pods_YakiOSpot.framework */,
+				99892E6DAB45A7B613EC893C /* Pods_YakiOSpotUnitTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -333,7 +342,7 @@
 				8692FC43274D74C700C8F7CF /* YakiOSpotUnitTests */,
 				86D6810D273D0B31001E7BE6 /* Products */,
 				442FABC32475C2BEB228CD8A /* Pods */,
-				79BFC13CAB8B55F2C5922DD9 /* Frameworks */,
+				69AA0A965D1DA4B48AACE5FC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -349,6 +358,7 @@
 		86D6810E273D0B31001E7BE6 /* YakiOSpot */ = {
 			isa = PBXGroup;
 			children = (
+				86266F3E2775DA3D002900EF /* YakiOSpot.entitlements */,
 				862D8431273D2ADF0081BA83 /* Model */,
 				86D68125273D23C4001E7BE6 /* View */,
 				86ADDE072770EE8D0063BE29 /* ViewModel */,
@@ -434,6 +444,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8692FC48274D74C700C8F7CF /* Build configuration list for PBXNativeTarget "YakiOSpotUnitTests" */;
 			buildPhases = (
+				836C24D1FACD86FADB48C8BA /* [CP] Check Pods Manifest.lock */,
 				8692FC3E274D74C700C8F7CF /* Sources */,
 				8692FC3F274D74C700C8F7CF /* Frameworks */,
 				8692FC40274D74C700C8F7CF /* Resources */,
@@ -452,11 +463,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 86D6811A273D0B32001E7BE6 /* Build configuration list for PBXNativeTarget "YakiOSpot" */;
 			buildPhases = (
-				84607AA60D0C5216AC1AE95D /* [CP] Check Pods Manifest.lock */,
+				A69BE482D4FC6AE6963FC069 /* [CP] Check Pods Manifest.lock */,
 				86D68108273D0B31001E7BE6 /* Sources */,
 				86D68109273D0B31001E7BE6 /* Frameworks */,
 				86D6810A273D0B31001E7BE6 /* Resources */,
-				3BF79975F8FB06F2399E38AE /* [CP] Embed Pods Frameworks */,
+				DFF6F59DBB0C3BB1C823344F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -526,24 +537,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3BF79975F8FB06F2399E38AE /* [CP] Embed Pods Frameworks */ = {
+		836C24D1FACD86FADB48C8BA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-YakiOSpotUnitTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot-frameworks.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		84607AA60D0C5216AC1AE95D /* [CP] Check Pods Manifest.lock */ = {
+		A69BE482D4FC6AE6963FC069 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -563,6 +579,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DFF6F59DBB0C3BB1C823344F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -637,6 +670,7 @@
 /* Begin XCBuildConfiguration section */
 		8692FC49274D74C700C8F7CF /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 52ABF5C600F58F0B20973C6C /* Pods-YakiOSpotUnitTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -666,6 +700,7 @@
 		};
 		8692FC4A274D74C700C8F7CF /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE08A21D6488705B12EBD2B9 /* Pods-YakiOSpotUnitTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -815,10 +850,11 @@
 		};
 		86D6811B273D0B32001E7BE6 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C502FD5B851ACEE90CA8394D /* Pods-YakiOSpot.debug.xcconfig */;
+			baseConfigurationReference = ED4BD3C65FDAAF45FC7A3F5E /* Pods-YakiOSpot.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = YakiOSpot/YakiOSpot.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N96T5K2D2H;
@@ -847,10 +883,11 @@
 		};
 		86D6811C273D0B32001E7BE6 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0D56678A2F43227BAD14E92F /* Pods-YakiOSpot.release.xcconfig */;
+			baseConfigurationReference = 6F8464A06CF1375F7807B7AD /* Pods-YakiOSpot.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = YakiOSpot/YakiOSpot.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N96T5K2D2H;
