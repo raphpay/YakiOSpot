@@ -29,6 +29,7 @@ extension AppDelegate {
             API.User.session.getUserFromUID(firUser.uid) { user in
                 API.User.CURRENT_USER_OBJECT = user
                 UserDefaults.standard.set(user.pseudo, forKey: "pseudo")
+                API.Token.session.updateFirestorePushTokenIfNeeded()
             }
         } else {
             // No user connected

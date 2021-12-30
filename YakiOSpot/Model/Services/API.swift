@@ -8,7 +8,8 @@
 import Foundation
 
 struct API {
-    static let Auth = AuthEngineService.shared
-    static let User = UserEngineService.shared
-    static let Spot = SpotEngineService.shared
+    static let Auth     = AuthEngineService.shared
+    static let User     = UserEngineService.shared
+    static let Spot     = SpotEngineService.shared
+    static let Token    = FCMTokenEngineService.shared
 }

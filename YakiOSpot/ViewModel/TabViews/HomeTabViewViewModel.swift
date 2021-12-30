@@ -15,10 +15,19 @@ final class HomeTabViewViewModel: ObservableObject {
     
     func toggleUserPresence() {
         guard let user = API.User.CURRENT_USER_OBJECT else { return }
-        API.User.session.toggleUserPresence(user) {
+        API.User.session.toggleUserPresence(user) { isPresent in
             API.Spot.session.getSpot { spot in
                 API.Spot.session.toggleUserPresence(from: spot, user: user) {
-                    print("toggleUserPresence success")
+                    // Send notifications to every one
+                    if isPresent {
+                        API.Token.session.getAllTokens { tokens in
+                            for token in tokens {
+                                PushNotificationSender.shared.sendPresenceNotification(to: token, from: user.pseudo)
+                            }
+                        } onError: { error in
+                            print("getAllTokens error", error)
+                        }
+                    }
                 } onError: { error in
                     print("toggleUserPresence error")
                 }
