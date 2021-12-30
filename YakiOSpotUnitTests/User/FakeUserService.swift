@@ -26,6 +26,10 @@ extension FakeUserService {
         FakeUserData.mutableUsers.append(user)
         onSuccess()
     }
+    
+    func toggleUserPresence(_ user: User, onSuccess: @escaping ((_ isPresent: Bool) -> Void), onError: @escaping((_ error: String) -> Void)) {
+        
+    }
 }
 
 
@@ -41,7 +45,7 @@ extension FakeUserService {
         onSuccess(user.pseudo)
     }
     
-    func getUsersFavoritedSpots(onSuccess: @escaping (([Spot]) -> Void), onError: @escaping ((String) -> Void)) {
-        //
+    func getUserFromUID(_ uid: String, onSuccess: @escaping ((_ user: User) -> Void)) {
+        
     }
 }
