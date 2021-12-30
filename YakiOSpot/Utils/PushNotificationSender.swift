@@ -16,7 +16,7 @@ extension PushNotificationSender {
         let urlString = SecureKeys.googleSendURL
         let url = NSURL(string: urlString)!
         let notificationBody: [String : Any] = ["to" : token,
-                                           "notification" : ["title" : "Une personne vient d'arriver au spot !", "body" : "\(pseudo) est là"],
+                                           "notification" : ["title" : "Une personne est au spot !", "body" : "\(pseudo) est là"],
                                            "data" : ["user" : "test_id"]]
         
         let request = NSMutableURLRequest(url: url as URL)
