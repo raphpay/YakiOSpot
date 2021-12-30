@@ -26,7 +26,8 @@ final class FakeUserData {
     
     
     // MARK: - User
-    static let correctUser  = User(id: correctID, pseudo: correctPseudo, mail: correctMail, favoritedSpotsIDs: nil)
+    static let correctUser      = User(id: correctID, pseudo: correctPseudo, mail: correctMail, favoritedSpotsIDs: nil)
+    static let presentUser      = User(id: correctID, pseudo: correctPseudo, mail: correctMail, favoritedSpotsIDs: nil, isPresent: true)
     static let correctNewUser   = User(id: correctNewId, pseudo: correctNewPseudo, mail: correctNewMail, favoritedSpotsIDs: nil)
     static let incorrectUser    = User(id: incorrectID, pseudo: correctPseudo, mail: correctMail, favoritedSpotsIDs: nil)
     

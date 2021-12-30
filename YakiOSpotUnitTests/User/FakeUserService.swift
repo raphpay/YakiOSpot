@@ -28,7 +28,15 @@ extension FakeUserService {
     }
     
     func toggleUserPresence(_ user: User, onSuccess: @escaping ((_ isPresent: Bool) -> Void), onError: @escaping((_ error: String) -> Void)) {
+        var artificialUser = user
+        if let userIsPresent = artificialUser.isPresent,
+            userIsPresent {
+            artificialUser.isPresent = false
+        } else {
+            artificialUser.isPresent = true
+        }
         
+        onSuccess(artificialUser.isPresent!)
     }
 }
 

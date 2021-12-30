@@ -58,6 +58,30 @@ extension UserServiceTestsCase {
         
         wait(for: [expectation], timeout: 0.01)
     }
+    
+    func testGivenUserIsNotPresent_WhenTogglingPresence_ThenOnSuccessIsCalledAndPresenceIsTrue() {
+        let expectation = XCTestExpectation(description: "Success when switching from not present to present.")
+        
+        service?.session.toggleUserPresence(FakeUserData.correctUser, onSuccess: { isPresent in
+            XCTAssertEqual(isPresent, true)
+            expectation.fulfill()
+        }, onError: { _ in
+            //
+        })
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenUserIsPresent_WhenTogglingPresence_ThenOnSuccessIsCalledAndPresenceIsFalse() {
+        let expectation = XCTestExpectation(description: "Success when switching from present to not present.")
+        
+        service?.session.toggleUserPresence(FakeUserData.presentUser, onSuccess: { isPresent in
+            XCTAssertEqual(isPresent, false)
+            expectation.fulfill()
+        }, onError: { _ in
+            //
+        })
+        wait(for: [expectation], timeout: 0.01)
+    }
 }
 
 
