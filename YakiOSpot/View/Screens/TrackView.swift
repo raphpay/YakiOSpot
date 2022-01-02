@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TrackView: View {
-    var track: Track
+    @ObservedObject var viewModel: TrackViewViewModel
     
     var body: some View {
         VStack {
@@ -24,16 +24,16 @@ struct TrackView: View {
                     }
                 HStack {
                     VStack {
-                        Text(track.name)
+                        Text(viewModel.track.name)
                             .font(.title2)
                             .bold()
                             .foregroundColor(.white)
                         HStack {
-                            Text("Difficulté: \(track.difficulty.description)")
+                            Text("Difficulté: \(viewModel.track.difficulty.description)")
                                 .font(.body)
                                 .foregroundColor(.white)
                             Image(systemName: "flag.fill")
-                                .foregroundColor(track.difficulty.color)
+                                .foregroundColor(viewModel.track.difficulty.color)
                         }.padding(.horizontal)
                     }.frame(height: 140)
                     
@@ -57,12 +57,13 @@ struct TrackView: View {
                     .font(.body)
                     .foregroundColor(.secondary)
                     .padding(.horizontal)
-                Player()
+                viewModel.player
             }
             
             Spacer()
         }.navigationBarTitle("Détails", displayMode: .inline)
+            .onDisappear {
+                viewModel.stop()
+            }
     }
 }
-
-//VideoPlayer(player: AVPlayer(url: Bundle.main.url(forResource: "nyan", withExtension: "mp4")!))
