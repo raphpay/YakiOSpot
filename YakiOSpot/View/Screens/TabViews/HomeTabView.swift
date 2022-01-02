@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeTabView: View {
     @AppStorage(DefaultKeys.IS_USER_PRESENT) var isUserPresent: Bool = false
     @ObservedObject private var viewModel = HomeTabViewViewModel()
-    @ObservedObject var appState: AppState
+    @EnvironmentObject var appState: AppState
     @State private var selectedIndex: Int = 0
     
     var body: some View {

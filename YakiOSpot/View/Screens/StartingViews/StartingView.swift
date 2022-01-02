@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct StartingView: View {
-    @ObservedObject var appState: AppState
+    @EnvironmentObject var appState: AppState
     @State var selection = 0
     
     var body: some View {
