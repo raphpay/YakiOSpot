@@ -50,7 +50,7 @@ struct RegistrationView: View {
             }
         }
         .fullScreenCover(isPresented: $viewModel.isShowingTabBar) {
-            HomeTabView(appState: appState)
+            HomeTabView()
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Oups"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
@@ -64,10 +64,3 @@ struct RegistrationView: View {
         }
     }
 }
-
-struct RegistrationView_Previews: PreviewProvider {
-    static var previews: some View {
-        RegistrationView(selection: .constant(1), appState: AppState())
-    }
-}
-

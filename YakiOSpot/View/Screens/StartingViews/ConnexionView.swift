@@ -52,7 +52,7 @@ struct ConnexionView: View {
             }
         }
         .fullScreenCover(isPresented: $viewModel.isShowingTabBar) {
-            HomeTabView(appState: appState)
+            HomeTabView()
         }
         .alert(isPresented: $viewModel.showAlert) {
             Alert(title: Text("Oups"), message: Text(viewModel.alertMessage), dismissButton: .default(Text("OK")))
