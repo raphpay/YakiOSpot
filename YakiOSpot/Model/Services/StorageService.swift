@@ -20,7 +20,7 @@ final class StorageService {
 // This is not used for the moment, but it could be helpful when multiple spots are added
 extension StorageService {
     func getVideoURL(for track: String, onSuccess: @escaping ((_ downloadURL: URL) -> Void), onError: @escaping((_ error: String) -> Void)) {
-        SPOT_REF.child("Air Core.mp4").downloadURL { url, error in
+        SPOT_REF.child("\(track).mp4").downloadURL { url, error in
             guard error == nil else {
                 onError(error!.localizedDescription)
                 return
@@ -30,8 +30,6 @@ extension StorageService {
                 onError("No corresponding URL")
                 return
             }
-
-            print("getVideoURL", url)
             onSuccess(url)
         }
     }
