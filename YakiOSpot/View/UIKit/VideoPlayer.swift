@@ -13,11 +13,9 @@ struct Player: UIViewControllerRepresentable {
     var videoRessource: URL
     var player: AVPlayer
     
-    init(videoName: String?) {
-        if let name = videoName,
-           let path = Bundle.main.path(forResource: name, ofType: "mp4") {
-            let url = URL(fileURLWithPath: path)
-            videoRessource = url
+    init(videoURL: URL?) {
+        if let videoURL = videoURL {
+            videoRessource = videoURL
             player = AVPlayer(url: videoRessource)
         } else {
             videoRessource = URL(string: "https://bit.ly/swswift")!

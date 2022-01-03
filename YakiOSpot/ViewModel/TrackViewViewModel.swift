@@ -13,7 +13,7 @@ final class TrackViewViewModel: ObservableObject {
     
     init(track: Track) {
         self.track = track
-        player = Player(videoName: track.name)
+        player = Player(videoURL: track.videoURL)
     }
     
     func stop() {

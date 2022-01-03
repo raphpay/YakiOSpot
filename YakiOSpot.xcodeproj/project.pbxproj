@@ -17,6 +17,7 @@
 		863507EB2763C17F00145505 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863507EA2763C17F00145505 /* FeedView.swift */; };
 		86529B5127636C8E00BD44B6 /* FakeUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5027636C8E00BD44B6 /* FakeUserData.swift */; };
 		86529B5327636E6C00BD44B6 /* UserServiceTestsCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */; };
+		8674BE3C27822A8800FD31D7 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8674BE3B27822A8800FD31D7 /* StorageService.swift */; };
 		86804670274C227500AAFC83 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680466F274C227500AAFC83 /* FormTextField.swift */; };
 		8682613F27627CB100C3018E /* FakeUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8682613E27627CB100C3018E /* FakeUserService.swift */; };
 		8692FC4C274D757E00C8F7CF /* FakeAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692FC4B274D757E00C8F7CF /* FakeAuthService.swift */; };
@@ -83,6 +84,7 @@
 		863507EA2763C17F00145505 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		86529B5027636C8E00BD44B6 /* FakeUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserData.swift; sourceTree = "<group>"; };
 		86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTestsCase.swift; sourceTree = "<group>"; };
+		8674BE3B27822A8800FD31D7 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		8680466F274C227500AAFC83 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		8682613E27627CB100C3018E /* FakeUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserService.swift; sourceTree = "<group>"; };
 		8692FC42274D74C700C8F7CF /* YakiOSpotUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YakiOSpotUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -333,6 +335,7 @@
 				86BB95CB273EF8820029C39A /* UserService.swift */,
 				86E1F87A27428B4A00C983EC /* SpotService.swift */,
 				86C040C82775E3A500955CB4 /* FCMTokenService.swift */,
+				8674BE3B27822A8800FD31D7 /* StorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				86D68120273D11B5001E7BE6 /* RegistrationView.swift in Sources */,
 				86ADDDE9276E66A60063BE29 /* VideoPlayer.swift in Sources */,
 				86E1F8772742873400C983EC /* SpotListViewViewModel.swift in Sources */,
+				8674BE3C27822A8800FD31D7 /* StorageService.swift in Sources */,
 				869E351127430602007CF366 /* ProfileView.swift in Sources */,
 				86C4FFA9276E41CE00E04B36 /* AppDelegate.swift in Sources */,
 				86C4FFAF276E472000E04B36 /* Assets.swift in Sources */,

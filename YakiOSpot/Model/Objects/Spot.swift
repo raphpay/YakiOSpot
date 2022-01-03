@@ -45,7 +45,7 @@ struct DummySpot {
     static let blaize = Track(id: UUID().uuidString, name: "Blaize", difficulty: .red, likes: 0,
                               distance: nil, averageTime: nil)
     static let airCore = Track(id: UUID().uuidString, name: "Air Core", difficulty: .black, likes: 0,
-                               distance: nil, averageTime: nil)
+                               distance: nil, averageTime: nil, videoURL: URL(string: SecureKeys.airCoreVideoURL))
     static let scred = Track(id: UUID().uuidString, name: "Scred", difficulty: .diamond, likes: 0,
                              distance: nil, averageTime: nil)
     
