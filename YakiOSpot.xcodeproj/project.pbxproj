@@ -16,6 +16,7 @@
 		863507EB2763C17F00145505 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863507EA2763C17F00145505 /* FeedView.swift */; };
 		86529B5127636C8E00BD44B6 /* FakeUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5027636C8E00BD44B6 /* FakeUserData.swift */; };
 		86529B5327636E6C00BD44B6 /* UserServiceTestsCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */; };
+		8674BE4027832F4B00FD31D7 /* SecureKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8674BE3F27832F4B00FD31D7 /* SecureKeys.swift */; };
 		86804670274C227500AAFC83 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680466F274C227500AAFC83 /* FormTextField.swift */; };
 		8682613F27627CB100C3018E /* FakeUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8682613E27627CB100C3018E /* FakeUserService.swift */; };
 		8692FC4C274D757E00C8F7CF /* FakeAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692FC4B274D757E00C8F7CF /* FakeAuthService.swift */; };
@@ -52,7 +53,6 @@
 		86E1F8802742914700C983EC /* SpotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86E1F87F2742914700C983EC /* SpotView.swift */; };
 		86F3667E273D2845009CBDC9 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F3667D273D2845009CBDC9 /* AuthService.swift */; };
 		86F528ED2775067600CDAA8C /* PersonListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F528EC2775067500CDAA8C /* PersonListView.swift */; };
-		86F77B7B277DEB0C00C5E7A7 /* SecureKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F77B7A277DEB0C00C5E7A7 /* SecureKeys.swift */; };
 		86F81D1D2741741100AB69DB /* ConnexionViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F81D1C2741741100AB69DB /* ConnexionViewViewModel.swift */; };
 		86F81D202741772200AB69DB /* RegistrationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F81D1F2741772200AB69DB /* RegistrationViewViewModel.swift */; };
 		86F81D242741800400AB69DB /* Spot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F81D232741800400AB69DB /* Spot.swift */; };
@@ -81,6 +81,7 @@
 		863507EA2763C17F00145505 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		86529B5027636C8E00BD44B6 /* FakeUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserData.swift; sourceTree = "<group>"; };
 		86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTestsCase.swift; sourceTree = "<group>"; };
+		8674BE3F27832F4B00FD31D7 /* SecureKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureKeys.swift; sourceTree = "<group>"; };
 		8680466F274C227500AAFC83 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		8682613E27627CB100C3018E /* FakeUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserService.swift; sourceTree = "<group>"; };
 		8692FC42274D74C700C8F7CF /* YakiOSpotUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YakiOSpotUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -120,7 +121,6 @@
 		86E1F87F2742914700C983EC /* SpotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotView.swift; sourceTree = "<group>"; };
 		86F3667D273D2845009CBDC9 /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		86F528EC2775067500CDAA8C /* PersonListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonListView.swift; sourceTree = "<group>"; };
-		86F77B7A277DEB0C00C5E7A7 /* SecureKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureKeys.swift; sourceTree = "<group>"; };
 		86F81D1C2741741100AB69DB /* ConnexionViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnexionViewViewModel.swift; sourceTree = "<group>"; };
 		86F81D1F2741772200AB69DB /* RegistrationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationViewViewModel.swift; sourceTree = "<group>"; };
 		86F81D232741800400AB69DB /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
@@ -317,7 +317,7 @@
 				86BB95CF273F043F0029C39A /* UserDefaultsKeys.swift */,
 				86D989482763C60F009908D8 /* SampleText.swift */,
 				86C4FFAE276E472000E04B36 /* Assets.swift */,
-				86F77B7A277DEB0C00C5E7A7 /* SecureKeys.swift */,
+				8674BE3F27832F4B00FD31D7 /* SecureKeys.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -633,7 +633,7 @@
 				86D68110273D0B31001E7BE6 /* YakiOSpotApp.swift in Sources */,
 				86BB95C6273EF6190029C39A /* AuthErrors.swift in Sources */,
 				86F528ED2775067600CDAA8C /* PersonListView.swift in Sources */,
-				86F77B7B277DEB0C00C5E7A7 /* SecureKeys.swift in Sources */,
+				8674BE4027832F4B00FD31D7 /* SecureKeys.swift in Sources */,
 				86D68122273D2229001E7BE6 /* SpotListView.swift in Sources */,
 				86BB95D0273F043F0029C39A /* UserDefaultsKeys.swift in Sources */,
 				86E1F87E2742905500C983EC /* SearchViewModel.swift in Sources */,
