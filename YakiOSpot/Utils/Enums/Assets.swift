@@ -9,4 +9,5 @@ import Foundation
 
 enum Assets {
     static let DCF = "dcf"
+    static let noPeople = "no-people"
 }

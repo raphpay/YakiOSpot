@@ -18,9 +18,9 @@ struct HomeTabView: View {
             ZStack {
                 switch selectedIndex {
                 case 0:
-                    InfoView(appState: appState)
+                    YakiView()
                 case 2:
-                    FeedView(appState: appState)
+                    InfoView(appState: appState)
                 default:
                     Text("Another screen")
                 }
