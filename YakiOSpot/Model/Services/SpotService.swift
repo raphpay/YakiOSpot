@@ -43,11 +43,13 @@ extension SpotService {
         if var peoplePresent = artificialSpot.peoplePresent {
             // People present array exists
             if peoplePresent.contains(where: { $0.id == user.id}),
-               let index = peoplePresent.firstIndex(of: user) {
+               user.isPresent == false, // The user has just toggle is presence to false
+               let index = peoplePresent.firstIndex(where: { $0.id == user.id}) {
                 // People present array contains the user
                 // We have to remove him from the array
                 peoplePresent.remove(at: index)
-            } else {
+            } else if !peoplePresent.contains(where: { $0.id == user.id}),
+               user.isPresent == true {
                 // People present array doesn't contain the user
                 // We have to append him to the array
                 peoplePresent.append(user)
