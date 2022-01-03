@@ -58,6 +58,7 @@
 		86F81D242741800400AB69DB /* Spot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F81D232741800400AB69DB /* Spot.swift */; };
 		86F81D26274184CD00AB69DB /* SpotCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F81D25274184CD00AB69DB /* SpotCellView.swift */; };
 		86FBD17327833B6A00C24C96 /* YakiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FBD17227833B6A00C24C96 /* YakiView.swift */; };
+		86FBD17527834B1300C24C96 /* YakiViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FBD17427834B1300C24C96 /* YakiViewViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +128,7 @@
 		86F81D232741800400AB69DB /* Spot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spot.swift; sourceTree = "<group>"; };
 		86F81D25274184CD00AB69DB /* SpotCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotCellView.swift; sourceTree = "<group>"; };
 		86FBD17227833B6A00C24C96 /* YakiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakiView.swift; sourceTree = "<group>"; };
+		86FBD17427834B1300C24C96 /* YakiViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakiViewViewModel.swift; sourceTree = "<group>"; };
 		99892E6DAB45A7B613EC893C /* Pods_YakiOSpotUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YakiOSpotUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE08A21D6488705B12EBD2B9 /* Pods-YakiOSpotUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpotUnitTests.release.xcconfig"; path = "Target Support Files/Pods-YakiOSpotUnitTests/Pods-YakiOSpotUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED4BD3C65FDAAF45FC7A3F5E /* Pods-YakiOSpot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpot.debug.xcconfig"; path = "Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot.debug.xcconfig"; sourceTree = "<group>"; };
@@ -298,6 +300,7 @@
 			isa = PBXGroup;
 			children = (
 				86ADDE0A2770EFAB0063BE29 /* HomeTabViewViewModel.swift */,
+				86FBD17427834B1300C24C96 /* YakiViewViewModel.swift */,
 			);
 			path = TabViews;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				86D68120273D11B5001E7BE6 /* RegistrationView.swift in Sources */,
 				86ADDDE9276E66A60063BE29 /* VideoPlayer.swift in Sources */,
 				86E1F8772742873400C983EC /* SpotListViewViewModel.swift in Sources */,
+				86FBD17527834B1300C24C96 /* YakiViewViewModel.swift in Sources */,
 				869E351127430602007CF366 /* ProfileView.swift in Sources */,
 				86C4FFA9276E41CE00E04B36 /* AppDelegate.swift in Sources */,
 				86C4FFAF276E472000E04B36 /* Assets.swift in Sources */,
