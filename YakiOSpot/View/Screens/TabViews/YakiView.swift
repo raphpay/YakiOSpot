@@ -24,6 +24,7 @@ struct YakiView: View {
                         Section {
                             ForEach(peoplePresent, id: \.self) { person in
                                 Text(person.pseudo)
+                                    .font(.system(size: 20))
                             }
                         } header: {
                             Text("Personnes présentes")
