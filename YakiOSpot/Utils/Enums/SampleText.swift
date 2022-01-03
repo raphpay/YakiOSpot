@@ -8,6 +8,7 @@
 import Foundation
 
 struct SampleText {
+    // Infos View
     static let membership = "Adhésion obligatoire"
     static let spotInfo = "Toute information importante sera consignée ici :\n-Annonces\n-Contests - Jam\n-Fermeture exceptionnelle\n-Autres"
     static let spotOpen = "Tous les jours"
@@ -17,4 +18,8 @@ struct SampleText {
     static let dayPrice = "5€/jour"
     static let dayLink = "https://www.helloasso.com/associations/davalado-cornillon-free-ride/adhesions/forfait-journalier"
     static let annualLink = "https://www.helloasso.com/associations/davalado-cornillon-free-ride/adhesions/adhesion-2021-2022"
+    
+    // Yaki View
+    static let features = "Plus de fonctionnalités arrivent bientôt !\nRestez connectés !"
+    static let noPeople = "Personne au spot pour le moment !\nPrends ton vélo et vas rouler !"
 }
