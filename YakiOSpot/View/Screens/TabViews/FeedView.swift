@@ -38,7 +38,6 @@ struct FeedView: View {
                 } onError: { error in
                     print(error)
                 }
-
             }
             .navigationTitle("Yaki O Spot")
             .toolbar {
