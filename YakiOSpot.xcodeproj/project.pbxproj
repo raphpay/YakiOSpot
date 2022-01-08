@@ -10,13 +10,14 @@
 		2772EEC67204D9EBFB56E339 /* Pods_YakiOSpotUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99892E6DAB45A7B613EC893C /* Pods_YakiOSpotUnitTests.framework */; };
 		614835F073F3162A3FE83EBB /* Pods_YakiOSpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B444877AA95C6A72C1441CF /* Pods_YakiOSpot.framework */; };
 		860598CC2763AEC7000ACB3B /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860598CB2763AEC7000ACB3B /* HomeTabView.swift */; };
+		8622BAFF277F0D4D0046680F /* TrackViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622BAFE277F0D4D0046680F /* TrackViewViewModel.swift */; };
 		862D8433273D2AE60081BA83 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862D8432273D2AE60081BA83 /* API.swift */; };
 		862D8435273D2BC30081BA83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 862D8434273D2BC30081BA83 /* GoogleService-Info.plist */; };
 		863507E92763C14F00145505 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863507E82763C14F00145505 /* InfoView.swift */; };
 		863507EB2763C17F00145505 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863507EA2763C17F00145505 /* FeedView.swift */; };
 		86529B5127636C8E00BD44B6 /* FakeUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5027636C8E00BD44B6 /* FakeUserData.swift */; };
 		86529B5327636E6C00BD44B6 /* UserServiceTestsCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */; };
-		8674BE4027832F4B00FD31D7 /* SecureKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8674BE3F27832F4B00FD31D7 /* SecureKeys.swift */; };
+		8674BE3C27822A8800FD31D7 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8674BE3B27822A8800FD31D7 /* StorageService.swift */; };
 		86804670274C227500AAFC83 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680466F274C227500AAFC83 /* FormTextField.swift */; };
 		8682613F27627CB100C3018E /* FakeUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8682613E27627CB100C3018E /* FakeUserService.swift */; };
 		8692FC4C274D757E00C8F7CF /* FakeAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692FC4B274D757E00C8F7CF /* FakeAuthService.swift */; };
@@ -75,6 +76,7 @@
 		6B444877AA95C6A72C1441CF /* Pods_YakiOSpot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YakiOSpot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F8464A06CF1375F7807B7AD /* Pods-YakiOSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpot.release.xcconfig"; path = "Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot.release.xcconfig"; sourceTree = "<group>"; };
 		860598CB2763AEC7000ACB3B /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
+		8622BAFE277F0D4D0046680F /* TrackViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewViewModel.swift; sourceTree = "<group>"; };
 		86266F3E2775DA3D002900EF /* YakiOSpot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YakiOSpot.entitlements; sourceTree = "<group>"; };
 		862D8432273D2AE60081BA83 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		862D8434273D2BC30081BA83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -82,7 +84,7 @@
 		863507EA2763C17F00145505 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		86529B5027636C8E00BD44B6 /* FakeUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserData.swift; sourceTree = "<group>"; };
 		86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTestsCase.swift; sourceTree = "<group>"; };
-		8674BE3F27832F4B00FD31D7 /* SecureKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecureKeys.swift; sourceTree = "<group>"; };
+		8674BE3B27822A8800FD31D7 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		8680466F274C227500AAFC83 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		8682613E27627CB100C3018E /* FakeUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserService.swift; sourceTree = "<group>"; };
 		8692FC42274D74C700C8F7CF /* YakiOSpotUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YakiOSpotUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -270,6 +272,7 @@
 				86ADDE082770EE9D0063BE29 /* StartingViews */,
 				86ADDE0C2770EFB10063BE29 /* TabViews */,
 				86ADDE0D2771008F0063BE29 /* AppState.swift */,
+				8622BAFE277F0D4D0046680F /* TrackViewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -333,6 +336,7 @@
 				86BB95CB273EF8820029C39A /* UserService.swift */,
 				86E1F87A27428B4A00C983EC /* SpotService.swift */,
 				86C040C82775E3A500955CB4 /* FCMTokenService.swift */,
+				8674BE3B27822A8800FD31D7 /* StorageService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -370,12 +374,12 @@
 		86D6810E273D0B31001E7BE6 /* YakiOSpot */ = {
 			isa = PBXGroup;
 			children = (
-				86266F3E2775DA3D002900EF /* YakiOSpot.entitlements */,
 				862D8431273D2ADF0081BA83 /* Model */,
 				86D68125273D23C4001E7BE6 /* View */,
 				86ADDE072770EE8D0063BE29 /* ViewModel */,
 				86D68126273D23CC001E7BE6 /* Support */,
 				86BB95C7273EF6250029C39A /* Utils */,
+				86266F3E2775DA3D002900EF /* YakiOSpot.entitlements */,
 				862D8434273D2BC30081BA83 /* GoogleService-Info.plist */,
 				86D9894C2763D7B8009908D8 /* Info.plist */,
 			);
@@ -658,9 +662,11 @@
 				86D68120273D11B5001E7BE6 /* RegistrationView.swift in Sources */,
 				86ADDDE9276E66A60063BE29 /* VideoPlayer.swift in Sources */,
 				86E1F8772742873400C983EC /* SpotListViewViewModel.swift in Sources */,
+				8674BE3C27822A8800FD31D7 /* StorageService.swift in Sources */,
 				869E351127430602007CF366 /* ProfileView.swift in Sources */,
 				86C4FFA9276E41CE00E04B36 /* AppDelegate.swift in Sources */,
 				86C4FFAF276E472000E04B36 /* Assets.swift in Sources */,
+				8622BAFF277F0D4D0046680F /* TrackViewViewModel.swift in Sources */,
 				86D989492763C60F009908D8 /* SampleText.swift in Sources */,
 				8692FC53274D7ADE00C8F7CF /* String+Ext.swift in Sources */,
 				86BB95CC273EF8820029C39A /* UserService.swift in Sources */,

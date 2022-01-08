@@ -19,13 +19,13 @@ struct YakiOSpotApp: App {
             if API.User.CURRENT_USER != nil {
                 HomeTabView()
                     .onAppear {
-                        print("appear HomeTabView")
+                        UserDefaults.standard.setValue(false, forKey: "_UIConstraintsBasedLayoutLogUnsatisfiable")
                     }
                     .environmentObject(appState)
             } else {
                 StartingView()
                     .onAppear {
-                        print("appear StartingView")
+                        UserDefaults.standard.setValue(false, forKey: "_UIConstraintsBasedLayoutLogUnsatisfiable")
                     }
                     .environmentObject(appState)
             }
