@@ -11,7 +11,7 @@ import FirebaseFirestore
 protocol SpotEngine {
     func getSpot(onSuccess: @escaping ((_ spot: Spot) -> Void), onError: @escaping((_ error: String) -> Void))
     func toggleUserPresence(from spot: Spot, user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
-    func getPeople(onSuccess: @escaping ((_ peoplePresent: [User]) -> Void), onError: @escaping((_ error: String) -> Void))
+    func getPeoplePresent(onSuccess: @escaping ((_ peoplePresent: [User]) -> Void), onError: @escaping((_ error: String) -> Void))
 }
 
 final class SpotEngineService {
@@ -95,7 +95,7 @@ extension SpotService {
         }
     }
     
-    func getPeople(onSuccess: @escaping ((_ peoplePresent: [User]) -> Void), onError: @escaping((_ error: String) -> Void)) {
+    func getPeoplePresent(onSuccess: @escaping ((_ peoplePresent: [User]) -> Void), onError: @escaping((_ error: String) -> Void)) {
         cornillonRef.addSnapshotListener { snapshot, error in
             guard error == nil else {
                 onError(error!.localizedDescription)
