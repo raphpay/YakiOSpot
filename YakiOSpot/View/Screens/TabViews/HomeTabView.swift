@@ -18,7 +18,7 @@ struct HomeTabView: View {
             ZStack {
                 switch selectedIndex {
                 case 0:
-                    YakiView()
+                    YakiView(appState: appState)
                 case 2:
                     InfoView(appState: appState)
                 default:

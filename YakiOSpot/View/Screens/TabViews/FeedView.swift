@@ -33,19 +33,20 @@ struct FeedView: View {
                     .padding()
             }
             .navigationTitle("Yaki O Spot")
-            .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        //
-                    }) {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.black)
-                    }
-                }
-            }
+//            TODO: To be put when a multiple spots are added
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarLeading) {
+//                    Button(action: {
+//                        //
+//                    }) {
+//                        Image(systemName: "magnifyingglass")
+//                            .foregroundColor(.black)
+//                    }
+//                }
+//            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: Text("Profile")) {
+                    NavigationLink(destination: ProfileView(isConnected: $appState.isConnected)) {
                         Image(systemName: "person.circle")
                             .foregroundColor(Color(UIColor.label))
                     }

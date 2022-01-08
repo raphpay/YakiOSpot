@@ -9,6 +9,7 @@ import SwiftUI
 
 struct YakiView: View {
     
+    @ObservedObject var appState: AppState
     @ObservedObject private var viewModel = YakiViewViewModel()
     
     var body: some View {
@@ -48,7 +49,7 @@ struct YakiView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: Text("Profile")) {
+                    NavigationLink(destination: ProfileView(isConnected: $appState.isConnected)) {
                         Image(systemName: "person.circle")
                             .foregroundColor(Color(UIColor.label))
                     }
