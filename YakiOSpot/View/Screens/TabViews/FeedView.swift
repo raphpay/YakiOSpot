@@ -32,13 +32,6 @@ struct FeedView: View {
                     .lineLimit(2)
                     .padding()
             }
-            .onAppear {
-                API.Spot.session.getPeoplePresent { users in
-                    self.peoplePresent = users
-                } onError: { error in
-                    print(error)
-                }
-            }
             .navigationTitle("Yaki O Spot")
             .toolbar {
                 ToolbarItem(placement: .navigationBarLeading) {

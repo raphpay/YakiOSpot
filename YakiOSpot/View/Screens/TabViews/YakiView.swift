@@ -9,7 +9,7 @@ import SwiftUI
 
 struct YakiView: View {
     
-    @State var peoplePresent: [User] = []
+    @ObservedObject private var viewModel = YakiViewViewModel()
     
     var body: some View {
         NavigationView {
@@ -17,12 +17,12 @@ struct YakiView: View {
                 Text(SampleText.features)
                     .font(.system(size: 16, weight: .regular))
                     .multilineTextAlignment(.center)
-                if (peoplePresent.isEmpty) {
+                if (viewModel.peoplePresent.isEmpty) {
                     EmptySpotView()
                 } else {
                     List {
                         Section {
-                            ForEach(peoplePresent, id: \.self) { person in
+                            ForEach(viewModel.peoplePresent, id: \.self) { person in
                                 Text(person.pseudo)
                                     .font(.system(size: 20))
                             }
@@ -33,11 +33,7 @@ struct YakiView: View {
                 }
             }
             .onAppear {
-                API.Spot.session.getPeoplePresent { users in
-                    self.peoplePresent = users
-                } onError: { error in
-                    print(error)
-                }
+                viewModel.fetchData()
             }
             .navigationTitle("Yaki O Spot")
             .toolbar {

@@ -11,7 +11,7 @@ import FirebaseFirestore
 protocol SpotEngine {
     func getSpot(onSuccess: @escaping ((_ spot: Spot) -> Void), onError: @escaping((_ error: String) -> Void))
     func toggleUserPresence(from spot: Spot, user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
-    func getPeoplePresent(onSuccess: @escaping ((_ users: [User]) -> Void), onError: @escaping((_ error: String) -> Void))
+    func getPeoplePresent(onSuccess: @escaping ((_ peoplePresent: [User]) -> Void), onError: @escaping((_ error: String) -> Void))
 }
 
 final class SpotEngineService {
@@ -43,11 +43,13 @@ extension SpotService {
         if var peoplePresent = artificialSpot.peoplePresent {
             // People present array exists
             if peoplePresent.contains(where: { $0.id == user.id}),
-               let index = peoplePresent.firstIndex(of: user) {
+               user.isPresent == false, // The user has just toggle is presence to false
+               let index = peoplePresent.firstIndex(where: { $0.id == user.id}) {
                 // People present array contains the user
                 // We have to remove him from the array
                 peoplePresent.remove(at: index)
-            } else {
+            } else if !peoplePresent.contains(where: { $0.id == user.id}),
+                      user.isPresent == true {
                 // People present array doesn't contain the user
                 // We have to append him to the array
                 peoplePresent.append(user)
@@ -93,22 +95,22 @@ extension SpotService {
         }
     }
     
-    func getPeoplePresent(onSuccess: @escaping ((_ users: [User]) -> Void), onError: @escaping((_ error: String) -> Void)) {
-        // TODO: Add a listener instead to have realtime updates
-        cornillonRef.getDocument { snapshot, error in
+    func getPeoplePresent(onSuccess: @escaping ((_ peoplePresent: [User]) -> Void), onError: @escaping((_ error: String) -> Void)) {
+        cornillonRef.addSnapshotListener { snapshot, error in
             guard error == nil else {
                 onError(error!.localizedDescription)
                 return
             }
+            
             guard let snapshot = snapshot else {
-                onError("No data")
+                onError("Unexpected error")
                 return
             }
             
             do {
                 if let spot = try snapshot.data(as: Spot.self),
-                   let users = spot.peoplePresent {
-                    onSuccess(users)
+                   let people = spot.peoplePresent {
+                    onSuccess(people)
                 }
             } catch let error {
                 onError(error.localizedDescription)
