@@ -57,7 +57,13 @@ struct TrackView: View {
                     .font(.body)
                     .foregroundColor(.secondary)
                     .padding(.horizontal)
-                viewModel.player
+                if viewModel.track.videoURL == nil {
+                    Text("Pas de vidéo pour cette piste pour le moment !")
+                        .font(.title3)
+                        .multilineTextAlignment(.center)
+                } else {
+                    viewModel.player
+                }
             }
             
             Spacer()

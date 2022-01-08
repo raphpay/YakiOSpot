@@ -15,7 +15,7 @@ struct Track: Codable, Hashable {
     let likes: Int
     let distance: Double?
     let averageTime: Double? // In seconds
-    var videoURL: URL? = URL(string: "https://bit.ly/swswift")!
+    var videoURL: URL?
     
     enum Difficulty: Codable {
         case green, blue, red, black, diamond
