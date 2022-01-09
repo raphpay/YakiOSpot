@@ -38,16 +38,6 @@ struct YakiView: View {
             }
             .navigationTitle("Yaki O Spot")
             .toolbar {
-                ToolbarItem(placement: .navigationBarLeading) {
-                    Button(action: {
-                        //
-                    }) {
-                        Image(systemName: "magnifyingglass")
-                            .foregroundColor(.black)
-                    }
-                }
-            }
-            .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     NavigationLink(destination: ProfileView(isConnected: $appState.isConnected)) {
                         Image(systemName: "person.circle")

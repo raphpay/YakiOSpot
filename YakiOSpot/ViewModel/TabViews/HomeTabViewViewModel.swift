@@ -8,8 +8,8 @@
 import Foundation
 
 final class HomeTabViewViewModel: ObservableObject {
-    let icons = ["info.circle", "hand.raised.fill", "bicycle"]
-    let titles = ["Info", "", "Feed"]
+    let icons = ["bicycle", "hand.raised.fill", "info.circle"]
+    let titles = ["Yaki", "", "Infos"]
     
     @Published var showAlert: Bool = false
     
