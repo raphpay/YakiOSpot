@@ -57,8 +57,8 @@ struct EmptySpotView: View {
             .multilineTextAlignment(.center)
         Image(Assets.noPeople)
             .resizable()
-            .frame(height: 180)
             .aspectRatio(contentMode: .fit)
+            .frame(height: 180)
         Spacer()
     }
 }
