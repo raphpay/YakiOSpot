@@ -86,6 +86,7 @@
 		863507EA2763C17F00145505 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		86529B5027636C8E00BD44B6 /* FakeUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserData.swift; sourceTree = "<group>"; };
 		86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTestsCase.swift; sourceTree = "<group>"; };
+		8668CA4C278B3CBE0024A0BC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8674BE3B27822A8800FD31D7 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		8680466F274C227500AAFC83 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		8682613E27627CB100C3018E /* FakeUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserService.swift; sourceTree = "<group>"; };
@@ -119,7 +120,6 @@
 		86D68121273D2229001E7BE6 /* SpotListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListView.swift; sourceTree = "<group>"; };
 		86D989482763C60F009908D8 /* SampleText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleText.swift; sourceTree = "<group>"; };
 		86D9894A2763C78B009908D8 /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
-		86D9894C2763D7B8009908D8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		86E1F8762742873400C983EC /* SpotListViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotListViewViewModel.swift; sourceTree = "<group>"; };
 		86E1F8782742897600C983EC /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 		86E1F87A27428B4A00C983EC /* SpotService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotService.swift; sourceTree = "<group>"; };
@@ -386,7 +386,7 @@
 				86BB95C7273EF6250029C39A /* Utils */,
 				86266F3E2775DA3D002900EF /* YakiOSpot.entitlements */,
 				862D8434273D2BC30081BA83 /* GoogleService-Info.plist */,
-				86D9894C2763D7B8009908D8 /* Info.plist */,
+				8668CA4C278B3CBE0024A0BC /* Info.plist */,
 			);
 			path = YakiOSpot;
 			sourceTree = "<group>";
@@ -887,8 +887,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N96T5K2D2H;
 				ENABLE_PREVIEWS = YES;
+				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "/Users/raphaelpayet/Documents/Code/YakiOSpot - Project/YakiOSpot/YakiOSpot/Info.plist";
+				INFOPLIST_FILE = "/Users/raphaelpayet/Documents/Personal/Code/Self Projects/YakiOSpot - Project/YakiOSpot/YakiOSpot/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -921,7 +922,7 @@
 				DEVELOPMENT_TEAM = N96T5K2D2H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
-				INFOPLIST_FILE = "/Users/raphaelpayet/Documents/Code/YakiOSpot - Project/YakiOSpot/YakiOSpot/Info.plist";
+				INFOPLIST_FILE = "/Users/raphaelpayet/Documents/Personal/Code/Self Projects/YakiOSpot - Project/YakiOSpot/YakiOSpot/Info.plist";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
