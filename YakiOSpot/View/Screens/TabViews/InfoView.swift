@@ -24,7 +24,9 @@ struct InfoView: View {
                 }
                 
                 Section {
-                    Text(SampleText.spotInfo)
+                    Text(SampleText.spotInfo1)
+                    Text(SampleText.spotInfo2)
+                    Text(SampleText.spotInfo3)
                 } header: {
                     Text("Infos")
                 }
@@ -34,7 +36,7 @@ struct InfoView: View {
                 } header: {
                     Text("Ouverture")
                 }
-                
+
                 Section {
                     ForEach(DummySpot.cornillon.tracks, id: \.self) { track in
                         NavigationLink(destination: TrackView(viewModel: TrackViewViewModel(track: track))) {
