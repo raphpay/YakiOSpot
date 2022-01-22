@@ -28,7 +28,9 @@ struct ConnexionView: View {
                 }.focused($focus, equals: .password)
                 HStack {
                     Spacer()
-                    Button(action: {}) {
+                    Button(action: {
+                        viewModel.didTapForgotPassword()
+                    }) {
                         Text("Mot de passe oublié ?")
                             .font(.system(size: 14))
                     }

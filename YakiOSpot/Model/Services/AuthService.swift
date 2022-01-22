@@ -11,6 +11,8 @@ protocol AuthEngine {
     func createUser(email: String, password: String,
                     onSuccess: @escaping ((_ userID: String) -> Void), onError: @escaping ((_ error: String) -> Void))
     
+    func sendResetPasswordMail(to email: String, onSuccess: @escaping (() -> Void), onError: @escaping ((_ error: String) -> Void))
+    
     func signIn(email: String, password: String,
                 onSuccess: @escaping ((_ userID : String) -> Void), onError: @escaping ((_ error: String) -> Void))
     
@@ -54,6 +56,20 @@ extension AuthService {
     }
 }
 
+
+// MARK: - Password
+extension AuthService {
+    func sendResetPasswordMail(to email: String, onSuccess: @escaping (() -> Void), onError: @escaping ((_ error: String) -> Void)) {
+        Auth.auth().sendPasswordReset(withEmail: email) { _error in
+            guard _error == nil else {
+                onError(_error!.localizedDescription)
+                return
+            }
+            
+            onSuccess()
+        }
+    }
+}
 
 // MARK: - Log in / out
 extension AuthService {
