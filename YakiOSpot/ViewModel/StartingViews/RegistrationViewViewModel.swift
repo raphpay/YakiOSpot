@@ -26,6 +26,7 @@ final class RegistrationViewViewModel: ObservableObject {
             API.User.session.addUserToDatabase(user) {
                 self.resetFields()
                 self.isShowingTabBar = true
+                API.Token.session.updateFirestorePushTokenIfNeeded()
                 onSuccess()
             } onError: { error in
                 self.alertMessage = error
