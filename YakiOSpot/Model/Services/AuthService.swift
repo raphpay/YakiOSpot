@@ -62,7 +62,8 @@ extension AuthService {
     func sendResetPasswordMail(to email: String, onSuccess: @escaping (() -> Void), onError: @escaping ((_ error: String) -> Void)) {
         Auth.auth().sendPasswordReset(withEmail: email) { _error in
             guard _error == nil else {
-                onError(_error!.localizedDescription)
+                let convertedError = Helper.convertAuthErrorFromFirebase(_error!)
+                onError(convertedError)
                 return
             }
             
