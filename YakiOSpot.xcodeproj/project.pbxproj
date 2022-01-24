@@ -42,6 +42,7 @@
 		86CCA15A279ED3AE0074AA46 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CCA159279ED3AE0074AA46 /* View+Ext.swift */; };
 		86CCA15C279F0CF10074AA46 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CCA15B279F0CF10074AA46 /* Session.swift */; };
 		86CCA15E279F0F100074AA46 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CCA15D279F0F100074AA46 /* SessionService.swift */; };
+		86CCA160279F17A40074AA46 /* SessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CCA15F279F17A40074AA46 /* SessionView.swift */; };
 		86D68110273D0B31001E7BE6 /* YakiOSpotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6810F273D0B31001E7BE6 /* YakiOSpotApp.swift */; };
 		86D68112273D0B31001E7BE6 /* StartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D68111273D0B31001E7BE6 /* StartingView.swift */; };
 		86D68114273D0B32001E7BE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86D68113273D0B32001E7BE6 /* Assets.xcassets */; };
@@ -116,6 +117,7 @@
 		86CCA159279ED3AE0074AA46 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		86CCA15B279F0CF10074AA46 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 		86CCA15D279F0F100074AA46 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
+		86CCA15F279F17A40074AA46 /* SessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionView.swift; sourceTree = "<group>"; };
 		86D6810C273D0B31001E7BE6 /* YakiOSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YakiOSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86D6810F273D0B31001E7BE6 /* YakiOSpotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakiOSpotApp.swift; sourceTree = "<group>"; };
 		86D68111273D0B31001E7BE6 /* StartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingView.swift; sourceTree = "<group>"; };
@@ -227,6 +229,7 @@
 				86F81D25274184CD00AB69DB /* SpotCellView.swift */,
 				86C4FFAC276E462900E04B36 /* TrackView.swift */,
 				86F528EC2775067500CDAA8C /* PersonListView.swift */,
+				86CCA15F279F17A40074AA46 /* SessionView.swift */,
 			);
 			path = Screens;
 			sourceTree = "<group>";
@@ -653,6 +656,7 @@
 				86D68112273D0B31001E7BE6 /* StartingView.swift in Sources */,
 				86D68110273D0B31001E7BE6 /* YakiOSpotApp.swift in Sources */,
 				86BB95C6273EF6190029C39A /* AuthErrors.swift in Sources */,
+				86CCA160279F17A40074AA46 /* SessionView.swift in Sources */,
 				86F528ED2775067600CDAA8C /* PersonListView.swift in Sources */,
 				86D68122273D2229001E7BE6 /* SpotListView.swift in Sources */,
 				86BB95D0273F043F0029C39A /* UserDefaultsKeys.swift in Sources */,
