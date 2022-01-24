@@ -318,7 +318,6 @@
 				86BB95C8273EF62E0029C39A /* Enums */,
 				86BB95C9273EF6630029C39A /* Helper.swift */,
 				8692FC52274D7ADE00C8F7CF /* String+Ext.swift */,
-				86C040C62775E1DD00955CB4 /* PushNotificationSender.swift */,
 				86CCA159279ED3AE0074AA46 /* View+Ext.swift */,
 			);
 			path = Utils;
@@ -345,6 +344,7 @@
 				86E1F87A27428B4A00C983EC /* SpotService.swift */,
 				86C040C82775E3A500955CB4 /* FCMTokenService.swift */,
 				8674BE3B27822A8800FD31D7 /* StorageService.swift */,
+				86C040C62775E1DD00955CB4 /* PushNotificationSender.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
