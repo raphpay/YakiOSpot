@@ -53,6 +53,9 @@ struct ConnexionView: View {
                 Text("Inscrivez-vous")
             }
         }
+        .onTapGesture {
+            hideKeyboard()
+        }
         .fullScreenCover(isPresented: $viewModel.isShowingTabBar) {
             HomeTabView()
         }
