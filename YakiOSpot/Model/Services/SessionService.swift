@@ -10,7 +10,7 @@ import FirebaseFirestore
 
 // TODO: To be tested
 protocol SessionEngine {
-    func postSession(date: Date, creator: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
+    func postSession(date: Date, creator: User, onSuccess: @escaping ((_ sessionID: String) -> Void), onError: @escaping((_ error: String) -> Void))
     func fetchAllSession(onSuccess: @escaping ((_ sessions: [Session]?) -> Void), onError: @escaping((_ error: String) -> Void))
     func fetchUsers(for session: Session, onSuccess: @escaping ((_ users: [User]?) -> Void), onError: @escaping((_ error: String) -> Void))
 }
@@ -38,14 +38,14 @@ final class SessionService: SessionEngine {
 
 // MARK: - Post
 extension SessionService {
-    func postSession(date: Date, creator: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
+    func postSession(date: Date, creator: User, onSuccess: @escaping ((_ sessionID: String) -> Void), onError: @escaping((_ error: String) -> Void)) {
         let id = UUID().uuidString
         let session = Session(id: id, creator: creator, date: date)
         let sessionRef = SESSION_REF.document(session.id)
         
         do {
             try sessionRef.setData(from: session)
-            onSuccess()
+            onSuccess(session.id)
         } catch let error {
             onError(error.localizedDescription)
         }

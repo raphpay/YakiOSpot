@@ -12,6 +12,7 @@ import FirebaseAuth
 protocol UserEngine {
     func addUserToDatabase(_ user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
     func toggleUserPresence(_ user: User, onSuccess: @escaping ((_ isPresent: Bool) -> Void), onError: @escaping((_ error: String) -> Void))
+    func addSessionToUser(sessionID: String, to user: User, onSuccess: @escaping ((_ newUser: User) -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserFromUID(_ uid: String, onSuccess: @escaping ((_ user: User) -> Void))
 }
@@ -78,6 +79,24 @@ extension UserService {
         do {
             try specificUserRef.setData(from: artificialUser, merge: true)
             onSuccess(artificialUser.isPresent!)
+        } catch let error {
+            onError(error.localizedDescription)
+        }
+    }
+    
+    func addSessionToUser(sessionID: String, to user: User, onSuccess: @escaping ((_ newUser: User) -> Void), onError: @escaping ((String) -> Void)) {
+        let specificUserRef = USERS_REF.document(user.id)
+        var artificialUser = user
+        
+        if artificialUser.sessions == nil {
+            artificialUser.sessions = [sessionID]
+        } else {
+            artificialUser.sessions?.append(sessionID)
+        }
+        
+        do {
+            try specificUserRef.setData(from: artificialUser)
+            onSuccess(artificialUser)
         } catch let error {
             onError(error.localizedDescription)
         }

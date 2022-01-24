@@ -26,7 +26,7 @@ struct User: Codable, Hashable {
     var mail: String = ""
     var favoritedSpotsIDs: [String]?
     var isPresent: Bool? = false
-    var sessions: [Session]?
+    var sessions: [String]?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
