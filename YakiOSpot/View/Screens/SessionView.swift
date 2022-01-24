@@ -9,6 +9,7 @@ import SwiftUI
 
 struct SessionView: View {
     
+    @Environment(\.dismiss) var dismiss
     @State private var sessionDate = defaultSessionDate
     @State private var showAlert: Bool = false
     @State private var alertMessage: String = ""
@@ -47,9 +48,7 @@ struct SessionView: View {
         .alert(alertMessage, isPresented: $showAlert) {
             Button(sessionPublished ? "Cool !" : "Réessayer", role: .cancel) {
                 if (sessionPublished) {
-                    // Go back
-                } else {
-                    // Retry
+                    dismiss()
                 }
             }
         }
@@ -78,11 +77,5 @@ struct SessionView: View {
         alertMessage = title
         sessionPublished = isPublished
         showAlert.toggle()
-    }
-}
-
-struct SessionView_Previews: PreviewProvider {
-    static var previews: some View {
-        SessionView()
     }
 }
