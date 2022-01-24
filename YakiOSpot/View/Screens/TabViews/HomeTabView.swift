@@ -58,20 +58,12 @@ struct HomeTabView: View {
                     }
                     VStack {
                         NavigationLink(destination: SessionView()) {
-                            Text("Prévoir une session")
-                                .frame(width: 150, height: 55)
-                                .foregroundColor(.white)
-                                .background(Color.blue)
-                                .cornerRadius(10)
+                            RoundedButton(title: "Prévoir une session")
                         }
                         Button {
                             viewModel.showAlert.toggle()
                         } label: {
-                            Text(isUserPresent ? "Je m'en vais !" : "Je suis là !")
-                                .frame(width: 150, height: 55)
-                                .foregroundColor(.white)
-                                .background(Color.blue)
-                                .cornerRadius(10)
+                            RoundedButton(title: isUserPresent ? "Je m'en vais !" : "Je suis là !")
                         }
                     }
                     .offset(y: appState.showButton ? -150 : 0)

@@ -16,14 +16,14 @@ struct YakiOSpotApp: App {
     
     var body: some Scene {
         WindowGroup {
-            if API.User.CURRENT_USER != nil {
-                HomeTabView()
+            if API.User.CURRENT_USER == nil {
+                StartingView()
                     .onAppear {
                         UserDefaults.standard.setValue(false, forKey: "_UIConstraintsBasedLayoutLogUnsatisfiable")
                     }
                     .environmentObject(appState)
             } else {
-                StartingView()
+                HomeTabView()
                     .onAppear {
                         UserDefaults.standard.setValue(false, forKey: "_UIConstraintsBasedLayoutLogUnsatisfiable")
                     }
