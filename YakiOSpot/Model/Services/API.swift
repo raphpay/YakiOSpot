@@ -12,4 +12,5 @@ struct API {
     static let User     = UserEngineService.shared
     static let Spot     = SpotEngineService.shared
     static let Token    = FCMTokenEngineService.shared
+    static let Session  = SessionEngineService.shared
 }

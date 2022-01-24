@@ -41,6 +41,7 @@
 		86C4FFAF276E472000E04B36 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C4FFAE276E472000E04B36 /* Assets.swift */; };
 		86CCA15A279ED3AE0074AA46 /* View+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CCA159279ED3AE0074AA46 /* View+Ext.swift */; };
 		86CCA15C279F0CF10074AA46 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CCA15B279F0CF10074AA46 /* Session.swift */; };
+		86CCA15E279F0F100074AA46 /* SessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CCA15D279F0F100074AA46 /* SessionService.swift */; };
 		86D68110273D0B31001E7BE6 /* YakiOSpotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6810F273D0B31001E7BE6 /* YakiOSpotApp.swift */; };
 		86D68112273D0B31001E7BE6 /* StartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D68111273D0B31001E7BE6 /* StartingView.swift */; };
 		86D68114273D0B32001E7BE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86D68113273D0B32001E7BE6 /* Assets.xcassets */; };
@@ -114,6 +115,7 @@
 		86C4FFAE276E472000E04B36 /* Assets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		86CCA159279ED3AE0074AA46 /* View+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "View+Ext.swift"; sourceTree = "<group>"; };
 		86CCA15B279F0CF10074AA46 /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		86CCA15D279F0F100074AA46 /* SessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionService.swift; sourceTree = "<group>"; };
 		86D6810C273D0B31001E7BE6 /* YakiOSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YakiOSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86D6810F273D0B31001E7BE6 /* YakiOSpotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakiOSpotApp.swift; sourceTree = "<group>"; };
 		86D68111273D0B31001E7BE6 /* StartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingView.swift; sourceTree = "<group>"; };
@@ -347,6 +349,7 @@
 				86C040C82775E3A500955CB4 /* FCMTokenService.swift */,
 				8674BE3B27822A8800FD31D7 /* StorageService.swift */,
 				86C040C62775E1DD00955CB4 /* PushNotificationSender.swift */,
+				86CCA15D279F0F100074AA46 /* SessionService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -671,6 +674,7 @@
 				860598CC2763AEC7000ACB3B /* HomeTabView.swift in Sources */,
 				86D68120273D11B5001E7BE6 /* RegistrationView.swift in Sources */,
 				86ADDDE9276E66A60063BE29 /* VideoPlayer.swift in Sources */,
+				86CCA15E279F0F100074AA46 /* SessionService.swift in Sources */,
 				86E1F8772742873400C983EC /* SpotListViewViewModel.swift in Sources */,
 				8674BE3C27822A8800FD31D7 /* StorageService.swift in Sources */,
 				86FBD17527834B1300C24C96 /* YakiViewViewModel.swift in Sources */,
