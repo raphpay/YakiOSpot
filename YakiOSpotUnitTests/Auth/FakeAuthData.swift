@@ -8,6 +8,13 @@
 import Foundation
 @testable import YakiOSpot
 
+struct FakeFirebaseUser {
+    var mail: String
+    var password: String
+    var uid: String?
+}
+
+
 final class FakeAuthData {
     // MARK: - Id
     static let correctID = "correctID"
@@ -24,6 +31,7 @@ final class FakeAuthData {
     static let correctEmail2 = "correctEmail2@test.com"
     static let emptyMail        = ""
     static let incorrectEmail = "incorrectMail"
+    static let notRegisteredEmail   = "notRegistered@test.com"
     
     
     // MARK: - Password
@@ -35,6 +43,7 @@ final class FakeAuthData {
     
     // MARK: - User
     static let correctUser = User(id: correctID, pseudo: correctPseudo, mail: correctEmail, favoritedSpotsIDs: nil)
+    static let notRegisteredUser = FakeFirebaseUser(mail: notRegisteredEmail, password: correctPassword, uid: correctID)
     
     
     // MARK: - Users

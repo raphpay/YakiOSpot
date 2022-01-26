@@ -76,6 +76,26 @@ extension FakeAuthService {
 }
 
 
+// MARK: - Password
+extension FakeAuthService {
+    func sendResetPasswordMail(to email: String, onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
+        // Verify mail
+        guard self.verifyEmail(email) == nil else {
+            onError(self.verifyEmail(email)!)
+            return
+        }
+        
+        guard FakeAuthData.mutableUsers.contains(where: { $0.mail == email }) else {
+            // No user registered with this mail
+            onError(FakeAuthData.alreadySignedInError)
+            return
+        }
+        
+        onSuccess()
+    }
+}
+
+
 // MARK: - Private methods
 extension FakeAuthService {
     private func verifyEmail(_ email: String) -> String? {

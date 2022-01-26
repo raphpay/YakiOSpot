@@ -17,6 +17,7 @@
 		863507EB2763C17F00145505 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863507EA2763C17F00145505 /* FeedView.swift */; };
 		86529B5127636C8E00BD44B6 /* FakeUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5027636C8E00BD44B6 /* FakeUserData.swift */; };
 		86529B5327636E6C00BD44B6 /* UserServiceTestsCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */; };
+		8665978F27A17C82005E1CD6 /* AuthServiceTestCasePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665978E27A17C82005E1CD6 /* AuthServiceTestCasePassword.swift */; };
 		8674BE3C27822A8800FD31D7 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8674BE3B27822A8800FD31D7 /* StorageService.swift */; };
 		86804670274C227500AAFC83 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680466F274C227500AAFC83 /* FormTextField.swift */; };
 		8682613F27627CB100C3018E /* FakeUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8682613E27627CB100C3018E /* FakeUserService.swift */; };
@@ -94,6 +95,7 @@
 		863507EA2763C17F00145505 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
 		86529B5027636C8E00BD44B6 /* FakeUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserData.swift; sourceTree = "<group>"; };
 		86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTestsCase.swift; sourceTree = "<group>"; };
+		8665978E27A17C82005E1CD6 /* AuthServiceTestCasePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceTestCasePassword.swift; sourceTree = "<group>"; };
 		8668CA4C278B3CBE0024A0BC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8674BE3B27822A8800FD31D7 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		8680466F274C227500AAFC83 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
@@ -277,6 +279,7 @@
 				8692FC4B274D757E00C8F7CF /* FakeAuthService.swift */,
 				8692FC4E274D759000C8F7CF /* FakeAuthData.swift */,
 				8692FC50274D759D00C8F7CF /* AuthServiceTestCase.swift */,
+				8665978E27A17C82005E1CD6 /* AuthServiceTestCasePassword.swift */,
 			);
 			path = Auth;
 			sourceTree = "<group>";
@@ -656,6 +659,7 @@
 				8692FC4C274D757E00C8F7CF /* FakeAuthService.swift in Sources */,
 				86529B5327636E6C00BD44B6 /* UserServiceTestsCase.swift in Sources */,
 				8682613F27627CB100C3018E /* FakeUserService.swift in Sources */,
+				8665978F27A17C82005E1CD6 /* AuthServiceTestCasePassword.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

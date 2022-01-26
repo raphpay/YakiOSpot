@@ -38,6 +38,10 @@ extension FakeUserService {
         
         onSuccess(artificialUser.isPresent!)
     }
+    
+    func addSessionToUser(sessionID: String, to user: User, onSuccess: @escaping ((User) -> Void), onError: @escaping ((String) -> Void)) {
+        //
+    }
 }
 
 
