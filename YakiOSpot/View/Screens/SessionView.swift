@@ -35,7 +35,7 @@ struct SessionView: View {
                 }
             }
             Button {
-                viewModel.togglePresence()
+                viewModel.showAlert = true
             } label: {
                 RoundedButton(title: viewModel.isUserPresent ? "Je ne serais pas là !" : "Je serais là !")
             }
@@ -43,6 +43,17 @@ struct SessionView: View {
         .onAppear {
             viewModel.getPresentUsers()
             viewModel.getUserPresence()
+        }
+        .alert(viewModel.isUserPresent ? "Tu ne pourras pas être là ?" : "Tu confirme pouvoir être au spot ?",
+               isPresented: $viewModel.showAlert) {
+            Button {
+                viewModel.togglePresence()
+            } label: {
+                Text(viewModel.isUserPresent ? "Je ne serais pas là !" : "Oui, je serais au spot !")
+            }
+            Button {} label: {
+                Text(viewModel.isUserPresent ? "Non, je serais présent !" : "Non, je ne serais pas présent")
+            }
         }
     }
 }
