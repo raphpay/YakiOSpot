@@ -146,4 +146,31 @@ extension UserServiceTestsCase {
         
         wait(for: [expectation], timeout: 0.01)
     }
+
+
+    func testGivenUIDIsRegistered_WhenGettingUser_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when getting user from correct UID")
+        
+        service?.session.getUserFromUID(FakeUserData.correctID, onSuccess: { user in
+            XCTAssertEqual(user.id, FakeUserData.correctID)
+            expectation.fulfill()
+        }, onError: { _ in
+            //
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenUIDIsNotRegistered_WhenGettingUser_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when getting user from correct UID")
+        
+        service?.session.getUserFromUID(FakeUserData.incorrectID, onSuccess: { _ in
+            //
+        }, onError: { error in
+            XCTAssertEqual(error, FakeUserData.noUserError)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
 }

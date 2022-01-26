@@ -30,6 +30,10 @@ extension AppDelegate {
                 API.User.CURRENT_USER_OBJECT = user
                 UserDefaults.standard.set(user.pseudo, forKey: "pseudo")
                 API.Token.session.updateFirestorePushTokenIfNeeded()
+            } onError: { error in
+                // No user connected
+                API.User.CURRENT_USER_OBJECT = nil
+                print(error)
             }
         } else {
             // No user connected

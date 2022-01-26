@@ -14,7 +14,7 @@ protocol UserEngine {
     func toggleUserPresence(_ user: User, onSuccess: @escaping ((_ isPresent: Bool) -> Void), onError: @escaping((_ error: String) -> Void))
     func addSessionToUser(sessionID: String, to user: User, onSuccess: @escaping ((_ newUser: User) -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void))
-    func getUserFromUID(_ uid: String, onSuccess: @escaping ((_ user: User) -> Void))
+    func getUserFromUID(_ uid: String, onSuccess: @escaping ((_ user: User) -> Void), onError: @escaping (( _ error: String) -> Void))
 }
 
 final class UserEngineService {
@@ -136,17 +136,23 @@ extension UserService {
         }
     }
     
-    func getUserFromUID(_ uid: String, onSuccess: @escaping ((User) -> Void)) {
+    func getUserFromUID(_ uid: String, onSuccess: @escaping ((User) -> Void), onError: @escaping (( _ error: String) -> Void)) {
         USERS_REF.document(uid).getDocument { snapshot, error in
-            guard error == nil else { return }
-            guard let snapshot = snapshot else { return }
+            guard error == nil else {
+                onError("No user")
+                return
+            }
+            guard let snapshot = snapshot else {
+                onError("No user")
+                return
+            }
             
             do {
                 if let user = try snapshot.data(as: User.self) {
                     onSuccess(user)
                 }
             } catch let error {
-                print("Error getting user from uid \(uid). Error: \(error.localizedDescription)")
+                onError("Error getting user from uid \(uid). Error: \(error.localizedDescription)")
             }
             
         }

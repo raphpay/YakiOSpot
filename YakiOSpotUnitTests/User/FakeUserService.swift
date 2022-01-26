@@ -64,7 +64,12 @@ extension FakeUserService {
         onSuccess(user.pseudo)
     }
     
-    func getUserFromUID(_ uid: String, onSuccess: @escaping ((_ user: User) -> Void)) {
-        
+    func getUserFromUID(_ uid: String, onSuccess: @escaping ((User) -> Void), onError: @escaping ((String) -> Void)) {
+        if FakeUserData.referenceUsers.contains(where: { $0.id == uid }),
+           let user = FakeUserData.referenceUsers.first(where: { $0.id == uid }) {
+            onSuccess(user)
+        } else {
+            onError(FakeUserData.noUserError)
+        }
     }
 }
