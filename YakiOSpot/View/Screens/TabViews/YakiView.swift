@@ -35,7 +35,7 @@ struct YakiView: View {
                 List {
                     Section {
                         ForEach(MockSession.mockSessions, id: \.self) { session in
-                            NavigationLink(destination: Text("Hello")) {
+                            NavigationLink(destination: SessionView(session: session)) {
                                 VStack(alignment: .leading) {
                                     Text("Nouvelle session prévue \(session.date.getRelativeDateFromNow())")
                                     Text("Par : \(session.creator.pseudo)")

@@ -57,7 +57,7 @@ struct HomeTabView: View {
                         }
                     }
                     VStack {
-                        NavigationLink(destination: SessionView()) {
+                        NavigationLink(destination: PublishSessionView()) {
                             RoundedButton(title: "Prévoir une session")
                         }
                         Button {
