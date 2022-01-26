@@ -18,23 +18,34 @@ struct YakiView: View {
                 Text(SampleText.features)
                     .font(.system(size: 16, weight: .regular))
                     .multilineTextAlignment(.center)
-                if (viewModel.peoplePresent.isEmpty) {
-                    EmptySpotView()
-                } else {
-                    List {
-                        Section {
+                Button {
+                    viewModel.toggleUserPresence()
+                } label: {
+                    RoundedButton(title: "Je suis au spot")
+                }
+                
+                NavigationLink(destination: PublishSessionView()) {
+                    RoundedButton(title: "Je prévois une session", backgroundColor: .orange)
+                }
+
+                List {
+                    Section {
+                        if viewModel.peoplePresent.isEmpty {
+                            Text("Personne au spot pour le moment !")
+                        } else {
                             ForEach(viewModel.peoplePresent, id: \.self) { person in
                                 Text(person.pseudo)
                                     .font(.system(size: 20))
                             }
-                        } header: {
-                            Text("Personnes présentes")
                         }
+                    } header: {
+                        Text("Personnes présentes")
                     }
-                }
-                if !viewModel.sessions.isEmpty {
-                    List {
-                        Section {
+                    
+                    Section {
+                        if viewModel.sessions.isEmpty {
+                            Text("Pas de sessions prévues pour le moment")
+                        } else {
                             ForEach(viewModel.sessions, id: \.self) { session in
                                 NavigationLink(destination: SessionView(viewModel: SessionViewViewModel(session: session))) {
                                     VStack(alignment: .leading) {
@@ -43,9 +54,9 @@ struct YakiView: View {
                                     }
                                 }
                             }
-                        } header: {
-                            Text("Sessions prévues")
                         }
+                    } header: {
+                        Text("Sessions prévues")
                     }
                 }
             }
