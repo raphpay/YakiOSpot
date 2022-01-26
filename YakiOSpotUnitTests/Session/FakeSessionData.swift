@@ -13,7 +13,7 @@ final class FakeSessionData {
     static let correctID = "correctID"
     static let newCorrectID = "newCorrectID"
     
-    // MARK: - Creator
+    // MARK: - Users
     static let creator = User(id: "userID", pseudo: "creator", mail: "creator@test.com", favoritedSpotsIDs: nil, isPresent: nil, sessions: nil)
     static let correctUser = User(id: "correctUserID", pseudo: "correctUser", mail: "correctUser@test.com", favoritedSpotsIDs: nil, isPresent: nil, sessions: nil)
     static let newCorrectUser = User(id: "newCorrectUserID", pseudo: "newCorrectUser", mail: "newCorrectUser@test.com", favoritedSpotsIDs: nil, isPresent: nil, sessions: nil)
@@ -26,6 +26,8 @@ final class FakeSessionData {
     // MARK: - Arrays
     static let referenceSessions = [correctSession]
     static var mutableSessions = referenceSessions
-    
+    static let users = [correctUser]
     // MARK: - Errors
+    static let noSessionError = "noSessionError"
+    static let noUserError = "noUserError"
 }

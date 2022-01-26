@@ -46,11 +46,20 @@ extension FakeSessionService {
 
 // MARK: - Fetch
 extension FakeSessionService {
-    func fetchAllSession(onSuccess: @escaping (([Session]) -> Void), onError: @escaping ((String) -> Void)) {
-        //
+    func fetchAllSession(onSuccess: @escaping ((_ sessions: [Session]) -> Void), onError: @escaping ((_ error: String) -> Void)) {
+        if FakeSessionData.mutableSessions.isEmpty {
+            onError(FakeSessionData.noSessionError)
+        } else {
+            onSuccess(FakeSessionData.mutableSessions)
+        }
     }
     
-    func fetchUsers(for session: Session, onSuccess: @escaping (([User]) -> Void), onError: @escaping ((String) -> Void)) {
-        //
+    func fetchUsers(for session: Session, onSuccess: @escaping ((_ users: [User]) -> Void), onError: @escaping ((_ error: String) -> Void)) {
+        guard session.userIDs != nil else {
+            onError(FakeSessionData.noUserError)
+            return
+        }
+        
+        onSuccess(FakeSessionData.users)
     }
 }

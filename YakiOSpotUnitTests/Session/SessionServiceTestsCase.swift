@@ -66,3 +66,36 @@ extension SessionServiceTestsCase {
         XCTAssertEqual(FakeSessionData.mutableSession.userIDs?.count, 0)
     }
 }
+
+
+// MARK: - Fetch
+extension SessionServiceTestsCase {
+    func testGivenSessionsAreNotEmpty_WhenGettingAllSessions_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when getting all sessions")
+        
+        service?.session.fetchAllSession(onSuccess: { sessions in
+            XCTAssertEqual(sessions.count, FakeSessionData.mutableSessions.count)
+            XCTAssertEqual(sessions.last, FakeSessionData.mutableSessions.last)
+            expectation.fulfill()
+        }, onError: { _ in
+            //
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenSessionsIsEmpty_WhenGettingAllSessions_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when getting all sessions")
+        
+        FakeSessionData.mutableSessions.removeAll()
+        
+        service?.session.fetchAllSession(onSuccess: { _ in
+            //
+        }, onError: { error in
+            XCTAssertEqual(error, FakeSessionData.noSessionError)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+}
