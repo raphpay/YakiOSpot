@@ -6,30 +6,53 @@
 //
 
 import XCTest
+@testable import YakiOSpot
 
 class FCMTokenTestCase: XCTestCase {
 
+    var session: FCMTokenEngine?
+    var service: FCMTokenEngineService?
+
     override func setUpWithError() throws {
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        session = FCMTokenService.shared
+        service = FCMTokenEngineService(session: session!)
     }
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        session = nil
+        service = nil
+        FakeFCMTokenData.mutableTokens = FakeFCMTokenData.referenceTokens
     }
+}
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
+extension FCMTokenTestCase {
+    func testGivenReferenceTokensAreNotEmpty_WhenGettingAllTokens_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when getting all tokens")
 
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        service?.session.getAllTokens { tokens in
+            XCTAssertEqual(tokens, FakeFCMTokenData.referenceTokens)
+            expectation.fulfill()
+        } onError: { _ in
+            //
         }
-    }
 
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenReferenceTokensIsEmpty_WhenGettingAllTokens_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when getting all tokens")
+
+        FakeFCMTokenData.mutableTokens.removeAll()
+
+        service?.session.getAllTokens { _ in
+            //
+        } onError: { error in
+            XCTAssertEqual(error, FakeFCMTokenData.noTokenError)
+            expectation.fulfill()
+        }
+
+        wait(for: [expectation], timeout: 0.01)
+    }
 }

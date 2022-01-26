@@ -15,30 +15,14 @@ final class FakeFCMTokenService : FCMTokenEngine {
 
 extension FakeFCMTokenService {
     func getAllTokens(onSuccess: @escaping (([String]) -> Void), onError: @escaping ((String) -> Void)) {
-        
+        if (FakeFCMTokenData.mutableTokens.isEmpty) {
+            onError(FakeFCMTokenData.noTokenError)
+        } else {
+            onSuccess(FakeFCMTokenData.mutableTokens)
+        }
     }
     
-//    TOKENS_REF.getDocuments { snapshot, error in
-//        guard error == nil else {
-//            onError(error!.localizedDescription)
-//            return
-//        }
-//        guard let snapshot = snapshot else {
-//            onError("No data")
-//            return
-//        }
-//
-//        var tokens: [String] = []
-//
-//        for doc in snapshot.documents {
-//            guard let token = doc.data()["fcmToken"] as? String else { return }
-//            tokens.append(token)
-//        }
-//
-//        onSuccess(tokens)
-//    }
-    
     func updateFirestorePushTokenIfNeeded() {
-        //
+        // Nothing to test
     }
 }
