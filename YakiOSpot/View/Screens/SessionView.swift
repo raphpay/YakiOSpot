@@ -10,6 +10,8 @@ import SwiftUI
 struct SessionView: View {
     
     var session: Session
+    var users: [User] = []
+    
     var body: some View {
         VStack {
             List {
@@ -23,22 +25,24 @@ struct SessionView: View {
                 } header: {
                     Text("Organisée par :")
                 }
-//                if session.userIDs?.isEmpty {
-//                    Section {
-//                        ForEach(session.userIDs!, id: \.self) { person in
-//                            Text("nom")
-//                        }
-//                    } header: {
-//                        Text("Qui sera là ?")
-//                    }
-//                }
+                if !users.isEmpty {
+                    Section {
+                        ForEach(users, id: \.self) { person in
+                            Text(person.pseudo)
+                        }
+                    } header: {
+                        Text("Qui sera là ?")
+                    }
+                }
             }
             Button {
-                //
+                // Set people here for the session
             } label: {
                 RoundedButton(title: "Je serais là")
             }
-
+        }
+        .onAppear {
+            // Get people present
         }
     }
 }
