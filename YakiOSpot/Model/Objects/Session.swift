@@ -27,3 +27,16 @@ struct Session: Codable, Hashable {
         hasher.combine(id)
     }
 }
+
+
+struct MockSession {
+    static var mockSession = Session(id: UUID().uuidString,
+                                     creator: User(id: UUID().uuidString, pseudo: "Creator user", mail: "", favoritedSpotsIDs: nil, isPresent: nil, sessions: nil),
+                                     date: Date().addingTimeInterval(1500), userIDs: nil)
+    static var mockSessions = [
+        mockSession,
+        Session(id: UUID().uuidString,
+                creator: User(id: UUID().uuidString, pseudo: "Creator", mail: "", favoritedSpotsIDs: nil, isPresent: nil, sessions: nil),
+                date: Date().addingTimeInterval(15000), userIDs: nil)
+    ]
+}

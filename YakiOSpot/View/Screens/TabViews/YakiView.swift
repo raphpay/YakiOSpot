@@ -32,6 +32,24 @@ struct YakiView: View {
                         }
                     }
                 }
+                List {
+                    Section {
+                        ForEach(MockSession.mockSessions, id: \.self) { session in
+                            NavigationLink(destination: Text("Hello")) {
+                                VStack(alignment: .leading) {
+                                    Text("Nouvelle session prévue \(session.date.getRelativeDateFromNow())")
+                                    Text("Par : \(session.creator.pseudo)")
+                                }
+                            }
+                        }
+                    } header: {
+                        Text("Sessions prévues")
+                    }
+                    
+                    Section {
+                        
+                    }
+                }
             }
             .onAppear {
                 viewModel.fetchData()
@@ -51,14 +69,15 @@ struct YakiView: View {
 
 struct EmptySpotView: View {
     var body : some View {
-        Spacer()
-        Text(SampleText.noPeople)
-            .font(.system(size: 16, weight: .bold))
-            .multilineTextAlignment(.center)
-        Image(Assets.noPeople)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .frame(height: 180)
-        Spacer()
+        VStack(alignment: .center) {
+            Text(SampleText.noPeople)
+                .font(.system(size: 16, weight: .bold))
+                .multilineTextAlignment(.center)
+            Image(Assets.noPeople)
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .frame(height: 150)
+            Spacer()
+        }
     }
 }
