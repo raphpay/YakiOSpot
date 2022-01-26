@@ -82,6 +82,38 @@ extension UserServiceTestsCase {
         })
         wait(for: [expectation], timeout: 0.01)
     }
+    
+    func testGivenUserHasNoSessionRegistered_WhenAddingSession_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when adding a session to a user with no initial session")
+        
+        let sessionID = UUID().uuidString
+        service?.session.addSessionToUser(sessionID: sessionID, to: FakeUserData.correctUser, onSuccess: { newUser in
+            XCTAssertEqual(newUser.sessions?.count, 1)
+            XCTAssertEqual(sessionID, newUser.sessions?.last)
+            expectation.fulfill()
+        }, onError: { _ in
+            //
+        })
+        
+        expectation.fulfill()
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenUserHasOneSessionRegistered_WhenAddingSession_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when adding a session to a user with one session")
+        
+        let sessionID = UUID().uuidString
+        service?.session.addSessionToUser(sessionID: sessionID, to: FakeUserData.oneSessionUser, onSuccess: { newUser in
+            XCTAssertEqual(newUser.sessions?.count, 2)
+            XCTAssertEqual(sessionID, newUser.sessions?.last)
+            expectation.fulfill()
+        }, onError: { _ in
+            //
+        })
+        
+        expectation.fulfill()
+        wait(for: [expectation], timeout: 0.01)
+    }
 }
 
 

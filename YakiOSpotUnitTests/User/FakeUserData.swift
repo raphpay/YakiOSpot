@@ -30,7 +30,7 @@ final class FakeUserData {
     static let presentUser      = User(id: correctID, pseudo: correctPseudo, mail: correctMail, favoritedSpotsIDs: nil, isPresent: true)
     static let correctNewUser   = User(id: correctNewId, pseudo: correctNewPseudo, mail: correctNewMail, favoritedSpotsIDs: nil)
     static let incorrectUser    = User(id: incorrectID, pseudo: correctPseudo, mail: correctMail, favoritedSpotsIDs: nil)
-    
+    static let oneSessionUser   = User(id: correctID, pseudo: correctPseudo, mail: correctMail, favoritedSpotsIDs: nil, sessions: ["Session1"])
     
     // MARK: - Users
     static let referenceUsers = [correctUser]

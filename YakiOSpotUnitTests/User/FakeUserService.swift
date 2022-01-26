@@ -40,7 +40,14 @@ extension FakeUserService {
     }
     
     func addSessionToUser(sessionID: String, to user: User, onSuccess: @escaping ((User) -> Void), onError: @escaping ((String) -> Void)) {
-        //
+        var artificialUser = user
+        if artificialUser.sessions == nil {
+            artificialUser.sessions = [sessionID]
+        } else {
+            artificialUser.sessions?.append(sessionID)
+        }
+        
+        onSuccess(artificialUser)
     }
 }
 
