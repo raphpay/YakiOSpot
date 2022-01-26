@@ -14,7 +14,7 @@ final class FakeFCMTokenService : FCMTokenEngine {
 }
 
 extension FakeFCMTokenService {
-    func getAllTokens(onSuccess: @escaping (([String]) -> Void), onError: @escaping ((String) -> Void)) {
+    func getAllTokens(onSuccess: @escaping ((_ tokens: [String]) -> Void), onError: @escaping ((_ error: String) -> Void)) {
         if (FakeFCMTokenData.mutableTokens.isEmpty) {
             onError(FakeFCMTokenData.noTokenError)
         } else {

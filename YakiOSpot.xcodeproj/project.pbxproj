@@ -21,6 +21,9 @@
 		8665979127A1831B005E1CD6 /* FCMTokenTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665979027A1831B005E1CD6 /* FCMTokenTestCase.swift */; };
 		8665979327A18326005E1CD6 /* FakeFCMTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665979227A18326005E1CD6 /* FakeFCMTokenService.swift */; };
 		8665979527A18334005E1CD6 /* FakeFCMTokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665979427A18334005E1CD6 /* FakeFCMTokenData.swift */; };
+		8665979927A19C38005E1CD6 /* SessionServiceTestsCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665979827A19C38005E1CD6 /* SessionServiceTestsCase.swift */; };
+		8665979B27A19C44005E1CD6 /* FakeSessionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665979A27A19C44005E1CD6 /* FakeSessionData.swift */; };
+		8665979D27A19C4A005E1CD6 /* FakeSessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665979C27A19C4A005E1CD6 /* FakeSessionService.swift */; };
 		8674BE3C27822A8800FD31D7 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8674BE3B27822A8800FD31D7 /* StorageService.swift */; };
 		86804670274C227500AAFC83 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680466F274C227500AAFC83 /* FormTextField.swift */; };
 		8682613F27627CB100C3018E /* FakeUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8682613E27627CB100C3018E /* FakeUserService.swift */; };
@@ -102,6 +105,9 @@
 		8665979027A1831B005E1CD6 /* FCMTokenTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMTokenTestCase.swift; sourceTree = "<group>"; };
 		8665979227A18326005E1CD6 /* FakeFCMTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeFCMTokenService.swift; sourceTree = "<group>"; };
 		8665979427A18334005E1CD6 /* FakeFCMTokenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeFCMTokenData.swift; sourceTree = "<group>"; };
+		8665979827A19C38005E1CD6 /* SessionServiceTestsCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionServiceTestsCase.swift; sourceTree = "<group>"; };
+		8665979A27A19C44005E1CD6 /* FakeSessionData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSessionData.swift; sourceTree = "<group>"; };
+		8665979C27A19C4A005E1CD6 /* FakeSessionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeSessionService.swift; sourceTree = "<group>"; };
 		8668CA4C278B3CBE0024A0BC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8674BE3B27822A8800FD31D7 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		8680466F274C227500AAFC83 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
@@ -230,6 +236,16 @@
 			path = FCMToken;
 			sourceTree = "<group>";
 		};
+		8665979E27A19C4E005E1CD6 /* Session */ = {
+			isa = PBXGroup;
+			children = (
+				8665979827A19C38005E1CD6 /* SessionServiceTestsCase.swift */,
+				8665979A27A19C44005E1CD6 /* FakeSessionData.swift */,
+				8665979C27A19C4A005E1CD6 /* FakeSessionService.swift */,
+			);
+			path = Session;
+			sourceTree = "<group>";
+		};
 		86804671274C22A000AAFC83 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -286,6 +302,7 @@
 				8682613C27627C9000C3018E /* User */,
 				8682613D27627C9D00C3018E /* Spot */,
 				8665979727A1833D005E1CD6 /* FCMToken */,
+				8665979E27A19C4E005E1CD6 /* Session */,
 			);
 			path = YakiOSpotUnitTests;
 			sourceTree = "<group>";
@@ -670,10 +687,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8665979D27A19C4A005E1CD6 /* FakeSessionService.swift in Sources */,
 				86529B5127636C8E00BD44B6 /* FakeUserData.swift in Sources */,
+				8665979B27A19C44005E1CD6 /* FakeSessionData.swift in Sources */,
 				8692FC51274D759D00C8F7CF /* AuthServiceTestCase.swift in Sources */,
 				8692FC4F274D759000C8F7CF /* FakeAuthData.swift in Sources */,
 				8665979527A18334005E1CD6 /* FakeFCMTokenData.swift in Sources */,
+				8665979927A19C38005E1CD6 /* SessionServiceTestsCase.swift in Sources */,
 				8665979327A18326005E1CD6 /* FakeFCMTokenService.swift in Sources */,
 				8692FC4C274D757E00C8F7CF /* FakeAuthService.swift in Sources */,
 				8665979127A1831B005E1CD6 /* FCMTokenTestCase.swift in Sources */,
