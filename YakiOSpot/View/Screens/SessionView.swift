@@ -34,15 +34,16 @@ struct SessionView: View {
                     }
                 }
             }
-            Button {
-                viewModel.showAlert = true
-            } label: {
-                RoundedButton(title: viewModel.isUserPresent ? "Je ne serais pas là !" : "Je serais là !")
+            if !viewModel.isCurrentUserCreator {
+                Button {
+                    viewModel.showAlert = true
+                } label: {
+                    RoundedButton(title: viewModel.isUserPresent ? "Je ne serais pas là !" : "Je serais là !")
+                }
             }
         }
         .onAppear {
-            viewModel.getPresentUsers()
-            viewModel.getUserPresence()
+            viewModel.setupViewModel()
         }
         .alert(viewModel.isUserPresent ? "Tu ne pourras pas être là ?" : "Tu confirme pouvoir être au spot ?",
                isPresented: $viewModel.showAlert) {
