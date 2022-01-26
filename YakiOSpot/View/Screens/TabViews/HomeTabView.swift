@@ -19,7 +19,6 @@ struct HomeTabView: View {
                 .tabItem {
                     Label("Yaki", systemImage: "bicycle")
                 }
-            
             InfoView(appState: appState)
                 .tabItem {
                     Label("Infos", systemImage: "info.circle")

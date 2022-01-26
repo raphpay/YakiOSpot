@@ -81,9 +81,8 @@ extension SessionService {
 
 // MARK: - Fetch
 extension SessionService {
-    // TODO: Add a listener
     func fetchAllSession(onSuccess: @escaping ((_ sessions: [Session]) -> Void), onError: @escaping((_ error: String) -> Void)) {
-        SESSION_REF.getDocuments { snapshot, error in
+        SESSION_REF.addSnapshotListener { snapshot, error in
             guard error == nil else {
                 onError(error!.localizedDescription)
                 return
