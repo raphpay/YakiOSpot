@@ -22,11 +22,7 @@ final class SessionViewViewModel: ObservableObject {
     func togglePresence() {
         self.isUserPresent.toggle()
         guard let currentUser = API.User.CURRENT_USER_OBJECT else { return }
-        API.Session.session.setUserPresent(currentUser.id, session: session, isPresent: isUserPresent) {
-            print("setUserPresent success")
-        } onError: { error in
-            print("setUserPresent error")
-        }
+        API.Session.session.setUserPresent(currentUser.id, session: session, isPresent: isUserPresent)
     }
     
     func getPresentUsers() {
