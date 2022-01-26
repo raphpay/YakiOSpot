@@ -32,22 +32,20 @@ struct YakiView: View {
                         }
                     }
                 }
-                List {
-                    Section {
-                        ForEach(MockSession.mockSessions, id: \.self) { session in
-                            NavigationLink(destination: SessionView(session: session)) {
-                                VStack(alignment: .leading) {
-                                    Text("Nouvelle session prévue \(session.date.getRelativeDateFromNow())")
-                                    Text("Par : \(session.creator.pseudo)")
+                if !viewModel.sessions.isEmpty {
+                    List {
+                        Section {
+                            ForEach(viewModel.sessions, id: \.self) { session in
+                                NavigationLink(destination: SessionView(viewModel: SessionViewViewModel(session: session))) {
+                                    VStack(alignment: .leading) {
+                                        Text("Nouvelle session prévue \(session.date.getRelativeDateFromNow())")
+                                        Text("Par : \(session.creator.pseudo)")
+                                    }
                                 }
                             }
+                        } header: {
+                            Text("Sessions prévues")
                         }
-                    } header: {
-                        Text("Sessions prévues")
-                    }
-                    
-                    Section {
-                        
                     }
                 }
             }

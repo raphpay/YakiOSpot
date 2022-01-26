@@ -9,25 +9,24 @@ import SwiftUI
 
 struct SessionView: View {
     
-    var session: Session
-    var users: [User] = []
+    @ObservedObject var viewModel: SessionViewViewModel
     
     var body: some View {
         VStack {
             List {
                 Section {
-                    Text(session.date.formatted(date: .long, time: .shortened))
+                    Text(viewModel.session.date.formatted(date: .long, time: .shortened))
                 } header: {
                     Text("Date de la session")
                 }
                 Section {
-                    Text(session.creator.pseudo)
+                    Text(viewModel.session.creator.pseudo)
                 } header: {
                     Text("Organisée par :")
                 }
-                if !users.isEmpty {
+                if !viewModel.users.isEmpty {
                     Section {
-                        ForEach(users, id: \.self) { person in
+                        ForEach(viewModel.users, id: \.self) { person in
                             Text(person.pseudo)
                         }
                     } header: {
@@ -36,13 +35,14 @@ struct SessionView: View {
                 }
             }
             Button {
-                // Set people here for the session
+                viewModel.togglePresence()
             } label: {
-                RoundedButton(title: "Je serais là")
+                RoundedButton(title: viewModel.isUserPresent ? "Je ne serais pas là !" : "Je serais là !")
             }
         }
         .onAppear {
-            // Get people present
+            viewModel.getPresentUsers()
+            viewModel.getUserPresence()
         }
     }
 }
