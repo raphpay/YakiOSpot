@@ -18,6 +18,9 @@
 		86529B5127636C8E00BD44B6 /* FakeUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5027636C8E00BD44B6 /* FakeUserData.swift */; };
 		86529B5327636E6C00BD44B6 /* UserServiceTestsCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */; };
 		8665978F27A17C82005E1CD6 /* AuthServiceTestCasePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665978E27A17C82005E1CD6 /* AuthServiceTestCasePassword.swift */; };
+		8665979127A1831B005E1CD6 /* FCMTokenTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665979027A1831B005E1CD6 /* FCMTokenTestCase.swift */; };
+		8665979327A18326005E1CD6 /* FakeFCMTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665979227A18326005E1CD6 /* FakeFCMTokenService.swift */; };
+		8665979527A18334005E1CD6 /* FakeFCMTokenData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665979427A18334005E1CD6 /* FakeFCMTokenData.swift */; };
 		8674BE3C27822A8800FD31D7 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8674BE3B27822A8800FD31D7 /* StorageService.swift */; };
 		86804670274C227500AAFC83 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680466F274C227500AAFC83 /* FormTextField.swift */; };
 		8682613F27627CB100C3018E /* FakeUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8682613E27627CB100C3018E /* FakeUserService.swift */; };
@@ -96,6 +99,9 @@
 		86529B5027636C8E00BD44B6 /* FakeUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserData.swift; sourceTree = "<group>"; };
 		86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTestsCase.swift; sourceTree = "<group>"; };
 		8665978E27A17C82005E1CD6 /* AuthServiceTestCasePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceTestCasePassword.swift; sourceTree = "<group>"; };
+		8665979027A1831B005E1CD6 /* FCMTokenTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMTokenTestCase.swift; sourceTree = "<group>"; };
+		8665979227A18326005E1CD6 /* FakeFCMTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeFCMTokenService.swift; sourceTree = "<group>"; };
+		8665979427A18334005E1CD6 /* FakeFCMTokenData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeFCMTokenData.swift; sourceTree = "<group>"; };
 		8668CA4C278B3CBE0024A0BC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8674BE3B27822A8800FD31D7 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		8680466F274C227500AAFC83 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
@@ -214,6 +220,16 @@
 			path = "To Be Saved";
 			sourceTree = "<group>";
 		};
+		8665979727A1833D005E1CD6 /* FCMToken */ = {
+			isa = PBXGroup;
+			children = (
+				8665979027A1831B005E1CD6 /* FCMTokenTestCase.swift */,
+				8665979227A18326005E1CD6 /* FakeFCMTokenService.swift */,
+				8665979427A18334005E1CD6 /* FakeFCMTokenData.swift */,
+			);
+			path = FCMToken;
+			sourceTree = "<group>";
+		};
 		86804671274C22A000AAFC83 /* Components */ = {
 			isa = PBXGroup;
 			children = (
@@ -269,6 +285,7 @@
 				8692FC4D274D758200C8F7CF /* Auth */,
 				8682613C27627C9000C3018E /* User */,
 				8682613D27627C9D00C3018E /* Spot */,
+				8665979727A1833D005E1CD6 /* FCMToken */,
 			);
 			path = YakiOSpotUnitTests;
 			sourceTree = "<group>";
@@ -656,7 +673,10 @@
 				86529B5127636C8E00BD44B6 /* FakeUserData.swift in Sources */,
 				8692FC51274D759D00C8F7CF /* AuthServiceTestCase.swift in Sources */,
 				8692FC4F274D759000C8F7CF /* FakeAuthData.swift in Sources */,
+				8665979527A18334005E1CD6 /* FakeFCMTokenData.swift in Sources */,
+				8665979327A18326005E1CD6 /* FakeFCMTokenService.swift in Sources */,
 				8692FC4C274D757E00C8F7CF /* FakeAuthService.swift in Sources */,
+				8665979127A1831B005E1CD6 /* FCMTokenTestCase.swift in Sources */,
 				86529B5327636E6C00BD44B6 /* UserServiceTestsCase.swift in Sources */,
 				8682613F27627CB100C3018E /* FakeUserService.swift in Sources */,
 				8665978F27A17C82005E1CD6 /* AuthServiceTestCasePassword.swift in Sources */,
