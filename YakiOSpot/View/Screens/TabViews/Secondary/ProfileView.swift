@@ -32,13 +32,17 @@ struct ProfileView: View {
                 }
                 
                 ProfileSection(title: "Mes sessions") {
-                    ScrollView(.horizontal, showsIndicators: false) {
-                        HStack {
-                            SessionCard()
-                            SessionCard()
-                            SessionCard()
+                    if viewModel.sessions.isEmpty {
+                        emptySessions
+                    } else {
+                        ScrollView(.horizontal, showsIndicators: false) {
+                            HStack {
+                                ForEach(viewModel.sessions, id: \.id) { session in
+                                    SessionCard(session: session)
+                                }
+                            }
+                            .padding(.horizontal)
                         }
-                        .padding(.horizontal)
                     }
                 } action: {
                     print("Hello world")
@@ -90,6 +94,19 @@ struct ProfileView: View {
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .padding(.horizontal)
+    }
+    
+    
+    var emptySessions: some View {
+        HStack(alignment: .center, spacing: 8) {
+            Image(Assets.noSession)
+                .resizable()
+                .frame(width: 126, height: 100)
+            
+            Text("Pas de sessions prévues")
+                .font(.system(size: 16))
+                .fontWeight(.medium)
+        }
     }
     
     func didTapLogOut() {

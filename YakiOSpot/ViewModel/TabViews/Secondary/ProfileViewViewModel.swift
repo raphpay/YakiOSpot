@@ -8,9 +8,15 @@
 import Foundation
 
 final class ProfileViewViewModel: ObservableObject {
+    // User object
     @Published var user: User = MockUser.data
+    
+    // User properties
     @Published var userIsPresent: Bool = true
     @Published var userIsNotPresent: Bool = false
+    @Published var sessions: [Session] = []
+    
+    // Alert
     @Published var showAlert: Bool = false
     @Published var alertTitle: String = ""
     @Published var agreeButtonText: String = ""
@@ -23,10 +29,10 @@ final class ProfileViewViewModel: ObservableObject {
     
     func fetchData() {
         guard let currentUser = API.User.CURRENT_USER_OBJECT else { return }
-        print("======= \(#function) =====", currentUser)
         API.User.session.getUserFromUID(currentUser.id) { user in
             self.user = user
             self.updatePresence(user.isPresent)
+            self.updateSessions(user.sessions)
         } onError: { error in
             self.updatePresence(false)
         }
@@ -91,6 +97,19 @@ final class ProfileViewViewModel: ObservableObject {
             self.userIsPresent = false
             self.userIsNotPresent = true
             buttonSelected = 1
+        }
+    }
+    
+    private func updateSessions(_ array: [String]?) {
+        if let sessionIDs = array {
+            API.Session.session.fetchSessionsForIDs(sessionIDs) { sessions in
+                self.sessions = sessions
+            } onError: { error in
+                self.sessions = []
+            }
+
+        } else {
+            sessions = []
         }
     }
 }

@@ -9,17 +9,18 @@ import SwiftUI
 
 struct SessionCard: View {
     
-    // TODO: Types to be changed
-    let date: String
-    let creatorName: String
-    let numberOfPeople: Int
-    
-    init(date: String = "12 Fev 2022", creatorName: String = "raphpay", numberOfPeople: Int = 12) {
-        self.date           = date
-        self.creatorName    = creatorName
-        self.numberOfPeople = numberOfPeople
+    let session: Session
+    var peopleText: String {
+        if let peopleIDs = session.userIDs {
+            if peopleIDs.count == 0 || peopleIDs.count == 1 {
+                return "\(peopleIDs.count) personne présente"
+            } else {
+                return "\(peopleIDs.count) personnes présentes"
+            }
+        } else {
+            return "Personne pour le moment !"
+        }
     }
-    
     
     var body: some View {
         ZStack {
@@ -32,17 +33,17 @@ struct SessionCard: View {
                 HStack {
                     Text("Session prévue le :")
                         .foregroundColor(.secondary)
-                    Text(date)
+                    Text(session.date.getRelativeDateFromNow())
                         .fontWeight(.bold)
                 }
                 HStack {
-                    Text("Créée par:")
+                    Text("Créée par :")
                         .foregroundColor(.secondary)
-                    Text(creatorName)
+                    Text(session.creator.pseudo)
                         .fontWeight(.bold)
                 }
                 HStack {
-                    Text("\(numberOfPeople) personnes présentes")
+                    Text(peopleText)
                         .fontWeight(.bold)
                 }
             }
@@ -51,11 +52,5 @@ struct SessionCard: View {
         }
         .frame(minWidth: 244, maxHeight: 135, alignment: .leading)
         .padding()
-    }
-}
-
-struct SessionCard_Previews: PreviewProvider {
-    static var previews: some View {
-        SessionCard()
     }
 }
