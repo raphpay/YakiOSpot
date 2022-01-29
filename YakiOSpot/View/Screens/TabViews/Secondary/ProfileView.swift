@@ -38,7 +38,9 @@ struct ProfileView: View {
                         ScrollView(.horizontal, showsIndicators: false) {
                             HStack {
                                 ForEach(viewModel.sessions, id: \.id) { session in
-                                    SessionCard(session: session)
+                                    NavigationLink(destination: SessionView(viewModel: SessionViewViewModel(session: session))) {
+                                        SessionCard(session: session)
+                                    }
                                 }
                             }
                             .padding(.horizontal)
