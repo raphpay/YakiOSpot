@@ -1,0 +1,96 @@
+//
+//  ProfileViewViewModel.swift
+//  YakiOSpot
+//
+//  Created by Raphaël Payet on 29/01/2022.
+//
+
+import Foundation
+
+final class ProfileViewViewModel: ObservableObject {
+    @Published var user: User = MockUser.data
+    @Published var userIsPresent: Bool = true
+    @Published var userIsNotPresent: Bool = false
+    @Published var showAlert: Bool = false
+    @Published var alertTitle: String = ""
+    @Published var agreeButtonText: String = ""
+    @Published var cancelButtonText: String = ""
+    @Published var buttonSelected: Int = 0
+    
+    init() {
+        fetchData()
+    }
+    
+    func fetchData() {
+        guard let currentUser = API.User.CURRENT_USER_OBJECT else { return }
+        print("======= \(#function) =====", currentUser)
+        API.User.session.getUserFromUID(currentUser.id) { user in
+            self.user = user
+            self.updatePresence(user.isPresent)
+        } onError: { error in
+            self.updatePresence(false)
+        }
+    }
+    
+    func didTapHereButton() {
+        if buttonSelected != 0 {
+            showAlert.toggle()
+            alertTitle = "Tu es au spot ?"
+            agreeButtonText = "Oui, je suis là !"
+            cancelButtonText = "Non, je ne suis pas là"
+        }
+    }
+    
+    func didTapLeavingButton() {
+        if buttonSelected != 1 {
+            showAlert.toggle()
+            alertTitle = "Tu pars déjà ?"
+            agreeButtonText = "Oui, je pars !"
+            cancelButtonText = "Je suis toujours là"
+        }
+    }
+    
+    func toggleUserPresence() {
+        guard var user = API.User.CURRENT_USER_OBJECT else { return }
+        API.User.session.toggleUserPresence(user) { isPresent in
+            // Update local properties
+            self.updatePresence(isPresent)
+            // Toggle user object presence
+            user.isPresent = isPresent
+            API.Spot.session.getSpot { spot in
+                API.Spot.session.toggleUserPresence(from: spot, user: user) {
+                    // Send notifications to every one
+                    if isPresent {
+                        API.Token.session.getAllTokens { tokens in
+                            for token in tokens {
+//                               PushNotificationSender.shared.sendPresenceNotification(to: token, from: user.pseudo)
+                            }
+                        } onError: { error in
+                            print("getAllTokens error", error)
+                        }
+                    }
+                } onError: { error in
+                    print("toggleUserPresence error")
+                }
+            } onError: { error in
+                print("getSpot", error)
+            }
+        } onError: { error in
+            // Show alert
+            print("getSpot toggleUserPresence error")
+        }
+    }
+    
+    private func updatePresence(_ presence: Bool?) {
+        if let presence = presence,
+           presence == true {
+            self.userIsPresent = true
+            self.userIsNotPresent = false
+            buttonSelected = 0
+        } else {
+            self.userIsPresent = false
+            self.userIsNotPresent = true
+            buttonSelected = 1
+        }
+    }
+}

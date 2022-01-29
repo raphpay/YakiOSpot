@@ -36,6 +36,7 @@
 		869BF2B727A59F2200FBCD94 /* StatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869BF2B627A59F2200FBCD94 /* StatusButton.swift */; };
 		869BF2B927A59F7E00FBCD94 /* SessionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869BF2B827A59F7E00FBCD94 /* SessionCard.swift */; };
 		869BF2BB27A59F8B00FBCD94 /* BikeCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869BF2BA27A59F8B00FBCD94 /* BikeCard.swift */; };
+		869BF2BF27A5A8E500FBCD94 /* ProfileViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869BF2BE27A5A8E500FBCD94 /* ProfileViewViewModel.swift */; };
 		869E351127430602007CF366 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869E351027430602007CF366 /* ProfileView.swift */; };
 		86ADDDE9276E66A60063BE29 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADDDE8276E66A60063BE29 /* VideoPlayer.swift */; };
 		86ADDE0B2770EFAB0063BE29 /* HomeTabViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADDE0A2770EFAB0063BE29 /* HomeTabViewViewModel.swift */; };
@@ -126,6 +127,7 @@
 		869BF2B627A59F2200FBCD94 /* StatusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusButton.swift; sourceTree = "<group>"; };
 		869BF2B827A59F7E00FBCD94 /* SessionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCard.swift; sourceTree = "<group>"; };
 		869BF2BA27A59F8B00FBCD94 /* BikeCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCard.swift; sourceTree = "<group>"; };
+		869BF2BE27A5A8E500FBCD94 /* ProfileViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewViewModel.swift; sourceTree = "<group>"; };
 		869E351027430602007CF366 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		86ADDDE8276E66A60063BE29 /* VideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		86ADDE0A2770EFAB0063BE29 /* HomeTabViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewViewModel.swift; sourceTree = "<group>"; };
@@ -365,6 +367,25 @@
 			path = Molecules;
 			sourceTree = "<group>";
 		};
+		869BF2BC27A5A8C100FBCD94 /* Secondary */ = {
+			isa = PBXGroup;
+			children = (
+				8622BAFE277F0D4D0046680F /* TrackViewViewModel.swift */,
+				86DAF59627A16F8F009D0716 /* SessionViewViewModel.swift */,
+				869BF2BE27A5A8E500FBCD94 /* ProfileViewViewModel.swift */,
+			);
+			path = Secondary;
+			sourceTree = "<group>";
+		};
+		869BF2BD27A5A8CA00FBCD94 /* Principal */ = {
+			isa = PBXGroup;
+			children = (
+				86ADDE0A2770EFAB0063BE29 /* HomeTabViewViewModel.swift */,
+				86FBD17427834B1300C24C96 /* YakiViewViewModel.swift */,
+			);
+			path = Principal;
+			sourceTree = "<group>";
+		};
 		86ADDDEA276E66C10063BE29 /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
@@ -379,8 +400,6 @@
 				86ADDE082770EE9D0063BE29 /* StartingViews */,
 				86ADDE0C2770EFB10063BE29 /* TabViews */,
 				86ADDE0D2771008F0063BE29 /* AppState.swift */,
-				8622BAFE277F0D4D0046680F /* TrackViewViewModel.swift */,
-				86DAF59627A16F8F009D0716 /* SessionViewViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -406,8 +425,8 @@
 		86ADDE0C2770EFB10063BE29 /* TabViews */ = {
 			isa = PBXGroup;
 			children = (
-				86ADDE0A2770EFAB0063BE29 /* HomeTabViewViewModel.swift */,
-				86FBD17427834B1300C24C96 /* YakiViewViewModel.swift */,
+				869BF2BD27A5A8CA00FBCD94 /* Principal */,
+				869BF2BC27A5A8C100FBCD94 /* Secondary */,
 			);
 			path = TabViews;
 			sourceTree = "<group>";
@@ -804,6 +823,7 @@
 				86CCA162279F1C770074AA46 /* RoundedButton.swift in Sources */,
 				86CCA15A279ED3AE0074AA46 /* View+Ext.swift in Sources */,
 				862D8433273D2AE60081BA83 /* API.swift in Sources */,
+				869BF2BF27A5A8E500FBCD94 /* ProfileViewViewModel.swift in Sources */,
 				86E1F87B27428B4A00C983EC /* SpotService.swift in Sources */,
 				86BB95CE273EF8B90029C39A /* User.swift in Sources */,
 			);

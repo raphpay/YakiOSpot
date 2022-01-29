@@ -32,3 +32,8 @@ struct User: Codable, Hashable {
         hasher.combine(id)
     }
 }
+
+struct MockUser {
+    static let data = User(id: "1", pseudo: "mockUser", mail: "mockuser@test.com",
+                    favoritedSpotsIDs: nil, isPresent: false, sessions: nil)
+}

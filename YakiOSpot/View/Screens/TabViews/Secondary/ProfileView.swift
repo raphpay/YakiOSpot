@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ProfileView: View {
-    @AppStorage("pseudo") var pseudo: String = ""
+    
+    @StateObject private var viewModel = ProfileViewViewModel()
     @Binding var isConnected: Bool
     private let imageSize = CGFloat(85)
     
@@ -19,9 +20,13 @@ struct ProfileView: View {
                 
                 ProfileSection {
                     HStack {
-                        StatusButton()
+                        StatusButton(isSelected: $viewModel.userIsPresent, title: "🚵‍♂️ Au spot", color: .green) {
+                            viewModel.didTapHereButton()
+                        }
                         Spacer()
-                        StatusButton(title: "🚶‍♂️ Plus au spot", color: .red, isSelected: false)
+                        StatusButton(isSelected: $viewModel.userIsNotPresent, title: "🚶‍♂️ Plus au spot", color: .red) {
+                            viewModel.didTapLeavingButton()
+                        }
                     }
                     .padding(.horizontal)
                 }
@@ -47,6 +52,12 @@ struct ProfileView: View {
             }
         }
             .navigationTitle("Profil")
+            .alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) {
+                Button(viewModel.agreeButtonText) {
+                    viewModel.toggleUserPresence()
+                }
+                Button(viewModel.cancelButtonText) {}
+            }
     }
     
     var profileRow: some View {
@@ -59,7 +70,7 @@ struct ProfileView: View {
 //                .overlay(BadgeIcon(), alignment: .topTrailing)
             
             VStack(alignment: .leading, spacing: 8) {
-                Text(pseudo)
+                Text(viewModel.user.pseudo)
                     .font(.title)
                     .fontWeight(.bold)
                 
@@ -69,6 +80,7 @@ struct ProfileView: View {
             }
             
             Spacer()
+
             NavigationLink(destination: Text("Hello World")) {
                 Image(systemName: "highlighter")
                     .font(.system(size: 25))
