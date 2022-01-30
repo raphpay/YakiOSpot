@@ -1,5 +1,5 @@
 //
-//  BikeCard.swift
+//  BikeRow.swift
 //  YakiOSpot
 //
 //  Created by Raphaël Payet on 29/01/2022.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct BikeCard: View {
+struct BikeRow: View {
     var body: some View {
         HStack {
             Image(Assets.placeholderBike)
@@ -26,11 +26,5 @@ struct BikeCard: View {
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .padding(.horizontal)
-    }
-}
-
-struct BikeCard_Previews: PreviewProvider {
-    static var previews: some View {
-        BikeCard()
     }
 }
