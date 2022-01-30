@@ -61,6 +61,7 @@
 		86D22D4727A6E6A10055477A /* Bike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4627A6E6A10055477A /* Bike.swift */; };
 		86D22D4927A6F4720055477A /* BikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4827A6F4720055477A /* BikeService.swift */; };
 		86D22D4B27A6F7E10055477A /* BikeCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4A27A6F7E10055477A /* BikeCreationView.swift */; };
+		86D22D4D27A6FF500055477A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4C27A6FF500055477A /* ImagePicker.swift */; };
 		86D68110273D0B31001E7BE6 /* YakiOSpotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6810F273D0B31001E7BE6 /* YakiOSpotApp.swift */; };
 		86D68112273D0B31001E7BE6 /* StartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D68111273D0B31001E7BE6 /* StartingView.swift */; };
 		86D68114273D0B32001E7BE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86D68113273D0B32001E7BE6 /* Assets.xcassets */; };
@@ -157,6 +158,7 @@
 		86D22D4627A6E6A10055477A /* Bike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bike.swift; sourceTree = "<group>"; };
 		86D22D4827A6F4720055477A /* BikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeService.swift; sourceTree = "<group>"; };
 		86D22D4A27A6F7E10055477A /* BikeCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCreationView.swift; sourceTree = "<group>"; };
+		86D22D4C27A6FF500055477A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		86D6810C273D0B31001E7BE6 /* YakiOSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YakiOSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86D6810F273D0B31001E7BE6 /* YakiOSpotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakiOSpotApp.swift; sourceTree = "<group>"; };
 		86D68111273D0B31001E7BE6 /* StartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingView.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 			isa = PBXGroup;
 			children = (
 				86ADDDE8276E66A60063BE29 /* VideoPlayer.swift */,
+				86D22D4C27A6FF500055477A /* ImagePicker.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -816,6 +819,7 @@
 				86D9894B2763C78B009908D8 /* Track.swift in Sources */,
 				86D22D4727A6E6A10055477A /* Bike.swift in Sources */,
 				86F3667E273D2845009CBDC9 /* AuthService.swift in Sources */,
+				86D22D4D27A6FF500055477A /* ImagePicker.swift in Sources */,
 				86BB95CA273EF6630029C39A /* Helper.swift in Sources */,
 				86E1F8802742914700C983EC /* SpotView.swift in Sources */,
 				86ADDE0E2771008F0063BE29 /* AppState.swift in Sources */,

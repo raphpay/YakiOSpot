@@ -9,20 +9,23 @@ import SwiftUI
 
 struct BikeCreationView: View {
     
+    @State private var image: UIImage = UIImage(named: Assets.noBike)!
     @State private var bikeModel: String = ""
+    @State private var showSheet = false
+    @State private var shouldPresentDialog = false
+    @State private var selection: UIImagePickerController.SourceType = .camera
     private let imageSize = CGFloat(110)
     
     var body: some View {
         VStack(spacing: 16) {
-            
-            Image(Assets.noBike)
+            Image(uiImage: image)
                 .resizable()
                 .frame(width: imageSize, height: imageSize)
-                .aspectRatio(contentMode: .fill)
-                .mask(RoundedRectangle(cornerRadius: 10))
+                .background(Color.black.opacity(0.2))
+                .clipShape(RoundedRectangle(cornerRadius: 10))
             
             Button {
-                //
+                shouldPresentDialog = true
             } label: {
                 Text("Ajouter une photo")
                     .font(.system(size: 17))
@@ -43,6 +46,20 @@ struct BikeCreationView: View {
             Spacer()
         }
         .navigationTitle("Mon bike")
+        .confirmationDialog("Choisir une photo", isPresented: $shouldPresentDialog) {
+            Button("Camera") {
+                selection = .camera
+                showSheet = true
+            }
+            Button("Bibliothèque") {
+                selection = .photoLibrary
+                showSheet = true
+            }
+            Button("Annuler", role: .cancel) {}
+        }
+        .sheet(isPresented: $showSheet) {
+            ImagePicker(sourceType: selection, selectedImage: self.$image)
+        }
     }
 }
 
