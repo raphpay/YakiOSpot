@@ -62,6 +62,7 @@
 		86D22D4927A6F4720055477A /* BikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4827A6F4720055477A /* BikeService.swift */; };
 		86D22D4B27A6F7E10055477A /* BikeCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4A27A6F7E10055477A /* BikeCreationView.swift */; };
 		86D22D4D27A6FF500055477A /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4C27A6FF500055477A /* ImagePicker.swift */; };
+		86D22D4F27A70C4F0055477A /* BikeCreationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4E27A70C4F0055477A /* BikeCreationViewViewModel.swift */; };
 		86D68110273D0B31001E7BE6 /* YakiOSpotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6810F273D0B31001E7BE6 /* YakiOSpotApp.swift */; };
 		86D68112273D0B31001E7BE6 /* StartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D68111273D0B31001E7BE6 /* StartingView.swift */; };
 		86D68114273D0B32001E7BE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86D68113273D0B32001E7BE6 /* Assets.xcassets */; };
@@ -159,6 +160,7 @@
 		86D22D4827A6F4720055477A /* BikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeService.swift; sourceTree = "<group>"; };
 		86D22D4A27A6F7E10055477A /* BikeCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCreationView.swift; sourceTree = "<group>"; };
 		86D22D4C27A6FF500055477A /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		86D22D4E27A70C4F0055477A /* BikeCreationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCreationViewViewModel.swift; sourceTree = "<group>"; };
 		86D6810C273D0B31001E7BE6 /* YakiOSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YakiOSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86D6810F273D0B31001E7BE6 /* YakiOSpotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakiOSpotApp.swift; sourceTree = "<group>"; };
 		86D68111273D0B31001E7BE6 /* StartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingView.swift; sourceTree = "<group>"; };
@@ -414,6 +416,7 @@
 				86ADDE082770EE9D0063BE29 /* StartingViews */,
 				86ADDE0C2770EFB10063BE29 /* TabViews */,
 				86ADDE0D2771008F0063BE29 /* AppState.swift */,
+				86D22D5027A70C550055477A /* Others */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -505,6 +508,14 @@
 				869BF2BA27A59F8B00FBCD94 /* BikeRow.swift */,
 			);
 			path = Orgnaisms;
+			sourceTree = "<group>";
+		};
+		86D22D5027A70C550055477A /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				86D22D4E27A70C4F0055477A /* BikeCreationViewViewModel.swift */,
+			);
+			path = Others;
 			sourceTree = "<group>";
 		};
 		86D68103273D0B31001E7BE6 = {
@@ -812,6 +823,7 @@
 				86BB95D0273F043F0029C39A /* UserDefaultsKeys.swift in Sources */,
 				86D22D4B27A6F7E10055477A /* BikeCreationView.swift in Sources */,
 				86E1F87E2742905500C983EC /* SearchViewModel.swift in Sources */,
+				86D22D4F27A70C4F0055477A /* BikeCreationViewViewModel.swift in Sources */,
 				863507E92763C14F00145505 /* InfoView.swift in Sources */,
 				86F81D202741772200AB69DB /* RegistrationViewViewModel.swift in Sources */,
 				86ADDE0B2770EFAB0063BE29 /* HomeTabViewViewModel.swift in Sources */,
