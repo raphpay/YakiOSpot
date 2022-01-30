@@ -11,6 +11,8 @@ struct ProfileView: View {
     
     @StateObject private var viewModel = ProfileViewViewModel()
     @Binding var isConnected: Bool
+    @State private var showSessionCreation: Bool = false
+    @State private var showBikeCreation: Bool = false
     
     var body: some View {
         ScrollView {
@@ -33,14 +35,18 @@ struct ProfileView: View {
                 ProfileSection(title: "Mes sessions") {
                     SessionRow(sessions: $viewModel.sessions)
                 } action: {
-                    print("Hello world")
+                    showSessionCreation = true
                 }
-                
+                NavigationLink(destination: PublishSessionView(), isActive: $showSessionCreation) { }
+                    
                 
                 ProfileSection(title: "Mon bike") {
                     BikeRow()
                         .padding(.horizontal)
+                } action: {
+                    showBikeCreation = true
                 }
+                NavigationLink(destination: BikeCreationView(), isActive: $showBikeCreation) { }
             }
         }
         .navigationTitle("Profil")

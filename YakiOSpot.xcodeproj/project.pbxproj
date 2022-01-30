@@ -60,6 +60,7 @@
 		86D22D4527A6E5E90055477A /* ProfileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4427A6E5E90055477A /* ProfileRow.swift */; };
 		86D22D4727A6E6A10055477A /* Bike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4627A6E6A10055477A /* Bike.swift */; };
 		86D22D4927A6F4720055477A /* BikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4827A6F4720055477A /* BikeService.swift */; };
+		86D22D4B27A6F7E10055477A /* BikeCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4A27A6F7E10055477A /* BikeCreationView.swift */; };
 		86D68110273D0B31001E7BE6 /* YakiOSpotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6810F273D0B31001E7BE6 /* YakiOSpotApp.swift */; };
 		86D68112273D0B31001E7BE6 /* StartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D68111273D0B31001E7BE6 /* StartingView.swift */; };
 		86D68114273D0B32001E7BE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86D68113273D0B32001E7BE6 /* Assets.xcassets */; };
@@ -155,6 +156,7 @@
 		86D22D4427A6E5E90055477A /* ProfileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRow.swift; sourceTree = "<group>"; };
 		86D22D4627A6E6A10055477A /* Bike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bike.swift; sourceTree = "<group>"; };
 		86D22D4827A6F4720055477A /* BikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeService.swift; sourceTree = "<group>"; };
+		86D22D4A27A6F7E10055477A /* BikeCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCreationView.swift; sourceTree = "<group>"; };
 		86D6810C273D0B31001E7BE6 /* YakiOSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YakiOSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86D6810F273D0B31001E7BE6 /* YakiOSpotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakiOSpotApp.swift; sourceTree = "<group>"; };
 		86D68111273D0B31001E7BE6 /* StartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingView.swift; sourceTree = "<group>"; };
@@ -341,6 +343,7 @@
 				863507EA2763C17F00145505 /* FeedView.swift */,
 				86F81D25274184CD00AB69DB /* SpotCellView.swift */,
 				86F528EC2775067500CDAA8C /* PersonListView.swift */,
+				86D22D4A27A6F7E10055477A /* BikeCreationView.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -804,6 +807,7 @@
 				86F528ED2775067600CDAA8C /* PersonListView.swift in Sources */,
 				86D68122273D2229001E7BE6 /* SpotListView.swift in Sources */,
 				86BB95D0273F043F0029C39A /* UserDefaultsKeys.swift in Sources */,
+				86D22D4B27A6F7E10055477A /* BikeCreationView.swift in Sources */,
 				86E1F87E2742905500C983EC /* SearchViewModel.swift in Sources */,
 				863507E92763C14F00145505 /* InfoView.swift in Sources */,
 				86F81D202741772200AB69DB /* RegistrationViewViewModel.swift in Sources */,
