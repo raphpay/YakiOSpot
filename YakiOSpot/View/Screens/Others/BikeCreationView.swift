@@ -8,8 +8,41 @@
 import SwiftUI
 
 struct BikeCreationView: View {
+    
+    @State private var bikeModel: String = ""
+    private let imageSize = CGFloat(110)
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        VStack(spacing: 16) {
+            
+            Image(Assets.noBike)
+                .resizable()
+                .frame(width: imageSize, height: imageSize)
+                .aspectRatio(contentMode: .fill)
+                .mask(RoundedRectangle(cornerRadius: 10))
+            
+            Button {
+                //
+            } label: {
+                Text("Ajouter une photo")
+                    .font(.system(size: 17))
+            }
+            
+            FormTextField(placeholder: "Modèle du vélo", text: $bikeModel) {
+                // Push bike
+            }
+
+            
+            Button {
+                // Push bike
+            } label: {
+                RoundedButton(title: "Ajouter mon vélo")
+            }
+
+            
+            Spacer()
+        }
+        .navigationTitle("Mon bike")
     }
 }
 
