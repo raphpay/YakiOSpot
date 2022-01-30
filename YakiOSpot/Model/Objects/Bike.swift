@@ -7,8 +7,12 @@
 
 import Foundation
 
-struct Bike: Identifiable {
+struct Bike: Identifiable, Codable, Hashable {
     let id: String
     let model: String
     let photoURL: String
+    
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(id)
+    }
 }

@@ -9,6 +9,20 @@ import SwiftUI
 
 struct BikeRow: View {
     var body: some View {
+        emptyBikeRow
+    }
+    
+    var emptyBikeRow: some View {
+        HStack(alignment: .center, spacing: 8) {
+            Image(Assets.noBike)
+                .resizable()
+                .frame(width: 101, height: 110)
+            
+            Text("Pas de vélo enregistré")
+        }
+    }
+    
+    var content: some View {
         HStack {
             Image(Assets.placeholderBike)
                 .resizable()
