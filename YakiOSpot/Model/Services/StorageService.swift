@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseStorage
+import FirebaseUI
 
 final class StorageService {
     static let shared = StorageService()
@@ -14,6 +15,7 @@ final class StorageService {
     private let STORAGE_REF = Storage.storage().reference()
     private lazy var SPOT_REF = STORAGE_REF.child("spot/cornillon") // The folder where the users profile image should be stored
     private lazy var TEST_REF = STORAGE_REF.child("spot/test") // The folder where the users profile image should be stored
+    private lazy var USERS_REF = STORAGE_REF.child("users") // The folder where the users profile image should be stored
 }
 
 
@@ -32,5 +34,41 @@ extension StorageService {
             }
             onSuccess(url)
         }
+    }
+}
+
+extension StorageService {
+    func uploadImage(_ image: UIImage?, for id: String?, onSuccess: @escaping ((_ downloadURL: URL) -> Void), onError: @escaping ((_ error: String) -> Void)) {
+        // Convert to data
+        guard let data = convertImageToData(image),
+              let id = id else {
+            onError("Impossible de convertir les données de l'image")
+            return
+        }
+
+
+        let childRef = USERS_REF.child("\(id)/bike.jpg")
+
+        childRef.putData(data, metadata: nil) { _, _error in
+            guard _error == nil else {
+                onError(_error!.localizedDescription)
+                return
+            }
+
+            childRef.downloadURL { _url, _error in
+                guard let downloadURL = _url else {
+                    onError("Impossible d'envoyer l'image à la base de donnée")
+                    return
+                }
+                
+                onSuccess(downloadURL)
+            }
+        }
+    }
+    
+    private func convertImageToData(_ image: UIImage?) -> Data? {
+        guard let image = image,
+              let data = image.sd_imageData(as: .JPEG, compressionQuality: 0.7) else { return nil }
+        return data
     }
 }

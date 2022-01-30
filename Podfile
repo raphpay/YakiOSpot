@@ -13,6 +13,7 @@ pod 'Firebase/Firestore'
 pod 'FirebaseFirestoreSwift'
 pod 'Firebase/Messaging'
 pod 'Firebase/Storage'
+pod 'FirebaseUI/Storage'
 
   target 'YakiOSpotUnitTests' do
     inherit! :search_paths
