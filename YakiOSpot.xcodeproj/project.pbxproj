@@ -58,6 +58,8 @@
 		86CCA162279F1C770074AA46 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CCA161279F1C770074AA46 /* RoundedButton.swift */; };
 		86D22D4327A6E5750055477A /* SessionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4227A6E5750055477A /* SessionRow.swift */; };
 		86D22D4527A6E5E90055477A /* ProfileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4427A6E5E90055477A /* ProfileRow.swift */; };
+		86D22D4727A6E6A10055477A /* Bike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4627A6E6A10055477A /* Bike.swift */; };
+		86D22D4927A6F4720055477A /* BikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4827A6F4720055477A /* BikeService.swift */; };
 		86D68110273D0B31001E7BE6 /* YakiOSpotApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D6810F273D0B31001E7BE6 /* YakiOSpotApp.swift */; };
 		86D68112273D0B31001E7BE6 /* StartingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D68111273D0B31001E7BE6 /* StartingView.swift */; };
 		86D68114273D0B32001E7BE6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 86D68113273D0B32001E7BE6 /* Assets.xcassets */; };
@@ -151,6 +153,8 @@
 		86CCA161279F1C770074AA46 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		86D22D4227A6E5750055477A /* SessionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRow.swift; sourceTree = "<group>"; };
 		86D22D4427A6E5E90055477A /* ProfileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRow.swift; sourceTree = "<group>"; };
+		86D22D4627A6E6A10055477A /* Bike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bike.swift; sourceTree = "<group>"; };
+		86D22D4827A6F4720055477A /* BikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeService.swift; sourceTree = "<group>"; };
 		86D6810C273D0B31001E7BE6 /* YakiOSpot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = YakiOSpot.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		86D6810F273D0B31001E7BE6 /* YakiOSpotApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakiOSpotApp.swift; sourceTree = "<group>"; };
 		86D68111273D0B31001E7BE6 /* StartingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartingView.swift; sourceTree = "<group>"; };
@@ -470,6 +474,7 @@
 				8674BE3B27822A8800FD31D7 /* StorageService.swift */,
 				86C040C62775E1DD00955CB4 /* PushNotificationSender.swift */,
 				86CCA15D279F0F100074AA46 /* SessionService.swift */,
+				86D22D4827A6F4720055477A /* BikeService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -481,6 +486,7 @@
 				86F81D232741800400AB69DB /* Spot.swift */,
 				86D9894A2763C78B009908D8 /* Track.swift */,
 				86CCA15B279F0CF10074AA46 /* Session.swift */,
+				86D22D4627A6E6A10055477A /* Bike.swift */,
 			);
 			path = Objects;
 			sourceTree = "<group>";
@@ -792,6 +798,7 @@
 				86D68110273D0B31001E7BE6 /* YakiOSpotApp.swift in Sources */,
 				869BF2B927A59F7E00FBCD94 /* SessionCard.swift in Sources */,
 				86BB95C6273EF6190029C39A /* AuthErrors.swift in Sources */,
+				86D22D4927A6F4720055477A /* BikeService.swift in Sources */,
 				86DD2DBF27A14DAE00339736 /* Date+Ext.swift in Sources */,
 				86CCA160279F17A40074AA46 /* PublishSessionView.swift in Sources */,
 				86F528ED2775067600CDAA8C /* PersonListView.swift in Sources */,
@@ -803,6 +810,7 @@
 				86ADDE0B2770EFAB0063BE29 /* HomeTabViewViewModel.swift in Sources */,
 				86F81D242741800400AB69DB /* Spot.swift in Sources */,
 				86D9894B2763C78B009908D8 /* Track.swift in Sources */,
+				86D22D4727A6E6A10055477A /* Bike.swift in Sources */,
 				86F3667E273D2845009CBDC9 /* AuthService.swift in Sources */,
 				86BB95CA273EF6630029C39A /* Helper.swift in Sources */,
 				86E1F8802742914700C983EC /* SpotView.swift in Sources */,

@@ -20,7 +20,7 @@ The user documentation
     - `sessions: An array of the future sessions posted by the user`
 */
 
-struct User: Codable, Hashable {
+struct User: Identifiable, Codable, Hashable {
     var id: String = ""
     var pseudo: String = ""
     var mail: String = ""

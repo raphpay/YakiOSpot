@@ -19,7 +19,7 @@ The spot documentation
     - `mail: The email of the user. Set when creating a user.`
 */
 
-struct Spot: Codable, Hashable {
+struct Spot: Identifiable, Codable, Hashable {
     var id: String
     var name: String
     var tracks: [Track]
