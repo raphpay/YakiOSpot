@@ -88,6 +88,8 @@
 		86F81D26274184CD00AB69DB /* SpotCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86F81D25274184CD00AB69DB /* SpotCellView.swift */; };
 		86FBD17327833B6A00C24C96 /* YakiView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FBD17227833B6A00C24C96 /* YakiView.swift */; };
 		86FBD17527834B1300C24C96 /* YakiViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FBD17427834B1300C24C96 /* YakiViewViewModel.swift */; };
+		86FFC86927A848770080480D /* ActivityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFC86827A848770080480D /* ActivityIndicator.swift */; };
+		86FFC86D27A852F40080480D /* LoadingText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86FFC86C27A852F40080480D /* LoadingText.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -187,6 +189,8 @@
 		86F81D25274184CD00AB69DB /* SpotCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotCellView.swift; sourceTree = "<group>"; };
 		86FBD17227833B6A00C24C96 /* YakiView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakiView.swift; sourceTree = "<group>"; };
 		86FBD17427834B1300C24C96 /* YakiViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YakiViewViewModel.swift; sourceTree = "<group>"; };
+		86FFC86827A848770080480D /* ActivityIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActivityIndicator.swift; sourceTree = "<group>"; };
+		86FFC86C27A852F40080480D /* LoadingText.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingText.swift; sourceTree = "<group>"; };
 		99892E6DAB45A7B613EC893C /* Pods_YakiOSpotUnitTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YakiOSpotUnitTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE08A21D6488705B12EBD2B9 /* Pods-YakiOSpotUnitTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpotUnitTests.release.xcconfig"; path = "Target Support Files/Pods-YakiOSpotUnitTests/Pods-YakiOSpotUnitTests.release.xcconfig"; sourceTree = "<group>"; };
 		ED4BD3C65FDAAF45FC7A3F5E /* Pods-YakiOSpot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpot.debug.xcconfig"; path = "Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot.debug.xcconfig"; sourceTree = "<group>"; };
@@ -286,6 +290,7 @@
 				8680466F274C227500AAFC83 /* FormTextField.swift */,
 				86CCA161279F1C770074AA46 /* RoundedButton.swift */,
 				869BF2B627A59F2200FBCD94 /* StatusButton.swift */,
+				86FFC86C27A852F40080480D /* LoadingText.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -406,6 +411,7 @@
 			children = (
 				86ADDDE8276E66A60063BE29 /* VideoPlayer.swift */,
 				86D22D4C27A6FF500055477A /* ImagePicker.swift */,
+				86FFC86827A848770080480D /* ActivityIndicator.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -817,6 +823,7 @@
 				86BB95C6273EF6190029C39A /* AuthErrors.swift in Sources */,
 				86D22D4927A6F4720055477A /* BikeService.swift in Sources */,
 				86DD2DBF27A14DAE00339736 /* Date+Ext.swift in Sources */,
+				86FFC86D27A852F40080480D /* LoadingText.swift in Sources */,
 				86CCA160279F17A40074AA46 /* PublishSessionView.swift in Sources */,
 				86F528ED2775067600CDAA8C /* PersonListView.swift in Sources */,
 				86D68122273D2229001E7BE6 /* SpotListView.swift in Sources */,
@@ -835,6 +842,7 @@
 				86BB95CA273EF6630029C39A /* Helper.swift in Sources */,
 				86E1F8802742914700C983EC /* SpotView.swift in Sources */,
 				86ADDE0E2771008F0063BE29 /* AppState.swift in Sources */,
+				86FFC86927A848770080480D /* ActivityIndicator.swift in Sources */,
 				869BF2BB27A59F8B00FBCD94 /* BikeRow.swift in Sources */,
 				86C040C72775E1DD00955CB4 /* PushNotificationSender.swift in Sources */,
 				86DD2DC327A14F6D00339736 /* SessionView.swift in Sources */,

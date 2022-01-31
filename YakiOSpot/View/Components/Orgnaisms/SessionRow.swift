@@ -12,15 +12,19 @@ struct SessionRow: View {
     @Binding var sessions: [Session]
     
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
-            HStack {
-                ForEach(sessions, id: \.id) { session in
-                    NavigationLink(destination: SessionView(viewModel: SessionViewViewModel(session: session))) {
-                        SessionCard(session: session)
+        if sessions.isEmpty {
+            emptySessions
+        } else {
+            ScrollView(.horizontal, showsIndicators: false) {
+                HStack {
+                    ForEach(sessions, id: \.id) { session in
+                        NavigationLink(destination: SessionView(viewModel: SessionViewViewModel(session: session))) {
+                            SessionCard(session: session)
+                        }
                     }
                 }
+                .padding(.horizontal)
             }
-            .padding(.horizontal)
         }
     }
     

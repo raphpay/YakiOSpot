@@ -32,7 +32,7 @@ final class ProfileViewViewModel: ObservableObject {
         API.User.session.getUserFromUID(currentUser.id) { user in
             self.user = user
             self.updatePresence(user.isPresent)
-            self.updateSessions(user.sessions)
+            self.updateSessions(user.sessions == nil ? [] : user.sessions)
         } onError: { error in
             self.updatePresence(false)
         }
@@ -101,7 +101,8 @@ final class ProfileViewViewModel: ObservableObject {
     }
     
     private func updateSessions(_ array: [String]?) {
-        if let sessionIDs = array {
+        if let sessionIDs = array,
+           !sessionIDs.isEmpty {
             API.Session.session.fetchSessionsForIDs(sessionIDs) { sessions in
                 self.sessions = sessions
             } onError: { error in

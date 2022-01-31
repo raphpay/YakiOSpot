@@ -13,12 +13,30 @@ struct ProfileView: View {
     @Binding var isConnected: Bool
     @State private var showSessionCreation: Bool = false
     @State private var showBikeCreation: Bool = false
+    @State private var animateActivityIndicator: Bool = true
     
     var body: some View {
+        ZStack {
+            profileView
+            
+            if animateActivityIndicator {
+                spinnerView
+            }
+        }
+        .navigationTitle("Profil")
+        .alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) {
+            Button(viewModel.agreeButtonText) {
+                viewModel.toggleUserPresence()
+            }
+            Button(viewModel.cancelButtonText) {}
+        }
+    }
+    
+    var profileView : some View {
         ScrollView {
             VStack {
                 ProfileRow(user: $viewModel.user)
-                
+
                 ProfileSection {
                     HStack {
                         StatusButton(isSelected: $viewModel.userIsPresent, title: "🚵‍♂️ Au spot", color: .green) {
@@ -31,15 +49,15 @@ struct ProfileView: View {
                     }
                     .padding(.horizontal)
                 }
-                
+
                 ProfileSection(title: "Mes sessions") {
                     SessionRow(sessions: $viewModel.sessions)
                 } action: {
                     showSessionCreation = true
                 }
                 NavigationLink(destination: PublishSessionView(), isActive: $showSessionCreation) { }
-                    
-                
+
+
                 ProfileSection(title: "Mon bike") {
                     BikeRow()
                         .padding(.horizontal)
@@ -49,12 +67,21 @@ struct ProfileView: View {
                 NavigationLink(destination: BikeCreationView(), isActive: $showBikeCreation) { }
             }
         }
-        .navigationTitle("Profil")
-        .alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) {
-            Button(viewModel.agreeButtonText) {
-                viewModel.toggleUserPresence()
+    }
+    
+    var spinnerView: some View {
+        ZStack {
+            Color.black.opacity(0.75)
+                .edgesIgnoringSafeArea(.all)
+            
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .foregroundColor(.white)
+                .frame(width: 200, height: 200)
+            
+            VStack {
+                ActivityIndicator(shouldAnimate: $animateActivityIndicator)
+                LoadingText()
             }
-            Button(viewModel.cancelButtonText) {}
         }
     }
     
