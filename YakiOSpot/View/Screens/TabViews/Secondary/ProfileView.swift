@@ -10,29 +10,10 @@ import SwiftUI
 struct ProfileView: View {
     
     @StateObject private var viewModel = ProfileViewViewModel()
+    // TODO: Put this property in app state
     @Binding var isConnected: Bool
-    @State private var showSessionCreation: Bool = false
-    @State private var showBikeCreation: Bool = false
-    @State private var animateActivityIndicator: Bool = true
     
     var body: some View {
-        ZStack {
-            profileView
-            
-            if animateActivityIndicator {
-                spinnerView
-            }
-        }
-        .navigationTitle("Profil")
-        .alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) {
-            Button(viewModel.agreeButtonText) {
-                viewModel.toggleUserPresence()
-            }
-            Button(viewModel.cancelButtonText) {}
-        }
-    }
-    
-    var profileView : some View {
         ScrollView {
             VStack {
                 ProfileRow(user: $viewModel.user)
@@ -53,35 +34,26 @@ struct ProfileView: View {
                 ProfileSection(title: "Mes sessions") {
                     SessionRow(sessions: $viewModel.sessions)
                 } action: {
-                    showSessionCreation = true
+                    viewModel.showSessionCreation = true
                 }
-                NavigationLink(destination: PublishSessionView(), isActive: $showSessionCreation) { }
+                NavigationLink(destination: PublishSessionView(), isActive: $viewModel.showSessionCreation) { }
 
 
                 ProfileSection(title: "Mon bike") {
                     BikeRow()
                         .padding(.horizontal)
                 } action: {
-                    showBikeCreation = true
+                    viewModel.showBikeCreation = true
                 }
-                NavigationLink(destination: BikeCreationView(), isActive: $showBikeCreation) { }
+                NavigationLink(destination: BikeCreationView(), isActive: $viewModel.showBikeCreation) { }
             }
         }
-    }
-    
-    var spinnerView: some View {
-        ZStack {
-            Color.black.opacity(0.75)
-                .edgesIgnoringSafeArea(.all)
-            
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .foregroundColor(.white)
-                .frame(width: 200, height: 200)
-            
-            VStack {
-                ActivityIndicator(shouldAnimate: $animateActivityIndicator)
-                LoadingText()
+        .navigationTitle("Profil")
+        .alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) {
+            Button(viewModel.agreeButtonText) {
+                viewModel.toggleUserPresence()
             }
+            Button(viewModel.cancelButtonText) {}
         }
     }
     

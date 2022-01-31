@@ -13,6 +13,30 @@ struct BikeCreationView: View {
     private let imageSize = CGFloat(110)
     
     var body: some View {
+        ZStack {
+            content
+            if viewModel.animateActivityIndicator {
+                spinnerView
+            }
+        }
+        .navigationTitle("Mon bike")
+        .confirmationDialog("Choisir une photo", isPresented: $viewModel.shouldPresentDialog) {
+            Button("Camera") {
+                self.viewModel.selection = .camera
+                self.viewModel.showSheet = true
+            }
+            Button("Bibliothèque") {
+                self.viewModel.selection = .photoLibrary
+                self.viewModel.showSheet = true
+            }
+            Button("Annuler", role: .cancel) {}
+        }
+        .sheet(isPresented: $viewModel.showSheet) {
+            ImagePicker(sourceType: viewModel.selection, selectedImage: $viewModel.image)
+        }
+    }
+    
+    var content: some View {
         VStack(spacing: 16) {
             Image(uiImage: viewModel.image)
                 .resizable()
@@ -41,20 +65,21 @@ struct BikeCreationView: View {
             
             Spacer()
         }
-        .navigationTitle("Mon bike")
-        .confirmationDialog("Choisir une photo", isPresented: $viewModel.shouldPresentDialog) {
-            Button("Camera") {
-                self.viewModel.selection = .camera
-                self.viewModel.showSheet = true
+    }
+    
+    var spinnerView: some View {
+        ZStack {
+            Color.black.opacity(0.75)
+                .edgesIgnoringSafeArea(.all)
+            
+            RoundedRectangle(cornerRadius: 20, style: .continuous)
+                .foregroundColor(.white)
+                .frame(width: 200, height: 200)
+            
+            VStack {
+                ActivityIndicator(shouldAnimate: $viewModel.animateActivityIndicator)
+                LoadingText()
             }
-            Button("Bibliothèque") {
-                self.viewModel.selection = .photoLibrary
-                self.viewModel.showSheet = true
-            }
-            Button("Annuler", role: .cancel) {}
-        }
-        .sheet(isPresented: $viewModel.showSheet) {
-            ImagePicker(sourceType: viewModel.selection, selectedImage: $viewModel.image)
         }
     }
 }

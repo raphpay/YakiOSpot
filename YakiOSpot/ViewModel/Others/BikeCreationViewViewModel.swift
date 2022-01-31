@@ -14,6 +14,7 @@ final class BikeCreationViewViewModel: ObservableObject {
     @Published var showSheet = false
     @Published var shouldPresentDialog = false
     @Published var selection: UIImagePickerController.SourceType = .camera
+    @Published var animateActivityIndicator: Bool = true
     
     func pushBike() {
         guard bikeModel != "" else { return }

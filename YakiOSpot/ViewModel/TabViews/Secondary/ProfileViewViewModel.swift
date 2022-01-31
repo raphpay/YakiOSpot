@@ -23,6 +23,10 @@ final class ProfileViewViewModel: ObservableObject {
     @Published var cancelButtonText: String = ""
     @Published var buttonSelected: Int = 0
     
+    // Navigation
+    @Published var showSessionCreation: Bool = false
+    @Published var showBikeCreation: Bool = false
+    
     init() {
         fetchData()
     }
