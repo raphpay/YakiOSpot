@@ -9,6 +9,7 @@ import SwiftUI
 
 struct BikeCreationView: View {
     
+    @Environment(\.dismiss) var dismiss
     @StateObject private var viewModel = BikeCreationViewViewModel()
     private let imageSize = CGFloat(110)
     
@@ -33,6 +34,11 @@ struct BikeCreationView: View {
         }
         .sheet(isPresented: $viewModel.showSheet) {
             ImagePicker(sourceType: viewModel.selection, selectedImage: $viewModel.image)
+        }
+        .alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) {
+            Button("OK", role: .cancel) {
+                dismiss()
+            }
         }
     }
     
@@ -62,7 +68,6 @@ struct BikeCreationView: View {
                 RoundedButton(title: "Ajouter mon vélo")
             }
 
-            
             Spacer()
         }
     }

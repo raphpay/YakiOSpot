@@ -45,6 +45,7 @@ extension BikeService {
         do {
             try specificUserRef.setData(from: user)
             UserDefaults.standard.set("pseudo", forKey: user.pseudo)
+            onSuccess()
         } catch let error {
             onError(error.localizedDescription)
         }
