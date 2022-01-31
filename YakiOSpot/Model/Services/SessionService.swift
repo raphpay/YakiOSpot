@@ -14,6 +14,7 @@ protocol SessionEngine {
     func setUserPresent(_ userID: String, session: Session, isPresent: Bool)
     func fetchAllSession(onSuccess: @escaping ((_ sessions: [Session]) -> Void), onError: @escaping((_ error: String) -> Void))
     func fetchUsers(for session: Session, onSuccess: @escaping ((_ users: [User]) -> Void), onError: @escaping((_ error: String) -> Void))
+    func removeOldSessionsIfNeeded(sessions: [Session]) -> [Session] 
 }
 
 final class SessionEngineService {
@@ -141,5 +142,23 @@ extension SessionService {
             
             onSuccess(allUsers)
         }
+    }
+}
+
+
+// MARK: - Remove
+extension SessionService {
+    func removeOldSessionsIfNeeded(sessions: [Session]) -> [Session] {
+        var remainingSessions: [Session] = sessions
+        for sessionIndex in 0..<sessions.count {
+            let session = remainingSessions[sessionIndex]
+            
+            if session.date < Date.now {
+                remainingSessions.remove(at: sessionIndex)
+                SESSION_REF.document(session.id).delete()
+            }
+        }
+        
+        return remainingSessions
     }
 }

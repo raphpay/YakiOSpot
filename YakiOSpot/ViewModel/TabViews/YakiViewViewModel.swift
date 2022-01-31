@@ -18,7 +18,8 @@ final class YakiViewViewModel: ObservableObject {
             print("======= \(#function) error =====", error)
         }
         API.Session.session.fetchAllSession { sessions in
-            self.sessions = sessions
+            let updatedSession = API.Session.session.removeOldSessionsIfNeeded(sessions: sessions)
+            self.sessions = updatedSession
         } onError: { error in
             print("fetchAllSession", error)
         }
