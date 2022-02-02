@@ -15,6 +15,7 @@ protocol UserEngine {
     func addSessionToUser(sessionID: String, to user: User, onSuccess: @escaping ((_ newUser: User) -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserFromUID(_ uid: String, onSuccess: @escaping ((_ user: User) -> Void), onError: @escaping (( _ error: String) -> Void))
+    func removeSessions(_ sessions: [String], onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
 }
 
 final class UserEngineService {
@@ -155,6 +156,44 @@ extension UserService {
                 onError("Error getting user from uid \(uid). Error: \(error.localizedDescription)")
             }
             
+        }
+    }
+}
+
+// MARK: - Remove
+extension UserService {
+    func removeSessions(_ sessions: [String], onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
+        guard let currentUser = API.User.CURRENT_USER_OBJECT else { return }
+        let specificUserRef = self.USERS_REF.document(currentUser.id)
+        specificUserRef.getDocument { snapshot, error in
+            guard error == nil else {
+                onError("No user")
+                return
+            }
+            guard snapshot != nil else {
+                onError("No user")
+                return
+            }
+            
+            
+            if var userSessions = currentUser.sessions {
+                for session in sessions {
+                    if userSessions.contains(where: { $0 == session }),
+                       let firstIndex = userSessions.firstIndex(where: { $0 == session }) {
+                        userSessions.remove(at: firstIndex)
+                    }
+                }
+                
+                var updatedUser = currentUser
+                updatedUser.sessions = userSessions
+                
+                do {
+                    try specificUserRef.setData(from: updatedUser, merge: true)
+                    onSuccess()
+                } catch let error {
+                    onError(error.localizedDescription)
+                }
+            }
         }
     }
 }
