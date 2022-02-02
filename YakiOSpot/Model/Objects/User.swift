@@ -18,6 +18,7 @@ The user documentation
     - `favoritedSpotIDs: The spot favorited by this user. Always nil for the moment.`
     - `isPresent: A boolean value indicating whether the user is at the spot or not.`
     - `sessions: An array of the future sessions posted by the user`
+    - `fcmToken: The token identifying the user on Firebase Cloud Messaging for notifications.`
 */
 
 struct User: Codable, Hashable {
@@ -27,6 +28,7 @@ struct User: Codable, Hashable {
     var favoritedSpotsIDs: [String]?
     var isPresent: Bool? = false
     var sessions: [String]?
+    var fcmToken: String = ""
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
