@@ -10,11 +10,14 @@ import SDWebImage
 
 struct BikeRow: View {
     
-    @State private var bike: Bike?
-    @State private var imageData: Data?
+    @StateObject private var viewModel = BikeRowViewModel()
     
     var body: some View {
-        emptyBikeRow
+        if viewModel.bike == nil {
+            emptyBikeRow
+        } else {
+            content
+        }
     }
     
     var emptyBikeRow: some View {
@@ -29,7 +32,7 @@ struct BikeRow: View {
     
     var content: some View {
         HStack {
-            if let imageData = imageData {
+            if let imageData = viewModel.imageData {
                 Image(uiImage: UIImage(data: imageData)!)
                     .resizable()
                     .frame(width: 100, height: 100)
@@ -53,31 +56,5 @@ struct BikeRow: View {
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .padding(.horizontal)
-        .onAppear {
-            fetchData()
-        }
-    }
-    
-    func fetchData() {
-        getBikeFromUser()
-    }
-    
-    func getBikeFromUser() {
-        guard let user = API.User.CURRENT_USER_OBJECT else { return }
-        API.Bike.session.getBike(from: user) { bike in
-            self.bike = bike
-            downloadBikeImage(for: user)
-        } onError: { error in
-            print("======= \(#function) =====", error)
-            self.bike = nil
-        }
-    }
-    
-    func downloadBikeImage(for user: User) {
-        StorageService.shared.getBikeImage(for: user) { data in
-            self.imageData = data
-        } onError: { error in
-            print("======= \(#function) =====", error)
-        }
     }
 }
