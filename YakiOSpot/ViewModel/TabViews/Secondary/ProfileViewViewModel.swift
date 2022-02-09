@@ -36,7 +36,7 @@ final class ProfileViewViewModel: ObservableObject {
         API.User.session.getUserFromUID(currentUser.id) { user in
             self.user = user
             self.updatePresence(user.isPresent)
-            self.updateSessions(user.sessions == nil ? [] : user.sessions)
+           self.updateSessions(user.sessions)
         } onError: { error in
             self.updatePresence(false)
         }

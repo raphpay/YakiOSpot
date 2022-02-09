@@ -12,23 +12,16 @@ struct SessionRow: View {
     @Binding var sessions: [Session]
     
     var body: some View {
-        if sessions.isEmpty {
-            emptySessions
-        } else {
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(sessions, id: \.id) { session in
-                        NavigationLink(destination: SessionView(viewModel: SessionViewViewModel(session: session))) {
-                            SessionCard(session: session)
-                        }
-                    }
-                }
-                .padding(.horizontal)
+        ZStack {
+            if sessions.isEmpty {
+                emptySessionRow
+            } else {
+                sessionScrollView
             }
         }
     }
     
-    var emptySessions: some View {
+    var emptySessionRow: some View {
         HStack(alignment: .center, spacing: 8) {
             Image(Assets.noSession)
                 .resizable()
@@ -37,6 +30,19 @@ struct SessionRow: View {
             Text("Pas de sessions prévues")
                 .font(.system(size: 16))
                 .fontWeight(.medium)
+        }
+    }
+    
+    var sessionScrollView: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack {
+                ForEach(sessions, id: \.id) { session in
+                    NavigationLink(destination: SessionView(viewModel: SessionViewViewModel(session: session))) {
+                        SessionCard(session: session)
+                    }
+                }
+            }
+            .padding(.horizontal)
         }
     }
 }

@@ -10,6 +10,7 @@ import FirebaseFirestore
 
 protocol BikeEngine {
     func pushBike(_ bike: Bike, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
+    func getBike(from user: User, onSuccess: @escaping ((_ bike: Bike) -> Void), onError: @escaping((_ error: String) -> Void))
 }
 
 final class BikeEngineService {
@@ -48,6 +49,35 @@ extension BikeService {
             onSuccess()
         } catch let error {
             onError(error.localizedDescription)
+        }
+    }
+}
+
+
+// MARK: - Fetch
+extension BikeService {
+    func getBike(from user: User, onSuccess: @escaping ((_ bike: Bike) -> Void), onError: @escaping((_ error: String) -> Void)) {
+        USERS_REF.document(user.id).getDocument { snapshot, error in
+            guard error == nil else {
+                onError(error!.localizedDescription)
+                return
+            }
+            
+            guard let snapshot = snapshot else {
+                onError("No user")
+                return
+            }
+            
+            do {
+                let user = try snapshot.data(as: User.self)
+                if let bike = user?.bike {
+                    onSuccess(bike)
+                } else {
+                    onError("User has no bikes")
+                }
+            } catch let error {
+                onError(error.localizedDescription)
+            }
         }
     }
 }

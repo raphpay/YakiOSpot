@@ -38,7 +38,6 @@ struct ProfileView: View {
                 }
                 NavigationLink(destination: PublishSessionView(), isActive: $viewModel.showSessionCreation) { }
 
-
                 ProfileSection(title: "Mon bike") {
                     BikeRow()
                         .padding(.horizontal)

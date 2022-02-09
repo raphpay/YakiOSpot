@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import SDWebImage
 
 struct BikeRow: View {
+    
+    @State private var bike: Bike?
+    @State private var imageData: Data?
+    
     var body: some View {
         emptyBikeRow
     }
@@ -24,11 +29,19 @@ struct BikeRow: View {
     
     var content: some View {
         HStack {
-            Image(Assets.placeholderBike)
-                .resizable()
-                .frame(width: 100, height: 100)
-                .aspectRatio(contentMode: .fill)
-                .mask(RoundedRectangle(cornerRadius: 20))
+            if let imageData = imageData {
+                Image(uiImage: UIImage(data: imageData)!)
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .aspectRatio(contentMode: .fill)
+                    .mask(RoundedRectangle(cornerRadius: 20))
+            } else {
+                Image(Assets.noBike)
+                    .resizable()
+                    .frame(width: 100, height: 100)
+                    .aspectRatio(contentMode: .fill)
+                    .mask(RoundedRectangle(cornerRadius: 20))
+            }
             
             Text("Scott Genius 920")
                 .font(.title3)
@@ -40,5 +53,31 @@ struct BikeRow: View {
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .padding(.horizontal)
+        .onAppear {
+            fetchData()
+        }
+    }
+    
+    func fetchData() {
+        getBikeFromUser()
+    }
+    
+    func getBikeFromUser() {
+        guard let user = API.User.CURRENT_USER_OBJECT else { return }
+        API.Bike.session.getBike(from: user) { bike in
+            self.bike = bike
+            downloadBikeImage(for: user)
+        } onError: { error in
+            print("======= \(#function) =====", error)
+            self.bike = nil
+        }
+    }
+    
+    func downloadBikeImage(for user: User) {
+        StorageService.shared.getBikeImage(for: user) { data in
+            self.imageData = data
+        } onError: { error in
+            print("======= \(#function) =====", error)
+        }
     }
 }
