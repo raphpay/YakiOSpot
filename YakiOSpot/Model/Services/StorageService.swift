@@ -71,20 +71,4 @@ extension StorageService {
               let data = image.sd_imageData(as: .JPEG, compressionQuality: 0.4) else { return nil }
         return data
     }
-    
-    func getBikeImage(for user: User, onSuccess: @escaping ((_ data: Data) -> Void), onError: @escaping((_ error: String) -> Void)) {
-        let childRef = USERS_REF.child("\(user.id)/bike.jpg")
-        childRef.getData(maxSize: 1024 * 1024) { data, error in
-            guard error == nil else {
-                onError(error!.localizedDescription)
-                return
-            }
-            guard let data = data else {
-                onError("No data")
-                return
-            }
-
-            onSuccess(data)
-        }
-    }
 }
