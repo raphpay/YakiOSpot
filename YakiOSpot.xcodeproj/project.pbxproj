@@ -16,6 +16,7 @@
 		862D8435273D2BC30081BA83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 862D8434273D2BC30081BA83 /* GoogleService-Info.plist */; };
 		863507E92763C14F00145505 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863507E82763C14F00145505 /* InfoView.swift */; };
 		863507EB2763C17F00145505 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863507EA2763C17F00145505 /* FeedView.swift */; };
+		863DB1A827B59F050039E77C /* ViewModifier+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863DB1A727B59F050039E77C /* ViewModifier+Ext.swift */; };
 		86529B5127636C8E00BD44B6 /* FakeUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5027636C8E00BD44B6 /* FakeUserData.swift */; };
 		86529B5327636E6C00BD44B6 /* UserServiceTestsCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */; };
 		8665978F27A17C82005E1CD6 /* AuthServiceTestCasePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665978E27A17C82005E1CD6 /* AuthServiceTestCasePassword.swift */; };
@@ -115,6 +116,7 @@
 		862D8434273D2BC30081BA83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		863507E82763C14F00145505 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		863507EA2763C17F00145505 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		863DB1A727B59F050039E77C /* ViewModifier+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModifier+Ext.swift"; sourceTree = "<group>"; };
 		86529B5027636C8E00BD44B6 /* FakeUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserData.swift; sourceTree = "<group>"; };
 		86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTestsCase.swift; sourceTree = "<group>"; };
 		8665978E27A17C82005E1CD6 /* AuthServiceTestCasePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceTestCasePassword.swift; sourceTree = "<group>"; };
@@ -263,6 +265,17 @@
 				86E1F87C2742904800C983EC /* SearchView */,
 			);
 			path = "To Be Saved";
+			sourceTree = "<group>";
+		};
+		863DB1A927B59F1E0039E77C /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				8692FC52274D7ADE00C8F7CF /* String+Ext.swift */,
+				86CCA159279ED3AE0074AA46 /* View+Ext.swift */,
+				86DD2DBE27A14DAE00339736 /* Date+Ext.swift */,
+				863DB1A727B59F050039E77C /* ViewModifier+Ext.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		8665979727A1833D005E1CD6 /* FCMToken */ = {
@@ -468,11 +481,9 @@
 		86BB95C7273EF6250029C39A /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				86BB95C8273EF62E0029C39A /* Enums */,
 				86BB95C9273EF6630029C39A /* Helper.swift */,
-				8692FC52274D7ADE00C8F7CF /* String+Ext.swift */,
-				86CCA159279ED3AE0074AA46 /* View+Ext.swift */,
-				86DD2DBE27A14DAE00339736 /* Date+Ext.swift */,
+				86BB95C8273EF62E0029C39A /* Enums */,
+				863DB1A927B59F1E0039E77C /* Extensions */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -889,6 +900,7 @@
 				862D8433273D2AE60081BA83 /* API.swift in Sources */,
 				869BF2BF27A5A8E500FBCD94 /* ProfileViewViewModel.swift in Sources */,
 				86E1F87B27428B4A00C983EC /* SpotService.swift in Sources */,
+				863DB1A827B59F050039E77C /* ViewModifier+Ext.swift in Sources */,
 				86BB95CE273EF8B90029C39A /* User.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

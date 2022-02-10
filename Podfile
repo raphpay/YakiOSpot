@@ -7,6 +7,7 @@ target 'YakiOSpot' do
 
   # Pods for YakiOSpot
 
+pod 'SDWebImageSwiftUI'
 pod 'Firebase/Analytics'
 pod 'Firebase/Auth'
 pod 'Firebase/Firestore'

@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-import SDWebImage
+import SDWebImageSwiftUI
 
 struct BikeRow: View {
     
@@ -32,18 +32,15 @@ struct BikeRow: View {
     
     var content: some View {
         HStack {
-            if let imageData = viewModel.imageData {
-                Image(uiImage: UIImage(data: imageData)!)
+            if let imageURL = viewModel.bike?.photoURL {
+                WebImage(url: URL(string: imageURL))
                     .resizable()
-                    .frame(width: 100, height: 100)
-                    .aspectRatio(contentMode: .fill)
-                    .mask(RoundedRectangle(cornerRadius: 20))
+                    .placeholder(Image(Assets.noBike))
+                    .bikeImageStyle()
             } else {
                 Image(Assets.noBike)
                     .resizable()
-                    .frame(width: 100, height: 100)
-                    .aspectRatio(contentMode: .fill)
-                    .mask(RoundedRectangle(cornerRadius: 20))
+                    .bikeImageStyle()
             }
             
             Text("Scott Genius 920")
