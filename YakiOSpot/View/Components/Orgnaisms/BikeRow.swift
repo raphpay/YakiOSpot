@@ -10,7 +10,7 @@ import SDWebImageSwiftUI
 
 struct BikeRow: View {
     
-    @EnvironmentObject private var profileState: ProfileState
+    @EnvironmentObject var profileState: ProfileState
     @Binding var showBikeCreation: Bool
     
     var body: some View {

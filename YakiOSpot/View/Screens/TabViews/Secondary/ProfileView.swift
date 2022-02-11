@@ -9,7 +9,7 @@ import SwiftUI
 
 struct ProfileView: View {
     
-    @EnvironmentObject private var profileState: ProfileState
+    @StateObject private var profileState = ProfileState()
     // TODO: Put this property in app state
     @Binding var isConnected: Bool
     
@@ -48,6 +48,7 @@ struct ProfileView: View {
                                isActive: $profileState.showBikeCreation) { }
             }
         }
+        .environmentObject(profileState)
         .navigationTitle("Profil")
         .alert(profileState.alertTitle, isPresented: $profileState.showAlert) {
             Button(profileState.agreeButtonText) {
