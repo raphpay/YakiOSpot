@@ -33,7 +33,10 @@ final class ProfileState: ObservableObject {
     init() {
         fetchData()
     }
-    
+}
+
+// MARK: - Initialisation
+extension ProfileState {
     func fetchData() {
         guard let currentUser = API.User.CURRENT_USER_OBJECT else { return }
         API.User.session.getUserFromUID(currentUser.id) { user in
@@ -44,7 +47,10 @@ final class ProfileState: ObservableObject {
             self.updatePresence(false)
         }
     }
-    
+}
+
+// MARK: - Actions
+extension ProfileState {
     func didTapHereButton() {
         if buttonSelected != 0 {
             showAlert.toggle()
@@ -93,7 +99,10 @@ final class ProfileState: ObservableObject {
             print("getSpot toggleUserPresence error")
         }
     }
-    
+}
+
+// MARK: - Private Method
+extension ProfileState {
     private func updatePresence(_ presence: Bool?) {
         if let presence = presence,
            presence == true {
