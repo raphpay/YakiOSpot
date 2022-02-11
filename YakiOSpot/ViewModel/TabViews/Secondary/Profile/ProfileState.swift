@@ -41,6 +41,9 @@ extension ProfileState {
         guard let currentUser = API.User.CURRENT_USER_OBJECT else { return }
         API.User.session.getUserFromUID(currentUser.id) { user in
             self.user = user
+            if let bike = user.bike {
+                self.bike = bike
+            }
             self.updatePresence(user.isPresent)
            self.updateSessions(user.sessions)
         } onError: { error in

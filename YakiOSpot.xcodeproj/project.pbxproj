@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		2772EEC67204D9EBFB56E339 /* Pods_YakiOSpotUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99892E6DAB45A7B613EC893C /* Pods_YakiOSpotUnitTests.framework */; };
 		614835F073F3162A3FE83EBB /* Pods_YakiOSpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B444877AA95C6A72C1441CF /* Pods_YakiOSpot.framework */; };
-		8605352227B448A50066E52A /* BikeRowViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8605352127B448A50066E52A /* BikeRowViewModel.swift */; };
 		860598CC2763AEC7000ACB3B /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860598CB2763AEC7000ACB3B /* HomeTabView.swift */; };
 		8622BAFF277F0D4D0046680F /* TrackViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622BAFE277F0D4D0046680F /* TrackViewViewModel.swift */; };
 		862D8433273D2AE60081BA83 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862D8432273D2AE60081BA83 /* API.swift */; };
@@ -108,7 +107,6 @@
 		52ABF5C600F58F0B20973C6C /* Pods-YakiOSpotUnitTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpotUnitTests.debug.xcconfig"; path = "Target Support Files/Pods-YakiOSpotUnitTests/Pods-YakiOSpotUnitTests.debug.xcconfig"; sourceTree = "<group>"; };
 		6B444877AA95C6A72C1441CF /* Pods_YakiOSpot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YakiOSpot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F8464A06CF1375F7807B7AD /* Pods-YakiOSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpot.release.xcconfig"; path = "Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot.release.xcconfig"; sourceTree = "<group>"; };
-		8605352127B448A50066E52A /* BikeRowViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeRowViewModel.swift; sourceTree = "<group>"; };
 		860598CB2763AEC7000ACB3B /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
 		8622BAFE277F0D4D0046680F /* TrackViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewViewModel.swift; sourceTree = "<group>"; };
 		86266F3E2775DA3D002900EF /* YakiOSpot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YakiOSpot.entitlements; sourceTree = "<group>"; };
@@ -244,7 +242,6 @@
 			isa = PBXGroup;
 			children = (
 				869BF2BE27A5A8E500FBCD94 /* ProfileState.swift */,
-				8605352127B448A50066E52A /* BikeRowViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -871,7 +868,6 @@
 				86E1F8792742897600C983EC /* SearchView.swift in Sources */,
 				86C040C92775E3A500955CB4 /* FCMTokenService.swift in Sources */,
 				86DAF59727A16F8F009D0716 /* SessionViewViewModel.swift in Sources */,
-				8605352227B448A50066E52A /* BikeRowViewModel.swift in Sources */,
 				86F81D26274184CD00AB69DB /* SpotCellView.swift in Sources */,
 				86D6811E273D0C5A001E7BE6 /* ConnexionView.swift in Sources */,
 				860598CC2763AEC7000ACB3B /* HomeTabView.swift in Sources */,

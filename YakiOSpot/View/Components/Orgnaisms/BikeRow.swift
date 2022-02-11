@@ -10,12 +10,11 @@ import SDWebImageSwiftUI
 
 struct BikeRow: View {
     
-    @StateObject private var viewModel = BikeRowViewModel()
     @EnvironmentObject private var profileState: ProfileState
     @Binding var showBikeCreation: Bool
     
     var body: some View {
-        if viewModel.bike.model == "" {
+        if profileState.bike.model == "" {
             emptyBikeRow
         } else {
             content
@@ -39,7 +38,7 @@ struct BikeRow: View {
                 .placeholder(UIImage(named: Assets.noBike))
                 .bikeImageStyle()
             
-            Text(viewModel.bike.model)
+            Text(profileState.bike.model)
                 .font(.title3)
             
             Spacer()
