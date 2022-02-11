@@ -8,7 +8,7 @@
 import Foundation
 
 final class BikeRowViewModel: ObservableObject {
-    @Published var bike: Bike?
+    @Published var bike: Bike = Bike(id: UUID().uuidString, model: "")
     
     init() {
         fetchData()
@@ -20,7 +20,6 @@ final class BikeRowViewModel: ObservableObject {
             self.bike = bike
         } onError: { error in
             print("======= \(#function) =====", error)
-            self.bike = nil
         }
     }
 }

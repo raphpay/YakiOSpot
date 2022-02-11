@@ -9,50 +9,51 @@ import SwiftUI
 
 struct ProfileView: View {
     
-    @StateObject private var viewModel = ProfileViewViewModel()
+    @EnvironmentObject private var profileState: ProfileState
     // TODO: Put this property in app state
     @Binding var isConnected: Bool
     
     var body: some View {
         ScrollView {
             VStack {
-                ProfileRow(user: $viewModel.user)
+                ProfileRow(user: $profileState.user)
 
                 ProfileSection {
                     HStack {
-                        StatusButton(isSelected: $viewModel.userIsPresent, title: "🚵‍♂️ Au spot", color: .green) {
-                            viewModel.didTapHereButton()
+                        StatusButton(isSelected: $profileState.userIsPresent, title: "🚵‍♂️ Au spot", color: .green) {
+                            profileState.didTapHereButton()
                         }
                         Spacer()
-                        StatusButton(isSelected: $viewModel.userIsNotPresent, title: "🚶‍♂️ Plus au spot", color: .red) {
-                            viewModel.didTapLeavingButton()
+                        StatusButton(isSelected: $profileState.userIsNotPresent, title: "🚶‍♂️ Plus au spot", color: .red) {
+                            profileState.didTapLeavingButton()
                         }
                     }
                     .padding(.horizontal)
                 }
 
                 ProfileSection(title: "Mes sessions") {
-                    SessionRow(sessions: $viewModel.sessions)
+                    SessionRow(sessions: $profileState.sessions)
                 } action: {
-                    viewModel.showSessionCreation = true
+                    profileState.showSessionCreation = true
                 }
-                NavigationLink(destination: PublishSessionView(), isActive: $viewModel.showSessionCreation) { }
+                NavigationLink(destination: PublishSessionView(), isActive: $profileState.showSessionCreation) { }
 
                 ProfileSection(title: "Mon bike") {
-                    BikeRow()
+                    BikeRow(showBikeCreation: $profileState.showBikeCreation)
                         .padding(.horizontal)
                 } action: {
-                    viewModel.showBikeCreation = true
+                    profileState.showBikeCreation = true
                 }
-                NavigationLink(destination: BikeCreationView(), isActive: $viewModel.showBikeCreation) { }
+                NavigationLink(destination: BikeCreationView(),
+                               isActive: $profileState.showBikeCreation) { }
             }
         }
         .navigationTitle("Profil")
-        .alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) {
-            Button(viewModel.agreeButtonText) {
-                viewModel.toggleUserPresence()
+        .alert(profileState.alertTitle, isPresented: $profileState.showAlert) {
+            Button(profileState.agreeButtonText) {
+                profileState.toggleUserPresence()
             }
-            Button(viewModel.cancelButtonText) {}
+            Button(profileState.cancelButtonText) {}
         }
     }
     

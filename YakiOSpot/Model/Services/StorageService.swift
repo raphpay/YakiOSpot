@@ -38,16 +38,16 @@ extension StorageService {
 }
 
 extension StorageService {
-    func uploadImage(_ image: UIImage?, for id: String?, onSuccess: @escaping ((_ downloadURL: URL) -> Void), onError: @escaping ((_ error: String) -> Void)) {
+    func uploadImage(_ image: UIImage?, onSuccess: @escaping ((_ downloadURL: URL) -> Void), onError: @escaping ((_ error: String) -> Void)) {
         // Convert to data
         guard let data = convertImageToData(image),
-              let id = id else {
+            let user = API.User.CURRENT_USER_OBJECT else {
             onError("Impossible de convertir les données de l'image")
             return
         }
 
 
-        let childRef = USERS_REF.child("\(id)/bike.jpg")
+        let childRef = USERS_REF.child("\(user.id)/bike.jpg")
 
         childRef.putData(data, metadata: nil) { _, _error in
             guard _error == nil else {
@@ -66,7 +66,26 @@ extension StorageService {
         }
     }
     
-    private func convertImageToData(_ image: UIImage?) -> Data? {
+    func downloadBikeImageForCurrentUser(onSuccess: @escaping ((_ imageData: Data) -> Void), onError: @escaping((_ error: String) -> Void)) {
+        guard let currentUser = API.User.CURRENT_USER_OBJECT else { return }
+        let reference = USERS_REF.child("\(currentUser.id)/bike.jpg")
+        let maximumImageSize = Int64(1 * 1024 * 1024)
+        reference.getData(maxSize: maximumImageSize) { data, error in
+            guard error == nil else {
+                onError(error!.localizedDescription)
+                return
+            }
+            
+            guard let data = data else {
+                onError("No data for this image")
+                return
+            }
+
+            onSuccess(data)
+        }
+    }
+    
+    func convertImageToData(_ image: UIImage?) -> Data? {
         guard let image = image,
               let data = image.sd_imageData(as: .JPEG, compressionQuality: 0.4) else { return nil }
         return data

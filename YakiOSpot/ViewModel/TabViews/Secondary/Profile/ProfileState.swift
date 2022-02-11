@@ -7,9 +7,12 @@
 
 import Foundation
 
-final class ProfileViewViewModel: ObservableObject {
+final class ProfileState: ObservableObject {
     // User object
     @Published var user: User = MockUser.data
+    @Published var bike: Bike = Bike(id: UUID().uuidString, model: "", photoURL: nil)
+    // TODO: Download data
+    @Published var bikeImageData = Data()
     
     // User properties
     @Published var userIsPresent: Bool = true

@@ -9,8 +9,8 @@ import Foundation
 
 struct Bike: Identifiable, Codable, Hashable {
     let id: String
-    let model: String
-    let photoURL: String?
+    var model: String
+    var photoURL: String?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)

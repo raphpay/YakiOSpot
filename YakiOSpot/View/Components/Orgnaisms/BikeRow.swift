@@ -11,9 +11,11 @@ import SDWebImageSwiftUI
 struct BikeRow: View {
     
     @StateObject private var viewModel = BikeRowViewModel()
+    @EnvironmentObject private var profileState: ProfileState
+    @Binding var showBikeCreation: Bool
     
     var body: some View {
-        if viewModel.bike == nil {
+        if viewModel.bike.model == "" {
             emptyBikeRow
         } else {
             content
@@ -32,24 +34,25 @@ struct BikeRow: View {
     
     var content: some View {
         HStack {
-            if let imageURL = viewModel.bike?.photoURL {
-                WebImage(url: URL(string: imageURL))
-                    .resizable()
-                    .placeholder(Image(Assets.noBike))
-                    .bikeImageStyle()
-            } else {
-                Image(Assets.noBike)
-                    .resizable()
-                    .bikeImageStyle()
-            }
+            AnimatedImage(data: profileState.bikeImageData)
+                .resizable()
+                .placeholder(UIImage(named: Assets.noBike))
+                .bikeImageStyle()
             
-            Text("Scott Genius 920")
+            Text(viewModel.bike.model)
                 .font(.title3)
             
             Spacer()
-            Image(systemName: "highlighter")
-                .font(.system(size: 25))
-                .foregroundColor(.secondary)
+            Button {
+                showBikeCreation = true
+            } label: {
+                Image(systemName: "highlighter")
+                    .font(.system(size: 25))
+                    .foregroundColor(.secondary)
+            }
+
+            NavigationLink(destination: BikeCreationView(), isActive: $showBikeCreation) { }
+
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .padding(.horizontal)

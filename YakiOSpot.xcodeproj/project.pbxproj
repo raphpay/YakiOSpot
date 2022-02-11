@@ -38,7 +38,7 @@
 		869BF2B727A59F2200FBCD94 /* StatusButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869BF2B627A59F2200FBCD94 /* StatusButton.swift */; };
 		869BF2B927A59F7E00FBCD94 /* SessionCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869BF2B827A59F7E00FBCD94 /* SessionCard.swift */; };
 		869BF2BB27A59F8B00FBCD94 /* BikeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869BF2BA27A59F8B00FBCD94 /* BikeRow.swift */; };
-		869BF2BF27A5A8E500FBCD94 /* ProfileViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869BF2BE27A5A8E500FBCD94 /* ProfileViewViewModel.swift */; };
+		869BF2BF27A5A8E500FBCD94 /* ProfileState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869BF2BE27A5A8E500FBCD94 /* ProfileState.swift */; };
 		869E351127430602007CF366 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 869E351027430602007CF366 /* ProfileView.swift */; };
 		86ADDDE9276E66A60063BE29 /* VideoPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADDDE8276E66A60063BE29 /* VideoPlayer.swift */; };
 		86ADDE0B2770EFAB0063BE29 /* HomeTabViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86ADDE0A2770EFAB0063BE29 /* HomeTabViewViewModel.swift */; };
@@ -140,7 +140,7 @@
 		869BF2B627A59F2200FBCD94 /* StatusButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusButton.swift; sourceTree = "<group>"; };
 		869BF2B827A59F7E00FBCD94 /* SessionCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionCard.swift; sourceTree = "<group>"; };
 		869BF2BA27A59F8B00FBCD94 /* BikeRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeRow.swift; sourceTree = "<group>"; };
-		869BF2BE27A5A8E500FBCD94 /* ProfileViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewViewModel.swift; sourceTree = "<group>"; };
+		869BF2BE27A5A8E500FBCD94 /* ProfileState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileState.swift; sourceTree = "<group>"; };
 		869E351027430602007CF366 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
 		86ADDDE8276E66A60063BE29 /* VideoPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoPlayer.swift; sourceTree = "<group>"; };
 		86ADDE0A2770EFAB0063BE29 /* HomeTabViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabViewViewModel.swift; sourceTree = "<group>"; };
@@ -243,7 +243,7 @@
 		8605352327B448AA0066E52A /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				869BF2BE27A5A8E500FBCD94 /* ProfileViewViewModel.swift */,
+				869BF2BE27A5A8E500FBCD94 /* ProfileState.swift */,
 				8605352127B448A50066E52A /* BikeRowViewModel.swift */,
 			);
 			path = Profile;
@@ -898,7 +898,7 @@
 				86CCA162279F1C770074AA46 /* RoundedButton.swift in Sources */,
 				86CCA15A279ED3AE0074AA46 /* View+Ext.swift in Sources */,
 				862D8433273D2AE60081BA83 /* API.swift in Sources */,
-				869BF2BF27A5A8E500FBCD94 /* ProfileViewViewModel.swift in Sources */,
+				869BF2BF27A5A8E500FBCD94 /* ProfileState.swift in Sources */,
 				86E1F87B27428B4A00C983EC /* SpotService.swift in Sources */,
 				863DB1A827B59F050039E77C /* ViewModifier+Ext.swift in Sources */,
 				86BB95CE273EF8B90029C39A /* User.swift in Sources */,
