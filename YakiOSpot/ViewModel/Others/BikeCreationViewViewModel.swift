@@ -26,7 +26,7 @@ final class BikeCreationViewViewModel: ObservableObject {
 
 // MARK: - Public Methods
 extension BikeCreationViewViewModel {
-    func sendBike(bike: Bike) {
+    func sendBike(bike: Bike, onImageChanged: @escaping (_ imageData: Data?) -> Void) {
         animateActivityIndicator = true
         guard checkModel(model: bike.model) else {
             animateActivityIndicator = false
@@ -38,24 +38,25 @@ extension BikeCreationViewViewModel {
             pushBike(bike)
         } else {
             // URL don't exist or user has changed the image
-            pushBikeWithImage(bike)
+            pushBikeWithImage(bike, onImageChanged: onImageChanged)
         }
     }
 }
 
 // MARK: - Private Methods
 extension BikeCreationViewViewModel {
-    private func pushBikeWithImage(_ bike: Bike) {
+    private func pushBikeWithImage(_ bike: Bike, onImageChanged: @escaping (_ imageData: Data?) -> Void) {
         if image != UIImage(named: Assets.noBike) {
             StorageService.shared.uploadImage(image) { downloadURL in
-                let bike = Bike(id: UUID().uuidString, model: self.bikeModel, photoURL: downloadURL.absoluteString)
-                self.pushBike(bike)
+                let newBike = Bike(id: UUID().uuidString, model: bike.model, photoURL: downloadURL.absoluteString)
+                self.pushBike(newBike)
                 self.pushFinish(title: "Bike sauvegardé")
+                let imageData = StorageService.shared.convertImageToData(self.image)
+                onImageChanged(imageData)
             } onError: { error in
                 print("======= \(#function) =====", error)
                 self.pushFinish(title: "Erreur : Bike non sauvegardé !")
             }
-
         }
     }
     

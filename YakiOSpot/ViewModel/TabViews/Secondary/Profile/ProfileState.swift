@@ -49,8 +49,6 @@ extension ProfileState {
             }
             self.updatePresence(user.isPresent)
             self.updateSessions(user.sessions)
-            
-
         } onError: { error in
             print("======= \(#function) =====", error)
             self.updatePresence(false)

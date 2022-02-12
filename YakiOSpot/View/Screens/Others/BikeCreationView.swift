@@ -70,11 +70,19 @@ struct BikeCreationView: View {
             }
             
             FormTextField(placeholder: "Modèle du vélo", text: $profileState.bike.model) {
-                viewModel.sendBike(bike: profileState.bike)
+                viewModel.sendBike(bike: profileState.bike) { imageData in
+                    if let imageData = imageData {
+                        self.profileState.bikeImageData = imageData
+                    }
+                }
             }
             
             Button {
-                viewModel.sendBike(bike: profileState.bike)
+                viewModel.sendBike(bike: profileState.bike) { imageData in
+                    if let imageData = imageData {
+                        self.profileState.bikeImageData = imageData
+                    }
+                }
             } label: {
                 RoundedButton(title: "Ajouter mon vélo")
             }
