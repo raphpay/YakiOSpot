@@ -58,7 +58,7 @@
 		86CCA160279F17A40074AA46 /* PublishSessionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CCA15F279F17A40074AA46 /* PublishSessionView.swift */; };
 		86CCA162279F1C770074AA46 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CCA161279F1C770074AA46 /* RoundedButton.swift */; };
 		86D22D4327A6E5750055477A /* SessionRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4227A6E5750055477A /* SessionRow.swift */; };
-		86D22D4527A6E5E90055477A /* ProfileRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4427A6E5E90055477A /* ProfileRow.swift */; };
+		86D22D4527A6E5E90055477A /* UserRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4427A6E5E90055477A /* UserRow.swift */; };
 		86D22D4727A6E6A10055477A /* Bike.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4627A6E6A10055477A /* Bike.swift */; };
 		86D22D4927A6F4720055477A /* BikeService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4827A6F4720055477A /* BikeService.swift */; };
 		86D22D4B27A6F7E10055477A /* BikeCreationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D22D4A27A6F7E10055477A /* BikeCreationView.swift */; };
@@ -159,7 +159,7 @@
 		86CCA15F279F17A40074AA46 /* PublishSessionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PublishSessionView.swift; sourceTree = "<group>"; };
 		86CCA161279F1C770074AA46 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		86D22D4227A6E5750055477A /* SessionRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionRow.swift; sourceTree = "<group>"; };
-		86D22D4427A6E5E90055477A /* ProfileRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileRow.swift; sourceTree = "<group>"; };
+		86D22D4427A6E5E90055477A /* UserRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRow.swift; sourceTree = "<group>"; };
 		86D22D4627A6E6A10055477A /* Bike.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bike.swift; sourceTree = "<group>"; };
 		86D22D4827A6F4720055477A /* BikeService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeService.swift; sourceTree = "<group>"; };
 		86D22D4A27A6F7E10055477A /* BikeCreationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BikeCreationView.swift; sourceTree = "<group>"; };
@@ -529,7 +529,7 @@
 			isa = PBXGroup;
 			children = (
 				86D22D4227A6E5750055477A /* SessionRow.swift */,
-				86D22D4427A6E5E90055477A /* ProfileRow.swift */,
+				86D22D4427A6E5E90055477A /* UserRow.swift */,
 				869BF2BA27A59F8B00FBCD94 /* BikeRow.swift */,
 			);
 			path = Orgnaisms;
@@ -832,7 +832,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				86D22D4527A6E5E90055477A /* ProfileRow.swift in Sources */,
+				86D22D4527A6E5E90055477A /* UserRow.swift in Sources */,
 				863507EB2763C17F00145505 /* FeedView.swift in Sources */,
 				86D22D4327A6E5750055477A /* SessionRow.swift in Sources */,
 				86F81D1D2741741100AB69DB /* ConnexionViewViewModel.swift in Sources */,

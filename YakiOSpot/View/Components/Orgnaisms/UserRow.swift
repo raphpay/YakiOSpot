@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct ProfileRow: View {
+struct UserRow: View {
     
     @Binding var user: User
     private let imageSize = CGFloat(85)
