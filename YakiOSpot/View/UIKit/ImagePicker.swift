@@ -12,6 +12,7 @@ struct ImagePicker: UIViewControllerRepresentable {
     var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @Binding var selectedImage: UIImage
     @Binding var hasModifiedImage: Bool
+    @Binding var showPicker: Bool
 
     func makeUIViewController(context: UIViewControllerRepresentableContext<ImagePicker>) -> UIImagePickerController {
 
@@ -51,6 +52,7 @@ struct ImagePicker: UIViewControllerRepresentable {
 
         func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
             parent.hasModifiedImage = false
+            parent.showPicker = false
         }
     }
 }

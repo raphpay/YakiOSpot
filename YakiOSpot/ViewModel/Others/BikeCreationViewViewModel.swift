@@ -27,10 +27,11 @@ final class BikeCreationViewViewModel: ObservableObject {
 // MARK: - Public Methods
 extension BikeCreationViewViewModel {
     func sendBike(bike: Bike) {
-        var temporaryBike = bike
-        temporaryBike.model = bikeModel
         animateActivityIndicator = true
-        guard checkModel(model: temporaryBike.model) else { return }
+        guard checkModel(model: bike.model) else {
+            animateActivityIndicator = false
+            return
+        }
         if bike.photoURL != nil,
            hasModifiedImage == false {
             // URL exist and user haven't change the image
@@ -39,7 +40,6 @@ extension BikeCreationViewViewModel {
             // URL don't exist or user has changed the image
             pushBikeWithImage(bike)
         }
-        print("======= \(#function) ====")
     }
 }
 
@@ -50,9 +50,10 @@ extension BikeCreationViewViewModel {
             StorageService.shared.uploadImage(image) { downloadURL in
                 let bike = Bike(id: UUID().uuidString, model: self.bikeModel, photoURL: downloadURL.absoluteString)
                 self.pushBike(bike)
-                StorageService.shared.convertImageToData(self.image)
+                self.pushFinish(title: "Bike sauvegardé")
             } onError: { error in
                 print("======= \(#function) =====", error)
+                self.pushFinish(title: "Erreur : Bike non sauvegardé !")
             }
 
         }

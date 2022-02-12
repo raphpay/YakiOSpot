@@ -36,7 +36,7 @@ struct BikeCreationView: View {
             Button("Annuler", role: .cancel) {}
         }
         .sheet(isPresented: $viewModel.showSheet) {
-            ImagePicker(sourceType: viewModel.selection, selectedImage: $viewModel.image, hasModifiedImage: $viewModel.hasModifiedImage)
+            ImagePicker(sourceType: viewModel.selection, selectedImage: $viewModel.image, hasModifiedImage: $viewModel.hasModifiedImage, showPicker: $viewModel.showSheet)
         }
         .alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) {
             Button("OK", role: .cancel) {
