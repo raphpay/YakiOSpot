@@ -10,8 +10,7 @@ import SDWebImageSwiftUI
 
 struct BikeRow: View {
     
-    @EnvironmentObject var profileState: ProfileState
-    @Binding var showBikeCreation: Bool
+    @ObservedObject var profileState: ProfileState
     
     var body: some View {
         if profileState.bike.model == "" {
@@ -21,39 +20,46 @@ struct BikeRow: View {
         }
     }
     
-    var emptyBikeRow: some View {
-        HStack(alignment: .center, spacing: 8) {
-            Image(Assets.noBike)
-                .resizable()
-                .frame(width: 101, height: 110)
-            
-            Text("Pas de vélo enregistré")
-        }
-    }
-    
     var content: some View {
         HStack {
-            AnimatedImage(data: profileState.bikeImageData)
-                .resizable()
-                .placeholder(UIImage(named: Assets.noBike))
-                .bikeImageStyle()
+            if let bikeURL = profileState.bike.photoURL {
+                WebImage(url: URL(string: bikeURL))
+                    .resizable()
+                    .placeholder(Image(Assets.noBike))
+                    .bikeImageStyle()
+            } else {
+                placeholderImage
+            }
             
             Text(profileState.bike.model)
                 .font(.title3)
             
             Spacer()
             Button {
-                showBikeCreation = true
+                profileState.showBikeCreation = true
             } label: {
                 Image(systemName: "highlighter")
                     .font(.system(size: 25))
                     .foregroundColor(.secondary)
             }
-
-            NavigationLink(destination: BikeCreationView(), isActive: $showBikeCreation) { }
-
+            NavigationLink(destination: BikeCreationView(profileState: profileState), isActive: $profileState.showBikeCreation) { }
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .padding(.horizontal)
+    }
+    
+    var placeholderImage : some View {
+        Image(Assets.noBike)
+            .resizable()
+            .bikeImageStyle()
+    }
+    
+    var emptyBikeRow: some View {
+        HStack(alignment: .center, spacing: 8) {
+            Image(Assets.noBike)
+                .bikeImageStyle()
+            
+            Text("Pas de vélo enregistré")
+        }
     }
 }

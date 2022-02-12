@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct ProfileView: View {
     
@@ -18,37 +19,13 @@ struct ProfileView: View {
             VStack {
                 ProfileRow(user: $profileState.user)
 
-                ProfileSection {
-                    HStack {
-                        StatusButton(isSelected: $profileState.userIsPresent, title: "🚵‍♂️ Au spot", color: .green) {
-                            profileState.didTapHereButton()
-                        }
-                        Spacer()
-                        StatusButton(isSelected: $profileState.userIsNotPresent, title: "🚶‍♂️ Plus au spot", color: .red) {
-                            profileState.didTapLeavingButton()
-                        }
-                    }
-                    .padding(.horizontal)
-                }
+                buttonSection
 
-                ProfileSection(title: "Mes sessions") {
-                    SessionRow(sessions: $profileState.sessions)
-                } action: {
-                    profileState.showSessionCreation = true
-                }
-                NavigationLink(destination: PublishSessionView(), isActive: $profileState.showSessionCreation) { }
+                sessionSection
 
-                ProfileSection(title: "Mon bike") {
-                    BikeRow(showBikeCreation: $profileState.showBikeCreation)
-                        .padding(.horizontal)
-                } action: {
-                    profileState.showBikeCreation = true
-                }
-                NavigationLink(destination: BikeCreationView(),
-                               isActive: $profileState.showBikeCreation) { }
+                bikeSection
             }
         }
-        .environmentObject(profileState)
         .navigationTitle("Profil")
         .alert(profileState.alertTitle, isPresented: $profileState.showAlert) {
             Button(profileState.agreeButtonText) {
@@ -58,6 +35,46 @@ struct ProfileView: View {
         }
     }
     
+    var buttonSection: some View {
+        ProfileSection {
+            HStack {
+                StatusButton(isSelected: $profileState.userIsPresent, title: "🚵‍♂️ Au spot", color: .green) {
+                    profileState.didTapHereButton()
+                }
+                Spacer()
+                StatusButton(isSelected: $profileState.userIsNotPresent, title: "🚶‍♂️ Plus au spot", color: .red) {
+                    profileState.didTapLeavingButton()
+                }
+            }
+            .padding(.horizontal)
+        }
+    }
+    
+    var sessionSection: some View {
+        VStack {
+            ProfileSection(title: "Mes sessions") {
+                SessionRow(sessions: $profileState.sessions)
+            } action: {
+                profileState.showSessionCreation = true
+            }
+            NavigationLink(destination: PublishSessionView(), isActive: $profileState.showSessionCreation) { }
+        }
+    }
+    
+    var bikeSection: some View {
+        VStack {
+            ProfileSection(title: "Mon bike") {
+                BikeRow(profileState: profileState)
+                    .padding(.horizontal)
+            } action: {
+                profileState.showBikeCreation = true
+            }
+            NavigationLink(destination: BikeCreationView(profileState: profileState),
+                           isActive: $profileState.showBikeCreation) { }
+        }
+    }
+    
+    // TODO: Place this method in a state
     func didTapLogOut() {
         API.Auth.session.signOut {
             isConnected = false

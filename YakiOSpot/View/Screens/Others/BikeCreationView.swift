@@ -12,7 +12,7 @@ struct BikeCreationView: View {
     
     @Environment(\.dismiss) var dismiss
     @StateObject private var viewModel = BikeCreationViewViewModel()
-    @EnvironmentObject var profileState: ProfileState
+    @ObservedObject var profileState: ProfileState
     
     var body: some View {
         ZStack {

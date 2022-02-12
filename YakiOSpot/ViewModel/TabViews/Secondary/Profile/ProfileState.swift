@@ -11,13 +11,14 @@ final class ProfileState: ObservableObject {
     // User object
     @Published var user: User = MockUser.data
     @Published var bike: Bike = Bike(id: UUID().uuidString, model: "", photoURL: nil)
-    // TODO: Download data
-    @Published var bikeImageData = Data()
     
-    // User properties
+    // Properties
     @Published var userIsPresent: Bool = true
     @Published var userIsNotPresent: Bool = false
     @Published var sessions: [Session] = []
+    
+    // Images
+    @Published var bikeImageData = Data()
     
     // Alert
     @Published var showAlert: Bool = false
@@ -44,12 +45,24 @@ extension ProfileState {
             self.user = user
             if let bike = user.bike {
                 self.bike = bike
+                self.downloadBikeImageData()
             }
             self.updatePresence(user.isPresent)
-           self.updateSessions(user.sessions)
+            self.updateSessions(user.sessions)
+            
+
         } onError: { error in
             print("======= \(#function) =====", error)
             self.updatePresence(false)
+        }
+    }
+    
+    func downloadBikeImageData() {
+        StorageService.shared.downloadBikeImageForCurrentUser { imageData in
+            print("======= \(#function) =====", imageData)
+            self.bikeImageData = imageData
+        } onError: { error in
+            print("======= \(#function) downloadBikeImageForCurrentUser =====", error)
         }
     }
 }
