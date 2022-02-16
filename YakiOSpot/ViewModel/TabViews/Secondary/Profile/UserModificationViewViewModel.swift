@@ -15,6 +15,8 @@ final class UserModificationViewViewModel: ObservableObject {
     @Published var hasModifiedImage = false
     @Published var image: UIImage = UIImage(named: Assets.imagePlaceholder)!
     @Published var shouldPresentDialog = false
+    @Published var alertTitle = ""
+    @Published var showAlert = false
 }
 
 // MARK: - Actions
@@ -23,26 +25,33 @@ extension UserModificationViewViewModel {
         if hasModifiedImage {
             sendUserImage()
         }
+        // Verify the change of the name
     }
 }
 
 // MARK: - Private Methods
 extension UserModificationViewViewModel {
-    func sendUserImage() {
+    private func sendUserImage() {
         if image != UIImage(named: Assets.imagePlaceholder)! {
             StorageService.shared.uploadImage(image, for: .user) { downloadURL in
                 guard var newCurrentUser = API.User.CURRENT_USER_OBJECT else { return }
                 newCurrentUser.photoURL = downloadURL.absoluteString
                 API.User.session.updateCurrentUser(newCurrentUser) {
-                    // Show alert
+                    self.pushFinish(title: "Sauvegarde réussie")
                     print("======= \(#function) success =====", newCurrentUser)
                 } onError: { error in
+                    self.pushFinish(title: "Erreur lors de la sauvegarde")
                     print("======= \(#function) =====", error)
                 }
             } onError: { error in
+                self.pushFinish(title: "Erreur lors de la sauvegarde")
                 print("======= \(#function) =====", error)
             }
-
         }
+    }
+    
+    private func pushFinish(title: String) {
+        alertTitle = title
+        showAlert.toggle()
     }
 }

@@ -10,6 +10,7 @@ import SDWebImageSwiftUI
 
 struct UserModificationView: View {
     
+    @Environment(\.dismiss) var dismiss
     @ObservedObject var profileState: ProfileState
     @StateObject private var viewModel = UserModificationViewViewModel()
     
@@ -18,7 +19,6 @@ struct UserModificationView: View {
     var body: some View {
         ScrollView {
             profileImage
-            
             VStack(alignment: .center, spacing: 10) {
                 Button {
                     viewModel.shouldPresentDialog = true
@@ -38,14 +38,12 @@ struct UserModificationView: View {
                         .foregroundColor(.blue)
                 }
             }
-
-            
             FormTextField(isSecured: false, placeholder: "Pseudo", text: $profileState.user.pseudo, submitLabel: .next) {
                 // On commit action
             }
-            
             ActionForm(profileState: profileState)
         }
+        
         .navigationTitle("Modifier")
         .confirmationDialog("Choisir une photo", isPresented: $viewModel.shouldPresentDialog) {
             Button("Camera") {
@@ -62,6 +60,11 @@ struct UserModificationView: View {
         }
         .sheet(isPresented: $viewModel.showSheet) {
             ImagePicker(sourceType: viewModel.selection, selectedImage: $viewModel.image, hasModifiedImage: $viewModel.hasModifiedImage, showPicker: $viewModel.showSheet)
+        }
+        .alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) {
+            Button("OK", role: .cancel) {
+                dismiss()
+            }
         }
     }
     
