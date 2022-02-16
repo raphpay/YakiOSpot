@@ -28,6 +28,7 @@
 		8665979D27A19C4A005E1CD6 /* FakeSessionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665979C27A19C4A005E1CD6 /* FakeSessionService.swift */; };
 		8674BE3C27822A8800FD31D7 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8674BE3B27822A8800FD31D7 /* StorageService.swift */; };
 		86804670274C227500AAFC83 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680466F274C227500AAFC83 /* FormTextField.swift */; };
+		8680DFBD27BD7681001EA217 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680DFBC27BD7681001EA217 /* Color+Ext.swift */; };
 		8682613F27627CB100C3018E /* FakeUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8682613E27627CB100C3018E /* FakeUserService.swift */; };
 		868F03DC2789D11D0037E8DC /* SecureKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868F03DB2789D11D0037E8DC /* SecureKeys.swift */; };
 		8692FC4C274D757E00C8F7CF /* FakeAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692FC4B274D757E00C8F7CF /* FakeAuthService.swift */; };
@@ -129,6 +130,7 @@
 		8668CA4C278B3CBE0024A0BC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8674BE3B27822A8800FD31D7 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		8680466F274C227500AAFC83 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
+		8680DFBC27BD7681001EA217 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
 		8682613E27627CB100C3018E /* FakeUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserService.swift; sourceTree = "<group>"; };
 		868F03DB2789D11D0037E8DC /* SecureKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureKeys.swift; path = "../../../../To be saved/SecureKeys.swift"; sourceTree = "<group>"; };
 		8692FC42274D74C700C8F7CF /* YakiOSpotUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YakiOSpotUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -273,6 +275,7 @@
 				86CCA159279ED3AE0074AA46 /* View+Ext.swift */,
 				86DD2DBE27A14DAE00339736 /* Date+Ext.swift */,
 				863DB1A727B59F050039E77C /* ViewModifier+Ext.swift */,
+				8680DFBC27BD7681001EA217 /* Color+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -856,6 +859,7 @@
 				86D22D4F27A70C4F0055477A /* BikeCreationViewViewModel.swift in Sources */,
 				863507E92763C14F00145505 /* InfoView.swift in Sources */,
 				86F81D202741772200AB69DB /* RegistrationViewViewModel.swift in Sources */,
+				8680DFBD27BD7681001EA217 /* Color+Ext.swift in Sources */,
 				86ADDE0B2770EFAB0063BE29 /* HomeTabViewViewModel.swift in Sources */,
 				86F81D242741800400AB69DB /* Spot.swift in Sources */,
 				86D9894B2763C78B009908D8 /* Track.swift in Sources */,
