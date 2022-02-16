@@ -18,6 +18,7 @@
 		863DB1A827B59F050039E77C /* ViewModifier+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863DB1A727B59F050039E77C /* ViewModifier+Ext.swift */; };
 		86529B5127636C8E00BD44B6 /* FakeUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5027636C8E00BD44B6 /* FakeUserData.swift */; };
 		86529B5327636E6C00BD44B6 /* UserServiceTestsCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */; };
+		8658F20C27B8585A005FD9BA /* UserModificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8658F20B27B8585A005FD9BA /* UserModificationView.swift */; };
 		8665978F27A17C82005E1CD6 /* AuthServiceTestCasePassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665978E27A17C82005E1CD6 /* AuthServiceTestCasePassword.swift */; };
 		8665979127A1831B005E1CD6 /* FCMTokenTestCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665979027A1831B005E1CD6 /* FCMTokenTestCase.swift */; };
 		8665979327A18326005E1CD6 /* FakeFCMTokenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8665979227A18326005E1CD6 /* FakeFCMTokenService.swift */; };
@@ -117,6 +118,7 @@
 		863DB1A727B59F050039E77C /* ViewModifier+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModifier+Ext.swift"; sourceTree = "<group>"; };
 		86529B5027636C8E00BD44B6 /* FakeUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserData.swift; sourceTree = "<group>"; };
 		86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTestsCase.swift; sourceTree = "<group>"; };
+		8658F20B27B8585A005FD9BA /* UserModificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModificationView.swift; sourceTree = "<group>"; };
 		8665978E27A17C82005E1CD6 /* AuthServiceTestCasePassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceTestCasePassword.swift; sourceTree = "<group>"; };
 		8665979027A1831B005E1CD6 /* FCMTokenTestCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FCMTokenTestCase.swift; sourceTree = "<group>"; };
 		8665979227A18326005E1CD6 /* FakeFCMTokenService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeFCMTokenService.swift; sourceTree = "<group>"; };
@@ -300,7 +302,7 @@
 			children = (
 				86804672274C22A900AAFC83 /* Atoms */,
 				869BF2B327A59EC200FBCD94 /* Molecules */,
-				86D22D4127A6E55A0055477A /* Orgnaisms */,
+				86D22D4127A6E55A0055477A /* Organisms */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -374,6 +376,7 @@
 				86F81D25274184CD00AB69DB /* SpotCellView.swift */,
 				86F528EC2775067500CDAA8C /* PersonListView.swift */,
 				86D22D4A27A6F7E10055477A /* BikeCreationView.swift */,
+				8658F20B27B8585A005FD9BA /* UserModificationView.swift */,
 			);
 			path = Others;
 			sourceTree = "<group>";
@@ -525,14 +528,14 @@
 			path = Objects;
 			sourceTree = "<group>";
 		};
-		86D22D4127A6E55A0055477A /* Orgnaisms */ = {
+		86D22D4127A6E55A0055477A /* Organisms */ = {
 			isa = PBXGroup;
 			children = (
 				86D22D4227A6E5750055477A /* SessionRow.swift */,
 				86D22D4427A6E5E90055477A /* UserRow.swift */,
 				869BF2BA27A59F8B00FBCD94 /* BikeRow.swift */,
 			);
-			path = Orgnaisms;
+			path = Organisms;
 			sourceTree = "<group>";
 		};
 		86D22D5027A70C550055477A /* Others */ = {
@@ -836,6 +839,7 @@
 				863507EB2763C17F00145505 /* FeedView.swift in Sources */,
 				86D22D4327A6E5750055477A /* SessionRow.swift in Sources */,
 				86F81D1D2741741100AB69DB /* ConnexionViewViewModel.swift in Sources */,
+				8658F20C27B8585A005FD9BA /* UserModificationView.swift in Sources */,
 				86D68112273D0B31001E7BE6 /* StartingView.swift in Sources */,
 				86D68110273D0B31001E7BE6 /* YakiOSpotApp.swift in Sources */,
 				869BF2B927A59F7E00FBCD94 /* SessionCard.swift in Sources */,

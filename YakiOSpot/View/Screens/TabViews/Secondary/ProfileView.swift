@@ -17,7 +17,7 @@ struct ProfileView: View {
     var body: some View {
         ScrollView {
             VStack {
-                UserRow(user: $profileState.user)
+                UserRow(profileState: profileState)
 
                 buttonSection
 

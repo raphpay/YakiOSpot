@@ -9,7 +9,8 @@ import SwiftUI
 
 struct UserRow: View {
     
-    @Binding var user: User
+    @ObservedObject var profileState: ProfileState
+    
     private let imageSize = CGFloat(85)
     
     var body: some View {
@@ -22,7 +23,7 @@ struct UserRow: View {
 //                .overlay(BadgeIcon(), alignment: .topTrailing)
             
             VStack(alignment: .leading, spacing: 8) {
-                Text(user.pseudo)
+                Text(profileState.user.pseudo)
                     .font(.title)
                     .fontWeight(.bold)
                 
@@ -33,12 +34,11 @@ struct UserRow: View {
             
             Spacer()
 
-            NavigationLink(destination: Text("Hello World")) {
+            NavigationLink(destination: UserModificationView(profileState: profileState)) {
                 Image(systemName: "highlighter")
                     .font(.system(size: 25))
                     .foregroundColor(.secondary)
             }
-
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .padding(.horizontal)
