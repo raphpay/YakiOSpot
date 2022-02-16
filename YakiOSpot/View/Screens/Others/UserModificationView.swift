@@ -39,7 +39,7 @@ struct UserModificationView: View {
                 }
             }
             FormTextField(isSecured: false, placeholder: "Pseudo", text: $profileState.user.pseudo, submitLabel: .next) {
-                // On commit action
+                viewModel.saveUser(profileState.user.pseudo)
             }
             ActionForm(profileState: profileState)
         }
