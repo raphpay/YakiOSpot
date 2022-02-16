@@ -9,6 +9,10 @@ import Foundation
 import FirebaseStorage
 import FirebaseUI
 
+enum ImageType: String {
+    case bike, user
+}
+
 final class StorageService {
     static let shared = StorageService()
     
@@ -38,7 +42,7 @@ extension StorageService {
 }
 
 extension StorageService {
-    func uploadImage(_ image: UIImage?, onSuccess: @escaping ((_ downloadURL: URL) -> Void), onError: @escaping ((_ error: String) -> Void)) {
+    func uploadImage(_ image: UIImage?, for type: ImageType = .bike,  onSuccess: @escaping ((_ downloadURL: URL) -> Void), onError: @escaping ((_ error: String) -> Void)) {
         // Convert to data
         guard let data = convertImageToData(image),
             let user = API.User.CURRENT_USER_OBJECT else {
@@ -46,7 +50,7 @@ extension StorageService {
             return
         }
 
-        let childRef = USERS_REF.child("\(user.id)/bike.jpg")
+        let childRef = type == .bike ? USERS_REF.child("\(user.id)/bike.jpg") : USERS_REF.child("\(user.id)/profileImage.jpg")
 
         childRef.putData(data, metadata: nil) { _, _error in
             guard _error == nil else {

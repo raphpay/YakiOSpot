@@ -30,7 +30,7 @@ struct UserModificationView: View {
                 }
                 
                 Button {
-                    //
+                    viewModel.saveUser()
                 } label: {
                     Text("Sauvegarder")
                         .font(.system(size: 14))

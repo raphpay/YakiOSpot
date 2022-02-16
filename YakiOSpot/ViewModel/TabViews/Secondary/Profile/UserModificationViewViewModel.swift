@@ -16,3 +16,33 @@ final class UserModificationViewViewModel: ObservableObject {
     @Published var image: UIImage = UIImage(named: Assets.imagePlaceholder)!
     @Published var shouldPresentDialog = false
 }
+
+// MARK: - Actions
+extension UserModificationViewViewModel {
+    func saveUser() {
+        if hasModifiedImage {
+            sendUserImage()
+        }
+    }
+}
+
+// MARK: - Private Methods
+extension UserModificationViewViewModel {
+    func sendUserImage() {
+        if image != UIImage(named: Assets.imagePlaceholder)! {
+            StorageService.shared.uploadImage(image, for: .user) { downloadURL in
+                guard var newCurrentUser = API.User.CURRENT_USER_OBJECT else { return }
+                newCurrentUser.photoURL = downloadURL.absoluteString
+                API.User.session.updateCurrentUser(newCurrentUser) {
+                    // Show alert
+                    print("======= \(#function) success =====", newCurrentUser)
+                } onError: { error in
+                    print("======= \(#function) =====", error)
+                }
+            } onError: { error in
+                print("======= \(#function) =====", error)
+            }
+
+        }
+    }
+}
