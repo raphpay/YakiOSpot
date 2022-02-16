@@ -43,7 +43,9 @@ struct UserModificationView: View {
             }
             ActionForm(profileState: profileState)
         }
-        
+        .onTapGesture {
+            hideKeyboard()
+        }
         .navigationTitle("Modifier")
         .confirmationDialog("Choisir une photo", isPresented: $viewModel.shouldPresentDialog) {
             Button("Camera") {
