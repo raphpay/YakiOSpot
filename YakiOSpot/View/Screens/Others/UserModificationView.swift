@@ -6,24 +6,22 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct UserModificationView: View {
     
     @ObservedObject var profileState: ProfileState
+    @StateObject private var viewModel = UserModificationViewViewModel()
     
     private let imageSize = CGFloat(135)
     
     var body: some View {
         ScrollView {
-            Image(Assets.imagePlaceholder)
-                .resizable()
-                .frame(width: imageSize, height: imageSize)
-                .aspectRatio(contentMode: .fill)
-                .mask(Circle())
+            profileImage
             
             VStack(alignment: .center, spacing: 10) {
                 Button {
-                    //
+                    viewModel.shouldPresentDialog = true
                 } label: {
                     Text("Modifier la photo de profil")
                         .font(.system(size: 14))
@@ -49,6 +47,42 @@ struct UserModificationView: View {
             ActionForm(profileState: profileState)
         }
         .navigationTitle("Modifier")
+        .confirmationDialog("Choisir une photo", isPresented: $viewModel.shouldPresentDialog) {
+            Button("Camera") {
+                self.viewModel.selection = .camera
+                self.viewModel.showSheet = true
+                self.viewModel.hasModifiedImage = true
+            }
+            Button("Bibliothèque") {
+                self.viewModel.selection = .photoLibrary
+                self.viewModel.showSheet = true
+                self.viewModel.hasModifiedImage = true
+            }
+            Button("Annuler", role: .cancel) {}
+        }
+        .sheet(isPresented: $viewModel.showSheet) {
+            ImagePicker(sourceType: viewModel.selection, selectedImage: $viewModel.image, hasModifiedImage: $viewModel.hasModifiedImage, showPicker: $viewModel.showSheet)
+        }
+    }
+    
+    var profileImage: some View {
+        VStack {
+            if let photoURL = profileState.user.photoURL,
+               viewModel.hasModifiedImage == false {
+                WebImage(url: URL(string: photoURL))
+                    .resizable()
+                    .placeholder(Image(Assets.imagePlaceholder))
+                    .frame(width: imageSize, height: imageSize)
+                    .aspectRatio(contentMode: .fill)
+                    .mask(Circle())
+            } else {
+                Image(uiImage: viewModel.image)
+                    .resizable()
+                    .frame(width: imageSize, height: imageSize)
+                    .aspectRatio(contentMode: .fill)
+                    .mask(Circle())
+            }
+        }
     }
 }
 

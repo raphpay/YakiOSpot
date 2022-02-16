@@ -28,6 +28,7 @@ struct User: Identifiable, Codable, Hashable {
     var isPresent: Bool? = false
     var sessions: [String]?
     var bike: Bike?
+    var photoURL: String?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)

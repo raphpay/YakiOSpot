@@ -29,6 +29,7 @@
 		8674BE3C27822A8800FD31D7 /* StorageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8674BE3B27822A8800FD31D7 /* StorageService.swift */; };
 		86804670274C227500AAFC83 /* FormTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680466F274C227500AAFC83 /* FormTextField.swift */; };
 		8680DFBD27BD7681001EA217 /* Color+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680DFBC27BD7681001EA217 /* Color+Ext.swift */; };
+		8680DFBF27BD7B0A001EA217 /* UserModificationViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8680DFBE27BD7B0A001EA217 /* UserModificationViewViewModel.swift */; };
 		8682613F27627CB100C3018E /* FakeUserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8682613E27627CB100C3018E /* FakeUserService.swift */; };
 		868F03DC2789D11D0037E8DC /* SecureKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 868F03DB2789D11D0037E8DC /* SecureKeys.swift */; };
 		8692FC4C274D757E00C8F7CF /* FakeAuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8692FC4B274D757E00C8F7CF /* FakeAuthService.swift */; };
@@ -131,6 +132,7 @@
 		8674BE3B27822A8800FD31D7 /* StorageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageService.swift; sourceTree = "<group>"; };
 		8680466F274C227500AAFC83 /* FormTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FormTextField.swift; sourceTree = "<group>"; };
 		8680DFBC27BD7681001EA217 /* Color+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Ext.swift"; sourceTree = "<group>"; };
+		8680DFBE27BD7B0A001EA217 /* UserModificationViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModificationViewViewModel.swift; sourceTree = "<group>"; };
 		8682613E27627CB100C3018E /* FakeUserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserService.swift; sourceTree = "<group>"; };
 		868F03DB2789D11D0037E8DC /* SecureKeys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SecureKeys.swift; path = "../../../../To be saved/SecureKeys.swift"; sourceTree = "<group>"; };
 		8692FC42274D74C700C8F7CF /* YakiOSpotUnitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = YakiOSpotUnitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -246,6 +248,7 @@
 			isa = PBXGroup;
 			children = (
 				869BF2BE27A5A8E500FBCD94 /* ProfileState.swift */,
+				8680DFBE27BD7B0A001EA217 /* UserModificationViewViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -853,6 +856,7 @@
 				86CCA160279F17A40074AA46 /* PublishSessionView.swift in Sources */,
 				86F528ED2775067600CDAA8C /* PersonListView.swift in Sources */,
 				86D68122273D2229001E7BE6 /* SpotListView.swift in Sources */,
+				8680DFBF27BD7B0A001EA217 /* UserModificationViewViewModel.swift in Sources */,
 				86BB95D0273F043F0029C39A /* UserDefaultsKeys.swift in Sources */,
 				86D22D4B27A6F7E10055477A /* BikeCreationView.swift in Sources */,
 				86E1F87E2742905500C983EC /* SearchViewModel.swift in Sources */,
