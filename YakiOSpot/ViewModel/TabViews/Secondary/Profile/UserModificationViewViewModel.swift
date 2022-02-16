@@ -21,17 +21,19 @@ final class UserModificationViewViewModel: ObservableObject {
 
 // MARK: - Actions
 extension UserModificationViewViewModel {
-    func saveUser() {
+    func saveUser(_ pseudo: String) {
         if hasModifiedImage {
-            sendUserImage()
+            modifyImage()
+            modifyPseudo(pseudo: pseudo)
+        } else {
+            modifyPseudo(pseudo: pseudo, shouldShowAlert: true)
         }
-        // Verify the change of the name
     }
 }
 
 // MARK: - Private Methods
 extension UserModificationViewViewModel {
-    private func sendUserImage() {
+    private func modifyImage() {
         if image != UIImage(named: Assets.imagePlaceholder)! {
             StorageService.shared.uploadImage(image, for: .user) { downloadURL in
                 guard var newCurrentUser = API.User.CURRENT_USER_OBJECT else { return }
@@ -46,6 +48,20 @@ extension UserModificationViewViewModel {
             } onError: { error in
                 self.pushFinish(title: "Erreur lors de la sauvegarde")
                 print("======= \(#function) =====", error)
+            }
+        }
+    }
+    
+    private func modifyPseudo(pseudo: String, shouldShowAlert: Bool = false) {
+        if pseudo != API.User.CURRENT_USER_OBJECT?.pseudo {
+            guard var newUser = API.User.CURRENT_USER_OBJECT else { return }
+            newUser.pseudo = pseudo
+            API.User.session.updateCurrentUser(newUser) {
+                if shouldShowAlert {
+                    self.pushFinish(title: "Sauvegarde réussie")
+                }
+            } onError: { error in
+                self.pushFinish(title: "Erreur lors de la sauvegarde")
             }
         }
     }

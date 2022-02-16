@@ -30,7 +30,7 @@ struct UserModificationView: View {
                 }
                 
                 Button {
-                    viewModel.saveUser()
+                    viewModel.saveUser(profileState.user.pseudo)
                 } label: {
                     Text("Sauvegarder")
                         .font(.system(size: 14))
