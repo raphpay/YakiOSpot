@@ -96,7 +96,7 @@ struct UserModificationView: View {
                     .mask(Circle())
             }
         }
-        .overlay(BadgeIcon(user: $profileState.user))
+        .overlay(BadgeIcon(user: $profileState.user), alignment: .topTrailing)
     }
 }
 

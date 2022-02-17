@@ -32,17 +32,15 @@ struct BadgeIcon: View {
     }
     
     var body: some View {
-        VStack {
-            HStack {
-                Spacer()
-                Image(systemName: isMember ? "checkmark.circle.fill" : "xmark.circle.fill")
-                    .resizable()
-                    .frame(width: size, height: size)
-//                    .symbolRenderingMode(.hierarchical)
-                    .foregroundColor(badgeColor)
-            }
+        ZStack {
+            Circle()
+                .foregroundColor(badgeColor)
             
-            Spacer()
+            Image(systemName: isMember ? "checkmark" : "xmark")
+                .resizable()
+                .frame(width: size / 1.8, height: size / 1.8)
+                .foregroundColor(.white)
         }
+        .frame(width: size, height: size)
     }
 }

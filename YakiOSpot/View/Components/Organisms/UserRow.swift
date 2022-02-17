@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import SDWebImageSwiftUI
 
 struct UserRow: View {
     
@@ -15,12 +16,7 @@ struct UserRow: View {
     
     var body: some View {
         HStack(alignment: .center, spacing: 28) {
-            Image(Assets.imagePlaceholder)
-                .resizable()
-                .frame(width: imageSize, height: imageSize)
-                .aspectRatio(contentMode: .fill)
-                .mask(Circle())
-//                .overlay(BadgeIcon(), alignment: .topTrailing)
+            profileImage
             
             VStack(alignment: .leading, spacing: 8) {
                 Text(profileState.user.pseudo)
@@ -42,5 +38,25 @@ struct UserRow: View {
         }
         .frame(maxWidth: .infinity, alignment: .center)
         .padding(.horizontal)
+    }
+    
+    var profileImage: some View {
+        ZStack {
+            if let photoURL = profileState.user.photoURL {
+                WebImage(url: URL(string: photoURL))
+                    .resizable()
+                    .placeholder(Image(Assets.imagePlaceholder))
+                    .frame(width: imageSize, height: imageSize)
+                    .aspectRatio(contentMode: .fill)
+                    .mask(Circle())
+            } else {
+                Image(Assets.imagePlaceholder)
+                    .resizable()
+                    .frame(width: imageSize, height: imageSize)
+                    .aspectRatio(contentMode: .fill)
+                    .mask(Circle())
+            }
+        }
+        .overlay(BadgeIcon(user: $profileState.user, size: 25), alignment: .topTrailing)
     }
 }
