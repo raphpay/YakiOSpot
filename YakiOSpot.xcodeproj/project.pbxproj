@@ -10,6 +10,7 @@
 		2772EEC67204D9EBFB56E339 /* Pods_YakiOSpotUnitTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99892E6DAB45A7B613EC893C /* Pods_YakiOSpotUnitTests.framework */; };
 		614835F073F3162A3FE83EBB /* Pods_YakiOSpot.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6B444877AA95C6A72C1441CF /* Pods_YakiOSpot.framework */; };
 		860598CC2763AEC7000ACB3B /* HomeTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860598CB2763AEC7000ACB3B /* HomeTabView.swift */; };
+		8619BBE527BE273700F55D4A /* BadgeIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8619BBE427BE273700F55D4A /* BadgeIcon.swift */; };
 		8622BAFF277F0D4D0046680F /* TrackViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8622BAFE277F0D4D0046680F /* TrackViewViewModel.swift */; };
 		862D8433273D2AE60081BA83 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 862D8432273D2AE60081BA83 /* API.swift */; };
 		862D8435273D2BC30081BA83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 862D8434273D2BC30081BA83 /* GoogleService-Info.plist */; };
@@ -111,6 +112,7 @@
 		6B444877AA95C6A72C1441CF /* Pods_YakiOSpot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YakiOSpot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F8464A06CF1375F7807B7AD /* Pods-YakiOSpot.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-YakiOSpot.release.xcconfig"; path = "Target Support Files/Pods-YakiOSpot/Pods-YakiOSpot.release.xcconfig"; sourceTree = "<group>"; };
 		860598CB2763AEC7000ACB3B /* HomeTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTabView.swift; sourceTree = "<group>"; };
+		8619BBE427BE273700F55D4A /* BadgeIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeIcon.swift; sourceTree = "<group>"; };
 		8622BAFE277F0D4D0046680F /* TrackViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackViewViewModel.swift; sourceTree = "<group>"; };
 		86266F3E2775DA3D002900EF /* YakiOSpot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = YakiOSpot.entitlements; sourceTree = "<group>"; };
 		862D8432273D2AE60081BA83 /* API.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
@@ -320,6 +322,7 @@
 				86CCA161279F1C770074AA46 /* RoundedButton.swift */,
 				869BF2B627A59F2200FBCD94 /* StatusButton.swift */,
 				86FFC86C27A852F40080480D /* LoadingText.swift */,
+				8619BBE427BE273700F55D4A /* BadgeIcon.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -863,6 +866,7 @@
 				86D22D4F27A70C4F0055477A /* BikeCreationViewViewModel.swift in Sources */,
 				863507E92763C14F00145505 /* InfoView.swift in Sources */,
 				86F81D202741772200AB69DB /* RegistrationViewViewModel.swift in Sources */,
+				8619BBE527BE273700F55D4A /* BadgeIcon.swift in Sources */,
 				8680DFBD27BD7681001EA217 /* Color+Ext.swift in Sources */,
 				86ADDE0B2770EFAB0063BE29 /* HomeTabViewViewModel.swift in Sources */,
 				86F81D242741800400AB69DB /* Spot.swift in Sources */,

@@ -29,9 +29,15 @@ struct User: Identifiable, Codable, Hashable {
     var sessions: [String]?
     var bike: Bike?
     var photoURL: String?
+    var isMember: Bool?
+    var memberType: MemberType?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
+    }
+    
+    enum MemberType: String, Codable {
+        case rider, ambassador, staff, dev
     }
 }
 
