@@ -14,6 +14,12 @@ struct UserRow: View {
     
     private let imageSize = CGFloat(85)
     
+    var userMembershipType: String {
+        guard let memberType = profileState.user.memberType,
+              profileState.user.isMember == true else { return "Non adhérent" }
+        return memberType.description
+    }
+    
     var body: some View {
         HStack(alignment: .center, spacing: 28) {
             profileImage
@@ -23,7 +29,7 @@ struct UserRow: View {
                     .font(.title)
                     .fontWeight(.bold)
                 
-                Text("Rider")
+                Text(userMembershipType)
                     .font(.headline)
                     .foregroundColor(.secondary)
             }

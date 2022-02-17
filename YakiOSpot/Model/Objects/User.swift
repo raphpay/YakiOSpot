@@ -38,6 +38,19 @@ struct User: Identifiable, Codable, Hashable {
     
     enum MemberType: String, Codable {
         case rider, ambassador, staff, dev
+        
+        var description: String {
+            switch self {
+            case .ambassador:
+                return "Ambassadeur"
+            case .staff:
+                return "Spot Boss"
+            case .dev:
+                return "Développeur de l'app"
+            default:
+                return "Rider adhérent"
+            }
+        }
     }
 }
 
