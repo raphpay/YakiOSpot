@@ -115,6 +115,11 @@ extension ProfileState {
             print("getSpot toggleUserPresence error")
         }
     }
+
+    func updateMembership(isMember: Bool, memberType: User.MemberType) {
+        self.user.isMember = isMember
+        self.user.memberType = memberType
+    }
 }
 
 // MARK: - Private Method

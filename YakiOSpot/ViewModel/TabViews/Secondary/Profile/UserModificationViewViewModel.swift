@@ -17,6 +17,7 @@ final class UserModificationViewViewModel: ObservableObject {
     @Published var shouldPresentDialog = false
     @Published var alertTitle = ""
     @Published var showAlert = false
+    @Published var showMembershipAlert = false
 }
 
 // MARK: - Actions
@@ -28,6 +29,23 @@ extension UserModificationViewViewModel {
         } else {
             modifyPseudo(pseudo: pseudo, shouldShowAlert: true)
         }
+    }
+    
+    func certifyMembership(onSuccess: @escaping ((_ isMember: Bool, _ memberType: User.MemberType) -> Void)) {
+        // Update user status
+        guard var currentNewUser = API.User.CURRENT_USER_OBJECT else { return }
+        currentNewUser.isMember = true
+        if currentNewUser.memberType == nil {
+            currentNewUser.memberType = .rider
+        }
+        // Send to firebase
+        API.User.session.updateCurrentUser(currentNewUser) {
+            print("======= \(#function) success =====")
+            onSuccess(currentNewUser.isMember!, currentNewUser.memberType!)
+        } onError: { error in
+            print("======= \(#function) =====", error)
+        }
+
     }
 }
 

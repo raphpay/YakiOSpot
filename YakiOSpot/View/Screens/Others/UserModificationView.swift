@@ -41,7 +41,7 @@ struct UserModificationView: View {
             FormTextField(isSecured: false, placeholder: "Pseudo", text: $profileState.user.pseudo, submitLabel: .next) {
                 viewModel.saveUser(profileState.user.pseudo)
             }
-            ActionForm(profileState: profileState)
+            ActionForm(profileState: profileState, showMembershipAlert: $viewModel.showMembershipAlert)
         }
         .onTapGesture {
             hideKeyboard()
@@ -67,6 +67,14 @@ struct UserModificationView: View {
             Button("OK", role: .cancel) {
                 dismiss()
             }
+        }
+        .alert("Es-tu vraiment adhérent au DCF ?", isPresented: $viewModel.showMembershipAlert) {
+            Button("Oui !") {
+                viewModel.certifyMembership { isMember, memberType in
+                    profileState.updateMembership(isMember: isMember, memberType: memberType)
+                }
+            }
+            Button("Non pas encore 🤭") { }
         }
     }
     
@@ -95,16 +103,22 @@ struct UserModificationView: View {
 struct ActionForm: View {
     
     @ObservedObject var profileState: ProfileState
+    @Binding var showMembershipAlert: Bool
+    
+    var isMember: Bool {
+        guard let bool = profileState.user.isMember else { return false }
+        return bool
+    }
     
     var body: some View {
         VStack(alignment: .leading) {
             Button {
-                //
+                showMembershipAlert.toggle()
             } label: {
-                Text("Je certifie être adhérent")
+                Text(isMember ? "Je suis déjà adhérent !" : "Je certifie être adhérent")
                     .font(.system(size: 16))
-                    .foregroundColor(.blue)
-            }
+                    .foregroundColor(isMember ? .gray : .blue)
+            }.disabled(isMember)
             Divider()
             
             Button {
