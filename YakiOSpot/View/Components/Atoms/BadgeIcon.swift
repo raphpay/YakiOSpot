@@ -13,6 +13,7 @@ struct BadgeIcon: View {
     var size = CGFloat(30)
     
     var badgeColor: Color {
+        guard user.isMember == true else { return .red }
         switch user.memberType {
         case .rider:
             return .green
