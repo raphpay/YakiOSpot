@@ -160,7 +160,7 @@ struct UserModificationView: View {
                     viewModel.certifyMembership { isMember, memberType in
                         profileState.updateMembership(isMember: isMember, memberType: memberType)
                     }
-                    viewModel.showAlert = false
+                    viewModel.toggleAlert()
                 }
                 Divider()
                 Button("Non pas encore 🤭", role: .cancel) { viewModel.showAlert = false }
@@ -169,9 +169,9 @@ struct UserModificationView: View {
                 TextField("Adresse mail", text: $profileState.user.mail)
                     .padding()
                 Divider()
-                Button("Envoyer un mail") { viewModel.showAlert = false }
+                Button("Envoyer un mail") { viewModel.toggleAlert() }
                 Divider()
-                Button("Annuler", role: .cancel) { viewModel.showAlert = false }
+                Button("Annuler", role: .cancel) { viewModel.toggleAlert() }
                 Divider()
             case .logout:
                 Divider()
@@ -179,10 +179,10 @@ struct UserModificationView: View {
                     viewModel.certifyMembership { isMember, memberType in
                         profileState.updateMembership(isMember: isMember, memberType: memberType)
                     }
-                    viewModel.showAlert = false
+                    viewModel.toggleAlert()
                 }
                 Divider()
-                Button("Pas maintenant", role: .cancel) { viewModel.showAlert = false }
+                Button("Pas maintenant", role: .cancel) { viewModel.toggleAlert() }
                 Divider()
             default:
                 Divider()

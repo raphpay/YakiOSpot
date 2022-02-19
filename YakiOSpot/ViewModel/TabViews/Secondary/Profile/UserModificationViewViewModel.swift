@@ -69,7 +69,7 @@ extension UserModificationViewViewModel {
         }
     }
     
-    func toggleAlert(type: UserModificationViewViewModel.AlertType?) {
+    func toggleAlert(type: UserModificationViewViewModel.AlertType? = nil) {
         withAnimation {
             if let type = type {
                 self.showAlert = true
