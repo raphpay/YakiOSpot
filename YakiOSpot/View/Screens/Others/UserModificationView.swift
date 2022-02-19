@@ -14,14 +14,65 @@ struct UserModificationView: View {
     @ObservedObject var profileState: ProfileState
     @StateObject private var viewModel = UserModificationViewViewModel()
     
+    @State private var alertType: AlertType = .image
+    
+    enum AlertType {
+        case dialog, image, membership, password, logout
+    }
+    
     private let imageSize = CGFloat(135)
+    
+    var isMember: Bool {
+        guard let bool = profileState.user.isMember else { return false }
+        return bool
+    }
     
     var body: some View {
         ScrollView {
+            
             profileImage
+            
+            FormTextField(isSecured: false, placeholder: "Pseudo", text: $profileState.user.pseudo, submitLabel: .next) {
+                viewModel.saveUser(profileState.user.pseudo)
+            }
+            
+            actionsForm
+        }
+        .onTapGesture {
+            hideKeyboard()
+        }
+        .navigationTitle("Modifier")
+        .confirmationDialog("Choisir une photo", isPresented: $viewModel.shouldPresentDialog) { alertItem }
+        .sheet(isPresented: $viewModel.showSheet) {
+            ImagePicker(sourceType: viewModel.selection, selectedImage: $viewModel.image, hasModifiedImage: $viewModel.hasModifiedImage, showPicker: $viewModel.showSheet)
+        }
+    }
+    
+    var profileImage: some View {
+        VStack {
+            VStack {
+                if let photoURL = profileState.user.photoURL,
+                   viewModel.hasModifiedImage == false {
+                    WebImage(url: URL(string: photoURL))
+                        .resizable()
+                        .placeholder(Image(Assets.imagePlaceholder))
+                        .frame(width: imageSize, height: imageSize)
+                        .aspectRatio(contentMode: .fill)
+                        .mask(Circle())
+                } else {
+                    Image(uiImage: viewModel.image)
+                        .resizable()
+                        .frame(width: imageSize, height: imageSize)
+                        .aspectRatio(contentMode: .fill)
+                        .mask(Circle())
+                }
+            }
+            .overlay(BadgeIcon(user: $profileState.user), alignment: .topTrailing)
+            
             VStack(alignment: .center, spacing: 10) {
                 Button {
                     viewModel.shouldPresentDialog = true
+                    alertType = .image
                 } label: {
                     Text("Modifier la photo de profil")
                         .font(.system(size: 14))
@@ -38,82 +89,14 @@ struct UserModificationView: View {
                         .foregroundColor(.blue)
                 }
             }
-            FormTextField(isSecured: false, placeholder: "Pseudo", text: $profileState.user.pseudo, submitLabel: .next) {
-                viewModel.saveUser(profileState.user.pseudo)
-            }
-            ActionForm(profileState: profileState, showMembershipAlert: $viewModel.showMembershipAlert)
         }
-        .onTapGesture {
-            hideKeyboard()
-        }
-        .navigationTitle("Modifier")
-        .confirmationDialog("Choisir une photo", isPresented: $viewModel.shouldPresentDialog) {
-            Button("Camera") {
-                self.viewModel.selection = .camera
-                self.viewModel.showSheet = true
-                self.viewModel.hasModifiedImage = true
-            }
-            Button("Bibliothèque") {
-                self.viewModel.selection = .photoLibrary
-                self.viewModel.showSheet = true
-                self.viewModel.hasModifiedImage = true
-            }
-            Button("Annuler", role: .cancel) {}
-        }
-        .sheet(isPresented: $viewModel.showSheet) {
-            ImagePicker(sourceType: viewModel.selection, selectedImage: $viewModel.image, hasModifiedImage: $viewModel.hasModifiedImage, showPicker: $viewModel.showSheet)
-        }
-        .alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) {
-            Button("OK", role: .cancel) {
-                dismiss()
-            }
-        }
-        .alert("Es-tu vraiment adhérent au DCF ?", isPresented: $viewModel.showMembershipAlert) {
-            Button("Oui !") {
-                viewModel.certifyMembership { isMember, memberType in
-                    profileState.updateMembership(isMember: isMember, memberType: memberType)
-                }
-            }
-            Button("Non pas encore 🤭") { }
-        }
-    }
-    
-    var profileImage: some View {
-        VStack {
-            if let photoURL = profileState.user.photoURL,
-               viewModel.hasModifiedImage == false {
-                WebImage(url: URL(string: photoURL))
-                    .resizable()
-                    .placeholder(Image(Assets.imagePlaceholder))
-                    .frame(width: imageSize, height: imageSize)
-                    .aspectRatio(contentMode: .fill)
-                    .mask(Circle())
-            } else {
-                Image(uiImage: viewModel.image)
-                    .resizable()
-                    .frame(width: imageSize, height: imageSize)
-                    .aspectRatio(contentMode: .fill)
-                    .mask(Circle())
-            }
-        }
-        .overlay(BadgeIcon(user: $profileState.user), alignment: .topTrailing)
-    }
-}
+    }    
 
-struct ActionForm: View {
-    
-    @ObservedObject var profileState: ProfileState
-    @Binding var showMembershipAlert: Bool
-    
-    var isMember: Bool {
-        guard let bool = profileState.user.isMember else { return false }
-        return bool
-    }
-    
-    var body: some View {
+    var actionsForm: some View {
         VStack(alignment: .leading) {
             Button {
-                showMembershipAlert.toggle()
+                viewModel.shouldPresentDialog = true
+                alertType = .membership
             } label: {
                 Text(isMember ? "Je suis déjà adhérent !" : "Je certifie être adhérent")
                     .font(.system(size: 16))
@@ -122,7 +105,8 @@ struct ActionForm: View {
             Divider()
             
             Button {
-                //
+                viewModel.shouldPresentDialog = true
+                alertType = .password
             } label: {
                 Text("Mot de passe oublié")
                     .font(.system(size: 16))
@@ -131,7 +115,8 @@ struct ActionForm: View {
             Divider()
             
             Button {
-                //
+                viewModel.shouldPresentDialog = true
+                alertType = .logout
             } label: {
                 Text("Déconnexion")
                     .font(.system(size: 16))
@@ -141,5 +126,43 @@ struct ActionForm: View {
         .frame(width: 333)
         .padding()
         .background(RoundedRectangle(cornerRadius: 10, style: .continuous).foregroundColor(.ui.gray).opacity(0.2))
+    }
+    
+    var alertItem: some View {
+        VStack {
+            switch alertType {
+            case .dialog:
+                Button("OK") { dismiss() }
+            case .image:
+                Button("Camera") {
+                    self.viewModel.selection = .camera
+                    self.viewModel.showSheet = true
+                    self.viewModel.hasModifiedImage = true
+                }
+                Button("Bibliothèque") {
+                    self.viewModel.selection = .photoLibrary
+                    self.viewModel.showSheet = true
+                    self.viewModel.hasModifiedImage = true
+                }
+                Button("Annuler", role: .cancel) {}
+            case .membership:
+                Button("Oui !") {
+                    viewModel.certifyMembership { isMember, memberType in
+                        profileState.updateMembership(isMember: isMember, memberType: memberType)
+                    }
+                }
+                Button("Non pas encore 🤭", role: .cancel) { }
+            case .password:
+                Button("Envoyer un mail") { }
+                Button("Annuler", role: .cancel) { }
+            case .logout:
+                Button("Oui !", role: .destructive) {
+                    viewModel.certifyMembership { isMember, memberType in
+                        profileState.updateMembership(isMember: isMember, memberType: memberType)
+                    }
+                }
+                Button("Pas maintenant", role: .cancel) { }
+            }
+        }
     }
 }
