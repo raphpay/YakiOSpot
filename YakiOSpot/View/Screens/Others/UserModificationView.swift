@@ -12,6 +12,7 @@ struct UserModificationView: View {
     
     // MARK: - Properties
     @Environment(\.dismiss) var dismiss
+    @EnvironmentObject var appState: AppState
     @ObservedObject var profileState: ProfileState
     @StateObject private var viewModel = UserModificationViewViewModel()
     
@@ -177,12 +178,7 @@ struct UserModificationView: View {
                 Divider()
             case .logout:
                 Divider()
-                Button("Oui !", role: .destructive) {
-                    viewModel.certifyMembership { isMember, memberType in
-                        profileState.updateMembership(isMember: isMember, memberType: memberType)
-                    }
-                    viewModel.toggleAlert()
-                }
+                Button("Oui !", role: .destructive) { appState.logOut() }
                 Divider()
                 Button("Pas maintenant", role: .cancel) { viewModel.toggleAlert() }
                 Divider()
