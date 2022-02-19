@@ -18,15 +18,6 @@ struct YakiView: View {
                 Text(SampleText.features)
                     .font(.system(size: 16, weight: .regular))
                     .multilineTextAlignment(.center)
-                Button {
-                    viewModel.toggleUserPresence()
-                } label: {
-                    RoundedButton(title: "Je suis au spot")
-                }
-                
-                NavigationLink(destination: PublishSessionView()) {
-                    RoundedButton(title: "Je prévois une session", backgroundColor: .orange)
-                }
 
                 List {
                     Section {
