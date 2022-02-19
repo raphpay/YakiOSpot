@@ -10,15 +10,10 @@ import SDWebImageSwiftUI
 
 struct UserModificationView: View {
     
+    // MARK: - Properties
     @Environment(\.dismiss) var dismiss
     @ObservedObject var profileState: ProfileState
     @StateObject private var viewModel = UserModificationViewViewModel()
-    
-    @State private var alertType: AlertType = .image
-    
-    enum AlertType {
-        case dialog, image, membership, password, logout
-    }
     
     private let imageSize = CGFloat(135)
     
@@ -27,6 +22,8 @@ struct UserModificationView: View {
         return bool
     }
     
+    
+    // MARK: - Main component
     var body: some View {
         ScrollView {
             
@@ -42,12 +39,13 @@ struct UserModificationView: View {
             hideKeyboard()
         }
         .navigationTitle("Modifier")
-        .confirmationDialog("Choisir une photo", isPresented: $viewModel.shouldPresentDialog) { alertItem }
+        .confirmationDialog("Choisir une photo", isPresented: $viewModel.showDialog) { alertItem }
         .sheet(isPresented: $viewModel.showSheet) {
             ImagePicker(sourceType: viewModel.selection, selectedImage: $viewModel.image, hasModifiedImage: $viewModel.hasModifiedImage, showPicker: $viewModel.showSheet)
         }
     }
     
+    // MARK: - Elements
     var profileImage: some View {
         VStack {
             VStack {
@@ -71,8 +69,8 @@ struct UserModificationView: View {
             
             VStack(alignment: .center, spacing: 10) {
                 Button {
-                    viewModel.shouldPresentDialog = true
-                    alertType = .image
+                    viewModel.showDialog = true
+                    viewModel.alertType = .image
                 } label: {
                     Text("Modifier la photo de profil")
                         .font(.system(size: 14))
@@ -90,13 +88,13 @@ struct UserModificationView: View {
                 }
             }
         }
-    }    
+    }
 
     var actionsForm: some View {
         VStack(alignment: .leading) {
             Button {
-                viewModel.shouldPresentDialog = true
-                alertType = .membership
+                viewModel.showDialog = true
+                viewModel.alertType = .membership
             } label: {
                 Text(isMember ? "Je suis déjà adhérent !" : "Je certifie être adhérent")
                     .font(.system(size: 16))
@@ -105,8 +103,8 @@ struct UserModificationView: View {
             Divider()
             
             Button {
-                viewModel.shouldPresentDialog = true
-                alertType = .password
+                viewModel.showDialog = true
+                viewModel.alertType = .password
             } label: {
                 Text("Mot de passe oublié")
                     .font(.system(size: 16))
@@ -115,8 +113,8 @@ struct UserModificationView: View {
             Divider()
             
             Button {
-                viewModel.shouldPresentDialog = true
-                alertType = .logout
+                viewModel.showDialog = true
+                viewModel.alertType = .logout
             } label: {
                 Text("Déconnexion")
                     .font(.system(size: 16))
@@ -130,7 +128,7 @@ struct UserModificationView: View {
     
     var alertItem: some View {
         VStack {
-            switch alertType {
+            switch viewModel.alertType {
             case .dialog:
                 Button("OK") { dismiss() }
             case .image:

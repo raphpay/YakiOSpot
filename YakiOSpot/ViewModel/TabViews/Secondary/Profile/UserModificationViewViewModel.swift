@@ -14,10 +14,13 @@ final class UserModificationViewViewModel: ObservableObject {
     @Published var selection: UIImagePickerController.SourceType = .camera
     @Published var hasModifiedImage = false
     @Published var image: UIImage = UIImage(named: Assets.imagePlaceholder)!
-    @Published var shouldPresentDialog = false
-    @Published var alertTitle = ""
-    @Published var showAlert = false
-    @Published var showMembershipAlert = false
+    @Published var showDialog = false
+    @Published var dialogTitle = ""
+    @Published var alertType: AlertType = .image
+    
+    enum AlertType {
+        case dialog, image, membership, password, logout
+    }
 }
 
 // MARK: - Actions
@@ -85,7 +88,8 @@ extension UserModificationViewViewModel {
     }
     
     private func pushFinish(title: String) {
-        alertTitle = title
-        showAlert.toggle()
+        dialogTitle = title
+        showDialog.toggle()
+        alertType = .dialog
     }
 }
