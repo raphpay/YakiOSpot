@@ -52,11 +52,13 @@ struct BikeCreationView: View {
                 WebImage(url: URL(string: bikeURL))
                     .resizable()
                     .placeholder(Image(Assets.noBike))
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: viewModel.imageSize, height: viewModel.imageSize)
                     .clipShape(RoundedRectangle(cornerRadius: 10))
             } else {
                 Image(uiImage: viewModel.image)
                     .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: viewModel.imageSize, height: viewModel.imageSize)
                     .background(Color.black.opacity(0.2))
                     .clipShape(RoundedRectangle(cornerRadius: 10))

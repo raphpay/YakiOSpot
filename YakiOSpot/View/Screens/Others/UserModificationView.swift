@@ -45,6 +45,7 @@ struct UserModificationView: View {
         }
     }
     
+    
     // MARK: - Elements
     var profileImage: some View {
         VStack {
@@ -54,14 +55,14 @@ struct UserModificationView: View {
                     WebImage(url: URL(string: photoURL))
                         .resizable()
                         .placeholder(Image(Assets.imagePlaceholder))
-                        .frame(width: imageSize, height: imageSize)
                         .aspectRatio(contentMode: .fill)
+                        .frame(width: imageSize, height: imageSize)
                         .mask(Circle())
                 } else {
                     Image(uiImage: viewModel.image)
                         .resizable()
-                        .frame(width: imageSize, height: imageSize)
                         .aspectRatio(contentMode: .fill)
+                        .frame(width: imageSize, height: imageSize)
                         .mask(Circle())
                 }
             }

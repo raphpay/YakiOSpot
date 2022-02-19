@@ -26,6 +26,7 @@ struct BikeRow: View {
                 WebImage(url: URL(string: bikeURL))
                     .resizable()
                     .placeholder(Image(Assets.noBike))
+                    .aspectRatio(contentMode: .fill)
                     .bikeImageStyle()
             } else {
                 placeholderImage
