@@ -11,8 +11,6 @@ import SDWebImageSwiftUI
 struct ProfileView: View {
     
     @StateObject private var profileState = ProfileState()
-    // TODO: Put this property in app state
-    @Binding var isConnected: Bool
     
     var body: some View {
         ScrollView {
@@ -71,15 +69,6 @@ struct ProfileView: View {
             }
             NavigationLink(destination: BikeCreationView(profileState: profileState),
                            isActive: $profileState.showBikeCreation) { }
-        }
-    }
-    
-    // TODO: Place this method in a state
-    func didTapLogOut() {
-        API.Auth.session.signOut {
-            isConnected = false
-        } onError: { error in
-            isConnected = true
         }
     }
 }

@@ -25,9 +25,9 @@ struct StartingView: View {
             Spacer(minLength: 100)
             ZStack {
                 if selection == 0 {
-                    ConnexionView(selection: $selection, appState: appState)
+                    ConnexionView(selection: $selection)
                 } else if selection == 1 {
-                    RegistrationView(selection: $selection, appState: appState)
+                    RegistrationView(selection: $selection)
                 }
             }
         }

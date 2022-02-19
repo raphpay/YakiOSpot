@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FeedView: View {
     
-    @ObservedObject var appState: AppState
+    @EnvironmentObject var appState: AppState
     
     @State var peoplePresent: [User] = []
     
@@ -46,18 +46,12 @@ struct FeedView: View {
 //            }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: ProfileView(isConnected: $appState.isConnected)) {
+                    NavigationLink(destination: ProfileView()) {
                         Image(systemName: "person.circle")
                             .foregroundColor(Color(UIColor.label))
                     }
                 }
             }
         }
-    }
-}
-
-struct FeedView_Previews: PreviewProvider {
-    static var previews: some View {
-        FeedView(appState: AppState())
     }
 }

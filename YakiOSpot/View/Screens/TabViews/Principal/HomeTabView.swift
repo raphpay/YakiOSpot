@@ -15,11 +15,11 @@ struct HomeTabView: View {
     
     var body: some View {
         TabView {
-            YakiView(appState: appState)
+            YakiView()
                 .tabItem {
                     Label("Yaki", systemImage: "bicycle")
                 }
-            InfoView(appState: appState)
+            InfoView()
                 .tabItem {
                     Label("Infos", systemImage: "info.circle")
                 }

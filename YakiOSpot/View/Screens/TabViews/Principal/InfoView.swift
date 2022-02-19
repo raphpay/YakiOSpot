@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct InfoView: View {
-    @ObservedObject var appState: AppState
+    @EnvironmentObject var appState: AppState
     
     var body: some View {
         NavigationView {
@@ -50,19 +50,13 @@ struct InfoView: View {
             .navigationBarTitle("DCF Cornillon")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: ProfileView(isConnected: $appState.isConnected)) {
+                    NavigationLink(destination: ProfileView()) {
                         Image(systemName: "person.circle")
                             .foregroundColor(Color(UIColor.label))
                     }
                 }
             }
         }
-    }
-}
-
-struct InfoView_Previews: PreviewProvider {
-    static var previews: some View {
-        InfoView(appState: AppState())
     }
 }
 
