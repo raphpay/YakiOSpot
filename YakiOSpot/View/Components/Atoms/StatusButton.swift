@@ -30,6 +30,6 @@ struct StatusButton: View {
                 .overlay(isSelected ? nil : RoundedRectangle(cornerRadius: 20, style: .continuous).foregroundColor(.white.opacity(0.5)))
                 .shadow(radius: 8)
         }
-
+        .disabled(isSelected)
     }
 }

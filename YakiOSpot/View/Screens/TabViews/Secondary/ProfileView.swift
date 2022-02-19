@@ -40,7 +40,7 @@ struct ProfileView: View {
                     profileState.didTapHereButton()
                 }
                 Spacer()
-                StatusButton(isSelected: $profileState.userIsNotPresent, title: "🚶‍♂️ Plus au spot", color: .red) {
+                StatusButton(isSelected: $profileState.userIsPresent.not, title: "🚶‍♂️ Plus au spot", color: .red) {
                     profileState.didTapLeavingButton()
                 }
             }

@@ -47,11 +47,15 @@ extension ProfileState {
                 self.bike = bike
                 self.downloadBikeImageData()
             }
-            self.updatePresence(user.isPresent)
+            if let userPresence = user.isPresent {
+                self.userIsPresent = userPresence
+            } else {
+                self.userIsPresent = false
+            }
             self.updateSessions(user.sessions)
         } onError: { error in
             print("======= \(#function) =====", error)
-            self.updatePresence(false)
+            self.userIsPresent = false
         }
     }
     
@@ -68,51 +72,40 @@ extension ProfileState {
 // MARK: - Actions
 extension ProfileState {
     func didTapHereButton() {
-        if buttonSelected != 0 {
-            showAlert.toggle()
-            alertTitle = "Tu es au spot ?"
-            agreeButtonText = "Oui, je suis là !"
-            cancelButtonText = "Non, je ne suis pas là"
-        }
+        showAlert.toggle()
+        alertTitle = "Tu es au spot ?"
+        agreeButtonText = "Oui, je suis là !"
+        cancelButtonText = "Non, je ne suis pas là"
     }
     
     func didTapLeavingButton() {
-        if buttonSelected != 1 {
-            showAlert.toggle()
-            alertTitle = "Tu pars déjà ?"
-            agreeButtonText = "Oui, je pars !"
-            cancelButtonText = "Je suis toujours là"
-        }
+        showAlert.toggle()
+        alertTitle = "Tu pars déjà ?"
+        agreeButtonText = "Oui, je pars !"
+        cancelButtonText = "Je suis toujours là"
     }
     
     func toggleUserPresence() {
         guard var user = API.User.CURRENT_USER_OBJECT else { return }
+        // TODO: The toggle method can be refactored. Maybe we don't need that much code to toggle user presence.
+        // Consider using the `updateCurrentUser` method
         API.User.session.toggleUserPresence(user) { isPresent in
-            // Update local properties
-            self.updatePresence(isPresent)
             // Toggle user object presence
             user.isPresent = isPresent
+            self.userIsPresent = isPresent
             API.Spot.session.getSpot { spot in
                 API.Spot.session.toggleUserPresence(from: spot, user: user) {
-                    // Send notifications to every one
                     if isPresent {
-                        API.Token.session.getAllTokens { tokens in
-                            for token in tokens {
-//                               PushNotificationSender.shared.sendPresenceNotification(to: token, from: user.pseudo)
-                            }
-                        } onError: { error in
-                            print("getAllTokens error", error)
-                        }
+//                        sendPresenceNotification(from: user.pseudo)
                     }
                 } onError: { error in
-                    print("toggleUserPresence error")
+                    print("======= \(#function) toggling user presence from spot =====", error)
                 }
             } onError: { error in
-                print("getSpot", error)
+                print("======= \(#function) getting spot =====", error)
             }
         } onError: { error in
-            // Show alert
-            print("getSpot toggleUserPresence error")
+            print("======= \(#function) toggling user presence  =====", error)
         }
     }
 
@@ -124,19 +117,6 @@ extension ProfileState {
 
 // MARK: - Private Method
 extension ProfileState {
-    private func updatePresence(_ presence: Bool?) {
-        if let presence = presence,
-           presence == true {
-            self.userIsPresent = true
-            self.userIsNotPresent = false
-            buttonSelected = 0
-        } else {
-            self.userIsPresent = false
-            self.userIsNotPresent = true
-            buttonSelected = 1
-        }
-    }
-    
     private func updateSessions(_ array: [String]?) {
         if let sessionIDs = array,
            !sessionIDs.isEmpty {
@@ -148,6 +128,16 @@ extension ProfileState {
 
         } else {
             sessions = []
+        }
+    }
+    
+    private func sendPresenceNotification(from pseudo: String) {
+        API.Token.session.getAllTokens { tokens in
+            for token in tokens {
+                PushNotificationSender.shared.sendPresenceNotification(to: token, from: pseudo)
+            }
+        } onError: { error in
+            print("getAllTokens error", error)
         }
     }
 }
