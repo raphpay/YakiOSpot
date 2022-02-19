@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 final class UserModificationViewViewModel: ObservableObject {
     // MARK: - Properties
@@ -16,13 +17,28 @@ final class UserModificationViewViewModel: ObservableObject {
     @Published var image: UIImage = UIImage(named: Assets.imagePlaceholder)!
     @Published var showDialog = false
     @Published var dialogTitle = ""
-    @Published var alertType: AlertType = .image
+    @Published var alertType: AlertType = .pushSuccess
     @Published var showSpinner = false
     @Published var showAlert = false
     @Published var alertTitle = ""
     
     enum AlertType {
-        case dialog, image, membership, password, logout
+        case pushSuccess, pushError, membership, password, logout
+        
+        var title: String {
+            switch self {
+            case .pushSuccess:
+                return "Sauvegarde réussie"
+            case .pushError:
+                return "Erreur lors de la sauvegarde"
+            case .membership:
+                return "Tu es adhérent ?"
+            case .password:
+                return "Envoi d'un nouveau mot de passe"
+            case .logout:
+                return "Tu veux te déconnecter ?"
+            }
+        }
     }
 }
 
@@ -52,6 +68,18 @@ extension UserModificationViewViewModel {
             print("======= \(#function) =====", error)
         }
     }
+    
+    func toggleAlert(type: UserModificationViewViewModel.AlertType?) {
+        withAnimation {
+            if let type = type {
+                self.showAlert = true
+                self.alertType = type
+                self.alertTitle = type.title
+            } else {
+                self.showAlert = false
+            }
+        }
+    }
 }
 
 // MARK: - Private Methods
@@ -65,11 +93,11 @@ extension UserModificationViewViewModel {
                     self.modifyPseudo(pseudo: pseudo)
                     print("======= \(#function) success =====", newCurrentUser)
                 } onError: { error in
-                    self.pushFinish(title: "Erreur lors de la sauvegarde")
+                    self.pushFinish(result: .pushError)
                     print("======= \(#function) =====", error)
                 }
             } onError: { error in
-                self.pushFinish(title: "Erreur lors de la sauvegarde")
+                self.pushFinish(result: .pushError)
                 print("======= \(#function) =====", error)
             }
         } else {
@@ -82,18 +110,17 @@ extension UserModificationViewViewModel {
             guard var newUser = API.User.CURRENT_USER_OBJECT else { return }
             newUser.pseudo = pseudo
             API.User.session.updateCurrentUser(newUser) {
-                self.pushFinish(title: "Sauvegarde réussie")
+                self.pushFinish(result: .pushSuccess)
             } onError: { error in
-                self.pushFinish(title: "Erreur lors de la sauvegarde")
+                self.pushFinish(result: .pushError)
             }
         } else {
             showSpinner = false
         }
     }
     
-    private func pushFinish(title: String) {
+    private func pushFinish(result: UserModificationViewViewModel.AlertType) {
         showSpinner = false
-        showAlert = true
-        alertTitle = title
+        self.toggleAlert(type: result)
     }
 }

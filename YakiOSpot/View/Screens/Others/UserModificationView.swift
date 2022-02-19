@@ -42,18 +42,16 @@ struct UserModificationView: View {
             }
             
             if viewModel.showAlert {
-                AlertView(alertTitle: viewModel.alertTitle, showAlert: $viewModel.showAlert) {
-                    Divider()
-                    Button("OK") { dismiss() }
-                    Divider()
-                }
+                AlertView(alertTitle: viewModel.alertTitle, showAlert: $viewModel.showAlert) { alertItem }
             }
         }
         .onTapGesture {
             hideKeyboard()
         }
         .navigationTitle("Modifier")
-        .confirmationDialog("Choisir une photo", isPresented: $viewModel.showDialog) { alertItem }
+        .confirmationDialog("Choisir une photo", isPresented: $viewModel.showDialog) {
+            
+        }
         .sheet(isPresented: $viewModel.showSheet) {
             ImagePicker(sourceType: viewModel.selection, selectedImage: $viewModel.image, hasModifiedImage: $viewModel.hasModifiedImage, showPicker: $viewModel.showSheet)
         }
@@ -85,7 +83,6 @@ struct UserModificationView: View {
             VStack(alignment: .center, spacing: 10) {
                 Button {
                     viewModel.showDialog = true
-                    viewModel.alertType = .image
                 } label: {
                     Text("Modifier la photo de profil")
                         .font(.system(size: 14))
@@ -108,8 +105,7 @@ struct UserModificationView: View {
     var actionsForm: some View {
         VStack(alignment: .leading) {
             Button {
-                viewModel.showDialog = true
-                viewModel.alertType = .membership
+                viewModel.toggleAlert(type: .membership)
             } label: {
                 Text(isMember ? "Je suis déjà adhérent !" : "Je certifie être adhérent")
                     .font(.system(size: 16))
@@ -118,8 +114,7 @@ struct UserModificationView: View {
             Divider()
             
             Button {
-                viewModel.showDialog = true
-                viewModel.alertType = .password
+                viewModel.toggleAlert(type: .password)
             } label: {
                 Text("Mot de passe oublié")
                     .font(.system(size: 16))
@@ -128,8 +123,7 @@ struct UserModificationView: View {
             Divider()
             
             Button {
-                viewModel.showDialog = true
-                viewModel.alertType = .logout
+                viewModel.toggleAlert(type: .logout)
             } label: {
                 Text("Déconnexion")
                     .font(.system(size: 16))
@@ -141,40 +135,59 @@ struct UserModificationView: View {
         .background(RoundedRectangle(cornerRadius: 10, style: .continuous).foregroundColor(.ui.gray).opacity(0.2))
     }
     
+    var dialogItem: some View {
+        VStack {
+            Button("Camera") {
+                self.viewModel.selection = .camera
+                self.viewModel.showSheet = true
+                self.viewModel.hasModifiedImage = true
+            }
+            Button("Bibliothèque") {
+                self.viewModel.selection = .photoLibrary
+                self.viewModel.showSheet = true
+                self.viewModel.hasModifiedImage = true
+            }
+            Button("Annuler", role: .cancel) {}
+        }
+    }
+    
     var alertItem: some View {
         VStack {
             switch viewModel.alertType {
-            case .dialog:
-                Button("OK") { dismiss() }
-            case .image:
-                Button("Camera") {
-                    self.viewModel.selection = .camera
-                    self.viewModel.showSheet = true
-                    self.viewModel.hasModifiedImage = true
-                }
-                Button("Bibliothèque") {
-                    self.viewModel.selection = .photoLibrary
-                    self.viewModel.showSheet = true
-                    self.viewModel.hasModifiedImage = true
-                }
-                Button("Annuler", role: .cancel) {}
             case .membership:
+                Divider()
                 Button("Oui !") {
                     viewModel.certifyMembership { isMember, memberType in
                         profileState.updateMembership(isMember: isMember, memberType: memberType)
                     }
+                    viewModel.showAlert = false
                 }
-                Button("Non pas encore 🤭", role: .cancel) { }
+                Divider()
+                Button("Non pas encore 🤭", role: .cancel) { viewModel.showAlert = false }
+                Divider()
             case .password:
-                Button("Envoyer un mail") { }
-                Button("Annuler", role: .cancel) { }
+                TextField("Adresse mail", text: $profileState.user.mail)
+                    .padding()
+                Divider()
+                Button("Envoyer un mail") { viewModel.showAlert = false }
+                Divider()
+                Button("Annuler", role: .cancel) { viewModel.showAlert = false }
+                Divider()
             case .logout:
+                Divider()
                 Button("Oui !", role: .destructive) {
                     viewModel.certifyMembership { isMember, memberType in
                         profileState.updateMembership(isMember: isMember, memberType: memberType)
                     }
+                    viewModel.showAlert = false
                 }
-                Button("Pas maintenant", role: .cancel) { }
+                Divider()
+                Button("Pas maintenant", role: .cancel) { viewModel.showAlert = false }
+                Divider()
+            default:
+                Divider()
+                Button("OK") { dismiss() }
+                Divider()
             }
         }
     }

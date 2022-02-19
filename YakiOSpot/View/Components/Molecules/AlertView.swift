@@ -28,6 +28,7 @@ struct AlertView<Content: View>: View {
                 Text(alertTitle)
                     .font(.system(size: 16))
                     .fontWeight(.semibold)
+                    .multilineTextAlignment(.center)
                 
                 if let alertMessage = message {
                     Text(alertMessage)
