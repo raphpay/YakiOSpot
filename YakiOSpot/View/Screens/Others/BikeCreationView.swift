@@ -16,36 +16,48 @@ struct BikeCreationView: View {
     
     var body: some View {
         ZStack {
-            content
-            if viewModel.animateActivityIndicator {
-                spinnerView
+            VStack(spacing: 16) {
+                bikeImage
+                FormTextField(placeholder: "Modèle du vélo", text: $profileState.bike.model) {
+                    viewModel.sendBike(bike: profileState.bike) { imageData in
+                        if let imageData = imageData {
+                            self.profileState.bikeImageData = imageData
+                        }
+                    }
+                }
+                Button {
+                    viewModel.sendBike(bike: profileState.bike) { imageData in
+                        if let imageData = imageData {
+                            self.profileState.bikeImageData = imageData
+                        }
+                    }
+                } label: {
+                    RoundedButton(title: "Sauvegarder")
+                }
+
+                Spacer()
+            }
+            
+            if viewModel.showActivityIndicator {
+                Spinner()
+            }
+            
+            if viewModel.showAlert {
+                AlertView(alertTitle: viewModel.alertTitle, showAlert: $viewModel.showAlert) {
+                    Divider()
+                    Button("OK", role: .cancel) { dismiss() }
+                    Divider()
+                }
             }
         }
         .navigationTitle("Mon bike")
-        .confirmationDialog("Choisir une photo", isPresented: $viewModel.shouldPresentDialog) {
-            Button("Camera") {
-                self.viewModel.selection = .camera
-                self.viewModel.showSheet = true
-                self.viewModel.hasModifiedImage = true
-            }
-            Button("Bibliothèque") {
-                self.viewModel.selection = .photoLibrary
-                self.viewModel.showSheet = true
-                self.viewModel.hasModifiedImage = true
-            }
-            Button("Annuler", role: .cancel) {}
-        }
+        .confirmationDialog("Choisir une photo", isPresented: $viewModel.shouldPresentDialog) { dialogItem }
         .sheet(isPresented: $viewModel.showSheet) {
             ImagePicker(sourceType: viewModel.selection, selectedImage: $viewModel.image, hasModifiedImage: $viewModel.hasModifiedImage, showPicker: $viewModel.showSheet)
         }
-        .alert(viewModel.alertTitle, isPresented: $viewModel.showAlert) {
-            Button("OK", role: .cancel) {
-                dismiss()
-            }
-        }
     }
     
-    var content: some View {
+    var bikeImage: some View {
         VStack(spacing: 16) {
             if let bikeURL =  profileState.bike.photoURL,
                viewModel.hasModifiedImage == false {
@@ -67,45 +79,25 @@ struct BikeCreationView: View {
             Button {
                 viewModel.shouldPresentDialog = true
             } label: {
-                Text("Ajouter une photo")
+                Text("Modifier la photo")
                     .font(.system(size: 17))
             }
-            
-            FormTextField(placeholder: "Modèle du vélo", text: $profileState.bike.model) {
-                viewModel.sendBike(bike: profileState.bike) { imageData in
-                    if let imageData = imageData {
-                        self.profileState.bikeImageData = imageData
-                    }
-                }
-            }
-            
-            Button {
-                viewModel.sendBike(bike: profileState.bike) { imageData in
-                    if let imageData = imageData {
-                        self.profileState.bikeImageData = imageData
-                    }
-                }
-            } label: {
-                RoundedButton(title: "Ajouter mon vélo")
-            }
-
-            Spacer()
         }
     }
     
-    var spinnerView: some View {
-        ZStack {
-            Color.black.opacity(0.75)
-                .edgesIgnoringSafeArea(.all)
-            
-            RoundedRectangle(cornerRadius: 20, style: .continuous)
-                .foregroundColor(.white)
-                .frame(width: 200, height: 200)
-            
-            VStack {
-                ActivityIndicator(shouldAnimate: $viewModel.animateActivityIndicator)
-                LoadingText()
+    var dialogItem: some View {
+        VStack {
+            Button("Camera") {
+                self.viewModel.selection = .camera
+                self.viewModel.showSheet = true
+                self.viewModel.hasModifiedImage = true
             }
+            Button("Bibliothèque") {
+                self.viewModel.selection = .photoLibrary
+                self.viewModel.showSheet = true
+                self.viewModel.hasModifiedImage = true
+            }
+            Button("Annuler", role: .cancel) {}
         }
     }
 }

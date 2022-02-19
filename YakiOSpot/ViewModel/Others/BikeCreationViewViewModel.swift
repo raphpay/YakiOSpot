@@ -7,6 +7,7 @@
 
 import Foundation
 import UIKit
+import SwiftUI
 
 final class BikeCreationViewViewModel: ObservableObject {
     @Published var image: UIImage = UIImage(named: Assets.noBike)!
@@ -16,20 +17,24 @@ final class BikeCreationViewViewModel: ObservableObject {
     @Published var showSheet = false
     @Published var shouldPresentDialog = false
     @Published var selection: UIImagePickerController.SourceType = .camera
-    @Published var animateActivityIndicator: Bool = false
+    @Published var showActivityIndicator: Bool = false
     @Published var showAlert = false
     @Published var alertTitle = ""
     
     let imageSize = CGFloat(110)
+    
+    enum AlertType {
+        case success, error
+    }
 }
 
 
 // MARK: - Public Methods
 extension BikeCreationViewViewModel {
     func sendBike(bike: Bike, onImageChanged: @escaping (_ imageData: Data?) -> Void) {
-        animateActivityIndicator = true
+        showActivityIndicator = true
         guard checkModel(model: bike.model) else {
-            animateActivityIndicator = false
+            showActivityIndicator = false
             return
         }
         if bike.photoURL != nil,
@@ -50,12 +55,12 @@ extension BikeCreationViewViewModel {
             StorageService.shared.uploadImage(image) { downloadURL in
                 let newBike = Bike(id: UUID().uuidString, model: bike.model, photoURL: downloadURL.absoluteString)
                 self.pushBike(newBike)
-                self.pushFinish(title: "Bike sauvegardé")
+                self.pushFinish(type: .success)
                 let imageData = StorageService.shared.convertImageToData(self.image)
                 onImageChanged(imageData)
             } onError: { error in
                 print("======= \(#function) =====", error)
-                self.pushFinish(title: "Erreur : Bike non sauvegardé !")
+                self.pushFinish(type: .error)
             }
         }
     }
@@ -63,10 +68,10 @@ extension BikeCreationViewViewModel {
     private func pushBike(_ bike: Bike) {
         API.Bike.session.pushBike(bike) {
             // Show alert and go back
-            self.pushFinish(title: "Bike sauvegardé !")
+            self.pushFinish(type: .success)
         } onError: { error in
             print("======= \(#function) =====", error)
-            self.pushFinish(title: "Erreur : Bike non sauvegardé !")
+            self.pushFinish(type: .error)
         }
     }
     
@@ -79,9 +84,17 @@ extension BikeCreationViewViewModel {
         return true
     }
     
-    private func pushFinish(title: String) {
-        self.animateActivityIndicator = false
-        showAlert = true
-        alertTitle = title
+    private func pushFinish(type: BikeCreationViewViewModel.AlertType) {
+        withAnimation {
+            self.showActivityIndicator = false
+            showAlert = true
+            
+            switch type {
+            case .success:
+                alertTitle = "Bike sauvegardé !"
+            case .error:
+                alertTitle = "Erreur lors de la sauvegarde"
+            }
+        }
     }
 }
