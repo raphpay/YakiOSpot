@@ -17,6 +17,9 @@ final class UserModificationViewViewModel: ObservableObject {
     @Published var showDialog = false
     @Published var dialogTitle = ""
     @Published var alertType: AlertType = .image
+    @Published var showSpinner = false
+    @Published var showAlert = false
+    @Published var alertTitle = ""
     
     enum AlertType {
         case dialog, image, membership, password, logout
@@ -26,11 +29,11 @@ final class UserModificationViewViewModel: ObservableObject {
 // MARK: - Actions
 extension UserModificationViewViewModel {
     func saveUser(_ pseudo: String) {
+        showSpinner = true
         if hasModifiedImage {
-            modifyImage()
-            modifyPseudo(pseudo: pseudo)
+            modifyImageAndPseudo(pseudo)
         } else {
-            modifyPseudo(pseudo: pseudo, shouldShowAlert: true)
+            modifyPseudo(pseudo: pseudo)
         }
     }
     
@@ -48,19 +51,18 @@ extension UserModificationViewViewModel {
         } onError: { error in
             print("======= \(#function) =====", error)
         }
-
     }
 }
 
 // MARK: - Private Methods
 extension UserModificationViewViewModel {
-    private func modifyImage() {
+    private func modifyImageAndPseudo(_ pseudo: String) {
         if image != UIImage(named: Assets.imagePlaceholder)! {
             StorageService.shared.uploadImage(image, for: .user) { downloadURL in
                 guard var newCurrentUser = API.User.CURRENT_USER_OBJECT else { return }
                 newCurrentUser.photoURL = downloadURL.absoluteString
                 API.User.session.updateCurrentUser(newCurrentUser) {
-                    self.pushFinish(title: "Sauvegarde réussie")
+                    self.modifyPseudo(pseudo: pseudo)
                     print("======= \(#function) success =====", newCurrentUser)
                 } onError: { error in
                     self.pushFinish(title: "Erreur lors de la sauvegarde")
@@ -70,26 +72,28 @@ extension UserModificationViewViewModel {
                 self.pushFinish(title: "Erreur lors de la sauvegarde")
                 print("======= \(#function) =====", error)
             }
+        } else {
+            showSpinner = false
         }
     }
     
-    private func modifyPseudo(pseudo: String, shouldShowAlert: Bool = false) {
+    private func modifyPseudo(pseudo: String) {
         if pseudo != API.User.CURRENT_USER_OBJECT?.pseudo {
             guard var newUser = API.User.CURRENT_USER_OBJECT else { return }
             newUser.pseudo = pseudo
             API.User.session.updateCurrentUser(newUser) {
-                if shouldShowAlert {
-                    self.pushFinish(title: "Sauvegarde réussie")
-                }
+                self.pushFinish(title: "Sauvegarde réussie")
             } onError: { error in
                 self.pushFinish(title: "Erreur lors de la sauvegarde")
             }
+        } else {
+            showSpinner = false
         }
     }
     
     private func pushFinish(title: String) {
-        dialogTitle = title
-        showDialog.toggle()
-        alertType = .dialog
+        showSpinner = false
+        showAlert = true
+        alertTitle = title
     }
 }

@@ -25,15 +25,29 @@ struct UserModificationView: View {
     
     // MARK: - Main component
     var body: some View {
-        ScrollView {
-            
-            profileImage
-            
-            FormTextField(isSecured: false, placeholder: "Pseudo", text: $profileState.user.pseudo, submitLabel: .next) {
-                viewModel.saveUser(profileState.user.pseudo)
+        ZStack {
+            ScrollView {
+                
+                profileImage
+                
+                FormTextField(isSecured: false, placeholder: "Pseudo", text: $profileState.user.pseudo, submitLabel: .next) {
+                    viewModel.saveUser(profileState.user.pseudo)
+                }
+                
+                actionsForm
             }
             
-            actionsForm
+            if viewModel.showSpinner {
+                Spinner()
+            }
+            
+            if viewModel.showAlert {
+                AlertView(alertTitle: viewModel.alertTitle, showAlert: $viewModel.showAlert) {
+                    Divider()
+                    Button("OK") { dismiss() }
+                    Divider()
+                }
+            }
         }
         .onTapGesture {
             hideKeyboard()

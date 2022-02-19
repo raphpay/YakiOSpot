@@ -16,6 +16,8 @@
 		862D8435273D2BC30081BA83 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 862D8434273D2BC30081BA83 /* GoogleService-Info.plist */; };
 		863507E92763C14F00145505 /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863507E82763C14F00145505 /* InfoView.swift */; };
 		863507EB2763C17F00145505 /* FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863507EA2763C17F00145505 /* FeedView.swift */; };
+		86373B6227C0FE75005AD981 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86373B6127C0FE75005AD981 /* Spinner.swift */; };
+		86373B6627C10C51005AD981 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86373B6527C10C51005AD981 /* AlertView.swift */; };
 		863DB1A827B59F050039E77C /* ViewModifier+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863DB1A727B59F050039E77C /* ViewModifier+Ext.swift */; };
 		86529B5127636C8E00BD44B6 /* FakeUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5027636C8E00BD44B6 /* FakeUserData.swift */; };
 		86529B5327636E6C00BD44B6 /* UserServiceTestsCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */; };
@@ -119,6 +121,8 @@
 		862D8434273D2BC30081BA83 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		863507E82763C14F00145505 /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
 		863507EA2763C17F00145505 /* FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedView.swift; sourceTree = "<group>"; };
+		86373B6127C0FE75005AD981 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
+		86373B6527C10C51005AD981 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		863DB1A727B59F050039E77C /* ViewModifier+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModifier+Ext.swift"; sourceTree = "<group>"; };
 		86529B5027636C8E00BD44B6 /* FakeUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserData.swift; sourceTree = "<group>"; };
 		86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTestsCase.swift; sourceTree = "<group>"; };
@@ -323,6 +327,7 @@
 				869BF2B627A59F2200FBCD94 /* StatusButton.swift */,
 				86FFC86C27A852F40080480D /* LoadingText.swift */,
 				8619BBE427BE273700F55D4A /* BadgeIcon.swift */,
+				86373B6127C0FE75005AD981 /* Spinner.swift */,
 			);
 			path = Atoms;
 			sourceTree = "<group>";
@@ -416,6 +421,7 @@
 			children = (
 				869BF2B427A59ED200FBCD94 /* ProfileSection.swift */,
 				869BF2B827A59F7E00FBCD94 /* SessionCard.swift */,
+				86373B6527C10C51005AD981 /* AlertView.swift */,
 			);
 			path = Molecules;
 			sourceTree = "<group>";
@@ -854,6 +860,7 @@
 				869BF2B927A59F7E00FBCD94 /* SessionCard.swift in Sources */,
 				86BB95C6273EF6190029C39A /* AuthErrors.swift in Sources */,
 				86D22D4927A6F4720055477A /* BikeService.swift in Sources */,
+				86373B6227C0FE75005AD981 /* Spinner.swift in Sources */,
 				86DD2DBF27A14DAE00339736 /* Date+Ext.swift in Sources */,
 				86FFC86D27A852F40080480D /* LoadingText.swift in Sources */,
 				86CCA160279F17A40074AA46 /* PublishSessionView.swift in Sources */,
@@ -872,6 +879,7 @@
 				86F81D242741800400AB69DB /* Spot.swift in Sources */,
 				86D9894B2763C78B009908D8 /* Track.swift in Sources */,
 				86D22D4727A6E6A10055477A /* Bike.swift in Sources */,
+				86373B6627C10C51005AD981 /* AlertView.swift in Sources */,
 				86F3667E273D2845009CBDC9 /* AuthService.swift in Sources */,
 				86D22D4D27A6FF500055477A /* ImagePicker.swift in Sources */,
 				86BB95CA273EF6630029C39A /* Helper.swift in Sources */,
