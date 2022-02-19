@@ -169,7 +169,9 @@ struct UserModificationView: View {
                 TextField("Adresse mail", text: $profileState.user.mail)
                     .padding()
                 Divider()
-                Button("Envoyer un mail") { viewModel.toggleAlert() }
+                Button("Envoyer un mail") {
+                    viewModel.sendEmail(to: profileState.user.mail)
+                }
                 Divider()
                 Button("Annuler", role: .cancel) { viewModel.toggleAlert() }
                 Divider()

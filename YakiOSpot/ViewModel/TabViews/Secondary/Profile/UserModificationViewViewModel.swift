@@ -23,7 +23,7 @@ final class UserModificationViewViewModel: ObservableObject {
     @Published var alertTitle = ""
     
     enum AlertType {
-        case pushSuccess, pushError, membership, password, logout
+        case pushSuccess, pushError, membership, password, logout, emailSent, customError
         
         var title: String {
             switch self {
@@ -37,6 +37,10 @@ final class UserModificationViewViewModel: ObservableObject {
                 return "Envoi d'un nouveau mot de passe"
             case .logout:
                 return "Tu veux te déconnecter ?"
+            case .emailSent:
+                return "Vérifie ton adresse mail !"
+            default:
+                return ""
             }
         }
     }
@@ -69,16 +73,30 @@ extension UserModificationViewViewModel {
         }
     }
     
-    func toggleAlert(type: UserModificationViewViewModel.AlertType? = nil) {
+    func toggleAlert(type: UserModificationViewViewModel.AlertType? = nil, errorMessage: String? = nil) {
         withAnimation {
             if let type = type {
                 self.showAlert = true
                 self.alertType = type
-                self.alertTitle = type.title
+                if type == .customError,
+                   let error = errorMessage {
+                    self.alertTitle = error
+                } else {
+                    self.alertTitle = type.title
+                }
             } else {
                 self.showAlert = false
             }
         }
+    }
+    
+    func sendEmail(to email: String) {
+        API.Auth.session.sendResetPasswordMail(to: email) {
+            self.toggleAlert(type: .emailSent)
+        } onError: { error in
+            self.toggleAlert(type: .customError, errorMessage: error)
+        }
+
     }
 }
 
