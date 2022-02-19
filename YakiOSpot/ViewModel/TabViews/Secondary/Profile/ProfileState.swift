@@ -96,7 +96,7 @@ extension ProfileState {
             API.Spot.session.getSpot { spot in
                 API.Spot.session.toggleUserPresence(from: spot, user: user) {
                     if isPresent {
-//                        sendPresenceNotification(from: user.pseudo)
+                        sendPresenceNotification(from: user.pseudo)
                     }
                 } onError: { error in
                     print("======= \(#function) toggling user presence from spot =====", error)
