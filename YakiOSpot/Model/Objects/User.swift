@@ -20,15 +20,41 @@ The user documentation
     - `sessions: An array of the future sessions posted by the user`
 */
 
-struct User: Codable, Hashable {
+struct User: Identifiable, Codable, Hashable {
     var id: String = ""
     var pseudo: String = ""
     var mail: String = ""
     var favoritedSpotsIDs: [String]?
     var isPresent: Bool? = false
     var sessions: [String]?
+    var bike: Bike?
+    var photoURL: String?
+    var isMember: Bool?
+    var memberType: MemberType?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
+    
+    enum MemberType: String, Codable {
+        case rider, ambassador, staff, dev
+        
+        var description: String {
+            switch self {
+            case .ambassador:
+                return "Ambassadeur"
+            case .staff:
+                return "Spot Boss"
+            case .dev:
+                return "Développeur de l'app"
+            default:
+                return "Rider adhérent"
+            }
+        }
+    }
+}
+
+struct MockUser {
+    static let data = User(id: "1", pseudo: "mockUser", mail: "mockuser@test.com",
+                    favoritedSpotsIDs: nil, isPresent: false, sessions: nil)
 }

@@ -15,6 +15,7 @@ protocol UserEngine {
     func addSessionToUser(sessionID: String, to user: User, onSuccess: @escaping ((_ newUser: User) -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserFromUID(_ uid: String, onSuccess: @escaping ((_ user: User) -> Void), onError: @escaping (( _ error: String) -> Void))
+    func updateCurrentUser(_ updatedUser: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
 }
 
 final class UserEngineService {
@@ -155,6 +156,23 @@ extension UserService {
                 onError("Error getting user from uid \(uid). Error: \(error.localizedDescription)")
             }
             
+        }
+    }
+}
+
+// MARK: - Update
+extension UserService {
+    func updateCurrentUser(_ updatedUser: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
+        // Update current user
+        API.User.CURRENT_USER_OBJECT = updatedUser
+        
+        let specificUserRef = USERS_REF.document(updatedUser.id)
+        
+        do {
+            try specificUserRef.setData(from: updatedUser, merge: true)
+            onSuccess()
+        } catch let error {
+            onError(error.localizedDescription)
         }
     }
 }

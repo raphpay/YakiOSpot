@@ -19,10 +19,11 @@ The spot documentation
     - `mail: The email of the user. Set when creating a user.`
 */
 
-struct Spot: Codable, Hashable {
+struct Spot: Identifiable, Codable, Hashable {
     var id: String
     var name: String
     var tracks: [Track]
+    // TODO: Convert this property to a string array to contain the member IDs
     var members: Int
     var peoplePresent: [User]?
 //    var favorites: Int?

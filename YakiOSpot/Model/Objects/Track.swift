@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-struct Track: Codable, Hashable {
+struct Track: Identifiable, Codable, Hashable {
     let id: String
     let name: String
     let difficulty: Difficulty
