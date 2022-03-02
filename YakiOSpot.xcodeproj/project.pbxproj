@@ -20,6 +20,7 @@
 		86373B6227C0FE75005AD981 /* Spinner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86373B6127C0FE75005AD981 /* Spinner.swift */; };
 		86373B6627C10C51005AD981 /* AlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86373B6527C10C51005AD981 /* AlertView.swift */; };
 		863DB1A827B59F050039E77C /* ViewModifier+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 863DB1A727B59F050039E77C /* ViewModifier+Ext.swift */; };
+		864A6AC627CFFB0C00BF3820 /* TestFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 864A6AC527CFFB0C00BF3820 /* TestFunctions.swift */; };
 		86529B5127636C8E00BD44B6 /* FakeUserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5027636C8E00BD44B6 /* FakeUserData.swift */; };
 		86529B5327636E6C00BD44B6 /* UserServiceTestsCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */; };
 		8658F20C27B8585A005FD9BA /* UserModificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8658F20B27B8585A005FD9BA /* UserModificationView.swift */; };
@@ -125,6 +126,7 @@
 		86373B6127C0FE75005AD981 /* Spinner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spinner.swift; sourceTree = "<group>"; };
 		86373B6527C10C51005AD981 /* AlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertView.swift; sourceTree = "<group>"; };
 		863DB1A727B59F050039E77C /* ViewModifier+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ViewModifier+Ext.swift"; sourceTree = "<group>"; };
+		864A6AC527CFFB0C00BF3820 /* TestFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFunctions.swift; sourceTree = "<group>"; };
 		86529B5027636C8E00BD44B6 /* FakeUserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FakeUserData.swift; sourceTree = "<group>"; };
 		86529B5227636E6C00BD44B6 /* UserServiceTestsCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserServiceTestsCase.swift; sourceTree = "<group>"; };
 		8658F20B27B8585A005FD9BA /* UserModificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModificationView.swift; sourceTree = "<group>"; };
@@ -629,6 +631,7 @@
 				86ADDDEA276E66C10063BE29 /* UIKit */,
 				86804671274C22A000AAFC83 /* Components */,
 				86804673274C22B600AAFC83 /* Screens */,
+				864A6AC527CFFB0C00BF3820 /* TestFunctions.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -901,6 +904,7 @@
 				86E1F8772742873400C983EC /* SpotListViewViewModel.swift in Sources */,
 				8674BE3C27822A8800FD31D7 /* StorageService.swift in Sources */,
 				86FBD17527834B1300C24C96 /* YakiViewViewModel.swift in Sources */,
+				864A6AC627CFFB0C00BF3820 /* TestFunctions.swift in Sources */,
 				869E351127430602007CF366 /* ProfileView.swift in Sources */,
 				86C4FFA9276E41CE00E04B36 /* AppDelegate.swift in Sources */,
 				869BF2B727A59F2200FBCD94 /* StatusButton.swift in Sources */,
@@ -1124,7 +1128,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = YakiOSpot/YakiOSpot.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N96T5K2D2H;
 				ENABLE_PREVIEWS = YES;
 				"EXCLUDED_ARCHS[sdk=iphonesimulator*]" = arm64;
@@ -1158,7 +1162,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = YakiOSpot/YakiOSpot.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = N96T5K2D2H;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = NO;
