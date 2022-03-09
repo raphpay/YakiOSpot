@@ -68,13 +68,19 @@ extension UserService {
     func toggleUserPresence(_ user: User, onSuccess: @escaping ((_ isPresent: Bool) -> Void), onError: @escaping((_ error: String) -> Void)) {
         let specificUserRef = USERS_REF.document(user.id)
         var artificialUser = user
+        // Update UserDefaults
         let userIsPresentValue = UserDefaults.standard.bool(forKey: DefaultKeys.IS_USER_PRESENT)
         if userIsPresentValue == true {
             artificialUser.isPresent = false
             UserDefaults.standard.set(false, forKey: DefaultKeys.IS_USER_PRESENT)
+            // Remove presence date
+            artificialUser.presenceDate = nil
+            specificUserRef.updateData(["presenceDate": FieldValue.delete()])
         } else {
             artificialUser.isPresent = true
             UserDefaults.standard.set(true, forKey: DefaultKeys.IS_USER_PRESENT)
+            // Update presence date
+            artificialUser.presenceDate = Date.now
         }
         
         do {

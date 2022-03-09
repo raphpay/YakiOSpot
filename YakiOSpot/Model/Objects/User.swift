@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 /**
 The user documentation
  
+ // TODO: Add missing fields
  # Parameters :
         - `id: A unique identifier. Set when creating a user`
     - `pseudo: The pseudo of the user. Set when creating a user.`
@@ -26,6 +27,7 @@ struct User: Identifiable, Codable, Hashable {
     var mail: String = ""
     var favoritedSpotsIDs: [String]?
     var isPresent: Bool? = false
+    var presenceDate: Date?
     var sessions: [String]?
     var bike: Bike?
     var photoURL: String?
