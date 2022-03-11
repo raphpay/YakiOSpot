@@ -51,9 +51,6 @@ struct YakiView: View {
                     }
                 }
             }
-            .onAppear {
-                viewModel.fetchData()
-            }
             .navigationTitle("Yaki O Spot")
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
