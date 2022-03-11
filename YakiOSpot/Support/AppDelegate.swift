@@ -14,6 +14,7 @@ class AppDelegate: NSObject, UIApplicationDelegate {
         configureFirebase()
         configureNotificationCenter(application: application)
         configureFirebaseMessaging()
+        removeOutdatedUsers()
         return true
     }
 }
@@ -54,6 +55,49 @@ extension AppDelegate {
     
     private func configureFirebaseMessaging() {
         Messaging.messaging().delegate = self
+    }
+    
+    private func removeOutdatedUsers() {
+        // Fetch all people
+        API.Spot.session.getPeoplePresent { peoplePresent in
+            // Check for outdated people
+            let outdatedPeople = self.getOutdatedPeople(from: peoplePresent)
+            // Remove from session
+            self.removeUsersFromSession(people: outdatedPeople)
+        } onError: { error in
+            print("======= \(#function) error getting people present =====", error)
+        }
+    }
+    
+    private func getOutdatedPeople(from array: [User]) -> [User] {
+        var outdatedPeople: [User] = []
+        for people in array {
+            if let date = people.presenceDate,
+               let newDate = Calendar.current.date(byAdding: .day, value: 1, to: date),
+               newDate < Date.now {
+                outdatedPeople.append(people)
+            }
+        }
+        return outdatedPeople
+    }
+    
+    private func removeUsersFromSession(people: [User]) {
+        // TODO: Refactor this code. We shouldn't have to fetch the spot before removing people
+        API.Spot.session.getSpot { spot in
+            for person in people {
+                API.Spot.session.toggleUserPresence(from: spot, user: person) {
+                    API.User.session.toggleUserPresence(person) { isPresent in
+                        print("======= \(#function) success =====", isPresent)
+                    } onError: { error in
+                        print("======= \(#function) error toggling user presence from UserService=====", error)
+                    }
+                } onError: { error in
+                    print("======= \(#function) error toggling user presence from SpotService =====", error, person)
+                }
+            }
+        } onError: { error in
+            print("======= \(#function) error getting spot =====", error)
+        }
     }
 }
 
