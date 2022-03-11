@@ -34,7 +34,7 @@ struct UserModificationView: View {
                 FormTextField(isSecured: false, placeholder: "Pseudo", text: $profileState.user.pseudo, submitLabel: .next) {
                     viewModel.saveUser(profileState.user.pseudo)
                 }
-                
+
                 actionsForm
             }
             
@@ -50,9 +50,7 @@ struct UserModificationView: View {
             hideKeyboard()
         }
         .navigationTitle("Modifier")
-        .confirmationDialog("Choisir une photo", isPresented: $viewModel.showDialog) {
-            
-        }
+        .confirmationDialog("Choisir une photo", isPresented: $viewModel.showDialog) { dialogItem }
         .sheet(isPresented: $viewModel.showSheet) {
             ImagePicker(sourceType: viewModel.selection, selectedImage: $viewModel.image, hasModifiedImage: $viewModel.hasModifiedImage, showPicker: $viewModel.showSheet)
         }
@@ -84,6 +82,8 @@ struct UserModificationView: View {
             VStack(alignment: .center, spacing: 10) {
                 Button {
                     viewModel.showDialog = true
+                    viewModel.showAlert = false
+                    viewModel.showSheet = false
                 } label: {
                     Text("Modifier la photo de profil")
                         .font(.system(size: 14))
