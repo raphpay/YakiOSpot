@@ -178,6 +178,5 @@ extension SpotService {
         } onError: { error in
             onError(error)
         }
-
     }
 }

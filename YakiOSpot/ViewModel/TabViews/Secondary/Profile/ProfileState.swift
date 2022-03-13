@@ -107,31 +107,14 @@ extension ProfileState {
     }
     
     func setUserAbsent() {
-        
-    }
-    
-    func toggleUserPresence() {
-        guard var user = API.User.CURRENT_USER_OBJECT else { return }
-        // TODO: The toggle method can be refactored. Maybe we don't need that much code to toggle user presence.
-        // Consider using the `updateCurrentUser` method
-        API.User.session.toggleUserPresence(user) { isPresent in
-            // Toggle user object presence
-            user.isPresent = isPresent
-            self.userIsPresent = isPresent
-            // TODO: To be refactored. We should not get the spot each time we set a presence
-            API.Spot.session.getSpot { spot in
-                API.Spot.session.toggleUserPresence(from: spot, user: user) {
-                    if isPresent {
-                       self.sendPresenceNotification(from: user.pseudo)
-                    }
-                } onError: { error in
-                    print("======= \(#function) toggling user presence from spot =====", error)
-                }
+        API.User.session.setUserAbsence { user in
+            API.Spot.session.removeUsersFromSpot([user]) {
+                self.userIsPresent = false
             } onError: { error in
-                print("======= \(#function) getting spot =====", error)
+                print("======= \(#function) removeUsersFromSpot =====", error)
             }
         } onError: { error in
-            print("======= \(#function) toggling user presence  =====", error)
+            print("======= \(#function) setUserAbsence =====", error)
         }
     }
 
