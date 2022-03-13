@@ -91,7 +91,6 @@ extension UserService {
         user.presenceDate = Date.now
         do {
             try USERS_REF.document(user.id).setData(from: user, merge: true)
-            // TODO: Check for every user modification
             API.User.CURRENT_USER_OBJECT = user
             onSuccess(user)
         } catch let error {
@@ -139,10 +138,9 @@ extension UserService {
             
             guard let user = snapshot.data(),
                   let pseudo = user["pseudo"] as? String else {
-                onError("User not found")
-                return
-            }
-            
+                      onError("User not found")
+                      return
+                  }
             onSuccess(pseudo)
         }
     }
