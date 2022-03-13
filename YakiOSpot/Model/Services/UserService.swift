@@ -191,17 +191,20 @@ extension UserService {
 // MARK: - Remove
 extension UserService {
     func removeUsersPresence(_ outdatedUsers: [User], onError: @escaping((_ error: String) -> Void)) {
-        // TODO: Find a way to not use a dictionnary
         for user in outdatedUsers {
-            let dic : [String: Any] = [
-                "isPresent": false,
-                "presenceDate": FieldValue.delete()
-            ]
-            USERS_REF.document(user.id).updateData(dic) { error in
-                guard error == nil else {
-                    onError(error!.localizedDescription)
-                    return
+            var artificialUser = user
+            let dic : [String: Any] = ["presenceDate": FieldValue.delete()]
+            artificialUser.isPresent = false
+            do {
+                try USERS_REF.document(artificialUser.id).setData(from: artificialUser, merge: true)
+                USERS_REF.document(user.id).updateData(dic) { error in
+                    guard error == nil else {
+                        onError(error!.localizedDescription)
+                        return
+                    }
                 }
+            } catch let error {
+                onError(error.localizedDescription)
             }
         }
     }
