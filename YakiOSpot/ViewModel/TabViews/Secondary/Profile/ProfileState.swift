@@ -94,7 +94,7 @@ extension ProfileState {
     }
     
     func setUserPresent() {
-        API.User.session.setUserPresence {
+        API.User.session.setUserPresence { user in
             API.Spot.session.setUserPresent() {
                 self.userIsPresent = true
                 self.sendPresenceNotification(from: user.pseudo)
