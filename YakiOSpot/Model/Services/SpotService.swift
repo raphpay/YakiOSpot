@@ -10,7 +10,6 @@ import FirebaseFirestore
 
 protocol SpotEngine {
     func getSpot(onSuccess: @escaping ((_ spot: Spot) -> Void), onError: @escaping((_ error: String) -> Void))
-    func toggleUserPresence(from spot: Spot, user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
     func setUserPresent(onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
     func getPeoplePresent(onSuccess: @escaping ((_ peoplePresent: [User]) -> Void), onError: @escaping((_ error: String) -> Void))
     func removeUsersFromSpot(_ users: [User], onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
@@ -40,36 +39,6 @@ final class SpotService: SpotEngine {
 
 // MARK: - Post
 extension SpotService {
-    func toggleUserPresence(from spot: Spot, user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
-        var artificialSpot = spot
-        if var peoplePresent = artificialSpot.peoplePresent {
-            // People present array exists
-            if peoplePresent.contains(where: { $0.id == user.id}),
-               user.isPresent == false, // The user has just toggle is presence to false
-               let index = peoplePresent.firstIndex(where: { $0.id == user.id}) {
-                // People present array contains the user
-                // We have to remove him from the array
-                peoplePresent.remove(at: index)
-            } else if !peoplePresent.contains(where: { $0.id == user.id}),
-                      user.isPresent == true {
-                // People present array doesn't contain the user
-                // We have to append him to the array
-                peoplePresent.append(user)
-            }
-            artificialSpot.peoplePresent = peoplePresent
-        } else {
-            // People present array doesn't exist
-            artificialSpot.peoplePresent = [user]
-        }
-        
-        do {
-            try cornillonRef.setData(from: artificialSpot)
-            onSuccess()
-        } catch let error {
-            onError(error.localizedDescription)
-        }
-    }
-
     func setUserPresent(onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
         guard let user = API.User.CURRENT_USER_OBJECT else { return }
         // TODO: Make a computed property to get the spot, just like the user above
