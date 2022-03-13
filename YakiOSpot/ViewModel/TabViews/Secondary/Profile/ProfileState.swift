@@ -93,6 +93,7 @@ extension ProfileState {
             // Toggle user object presence
             user.isPresent = isPresent
             self.userIsPresent = isPresent
+            // TODO: To be refactored. We should not get the spot each time we set a presence
             API.Spot.session.getSpot { spot in
                 API.Spot.session.toggleUserPresence(from: spot, user: user) {
                     if isPresent {
