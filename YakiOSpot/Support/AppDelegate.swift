@@ -82,22 +82,16 @@ extension AppDelegate {
     }
     
     private func removeUsersFromSession(people: [User]) {
-        // TODO: Refactor this code. We shouldn't have to fetch the spot before removing people
-        API.Spot.session.getSpot { spot in
-            for person in people {
-                API.Spot.session.toggleUserPresence(from: spot, user: person) {
-                    API.User.session.toggleUserPresence(person) { isPresent in
-                        print("======= \(#function) success =====", isPresent)
-                    } onError: { error in
-                        print("======= \(#function) error toggling user presence from UserService=====", error)
-                    }
-                } onError: { error in
-                    print("======= \(#function) error toggling user presence from SpotService =====", error, person)
-                }
+        API.Spot.session.removeUsersFromSpot(people) {
+            API.User.session.removeUsersPresence(people) {
+                print("======= \(#function) success =====")
+            } onError: { error in
+                print("======= \(#function) removeUsersPresence =====", error)
             }
         } onError: { error in
-            print("======= \(#function) error getting spot =====", error)
+            print("======= \(#function) removeUsersFromSpot =====", error)
         }
+
     }
 }
 

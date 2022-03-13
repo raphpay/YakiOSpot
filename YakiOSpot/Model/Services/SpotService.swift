@@ -12,6 +12,7 @@ protocol SpotEngine {
     func getSpot(onSuccess: @escaping ((_ spot: Spot) -> Void), onError: @escaping((_ error: String) -> Void))
     func toggleUserPresence(from spot: Spot, user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
     func getPeoplePresent(onSuccess: @escaping ((_ peoplePresent: [User]) -> Void), onError: @escaping((_ error: String) -> Void))
+    func removeUsersFromSpot(_ users: [User], onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
 }
 
 final class SpotEngineService {
@@ -67,8 +68,6 @@ extension SpotService {
             onError(error.localizedDescription)
         }
     }
-    
-    // TODO: To be done when a screen to add a spot has been made
 }
 
 
@@ -116,5 +115,44 @@ extension SpotService {
                 onError(error.localizedDescription)
             }
         }
+    }
+}
+
+
+// MARK: - Remove
+extension SpotService {
+    func removeUsersFromSpot(_ outdatedUsers: [User], onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
+        self.getSpot { spot in
+            var artificialSpot = spot
+            // ---
+            // Could be refactored
+            var newPeopleArray: [User] = []
+            if let peoplePresent = spot.peoplePresent {
+                newPeopleArray = peoplePresent
+                
+                for user in outdatedUsers {
+                    if newPeopleArray.contains(where: { $0.id == user.id }),
+                       let index = newPeopleArray.firstIndex(where: { $0.id == user.id }) {
+                        newPeopleArray.remove(at: index)
+                    }
+                }
+                // ---
+                if peoplePresent != newPeopleArray {
+                    artificialSpot.peoplePresent = newPeopleArray
+                    
+                    do {
+                        try self.cornillonRef.setData(from: artificialSpot, merge: true)
+                    } catch let error {
+                        onError(error.localizedDescription)
+                    }
+                }
+                // --- 
+            }
+            // ---
+            onSuccess()
+        } onError: { error in
+            onError(error)
+        }
+
     }
 }

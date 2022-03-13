@@ -16,6 +16,7 @@ protocol UserEngine {
     func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserFromUID(_ uid: String, onSuccess: @escaping ((_ user: User) -> Void), onError: @escaping (( _ error: String) -> Void))
     func updateCurrentUser(_ updatedUser: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
+    func removeUsersPresence(_ outdatedUsers: [User], onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
 }
 
 final class UserEngineService {
@@ -179,6 +180,25 @@ extension UserService {
             onSuccess()
         } catch let error {
             onError(error.localizedDescription)
+        }
+    }
+}
+
+
+// MARK: - Remove
+extension UserService {
+    func removeUsersPresence(_ outdatedUsers: [User], onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
+        for user in outdatedUsers {
+            let dic : [String: Any] = [
+                "isPresent": false,
+                "presenceDate": FieldValue.delete()
+            ]
+            USERS_REF.document(user.id).updateData(dic) { error in
+                guard error == nil else {
+                    onError(error!.localizedDescription)
+                    return
+                }
+            }
         }
     }
 }
