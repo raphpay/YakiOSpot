@@ -85,6 +85,31 @@ extension ProfileState {
         cancelButtonText = "Je suis toujours là"
     }
     
+    func confirmAlert() {
+        if userIsPresent {
+            setUserAbsent()
+        } else {
+            setUserPresent()
+        }
+    }
+    
+    func setUserPresent() {
+        API.User.session.setUserPresence {
+            API.Spot.session.setUserPresent() {
+                self.userIsPresent = true
+                self.sendPresenceNotification(from: user.pseudo)
+            } onError: { error in
+                print("======= \(#function) setUserPresent=====", error)
+            }
+        } onError: { error in
+            print("======= \(#function) setUserPresence =====", error)
+        }
+    }
+    
+    func setUserAbsent() {
+        
+    }
+    
     func toggleUserPresence() {
         guard var user = API.User.CURRENT_USER_OBJECT else { return }
         // TODO: The toggle method can be refactored. Maybe we don't need that much code to toggle user presence.
@@ -97,7 +122,7 @@ extension ProfileState {
             API.Spot.session.getSpot { spot in
                 API.Spot.session.toggleUserPresence(from: spot, user: user) {
                     if isPresent {
-                        self.sendPresenceNotification(from: user.pseudo)
+                       self.sendPresenceNotification(from: user.pseudo)
                     }
                 } onError: { error in
                     print("======= \(#function) toggling user presence from spot =====", error)

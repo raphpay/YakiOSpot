@@ -12,11 +12,12 @@ import FirebaseAuth
 protocol UserEngine {
     func addUserToDatabase(_ user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
     func toggleUserPresence(_ user: User, onSuccess: @escaping ((_ isPresent: Bool) -> Void), onError: @escaping((_ error: String) -> Void))
+    func setUserPresence(onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
     func addSessionToUser(sessionID: String, to user: User, onSuccess: @escaping ((_ newUser: User) -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserFromUID(_ uid: String, onSuccess: @escaping ((_ user: User) -> Void), onError: @escaping (( _ error: String) -> Void))
     func updateCurrentUser(_ updatedUser: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
-    func removeUsersPresence(_ outdatedUsers: [User], onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
+    func removeUsersPresence(_ outdatedUsers: [User], onError: @escaping((_ error: String) -> Void))
 }
 
 final class UserEngineService {
@@ -109,6 +110,20 @@ extension UserService {
             onError(error.localizedDescription)
         }
     }
+
+    func setUserPresence(onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
+        guard var user = API.User.CURRENT_USER_OBJECT else { return }
+        user.isPresent = true
+        user.presenceDate = Date.now
+        do {
+            try USERS_REF.document(user.id).setData(from: user, merge: true)
+            // TODO: Check for every user modification
+            API.User.CURRENT_USER_OBJECT = user
+            onSuccess()
+        } catch let error {
+            onError(error.localizedDescription)
+        }
+    }
 }
 
 
@@ -187,7 +202,8 @@ extension UserService {
 
 // MARK: - Remove
 extension UserService {
-    func removeUsersPresence(_ outdatedUsers: [User], onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
+    func removeUsersPresence(_ outdatedUsers: [User], onError: @escaping((_ error: String) -> Void)) {
+        // TODO: Find a way to not use a dictionnary
         for user in outdatedUsers {
             let dic : [String: Any] = [
                 "isPresent": false,

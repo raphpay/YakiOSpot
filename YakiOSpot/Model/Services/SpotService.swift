@@ -11,6 +11,7 @@ import FirebaseFirestore
 protocol SpotEngine {
     func getSpot(onSuccess: @escaping ((_ spot: Spot) -> Void), onError: @escaping((_ error: String) -> Void))
     func toggleUserPresence(from spot: Spot, user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
+    func setUserPresent(onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
     func getPeoplePresent(onSuccess: @escaping ((_ peoplePresent: [User]) -> Void), onError: @escaping((_ error: String) -> Void))
     func removeUsersFromSpot(_ users: [User], onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
 }
@@ -66,6 +67,30 @@ extension SpotService {
             onSuccess()
         } catch let error {
             onError(error.localizedDescription)
+        }
+    }
+
+    func setUserPresent(onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
+        guard let user = API.User.CURRENT_USER_OBJECT else { return }
+        // TODO: Make a computed property to get the spot, just like the user above
+        self.getSpot { spot in
+            var newPeopleArray: [User] = []
+            var artificialSpot = spot
+            if let peoplePresent = spot.peoplePresent {
+                newPeopleArray = peoplePresent
+                newPeopleArray.append(user)
+            } else {
+                newPeopleArray = [user]
+            }
+            artificialSpot.peoplePresent = newPeopleArray
+            do {
+                try self.cornillonRef.setData(from: artificialSpot, merge: true)
+                onSuccess()
+            } catch let error {
+                onError(error.localizedDescription)
+            }
+        } onError: { error in
+            onError(error)
         }
     }
 }

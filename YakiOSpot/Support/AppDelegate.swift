@@ -83,9 +83,7 @@ extension AppDelegate {
     
     private func removeUsersFromSession(people: [User]) {
         API.Spot.session.removeUsersFromSpot(people) {
-            API.User.session.removeUsersPresence(people) {
-                print("======= \(#function) success =====")
-            } onError: { error in
+            API.User.session.removeUsersPresence(people) { error in
                 print("======= \(#function) removeUsersPresence =====", error)
             }
         } onError: { error in
