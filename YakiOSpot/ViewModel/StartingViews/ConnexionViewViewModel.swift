@@ -24,13 +24,13 @@ final class ConnexionViewViewModel: ObservableObject {
     
     func didTapConnect(onSuccess: @escaping (() -> Void)) {
         API.Auth.session.signIn(email: email, password: password) { userID in
-            API.User.session.getUserPseudo(with: userID) { pseudo in
+            API.User.session.updateLocalCurrentUser(id: userID) {
                 self.isShowingTabBar = true
                 self.email = ""
                 self.password = ""
                 onSuccess()
             } onError: { error in
-                self.showAlert(title: "Oups !", message: error)
+                self.showAlert(title: "Oups", message: error)
             }
         } onError: { error in
             self.alertMessage = error

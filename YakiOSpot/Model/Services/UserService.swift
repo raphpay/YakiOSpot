@@ -14,9 +14,9 @@ protocol UserEngine {
     func setUserPresence(onSuccess: @escaping ((_ user: User) -> Void), onError: @escaping((_ error: String) -> Void))
     func setUserAbsence(onSuccess: @escaping ((_ user: User) -> Void), onError: @escaping((_ error: String) -> Void))
     func addSessionToUser(sessionID: String, to user: User, onSuccess: @escaping ((_ newUser: User) -> Void), onError: @escaping((_ error: String) -> Void))
-    func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserFromUID(_ uid: String, onSuccess: @escaping ((_ user: User) -> Void), onError: @escaping (( _ error: String) -> Void))
     func updateCurrentUser(_ updatedUser: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
+    func updateLocalCurrentUser(id: String, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
     func removeUsersPresence(_ outdatedUsers: [User], onError: @escaping((_ error: String) -> Void))
 }
 
@@ -115,36 +115,7 @@ extension UserService {
 
 
 // MARK: - Fetch
-extension UserService {
-    func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void)) {
-        USERS_REF.document(id).getDocument { snapshot, error in
-            guard error == nil else {
-                onError(error!.localizedDescription)
-                return
-            }
-            
-            guard let snapshot = snapshot else {
-                onError("User not found")
-                return
-            }
-            
-            do {
-                if let user = try snapshot.data(as: User.self) {
-                    onSuccess(user.pseudo)
-                }
-            } catch let error {
-                onError(error.localizedDescription)
-            }
-            
-            guard let user = snapshot.data(),
-                  let pseudo = user["pseudo"] as? String else {
-                      onError("User not found")
-                      return
-                  }
-            onSuccess(pseudo)
-        }
-    }
-    
+extension UserService {    
     func getUserFromUID(_ uid: String, onSuccess: @escaping ((User) -> Void), onError: @escaping (( _ error: String) -> Void)) {
         USERS_REF.document(uid).getDocument { snapshot, error in
             guard error == nil else {
@@ -181,6 +152,26 @@ extension UserService {
             onSuccess()
         } catch let error {
             onError(error.localizedDescription)
+        }
+    }
+    
+    func updateLocalCurrentUser(id: String, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
+        USERS_REF.document(id).getDocument { snapshot, error in
+            guard error == nil else {
+                onError(error!.localizedDescription)
+                return
+            }
+            guard let snapshot = snapshot else {
+                onError("No snapshot")
+                return
+            }
+            
+            do {
+                API.User.CURRENT_USER_OBJECT = try snapshot.data(as: User.self)
+                onSuccess()
+            } catch let error {
+                onError(error.localizedDescription)
+            }
         }
     }
 }
