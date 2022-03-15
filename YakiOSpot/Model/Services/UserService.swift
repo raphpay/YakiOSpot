@@ -17,6 +17,7 @@ protocol UserEngine {
     func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserFromUID(_ uid: String, onSuccess: @escaping ((_ user: User) -> Void), onError: @escaping (( _ error: String) -> Void))
     func updateCurrentUser(_ updatedUser: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
+    func updateLocalCurrentUser(id: String, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
     func removeUsersPresence(_ outdatedUsers: [User], onError: @escaping((_ error: String) -> Void))
 }
 
@@ -181,6 +182,26 @@ extension UserService {
             onSuccess()
         } catch let error {
             onError(error.localizedDescription)
+        }
+    }
+    
+    func updateLocalCurrentUser(id: String, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
+        USERS_REF.document(id).getDocument { snapshot, error in
+            guard error == nil else {
+                onError(error!.localizedDescription)
+                return
+            }
+            guard let snapshot = snapshot else {
+                onError("No snapshot")
+                return
+            }
+            
+            do {
+                API.User.CURRENT_USER_OBJECT = try snapshot.data(as: User.self)
+                onSuccess()
+            } catch let error {
+                onError(error.localizedDescription)
+            }
         }
     }
 }
