@@ -13,7 +13,7 @@ enum RegistrationFormTextField {
 
 struct RegistrationView: View {
     @Binding var selection: Int
-    @ObservedObject var appState: AppState
+    @EnvironmentObject var appState: AppState
     @StateObject private var viewModel = RegistrationViewViewModel()
     @FocusState private var focus: RegistrationFormTextField?
     

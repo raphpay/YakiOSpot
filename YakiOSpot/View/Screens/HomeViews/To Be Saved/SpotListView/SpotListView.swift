@@ -54,7 +54,7 @@ struct SpotListView: View {
             }
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
-                    NavigationLink(destination: ProfileView(isConnected: $isConnected)) {
+                    NavigationLink(destination: ProfileView()) {
                         Image(systemName: "person.circle")
                             .foregroundColor(.black)
                     }

@@ -11,11 +11,14 @@ import FirebaseAuth
 
 protocol UserEngine {
     func addUserToDatabase(_ user: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
-    func toggleUserPresence(_ user: User, onSuccess: @escaping ((_ isPresent: Bool) -> Void), onError: @escaping((_ error: String) -> Void))
+    func setUserPresence(onSuccess: @escaping ((_ user: User) -> Void), onError: @escaping((_ error: String) -> Void))
+    func setUserAbsence(onSuccess: @escaping ((_ user: User) -> Void), onError: @escaping((_ error: String) -> Void))
     func addSessionToUser(sessionID: String, to user: User, onSuccess: @escaping ((_ newUser: User) -> Void), onError: @escaping((_ error: String) -> Void))
-    func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void))
     func getUserFromUID(_ uid: String, onSuccess: @escaping ((_ user: User) -> Void), onError: @escaping (( _ error: String) -> Void))
     func removeSessions(_ sessions: [String], onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
+    func updateCurrentUser(_ updatedUser: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
+    func updateLocalCurrentUser(id: String, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
+    func removeUsersPresence(_ outdatedUsers: [User], onError: @escaping((_ error: String) -> Void))
 }
 
 final class UserEngineService {
@@ -65,26 +68,6 @@ extension UserService {
         onSuccess()
     }
     
-    func toggleUserPresence(_ user: User, onSuccess: @escaping ((_ isPresent: Bool) -> Void), onError: @escaping((_ error: String) -> Void)) {
-        let specificUserRef = USERS_REF.document(user.id)
-        var artificialUser = user
-        let userIsPresentValue = UserDefaults.standard.bool(forKey: DefaultKeys.IS_USER_PRESENT)
-        if userIsPresentValue == true {
-            artificialUser.isPresent = false
-            UserDefaults.standard.set(false, forKey: DefaultKeys.IS_USER_PRESENT)
-        } else {
-            artificialUser.isPresent = true
-            UserDefaults.standard.set(true, forKey: DefaultKeys.IS_USER_PRESENT)
-        }
-        
-        do {
-            try specificUserRef.setData(from: artificialUser, merge: true)
-            onSuccess(artificialUser.isPresent!)
-        } catch let error {
-            onError(error.localizedDescription)
-        }
-    }
-    
     func addSessionToUser(sessionID: String, to user: User, onSuccess: @escaping ((_ newUser: User) -> Void), onError: @escaping ((String) -> Void)) {
         let specificUserRef = USERS_REF.document(user.id)
         var artificialUser = user
@@ -102,41 +85,38 @@ extension UserService {
             onError(error.localizedDescription)
         }
     }
+
+    func setUserPresence(onSuccess: @escaping ((_ user: User) -> Void), onError: @escaping((_ error: String) -> Void)) {
+        guard var user = API.User.CURRENT_USER_OBJECT else { return }
+        user.isPresent = true
+        user.presenceDate = Date.now
+        do {
+            try USERS_REF.document(user.id).setData(from: user, merge: true)
+            API.User.CURRENT_USER_OBJECT = user
+            onSuccess(user)
+        } catch let error {
+            onError(error.localizedDescription)
+        }
+    }
+    
+    func setUserAbsence(onSuccess: @escaping ((_ user: User) -> Void), onError: @escaping((_ error: String) -> Void)) {
+        guard var user = API.User.CURRENT_USER_OBJECT else { return }
+        user.isPresent = false
+        user.presenceDate = nil
+        do {
+            try USERS_REF.document(user.id).setData(from: user, merge: true)
+            USERS_REF.document(user.id).updateData(["presenceDate": FieldValue.delete()])
+            API.User.CURRENT_USER_OBJECT = user
+            onSuccess(user)
+        } catch let error {
+            onError(error.localizedDescription)
+        }
+    }
 }
 
 
 // MARK: - Fetch
-extension UserService {
-    func getUserPseudo(with id: String, onSuccess: @escaping ((_ pseudo: String) -> Void), onError: @escaping((_ error: String) -> Void)) {
-        USERS_REF.document(id).getDocument { snapshot, error in
-            guard error == nil else {
-                onError(error!.localizedDescription)
-                return
-            }
-            
-            guard let snapshot = snapshot else {
-                onError("User not found")
-                return
-            }
-            
-            do {
-                if let user = try snapshot.data(as: User.self) {
-                    onSuccess(user.pseudo)
-                }
-            } catch let error {
-                onError(error.localizedDescription)
-            }
-            
-            guard let user = snapshot.data(),
-                  let pseudo = user["pseudo"] as? String else {
-                onError("User not found")
-                return
-            }
-            
-            onSuccess(pseudo)
-        }
-    }
-    
+extension UserService {    
     func getUserFromUID(_ uid: String, onSuccess: @escaping ((User) -> Void), onError: @escaping (( _ error: String) -> Void)) {
         USERS_REF.document(uid).getDocument { snapshot, error in
             guard error == nil else {
@@ -156,6 +136,66 @@ extension UserService {
                 onError("Error getting user from uid \(uid). Error: \(error.localizedDescription)")
             }
             
+        }
+    }
+}
+
+// MARK: - Update
+extension UserService {
+    func updateCurrentUser(_ updatedUser: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
+        // Update current user
+        API.User.CURRENT_USER_OBJECT = updatedUser
+        
+        let specificUserRef = USERS_REF.document(updatedUser.id)
+        
+        do {
+            try specificUserRef.setData(from: updatedUser, merge: true)
+            onSuccess()
+        } catch let error {
+            onError(error.localizedDescription)
+        }
+    }
+    
+    func updateLocalCurrentUser(id: String, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
+        USERS_REF.document(id).getDocument { snapshot, error in
+            guard error == nil else {
+                onError(error!.localizedDescription)
+                return
+            }
+            guard let snapshot = snapshot else {
+                onError("No snapshot")
+                return
+            }
+            
+            do {
+                API.User.CURRENT_USER_OBJECT = try snapshot.data(as: User.self)
+                onSuccess()
+            } catch let error {
+                onError(error.localizedDescription)
+            }
+        }
+    }
+}
+
+
+// MARK: - Remove
+extension UserService {
+    func removeUsersPresence(_ outdatedUsers: [User], onError: @escaping((_ error: String) -> Void)) {
+        for user in outdatedUsers {
+            var artificialUser = user
+            let dic : [String: Any] = ["presenceDate": FieldValue.delete()]
+            artificialUser.isPresent = false
+            do {
+                try USERS_REF.document(artificialUser.id).setData(from: artificialUser, merge: true)
+                USERS_REF.document(user.id).updateData(dic) { error in
+                    guard error == nil else {
+                        onError(error!.localizedDescription)
+                        return
+                    }
+                }
+            } catch let error {
+                onError(error.localizedDescription)
+            }
         }
     }
 }

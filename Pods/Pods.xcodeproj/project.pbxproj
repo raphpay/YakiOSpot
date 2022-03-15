@@ -12131,7 +12131,7 @@
 		EB9262B073852C64DEA368F59F52BEE0 /* FIRInstanceIDTokenDeleteOperation.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = FIRInstanceIDTokenDeleteOperation.m; path = Firebase/InstanceID/FIRInstanceIDTokenDeleteOperation.m; sourceTree = "<group>"; };
 		EBB961163D0BD376AC02C8B6225A89DB /* socket_utils_posix.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = socket_utils_posix.h; path = src/core/lib/iomgr/socket_utils_posix.h; sourceTree = "<group>"; };
 		EBEA118DC53DFC9706E92E22F321206A /* GPBExtensionInternals.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = GPBExtensionInternals.h; path = objectivec/GPBExtensionInternals.h; sourceTree = "<group>"; };
-		EBF915C2E45777DCCF8C137EE5ADF311 /* Pods-YakiOSpot */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-YakiOSpot"; path = Pods_YakiOSpot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EBF915C2E45777DCCF8C137EE5ADF311 /* Pods_YakiOSpot.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_YakiOSpot.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC00E7171DFA0BE870AA4F4DD9682D05 /* FIRSignUpNewUserResponse.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = FIRSignUpNewUserResponse.h; path = FirebaseAuth/Sources/Backend/RPC/FIRSignUpNewUserResponse.h; sourceTree = "<group>"; };
 		EC0FAA05E959F6A268765A6ACB97D084 /* generated_util.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = generated_util.h; path = third_party/upb/upb/generated_util.h; sourceTree = "<group>"; };
 		EC17A9527FA621605BCD30E5EB753022 /* periodic_sampler.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = periodic_sampler.h; path = absl/base/internal/periodic_sampler.h; sourceTree = "<group>"; };
@@ -16584,7 +16584,7 @@
 				C1998E0D8085221AD87F89B614C10E52 /* GTMSessionFetcher */,
 				0A9F46A999C47653013D3AD854352507 /* leveldb-library */,
 				06FC5C9CF96D60C50FCD47D339C91951 /* nanopb */,
-				EBF915C2E45777DCCF8C137EE5ADF311 /* Pods-YakiOSpot */,
+				EBF915C2E45777DCCF8C137EE5ADF311 /* Pods_YakiOSpot.framework */,
 				DF8F7EE382ADF60C98C9A457F781940D /* Pods-YakiOSpotUnitTests */,
 				3347A1AB6546F0A3977529B8F199DC41 /* PromisesObjC */,
 				C2105C94812B6214B154F54DCEDB72AC /* Protobuf */,
@@ -19628,7 +19628,7 @@
 			);
 			name = "Pods-YakiOSpot";
 			productName = Pods_YakiOSpot;
-			productReference = EBF915C2E45777DCCF8C137EE5ADF311 /* Pods-YakiOSpot */;
+			productReference = EBF915C2E45777DCCF8C137EE5ADF311 /* Pods_YakiOSpot.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 		6AE4A3D573DED275B034E20506596C62 /* FirebaseAuth */ = {

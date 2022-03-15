@@ -17,7 +17,7 @@ The user documentation
     - `userIDs: The IDs of the users that will be present to the session.`
 */
 
-struct Session: Codable, Hashable {
+struct Session: Identifiable, Codable, Hashable {
     var id: String = ""
     var creator: User
     var date: Date

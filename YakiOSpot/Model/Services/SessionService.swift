@@ -15,6 +15,7 @@ protocol SessionEngine {
     func fetchAllSession(onSuccess: @escaping ((_ sessions: [Session]) -> Void), onError: @escaping((_ error: String) -> Void))
     func fetchUsers(for session: Session, onSuccess: @escaping ((_ users: [User]) -> Void), onError: @escaping((_ error: String) -> Void))
     func removeOldSessionsIfNeeded(sessions: [Session]) -> ([Session], [String])
+    func fetchSessionsForIDs(_ sessionIDs: [String], onSuccess: @escaping ((_ sessions: [Session]) -> Void), onError: @escaping((_ error: String) -> Void))
 }
 
 final class SessionEngineService {
@@ -141,6 +142,38 @@ extension SessionService {
             }
             
             onSuccess(allUsers)
+        }
+    }
+    
+    func fetchSessionsForIDs(_ sessionIDs: [String], onSuccess: @escaping ((_ sessions: [Session]) -> Void), onError: @escaping((_ error: String) -> Void)) {
+        var sessions: [Session] = []
+        var index = 0
+        for sessionID in sessionIDs {
+            SESSION_REF.whereField("id", isEqualTo: sessionID).getDocuments { snapshot, error in
+                guard error == nil else {
+                    onError(error!.localizedDescription)
+                    return
+                }
+                
+                guard let snapshot = snapshot else {
+                    onError("No user present for this session")
+                    return
+                }
+                
+                do {
+                    if let session = try snapshot.documents[0].data(as: Session.self) {
+                        sessions.append(session)
+                    }
+                } catch let error {
+                    onError(error.localizedDescription)
+                }
+                
+                index += 1
+                
+                if index >= sessionIDs.count {
+                    onSuccess(sessions)
+                }
+            }
         }
     }
 }

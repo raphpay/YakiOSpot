@@ -24,18 +24,19 @@ final class RegistrationViewViewModel: ObservableObject {
         API.Auth.session.createUser(email: email, password: password) { userUID in
             let user = User(id: userUID, pseudo: self.pseudo, mail: self.email)
             API.User.session.addUserToDatabase(user) {
-                self.resetFields()
-                self.isShowingTabBar = true
-                API.Token.session.updateFirestorePushTokenIfNeeded()
-                onSuccess()
+                API.User.session.updateLocalCurrentUser(id: userUID) {
+                    self.resetFields()
+                    self.isShowingTabBar = true
+                    API.Token.session.updateFirestorePushTokenIfNeeded()
+                    onSuccess()
+                } onError: { error in
+                    self.showErrorAlert(error: error)
+                }
             } onError: { error in
-                self.alertMessage = error
-                self.showAlert.toggle()
+                self.showErrorAlert(error: error)
             }
-
         } onError: { error in
-            self.alertMessage = error
-            self.showAlert.toggle()
+            self.showErrorAlert(error: error)
         }
     }
     
@@ -43,5 +44,10 @@ final class RegistrationViewViewModel: ObservableObject {
         self.pseudo      = ""
         self.email       = ""
         self.password    = ""
+    }
+    
+    private func showErrorAlert(error: String) {
+        self.alertMessage = error
+        self.showAlert.toggle()
     }
 }

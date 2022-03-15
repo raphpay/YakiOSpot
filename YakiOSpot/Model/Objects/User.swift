@@ -11,6 +11,7 @@ import FirebaseFirestoreSwift
 /**
 The user documentation
  
+ // TODO: Add missing fields
  # Parameters :
         - `id: A unique identifier. Set when creating a user`
     - `pseudo: The pseudo of the user. Set when creating a user.`
@@ -21,16 +22,42 @@ The user documentation
     - `fcmToken: The token identifying the user on Firebase Cloud Messaging for notifications.`
 */
 
-struct User: Codable, Hashable {
+struct User: Identifiable, Codable, Hashable {
     var id: String = ""
     var pseudo: String = ""
     var mail: String = ""
     var favoritedSpotsIDs: [String]?
     var isPresent: Bool? = false
+    var presenceDate: Date?
     var sessions: [String]?
-    var fcmToken: String = ""
+    var bike: Bike?
+    var photoURL: String?
+    var isMember: Bool?
+    var memberType: MemberType?
     
     func hash(into hasher: inout Hasher) {
         hasher.combine(id)
     }
+    
+    enum MemberType: String, Codable {
+        case rider, ambassador, staff, dev
+        
+        var description: String {
+            switch self {
+            case .ambassador:
+                return "Ambassadeur"
+            case .staff:
+                return "Spot Boss"
+            case .dev:
+                return "Développeur de l'app"
+            default:
+                return "Rider adhérent"
+            }
+        }
+    }
+}
+
+struct MockUser {
+    static let data = User(id: "1", pseudo: "mockUser", mail: "mockuser@test.com",
+                    favoritedSpotsIDs: nil, isPresent: false, sessions: nil)
 }

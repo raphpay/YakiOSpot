@@ -7,12 +7,14 @@ target 'YakiOSpot' do
 
   # Pods for YakiOSpot
 
+pod 'SDWebImageSwiftUI'
 pod 'Firebase/Analytics'
 pod 'Firebase/Auth'
 pod 'Firebase/Firestore'
 pod 'FirebaseFirestoreSwift'
 pod 'Firebase/Messaging'
 pod 'Firebase/Storage'
+pod 'FirebaseUI/Storage'
 
   target 'YakiOSpotUnitTests' do
     inherit! :search_paths

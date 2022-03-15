@@ -22,12 +22,18 @@ struct YakiOSpotApp: App {
                         UserDefaults.standard.setValue(false, forKey: "_UIConstraintsBasedLayoutLogUnsatisfiable")
                     }
                     .environmentObject(appState)
+                    .onAppear {
+                        appState.isConnected = false
+                    }
             } else {
                 HomeTabView()
                     .onAppear {
                         UserDefaults.standard.setValue(false, forKey: "_UIConstraintsBasedLayoutLogUnsatisfiable")
                     }
                     .environmentObject(appState)
+                    .onAppear {
+                        appState.isConnected = true
+                    }
             }
         }
     }

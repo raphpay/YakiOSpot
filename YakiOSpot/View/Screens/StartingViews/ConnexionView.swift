@@ -13,7 +13,7 @@ enum ConnexionFormTextField {
 
 struct ConnexionView: View {
     @Binding var selection: Int
-    @ObservedObject var appState: AppState
+    @EnvironmentObject var appState: AppState
     @StateObject var viewModel = ConnexionViewViewModel()
     @FocusState private var focus: ConnexionFormTextField?
     
@@ -74,7 +74,7 @@ struct ConnexionView: View {
 
 struct ConnexionView_Previews: PreviewProvider {
     static var previews: some View {
-        ConnexionView(selection: .constant(0), appState: AppState())
+        ConnexionView(selection: .constant(0))
     }
 }
 

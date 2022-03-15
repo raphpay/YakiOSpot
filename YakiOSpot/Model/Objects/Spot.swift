@@ -19,11 +19,12 @@ The spot documentation
     - `mail: The email of the user. Set when creating a user.`
 */
 
-struct Spot: Codable, Hashable {
+struct Spot: Identifiable, Codable, Hashable {
     var id: String
     var name: String
     var tracks: [Track]
-    var members: Int
+    // TODO: Convert this property to a string array to contain the member IDs
+    var members: Int?
     var peoplePresent: [User]?
 //    var favorites: Int?
 //    var isFavorited: Bool = false
@@ -51,6 +52,5 @@ struct DummySpot {
     
     // Spot
     static let cornillon = Spot(id: "CornillonID", name: "DCF Cornillon",
-                                tracks: [slake, oldSchool, moria, blaize, airCore, scred],
-                                members: 159, peoplePresent: [])
+                                tracks: [slake, oldSchool, moria, blaize, airCore, scred], peoplePresent: [])
 }

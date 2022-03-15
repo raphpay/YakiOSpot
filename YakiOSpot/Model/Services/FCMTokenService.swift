@@ -57,10 +57,8 @@ extension FCMTokenService {
     
     func updateFirestorePushTokenIfNeeded() {
         if let token = Messaging.messaging().fcmToken,
-           let userID = API.User.CURRENT_USER?.uid,
-           var userObject = API.User.CURRENT_USER_OBJECT {
+           let userID = API.User.CURRENT_USER?.uid {
             let tokenDict = ["fcmToken": token]
-            userObject.fcmToken = token
             USERS_REF.document(userID).setData(tokenDict, merge: true)
             TOKENS_REF.document(token).setData(tokenDict)
             NotificationCenter.default.post(name: Notification.Name("FCMToken"), object: nil, userInfo: tokenDict)
