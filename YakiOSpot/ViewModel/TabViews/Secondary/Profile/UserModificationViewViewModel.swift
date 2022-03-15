@@ -66,8 +66,12 @@ extension UserModificationViewViewModel {
         }
         // Send to firebase
         API.User.session.updateCurrentUser(currentNewUser) {
-            print("======= \(#function) success =====")
-            onSuccess(currentNewUser.isMember!, currentNewUser.memberType!)
+            API.Spot.session.incrementMembersNumber {
+                print("======= \(#function) success =====")
+                onSuccess(currentNewUser.isMember!, currentNewUser.memberType!)
+            } onError: { error in
+                print("======= \(#function) =====", error)
+            }
         } onError: { error in
             print("======= \(#function) =====", error)
         }
