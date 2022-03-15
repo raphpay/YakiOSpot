@@ -13,7 +13,6 @@ protocol SpotEngine {
     func setUserPresent(onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
     func getPeoplePresent(onSuccess: @escaping ((_ peoplePresent: [User]) -> Void), onError: @escaping((_ error: String) -> Void))
     func removeUsersFromSpot(_ users: [User], onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
-    
     func incrementMembersNumber(onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
 }
 
@@ -75,6 +74,7 @@ extension SpotService {
             // TODO: 'docatch' block to be refactored ?
             do {
                 try self.cornillonRef.setData(from: artificialSpot, merge: true)
+                onSuccess()
             } catch let error {
                 onError(error.localizedDescription)
             }
