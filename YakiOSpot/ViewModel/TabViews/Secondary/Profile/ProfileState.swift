@@ -85,27 +85,36 @@ extension ProfileState {
         cancelButtonText = "Je suis toujours là"
     }
     
-    func toggleUserPresence() {
-        guard var user = API.User.CURRENT_USER_OBJECT else { return }
-        // TODO: The toggle method can be refactored. Maybe we don't need that much code to toggle user presence.
-        // Consider using the `updateCurrentUser` method
-        API.User.session.toggleUserPresence(user) { isPresent in
-            // Toggle user object presence
-            user.isPresent = isPresent
-            self.userIsPresent = isPresent
-            API.Spot.session.getSpot { spot in
-                API.Spot.session.toggleUserPresence(from: spot, user: user) {
-                    if isPresent {
-                        self.sendPresenceNotification(from: user.pseudo)
-                    }
-                } onError: { error in
-                    print("======= \(#function) toggling user presence from spot =====", error)
-                }
+    func confirmAlert() {
+        if userIsPresent {
+            setUserAbsent()
+        } else {
+            setUserPresent()
+        }
+    }
+    
+    func setUserPresent() {
+        API.User.session.setUserPresence { user in
+            API.Spot.session.setUserPresent() {
+                self.userIsPresent = true
+                self.sendPresenceNotification(from: user.pseudo)
             } onError: { error in
-                print("======= \(#function) getting spot =====", error)
+                print("======= \(#function) setUserPresent=====", error)
             }
         } onError: { error in
-            print("======= \(#function) toggling user presence  =====", error)
+            print("======= \(#function) setUserPresence =====", error)
+        }
+    }
+    
+    func setUserAbsent() {
+        API.User.session.setUserAbsence { user in
+            API.Spot.session.removeUsersFromSpot([user]) {
+                self.userIsPresent = false
+            } onError: { error in
+                print("======= \(#function) removeUsersFromSpot =====", error)
+            }
+        } onError: { error in
+            print("======= \(#function) setUserAbsence =====", error)
         }
     }
 

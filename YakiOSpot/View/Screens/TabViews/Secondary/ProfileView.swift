@@ -27,7 +27,7 @@ struct ProfileView: View {
         .navigationTitle("Profil")
         .alert(profileState.alertTitle, isPresented: $profileState.showAlert) {
             Button(profileState.agreeButtonText) {
-                profileState.toggleUserPresence()
+                profileState.confirmAlert()
             }
             Button(profileState.cancelButtonText) {}
         }
