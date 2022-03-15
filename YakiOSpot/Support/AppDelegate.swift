@@ -63,7 +63,7 @@ extension AppDelegate {
             // Check for outdated people
             let outdatedPeople = self.getOutdatedPeople(from: peoplePresent)
             // Remove from session
-            self.removeUsersFromSession(people: outdatedPeople)
+            self.removeUsersFromDatabase(peopleToRemove: outdatedPeople)
         } onError: { error in
             print("======= \(#function) error getting people present =====", error)
         }
@@ -81,9 +81,9 @@ extension AppDelegate {
         return outdatedPeople
     }
     
-    private func removeUsersFromSession(people: [User]) {
-        API.Spot.session.removeUsersFromSpot(people) {
-            API.User.session.removeUsersPresence(people) { error in
+    private func removeUsersFromDatabase(peopleToRemove: [User]) {
+        API.Spot.session.removeUsersFromSpot(peopleToRemove) {
+            API.User.session.removeUsersPresence(peopleToRemove) { error in
                 print("======= \(#function) removeUsersPresence =====", error)
             }
         } onError: { error in
