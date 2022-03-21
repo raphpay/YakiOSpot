@@ -25,17 +25,17 @@ struct UserRow: View {
             profileImage
             
             VStack(alignment: .leading, spacing: 8) {
-                Text(profileState.user.pseudo)
-                    .font(.title)
-                    .fontWeight(.bold)
+                GeometryReader { geo in
+                    Text(profileState.user.pseudo)
+                        .font(.system(size: geo.size.height > geo.size.width ? geo.size.width * 0.3 : geo.size.height * 0.3))
+                        .fontWeight(.bold)
+                }
                 
                 Text(userMembershipType)
                     .font(.headline)
                     .foregroundColor(.secondary)
             }
             
-            Spacer()
-
             NavigationLink(destination: UserModificationView(profileState: profileState)) {
                 Image(systemName: "highlighter")
                     .font(.system(size: 25))
