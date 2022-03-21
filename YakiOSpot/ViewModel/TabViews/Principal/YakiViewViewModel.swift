@@ -27,9 +27,11 @@ extension YakiViewViewModel {
         }
         API.Session.session.removeOldSessionsIfNeeded { remainingSessions, sessionsRemoved in
             self.sessions = remainingSessions
-            
+            API.User.session.removeSessionsFromUsersIfNeeded(sessions: sessionsRemoved) { error in
+                print("======= \(#function) removeSessionsFromUsersIfNeeded =====", error)
+            }
         } onError: { error in
-            print("======= \(#function) =====", error)
+            print("======= \(#function) removeOldSessionsIfNeeded =====", error)
         }
 
     }

@@ -14,7 +14,7 @@ protocol SessionEngine {
     func setUserPresent(_ userID: String, session: Session, isPresent: Bool)
     func fetchAllSession(onSuccess: @escaping ((_ sessions: [Session]) -> Void), onError: @escaping((_ error: String) -> Void))
     func fetchUsers(for session: Session, onSuccess: @escaping ((_ users: [User]) -> Void), onError: @escaping((_ error: String) -> Void))
-    func removeOldSessionsIfNeeded(onSuccess: @escaping ((_ remainingSessions: [Session], _ sessionsRemoved: [String]) -> Void), onError: @escaping((_ error: String) -> Void))
+    func removeOldSessionsIfNeeded(onSuccess: @escaping ((_ remainingSessions: [Session], _ sessionsRemoved: [Session]) -> Void), onError: @escaping((_ error: String) -> Void))
     func fetchSessionsForIDs(_ sessionIDs: [String], onSuccess: @escaping ((_ sessions: [Session]) -> Void), onError: @escaping((_ error: String) -> Void))
 }
 
@@ -178,16 +178,16 @@ extension SessionService {
 
 // MARK: - Remove
 extension SessionService {
-    func removeOldSessionsIfNeeded(onSuccess: @escaping ((_ remainingSessions: [Session], _ sessionsRemoved: [String]) -> Void), onError: @escaping((_ error: String) -> Void)) {
+    func removeOldSessionsIfNeeded(onSuccess: @escaping ((_ remainingSessions: [Session], _ sessionsRemoved: [Session]) -> Void), onError: @escaping((_ error: String) -> Void)) {
         self.fetchAllSession { sessions in
             var remainingSessions: [Session] = sessions
-            var sessionsRemoved: [String] = []
+            var sessionsRemoved: [Session] = []
             
             for session in sessions {
                 if session.date < Date.now,
                    let index = sessions.firstIndex(where: { $0.id == session.id }) {
                     remainingSessions.remove(at: index)
-                    sessionsRemoved.append(session.id)
+                    sessionsRemoved.append(session)
                     self.SESSION_REF.document(session.id).delete()
                 }
             }

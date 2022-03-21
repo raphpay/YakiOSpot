@@ -18,6 +18,7 @@ protocol UserEngine {
     func updateCurrentUser(_ updatedUser: User, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
     func updateLocalCurrentUser(id: String, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
     func removeUsersPresence(_ outdatedUsers: [User], onError: @escaping((_ error: String) -> Void))
+    func removeSessionsFromUsersIfNeeded(sessions: [Session], onError: @escaping((_ error: String) -> Void))
 }
 
 final class UserEngineService {
@@ -201,5 +202,26 @@ extension UserService {
 
 // MARK: - Remove
 extension UserService {
-    
+    func removeSessionsFromUsersIfNeeded(sessions: [Session], onError: @escaping((_ error: String) -> Void)) {
+        for session in sessions {
+            self.getUserFromUID(session.creator.id) { creator in
+                var artificialUser = creator
+                if var creatorSessions = creator.sessions,
+                   creatorSessions.contains(where: { $0 == session.id }),
+                   let index = creatorSessions.firstIndex(where: { $0 == session.id }) {
+                    creatorSessions.remove(at: index)
+                    
+                    artificialUser.sessions = creatorSessions
+                    
+                    do {
+                        try self.USERS_REF.document(session.creator.id).setData(from: artificialUser, merge: true)
+                    } catch let error {
+                        onError(error.localizedDescription)
+                    }
+                }
+            } onError: { error in
+                onError(error)
+            }
+        }
+    }
 }
