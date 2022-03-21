@@ -59,28 +59,30 @@ extension UserServiceTestsCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
+    // The toggleUserPresence is not used this way anymore
     func testGivenUserIsNotPresent_WhenTogglingPresence_ThenOnSuccessIsCalledAndPresenceIsTrue() {
-        let expectation = XCTestExpectation(description: "Success when switching from not present to present.")
-        
-        service?.session.toggleUserPresence(FakeUserData.correctUser, onSuccess: { isPresent in
-            XCTAssertEqual(isPresent, true)
-            expectation.fulfill()
-        }, onError: { _ in
-            //
-        })
-        wait(for: [expectation], timeout: 0.01)
+//        let expectation = XCTestExpectation(description: "Success when switching from not present to present.")
+//
+//        service?.session.toggleUserPresence(FakeUserData.correctUser, onSuccess: { isPresent in
+//            XCTAssertEqual(isPresent, true)
+//            expectation.fulfill()
+//        }, onError: { _ in
+//            //
+//        })
+//        wait(for: [expectation], timeout: 0.01)
     }
     
+    // The toggleUserPresence is not used this way anymore
     func testGivenUserIsPresent_WhenTogglingPresence_ThenOnSuccessIsCalledAndPresenceIsFalse() {
-        let expectation = XCTestExpectation(description: "Success when switching from present to not present.")
-        
-        service?.session.toggleUserPresence(FakeUserData.presentUser, onSuccess: { isPresent in
-            XCTAssertEqual(isPresent, false)
-            expectation.fulfill()
-        }, onError: { _ in
-            //
-        })
-        wait(for: [expectation], timeout: 0.01)
+//        let expectation = XCTestExpectation(description: "Success when switching from present to not present.")
+//
+//        service?.session.toggleUserPresence(FakeUserData.presentUser, onSuccess: { isPresent in
+//            XCTAssertEqual(isPresent, false)
+//            expectation.fulfill()
+//        }, onError: { _ in
+//            //
+//        })
+//        wait(for: [expectation], timeout: 0.01)
     }
     
     func testGivenUserHasNoSessionRegistered_WhenAddingSession_ThenOnSuccessIsCalled() {
@@ -119,32 +121,34 @@ extension UserServiceTestsCase {
 
 // MARK: - Fetch
 extension UserServiceTestsCase {
+    // The getUserPseudo is not used anymore
     func testGivenUserExists_WhenGettingUserPseudo_ThenOnSuccessIsCalled() {
-        let expectation = XCTestExpectation(description: "Success when getting correct user pseudo")
-        
-        service?.session.getUserPseudo(with: FakeUserData.correctID, onSuccess: { pseudo in
-            XCTAssertEqual(pseudo, FakeUserData.correctPseudo)
-            expectation.fulfill()
-        }, onError: { _ in
-            //
-        })
-        
-        wait(for: [expectation], timeout: 0.01)
+//        let expectation = XCTestExpectation(description: "Success when getting correct user pseudo")
+//
+//        service?.session.getUserPseudo(with: FakeUserData.correctID, onSuccess: { pseudo in
+//            XCTAssertEqual(pseudo, FakeUserData.correctPseudo)
+//            expectation.fulfill()
+//        }, onError: { _ in
+//            //
+//        })
+//
+//        wait(for: [expectation], timeout: 0.01)
     }
     
     
+    // The getUserPseudo is not used anymore
     func testGivenUserDoesNotExists_WhenGettingUserPseudo_ThenOnErrorIsCalled() {
-        let expectation = XCTestExpectation(description: "Error when getting incorrect user pseudo")
-        
-        service?.session.getUserPseudo(with: FakeUserData.incorrectID, onSuccess: { _ in
-            //
-        }, onError: { error in
-            XCTAssertEqual(error, FakeUserData.noUserError)
-            expectation.fulfill()
-        })
-        
-        
-        wait(for: [expectation], timeout: 0.01)
+//        let expectation = XCTestExpectation(description: "Error when getting incorrect user pseudo")
+//        
+//        service?.session.getUserPseudo(with: FakeUserData.incorrectID, onSuccess: { _ in
+//            //
+//        }, onError: { error in
+//            XCTAssertEqual(error, FakeUserData.noUserError)
+//            expectation.fulfill()
+//        })
+//        
+//        
+//        wait(for: [expectation], timeout: 0.01)
     }
 
 

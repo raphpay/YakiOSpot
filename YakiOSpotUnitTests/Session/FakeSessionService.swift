@@ -63,3 +63,15 @@ extension FakeSessionService {
         onSuccess(FakeSessionData.users)
     }
 }
+
+
+// MARK: - To be placed
+extension FakeSessionService {
+    func removeOldSessionsIfNeeded(sessions: [Session]) -> [Session] {
+        return []
+    }
+    
+    func fetchSessionsForIDs(_ sessionIDs: [String], onSuccess: @escaping (([Session]) -> Void), onError: @escaping ((String) -> Void)) {
+        //
+    }
+}

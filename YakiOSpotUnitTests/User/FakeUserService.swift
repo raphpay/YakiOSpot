@@ -73,3 +73,27 @@ extension FakeUserService {
         }
     }
 }
+
+
+// MARK: - To be placed
+extension FakeUserService {
+    func setUserPresence(onSuccess: @escaping ((User) -> Void), onError: @escaping ((String) -> Void)) {
+        //
+    }
+    
+    func setUserAbsence(onSuccess: @escaping ((User) -> Void), onError: @escaping ((String) -> Void)) {
+        //
+    }
+    
+    func updateCurrentUser(_ updatedUser: User, onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
+        //
+    }
+    
+    func updateLocalCurrentUser(id: String, onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
+        //
+    }
+    
+    func removeUsersPresence(_ outdatedUsers: [User], onError: @escaping ((String) -> Void)) {
+        //
+    }
+}
