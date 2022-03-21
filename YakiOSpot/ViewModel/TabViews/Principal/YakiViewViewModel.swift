@@ -25,11 +25,12 @@ extension YakiViewViewModel {
         } onError: { error in
             print("======= \(#function) getPeoplePresent =====", error)
         }
-        API.Session.session.fetchAllSession { sessions in
-            let (updatedSession, _) = API.Session.session.removeOldSessionsIfNeeded(sessions: sessions)
-            self.sessions = updatedSession
+        API.Session.session.removeOldSessionsIfNeeded { remainingSessions, sessionsRemoved in
+            self.sessions = remainingSessions
+            
         } onError: { error in
-            print("======= \(#function) fetchAllSession =====", error)
+            print("======= \(#function) =====", error)
         }
+
     }
 }

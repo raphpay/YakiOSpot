@@ -14,7 +14,7 @@ protocol SessionEngine {
     func setUserPresent(_ userID: String, session: Session, isPresent: Bool)
     func fetchAllSession(onSuccess: @escaping ((_ sessions: [Session]) -> Void), onError: @escaping((_ error: String) -> Void))
     func fetchUsers(for session: Session, onSuccess: @escaping ((_ users: [User]) -> Void), onError: @escaping((_ error: String) -> Void))
-    func removeOldSessionsIfNeeded(sessions: [Session]) -> ([Session], [String])
+    func removeOldSessionsIfNeeded(onSuccess: @escaping ((_ remainingSessions: [Session], _ sessionsRemoved: [String]) -> Void), onError: @escaping((_ error: String) -> Void))
     func fetchSessionsForIDs(_ sessionIDs: [String], onSuccess: @escaping ((_ sessions: [Session]) -> Void), onError: @escaping((_ error: String) -> Void))
 }
 
@@ -178,19 +178,25 @@ extension SessionService {
 
 // MARK: - Remove
 extension SessionService {
-    func removeOldSessionsIfNeeded(sessions: [Session]) -> ([Session], [String]) {
-        var remainingSessions: [Session] = sessions
-        var sessionsRemoved: [String] = []
-        for sessionIndex in 0..<sessions.count {
-            let session = remainingSessions[sessionIndex]
+    func removeOldSessionsIfNeeded(onSuccess: @escaping ((_ remainingSessions: [Session], _ sessionsRemoved: [String]) -> Void), onError: @escaping((_ error: String) -> Void)) {
+        self.fetchAllSession { sessions in
+            var remainingSessions: [Session] = sessions
+            var sessionsRemoved: [String] = []
             
-            if session.date < Date.now {
-                remainingSessions.remove(at: sessionIndex)
-                sessionsRemoved.append(session.id)
-                SESSION_REF.document(session.id).delete()
+            for session in sessions {
+                if session.date < Date.now,
+                   let index = sessions.firstIndex(where: { $0.id == session.id }) {
+                    remainingSessions.remove(at: index)
+                    sessionsRemoved.append(session.id)
+                    self.SESSION_REF.document(session.id).delete()
+                }
             }
+            
+            onSuccess(remainingSessions, sessionsRemoved)
+
+        } onError: { error in
+            onError(error)
         }
-        
-        return (remainingSessions, sessionsRemoved)
+
     }
 }
