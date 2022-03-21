@@ -33,6 +33,5 @@ extension YakiViewViewModel {
         } onError: { error in
             print("======= \(#function) removeOldSessionsIfNeeded =====", error)
         }
-
     }
 }

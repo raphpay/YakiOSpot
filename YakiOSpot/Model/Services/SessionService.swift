@@ -184,7 +184,7 @@ extension SessionService {
             var sessionsRemoved: [Session] = []
             
             for session in sessions {
-                if session.date < Date.now,
+                if self.isSessionOutdated(sessionDate: session.date),
                    let index = sessions.firstIndex(where: { $0.id == session.id }) {
                     remainingSessions.remove(at: index)
                     sessionsRemoved.append(session)
@@ -198,5 +198,15 @@ extension SessionService {
             onError(error)
         }
 
+    }
+    
+    private func isSessionOutdated(sessionDate: Date) -> Bool {
+        if let dayAfter = Calendar.current.date(byAdding: .day, value: 1, to: sessionDate) {
+            if dayAfter < Date.now {
+                return true
+            }
+        }
+        
+        return false
     }
 }
