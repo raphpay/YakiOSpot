@@ -10,11 +10,11 @@ import FirebaseFirestore
 
 // TODO: To be tested
 protocol SessionEngine {
-    func postSession(date: Date, creator: User, onSuccess: @escaping ((_ sessionID: String) -> Void), onError: @escaping((_ error: String) -> Void))
+    func postSession(date: Date, creator: User, sessionID: String, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void))
     func setUserPresent(_ userID: String, session: Session, isPresent: Bool)
     func fetchAllSession(onSuccess: @escaping ((_ sessions: [Session]) -> Void), onError: @escaping((_ error: String) -> Void))
     func fetchUsers(for session: Session, onSuccess: @escaping ((_ users: [User]) -> Void), onError: @escaping((_ error: String) -> Void))
-    func removeOldSessionsIfNeeded(sessions: [Session]) -> [Session] 
+    func removeOldSessionsIfNeeded(onSuccess: @escaping ((_ remainingSessions: [Session], _ sessionsRemoved: [Session]) -> Void), onError: @escaping((_ error: String) -> Void))
     func fetchSessionsForIDs(_ sessionIDs: [String], onSuccess: @escaping ((_ sessions: [Session]) -> Void), onError: @escaping((_ error: String) -> Void))
 }
 
@@ -41,14 +41,11 @@ final class SessionService: SessionEngine {
 
 // MARK: - Post
 extension SessionService {
-    func postSession(date: Date, creator: User, onSuccess: @escaping ((_ sessionID: String) -> Void), onError: @escaping((_ error: String) -> Void)) {
-        let id = UUID().uuidString
-        let session = Session(id: id, creator: creator, date: date)
-        let sessionRef = SESSION_REF.document(session.id)
-        
+    func postSession(date: Date, creator: User, sessionID: String, onSuccess: @escaping (() -> Void), onError: @escaping((_ error: String) -> Void)) {
+        let session = Session(id: sessionID, creator: creator, date: date)
         do {
-            try sessionRef.setData(from: session)
-            onSuccess(session.id)
+            try SESSION_REF.document(sessionID).setData(from: session)
+            onSuccess()
         } catch let error {
             onError(error.localizedDescription)
         }
@@ -181,17 +178,35 @@ extension SessionService {
 
 // MARK: - Remove
 extension SessionService {
-    func removeOldSessionsIfNeeded(sessions: [Session]) -> [Session] {
-        var remainingSessions: [Session] = sessions
-        for sessionIndex in 0..<sessions.count {
-            let session = remainingSessions[sessionIndex]
+    func removeOldSessionsIfNeeded(onSuccess: @escaping ((_ remainingSessions: [Session], _ sessionsRemoved: [Session]) -> Void), onError: @escaping((_ error: String) -> Void)) {
+        self.fetchAllSession { sessions in
+            var remainingSessions: [Session] = sessions
+            var sessionsRemoved: [Session] = []
             
-            if session.date < Date.now {
-                remainingSessions.remove(at: sessionIndex)
-                SESSION_REF.document(session.id).delete()
+            for session in sessions {
+                if self.isSessionOutdated(sessionDate: session.date),
+                   let index = sessions.firstIndex(where: { $0.id == session.id }) {
+                    remainingSessions.remove(at: index)
+                    sessionsRemoved.append(session)
+                    self.SESSION_REF.document(session.id).delete()
+                }
+            }
+            
+            onSuccess(remainingSessions, sessionsRemoved)
+
+        } onError: { error in
+            onError(error)
+        }
+
+    }
+    
+    private func isSessionOutdated(sessionDate: Date) -> Bool {
+        if let dayAfter = Calendar.current.date(byAdding: .day, value: 1, to: sessionDate) {
+            if dayAfter < Date.now {
+                return true
             }
         }
         
-        return remainingSessions
+        return false
     }
 }
