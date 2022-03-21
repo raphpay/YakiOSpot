@@ -96,4 +96,8 @@ extension FakeUserService {
     func removeUsersPresence(_ outdatedUsers: [User], onError: @escaping ((String) -> Void)) {
         //
     }
+    
+    func removeSessionsFromUsersIfNeeded(sessions: [Session], onError: @escaping ((String) -> Void)) {
+        //
+    }
 }

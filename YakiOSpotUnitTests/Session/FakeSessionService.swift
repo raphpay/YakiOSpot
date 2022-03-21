@@ -74,4 +74,12 @@ extension FakeSessionService {
     func fetchSessionsForIDs(_ sessionIDs: [String], onSuccess: @escaping (([Session]) -> Void), onError: @escaping ((String) -> Void)) {
         //
     }
+    
+    func postSession(date: Date, creator: User, sessionID: String, onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
+        //
+    }
+    
+    func removeOldSessionsIfNeeded(onSuccess: @escaping (([Session], [Session]) -> Void), onError: @escaping ((String) -> Void)) {
+        //
+    }
 }

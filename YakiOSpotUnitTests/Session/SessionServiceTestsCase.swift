@@ -33,12 +33,19 @@ extension SessionServiceTestsCase {
     func testGivenCreatorIsOK_WhenPostingSession_ThenOnSuccessIsCalled() {
         let expectation = XCTestExpectation(description: "Success when posting a session")
         
-        service?.session.postSession(date: Date.now, creator: FakeSessionData.creator, onSuccess: { sessionID in
-            XCTAssertEqual(sessionID, FakeSessionData.newCorrectID)
-            expectation.fulfill()
+        // TODO: Issue 40 - Add a real sessionID
+        service?.session.postSession(date: Date.now, creator: FakeSessionData.creator, sessionID: "", onSuccess: {
+            //
         }, onError: { error in
             //
         })
+        
+//        service?.session.postSession(date: Date.now, creator: FakeSessionData.creator, onSuccess: { sessionID in
+//            XCTAssertEqual(sessionID, FakeSessionData.newCorrectID)
+//            expectation.fulfill()
+//        }, onError: { error in
+//            //
+//        })
         
         wait(for: [expectation], timeout: 0.01)
     }
