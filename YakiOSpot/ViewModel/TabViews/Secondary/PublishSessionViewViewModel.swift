@@ -26,19 +26,14 @@ final class PublishSessionViewViewModel: ObservableObject {
 extension PublishSessionViewViewModel {
     func publishSession() {
         guard let creator = API.User.CURRENT_USER_OBJECT else { return }
-        API.Session.session.postSession(date: sessionDate, creator: creator) { sessionID in
-            API.User.session.addSessionToUser(sessionID: sessionID, to: creator) { newUser in
-                // Show success alert
+        let sessionID = UUID().uuidString
+        API.User.session.addSessionToUser(sessionID: sessionID, to: creator) { newUser in
+            API.Session.session.postSession(date: self.sessionDate, creator: newUser, sessionID: sessionID) {
                 self.showAlert(title: "Session publiée !", isPublished: true)
-                // Update the current user
-                API.User.CURRENT_USER_OBJECT = newUser
-                // Go back to HomeTabView
             } onError: { error in
-                // Show error alert
                 self.showAlert(title: "Oups ! La session n'a pas été publiée !", isPublished: false)
             }
         } onError: { error in
-            // Show error alert
             self.showAlert(title: "Oups ! La session n'a pas été publiée !", isPublished: false)
         }
     }
