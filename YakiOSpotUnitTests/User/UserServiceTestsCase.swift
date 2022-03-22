@@ -215,3 +215,28 @@ extension UserServiceTestsCase {
         wait(for: [expectation], timeout: 0.01)
     }
 }
+
+
+// MARK: - Remove
+extension UserServiceTestsCase {
+    func testGivenCorrectUsers_WhenRemovingThem_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when removing correct outdated users")
+        
+        var outdatedUser = FakeUserData.mutableUser
+        outdatedUser.id = "outdatedUser"
+        outdatedUser.presenceDate = FakeUserData.correctDate
+        FakeUserData.mutableUsers.append(outdatedUser)
+        
+        service?.session.removeUsersPresence([outdatedUser], onError: { _ in
+            //
+        })
+        
+        if let updatedUser = FakeUserData.mutableUsers.first(where: { $0.id == outdatedUser.id }) {
+            XCTAssertEqual(updatedUser.isPresent, false)
+            XCTAssertEqual(updatedUser.presenceDate, nil)
+            expectation.fulfill()
+        }
+    
+        wait(for: [expectation], timeout: 0.01)
+    }
+}

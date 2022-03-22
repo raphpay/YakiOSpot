@@ -101,19 +101,35 @@ extension FakeUserService {
         FakeUserData.mutableUser = updatedUser
         onSuccess()
     }
+    
+    func updateLocalCurrentUser(id: String, onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
+        // Same as the method above here in the tests
+    }
+}
+
+// MARK: - Remove
+extension FakeUserService {
+    
+    func removeUsersPresence(_ outdatedUsers: [User], onError: @escaping ((String) -> Void)) {
+        for user in outdatedUsers {
+            var artificialUser = user
+            artificialUser.presenceDate = nil
+            artificialUser.isPresent = false
+            
+            for savedUser in FakeUserData.mutableUsers {
+                if savedUser.id == artificialUser.id,
+                   let index = FakeUserData.mutableUsers.firstIndex(where: { $0.id == artificialUser.id }) {
+                    FakeUserData.mutableUsers.remove(at: index)
+                    FakeUserData.mutableUsers.insert(artificialUser, at: index)
+                }
+            }
+        }
+    }
 }
 
 
 // MARK: - To be placed
 extension FakeUserService {
-    
-    func updateLocalCurrentUser(id: String, onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
-        //
-    }
-    
-    func removeUsersPresence(_ outdatedUsers: [User], onError: @escaping ((String) -> Void)) {
-        //
-    }
     
     func removeSessionsFromUsersIfNeeded(sessions: [Session], onError: @escaping ((String) -> Void)) {
         //
