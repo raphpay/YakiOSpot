@@ -156,38 +156,6 @@ extension UserServiceTestsCase {
 
 // MARK: - Fetch
 extension UserServiceTestsCase {
-    // TODO: Remove those functions
-    // The getUserPseudo is not used anymore
-    func testGivenUserExists_WhenGettingUserPseudo_ThenOnSuccessIsCalled() {
-//        let expectation = XCTestExpectation(description: "Success when getting correct user pseudo")
-//
-//        service?.session.getUserPseudo(with: FakeUserData.correctID, onSuccess: { pseudo in
-//            XCTAssertEqual(pseudo, FakeUserData.correctPseudo)
-//            expectation.fulfill()
-//        }, onError: { _ in
-//            //
-//        })
-//
-//        wait(for: [expectation], timeout: 0.01)
-    }
-    
-    
-    // The getUserPseudo is not used anymore
-    func testGivenUserDoesNotExists_WhenGettingUserPseudo_ThenOnErrorIsCalled() {
-//        let expectation = XCTestExpectation(description: "Error when getting incorrect user pseudo")
-//        
-//        service?.session.getUserPseudo(with: FakeUserData.incorrectID, onSuccess: { _ in
-//            //
-//        }, onError: { error in
-//            XCTAssertEqual(error, FakeUserData.noUserError)
-//            expectation.fulfill()
-//        })
-//        
-//        
-//        wait(for: [expectation], timeout: 0.01)
-    }
-
-
     func testGivenUIDIsRegistered_WhenGettingUser_ThenOnSuccessIsCalled() {
         let expectation = XCTestExpectation(description: "Success when getting user from correct UID")
         
