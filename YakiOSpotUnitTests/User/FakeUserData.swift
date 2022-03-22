@@ -31,14 +31,19 @@ final class FakeUserData {
     static let correctNewUser   = User(id: correctNewId, pseudo: correctNewPseudo, mail: correctNewMail, favoritedSpotsIDs: nil)
     static let incorrectUser    = User(id: incorrectID, pseudo: correctPseudo, mail: correctMail, favoritedSpotsIDs: nil)
     static let oneSessionUser   = User(id: correctID, pseudo: correctPseudo, mail: correctMail, favoritedSpotsIDs: nil, sessions: ["Session1"])
+    static var mutableUser      = correctUser
     
     // MARK: - Users
     static let referenceUsers = [correctUser]
     static var mutableUsers = referenceUsers
+    
+    // MARK: - Dates
+    static let correctDate = Date(timeIntervalSince1970: 0)
     
     
     // MARK: - Errors
     static let noUserError = "Can't find this user"
     static let postError = "Can't add user in local database"
     static let adPostError = "Can't add ad to user in local database"
+    static let incorrectUserError = "Incorrect user"
 }

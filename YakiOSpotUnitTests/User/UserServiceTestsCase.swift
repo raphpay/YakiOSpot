@@ -23,7 +23,8 @@ class UserServiceTestsCase: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         session = nil
         service = nil
-        FakeUserData.mutableUsers = FakeUserData.referenceUsers
+        FakeUserData.mutableUsers   = FakeUserData.referenceUsers
+        FakeUserData.mutableUser    = FakeUserData.correctUser
     }
 }
 
@@ -59,32 +60,6 @@ extension UserServiceTestsCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    // The toggleUserPresence is not used this way anymore
-    func testGivenUserIsNotPresent_WhenTogglingPresence_ThenOnSuccessIsCalledAndPresenceIsTrue() {
-//        let expectation = XCTestExpectation(description: "Success when switching from not present to present.")
-//
-//        service?.session.toggleUserPresence(FakeUserData.correctUser, onSuccess: { isPresent in
-//            XCTAssertEqual(isPresent, true)
-//            expectation.fulfill()
-//        }, onError: { _ in
-//            //
-//        })
-//        wait(for: [expectation], timeout: 0.01)
-    }
-    
-    // The toggleUserPresence is not used this way anymore
-    func testGivenUserIsPresent_WhenTogglingPresence_ThenOnSuccessIsCalledAndPresenceIsFalse() {
-//        let expectation = XCTestExpectation(description: "Success when switching from present to not present.")
-//
-//        service?.session.toggleUserPresence(FakeUserData.presentUser, onSuccess: { isPresent in
-//            XCTAssertEqual(isPresent, false)
-//            expectation.fulfill()
-//        }, onError: { _ in
-//            //
-//        })
-//        wait(for: [expectation], timeout: 0.01)
-    }
-    
     func testGivenUserHasNoSessionRegistered_WhenAddingSession_ThenOnSuccessIsCalled() {
         let expectation = XCTestExpectation(description: "Success when adding a session to a user with no initial session")
         
@@ -114,6 +89,36 @@ extension UserServiceTestsCase {
         })
         
         expectation.fulfill()
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenCurrentUserIsCorrect_WhenSettingUserPresent_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when setting current user present")
+        
+        service?.session.setUserPresence(onSuccess: { user in
+            XCTAssertEqual(FakeUserData.mutableUser.isPresent, true)
+            XCTAssertEqual(FakeUserData.mutableUser.presenceDate, FakeUserData.correctDate)
+            XCTAssertEqual(user.id, FakeUserData.mutableUser.id)
+            expectation.fulfill()
+        }, onError: { _ in
+            //
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenCurrentUserIsIncorrect_WhenSettingUserPresent_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when setting incorrect current user present.")
+        
+        FakeUserData.mutableUser = FakeUserData.incorrectUser
+        
+        service?.session.setUserPresence(onSuccess: { _ in
+            //
+        }, onError: { error in
+            XCTAssertEqual(error, FakeUserData.incorrectUserError)
+            expectation.fulfill()
+        })
+        
         wait(for: [expectation], timeout: 0.01)
     }
 }

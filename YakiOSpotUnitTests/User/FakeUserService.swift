@@ -27,18 +27,6 @@ extension FakeUserService {
         onSuccess()
     }
     
-    func toggleUserPresence(_ user: User, onSuccess: @escaping ((_ isPresent: Bool) -> Void), onError: @escaping((_ error: String) -> Void)) {
-        var artificialUser = user
-        if let userIsPresent = artificialUser.isPresent,
-            userIsPresent {
-            artificialUser.isPresent = false
-        } else {
-            artificialUser.isPresent = true
-        }
-        
-        onSuccess(artificialUser.isPresent!)
-    }
-    
     func addSessionToUser(sessionID: String, to user: User, onSuccess: @escaping ((User) -> Void), onError: @escaping ((String) -> Void)) {
         var artificialUser = user
         if artificialUser.sessions == nil {
@@ -48,6 +36,20 @@ extension FakeUserService {
         }
         
         onSuccess(artificialUser)
+    }
+    
+    func setUserPresence(onSuccess: @escaping ((User) -> Void), onError: @escaping ((String) -> Void)) {
+        guard FakeUserData.mutableUser.id != "" else {
+            onError(FakeUserData.incorrectUserError)
+            return
+        }
+        
+        FakeUserData.mutableUser.isPresent = true
+        FakeUserData.mutableUser.presenceDate = FakeUserData.correctDate
+        
+        let user = FakeUserData.mutableUser
+        
+        onSuccess(user)
     }
 }
 
@@ -77,10 +79,6 @@ extension FakeUserService {
 
 // MARK: - To be placed
 extension FakeUserService {
-    func setUserPresence(onSuccess: @escaping ((User) -> Void), onError: @escaping ((String) -> Void)) {
-        //
-    }
-    
     func setUserAbsence(onSuccess: @escaping ((User) -> Void), onError: @escaping ((String) -> Void)) {
         //
     }
