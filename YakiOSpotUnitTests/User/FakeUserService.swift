@@ -125,13 +125,8 @@ extension FakeUserService {
             }
         }
     }
-}
-
-
-// MARK: - To be placed
-extension FakeUserService {
     
     func removeSessionsFromUsersIfNeeded(sessions: [Session], onError: @escaping ((String) -> Void)) {
-        //
+        // TODO: To be done
     }
 }
