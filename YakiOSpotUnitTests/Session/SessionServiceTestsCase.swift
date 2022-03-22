@@ -31,21 +31,28 @@ class SessionServiceTestsCase: XCTestCase {
 // MARK: - Post
 extension SessionServiceTestsCase {
     func testGivenCreatorIsOK_WhenPostingSession_ThenOnSuccessIsCalled() {
-        let expectation = XCTestExpectation(description: "Success when posting a session")
+        let expectation = XCTestExpectation(description: "Success when posting a session with correct ID")
         
-        // TODO: Issue 40 - Add a real sessionID
-        service?.session.postSession(date: Date.now, creator: FakeSessionData.creator, sessionID: "", onSuccess: {
-            //
+        service?.session.postSession(date: Date.now, creator: FakeSessionData.creator, sessionID: FakeSessionData.correctID, onSuccess: {
+            XCTAssertEqual(FakeSessionData.mutableSessions.count, FakeSessionData.referenceSessions.count + 1)
+            expectation.fulfill()
         }, onError: { error in
             //
         })
         
-//        service?.session.postSession(date: Date.now, creator: FakeSessionData.creator, onSuccess: { sessionID in
-//            XCTAssertEqual(sessionID, FakeSessionData.newCorrectID)
-//            expectation.fulfill()
-//        }, onError: { error in
-//            //
-//        })
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenCreatorIsOKAndIDIsIncorrect_WhenPostingSession_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when posting a session with incorrect ID")
+        
+        // TODO: Issue 40 - Add a real sessionID
+        service?.session.postSession(date: Date.now, creator: FakeSessionData.creator, sessionID: FakeSessionData.incorrectID, onSuccess: {
+            //
+        }, onError: { error in
+            XCTAssertEqual(error, FakeSessionData.incorrectIDError)
+            expectation.fulfill()
+        })
         
         wait(for: [expectation], timeout: 0.01)
     }

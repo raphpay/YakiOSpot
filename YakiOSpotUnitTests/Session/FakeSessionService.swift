@@ -16,11 +16,14 @@ final class FakeSessionService: SessionEngine {
 
 // MARK: - Post
 extension FakeSessionService {
-    func postSession(date: Date, creator: User, onSuccess: @escaping ((_ sessionID: String) -> Void), onError: @escaping ((_ error: String) -> Void)) {
-        let id = FakeSessionData.newCorrectID
-        let newSession = Session(id: id, creator: creator, date: date)
+    func postSession(date: Date, creator: User, sessionID: String, onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
+        guard sessionID != "" else {
+            onError(FakeSessionData.incorrectIDError)
+            return
+        }
+        let newSession = Session(id: sessionID, creator: creator, date: date)
         FakeSessionData.mutableSessions.append(newSession)
-        onSuccess(id)
+        onSuccess()
     }
     
     func setUserPresent(_ userID: String, session: Session, isPresent: Bool) {
@@ -72,10 +75,6 @@ extension FakeSessionService {
     }
     
     func fetchSessionsForIDs(_ sessionIDs: [String], onSuccess: @escaping (([Session]) -> Void), onError: @escaping ((String) -> Void)) {
-        //
-    }
-    
-    func postSession(date: Date, creator: User, sessionID: String, onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
         //
     }
     

@@ -11,6 +11,7 @@ import Foundation
 final class FakeSessionData {
     // MARK: - IDs
     static let correctID = "correctID"
+    static let incorrectID = ""
     static let newCorrectID = "newCorrectID"
     
     // MARK: - Users
@@ -30,4 +31,5 @@ final class FakeSessionData {
     // MARK: - Errors
     static let noSessionError = "noSessionError"
     static let noUserError = "noUserError"
+    static let incorrectIDError = "incorrectIDError"
 }
