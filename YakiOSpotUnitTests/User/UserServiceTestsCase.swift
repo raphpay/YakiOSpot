@@ -121,6 +121,36 @@ extension UserServiceTestsCase {
         
         wait(for: [expectation], timeout: 0.01)
     }
+    
+    func testGivenCurrentUserIsCorrect_WhenSettingUserAbsent_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when setting current user absent")
+        
+        service?.session.setUserAbsence(onSuccess: { user in
+            XCTAssertEqual(FakeUserData.mutableUser.isPresent, false)
+            XCTAssertEqual(FakeUserData.mutableUser.presenceDate, nil)
+            XCTAssertEqual(user, FakeUserData.mutableUser)
+            expectation.fulfill()
+        }, onError: { _ in
+            //
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenCurrentUserIsIncorrect_WhenSettingUserAbsent_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when setting incorrect current user absent")
+        
+        FakeUserData.mutableUser = FakeUserData.incorrectUser
+        
+        service?.session.setUserAbsence(onSuccess: { _ in
+            //
+        }, onError: { error in
+            XCTAssertEqual(error, FakeUserData.incorrectUserError)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
 }
 
 

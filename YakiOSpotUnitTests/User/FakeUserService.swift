@@ -51,6 +51,20 @@ extension FakeUserService {
         
         onSuccess(user)
     }
+    
+    func setUserAbsence(onSuccess: @escaping ((User) -> Void), onError: @escaping ((String) -> Void)) {
+        guard FakeUserData.mutableUser.id != "" else {
+            onError(FakeUserData.incorrectUserError)
+            return
+        }
+        
+        FakeUserData.mutableUser.isPresent = false
+        FakeUserData.mutableUser.presenceDate = nil
+        
+        let user = FakeUserData.mutableUser
+        
+        onSuccess(user)
+    }
 }
 
 
@@ -79,9 +93,6 @@ extension FakeUserService {
 
 // MARK: - To be placed
 extension FakeUserService {
-    func setUserAbsence(onSuccess: @escaping ((User) -> Void), onError: @escaping ((String) -> Void)) {
-        //
-    }
     
     func updateCurrentUser(_ updatedUser: User, onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
         //
