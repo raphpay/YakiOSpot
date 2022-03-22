@@ -156,6 +156,7 @@ extension UserServiceTestsCase {
 
 // MARK: - Fetch
 extension UserServiceTestsCase {
+    // TODO: Remove those functions
     // The getUserPseudo is not used anymore
     func testGivenUserExists_WhenGettingUserPseudo_ThenOnSuccessIsCalled() {
 //        let expectation = XCTestExpectation(description: "Success when getting correct user pseudo")
@@ -207,6 +208,39 @@ extension UserServiceTestsCase {
             //
         }, onError: { error in
             XCTAssertEqual(error, FakeUserData.noUserError)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+}
+
+
+// MARK: - Update
+extension UserServiceTestsCase {
+    func testGivenCorrectUser_WhenUpdatingCurrentUser_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when updating current user")
+        
+        let updatedUser = FakeUserData.correctUser
+        
+        service?.session.updateCurrentUser(updatedUser, onSuccess: {
+            XCTAssertEqual(FakeUserData.mutableUser, updatedUser)
+            expectation.fulfill()
+        }, onError: { _ in
+            //
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenIncorrectUser_WhenUpdatingCurrentUser_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when updating incorrect current user")
+        
+        let updatedUser = FakeUserData.incorrectUser
+        
+        service?.session.updateCurrentUser(updatedUser, onSuccess: {
+            //
+        }, onError: { error in
             expectation.fulfill()
         })
         

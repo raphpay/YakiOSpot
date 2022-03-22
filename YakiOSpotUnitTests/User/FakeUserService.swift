@@ -90,13 +90,22 @@ extension FakeUserService {
     }
 }
 
+// MARK: - Update
+extension FakeUserService {
+    func updateCurrentUser(_ updatedUser: User, onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
+        guard updatedUser.id != "" else {
+            onError(FakeUserData.incorrectUserError)
+            return
+        }
+        
+        FakeUserData.mutableUser = updatedUser
+        onSuccess()
+    }
+}
+
 
 // MARK: - To be placed
 extension FakeUserService {
-    
-    func updateCurrentUser(_ updatedUser: User, onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
-        //
-    }
     
     func updateLocalCurrentUser(id: String, onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
         //
