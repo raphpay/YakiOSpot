@@ -65,6 +65,26 @@ extension FakeSessionService {
         
         onSuccess(FakeSessionData.users)
     }
+    
+    func fetchSessionsForIDs(_ sessionIDs: [String], onSuccess: @escaping (([Session]) -> Void), onError: @escaping ((String) -> Void)) {
+        // Get all sessions
+        let allSessions = FakeSessionData.mutableSessions
+        var foundSessions: [Session] = []
+        
+        // Filter all sessions that contains a certain ID
+        for sessionID in sessionIDs {
+            if allSessions.contains(where: { $0.id == sessionID }),
+               let sessionFound = allSessions.first(where: { $0.id == sessionID }) {
+                foundSessions.append(sessionFound)
+            }
+        }
+        
+        if foundSessions.isEmpty {
+            onError(FakeSessionData.noSessionError)
+        } else {
+            onSuccess(foundSessions)
+        }
+    }
 }
 
 // MARK: - Remove
@@ -96,12 +116,4 @@ extension FakeSessionService {
         
         return false
     }
-}
-
-// MARK: - To be placed
-extension FakeSessionService {
-    func fetchSessionsForIDs(_ sessionIDs: [String], onSuccess: @escaping (([Session]) -> Void), onError: @escaping ((String) -> Void)) {
-        //
-    }
-
 }

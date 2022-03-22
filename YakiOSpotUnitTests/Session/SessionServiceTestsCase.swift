@@ -112,6 +112,38 @@ extension SessionServiceTestsCase {
         
         wait(for: [expectation], timeout: 0.01)
     }
+    
+    func testGivenCorrectSessionsIDArePassed_WhenFetchingSessionsForID_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when fetching all sessions for correct IDs")
+        
+        // Prepare data
+        FakeSessionData.mutableSessions.append(FakeSessionData.newCorrectSession)
+        
+        service?.session.fetchSessionsForIDs(FakeSessionData.correctIDs, onSuccess: { sessions in
+            XCTAssertEqual(sessions.count, FakeSessionData.mutableSessions.count)
+            expectation.fulfill()
+        }, onError: { _ in
+            //
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenIncorrectSessionsIDArePassed_WhenFetchingSessionsForID_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when fetching all sessions for correct IDs")
+        
+        // Prepare data
+        FakeSessionData.mutableSessions.removeAll()
+        
+        service?.session.fetchSessionsForIDs(FakeSessionData.correctIDs, onSuccess: { _ in
+            //
+        }, onError: { error in
+            XCTAssertEqual(error, FakeSessionData.noSessionError)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
 }
 
 
