@@ -67,18 +67,41 @@ extension FakeSessionService {
     }
 }
 
+// MARK: - Remove
+extension FakeSessionService {
+    func removeOldSessionsIfNeeded(onSuccess: @escaping (([Session], [Session]) -> Void), onError: @escaping ((String) -> Void)) {
+        // Get all sessions
+        var remainingSessions = FakeSessionData.mutableSessions
+        var sessionsRemoved: [Session] = []
+        
+        // Check if session is outdated
+        for session in FakeSessionData.mutableSessions {
+            if self.isSessionOutdated(sessionDate: session.date),
+               let index = FakeSessionData.mutableSessions.firstIndex(where: { $0.id == session.id }) {
+                remainingSessions.remove(at: index)
+                sessionsRemoved.append(session)
+                FakeSessionData.mutableSessions.remove(at: index)
+            }
+        }
+        
+        onSuccess(remainingSessions, sessionsRemoved)
+    }
+    
+    private func isSessionOutdated(sessionDate: Date) -> Bool {
+        if let dayAfter = Calendar.current.date(byAdding: .day, value: 1, to: sessionDate) {
+            if dayAfter < Date.now {
+                return true
+            }
+        }
+        
+        return false
+    }
+}
 
 // MARK: - To be placed
 extension FakeSessionService {
-    func removeOldSessionsIfNeeded(sessions: [Session]) -> [Session] {
-        return []
-    }
-    
     func fetchSessionsForIDs(_ sessionIDs: [String], onSuccess: @escaping (([Session]) -> Void), onError: @escaping ((String) -> Void)) {
         //
     }
-    
-    func removeOldSessionsIfNeeded(onSuccess: @escaping (([Session], [Session]) -> Void), onError: @escaping ((String) -> Void)) {
-        //
-    }
+
 }

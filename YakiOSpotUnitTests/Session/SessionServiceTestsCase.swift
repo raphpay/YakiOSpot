@@ -113,3 +113,34 @@ extension SessionServiceTestsCase {
         wait(for: [expectation], timeout: 0.01)
     }
 }
+
+
+// MARK: - Remove
+extension SessionServiceTestsCase {
+    func testGivenOneSessionIsOutdated_WhenRemovingSessions_ThenRemainingSessionsIsChanged() {
+        let expectation = XCTestExpectation(description: "Success when removing existing and outdated session from all sessions")
+        
+        let newSession = changeSessionDate(by: -2)
+        FakeSessionData.mutableSessions.append(newSession)
+        
+        service?.session.removeOldSessionsIfNeeded(onSuccess: { remainingSessions, sessionsRemoved in
+            XCTAssertEqual(sessionsRemoved.count, 1)
+            XCTAssertEqual(remainingSessions.count, 1)
+            XCTAssertEqual(FakeSessionData.mutableSessions.count, 1)
+            expectation.fulfill()
+        }, onError: { error in
+            //
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    private func changeSessionDate(by days: Int) -> Session {
+        if let newDate = Calendar.current.date(byAdding: .day, value: days, to: Date.now) {
+            FakeSessionData.mutableSession.id = "newDateSession"
+            FakeSessionData.mutableSession.date = newDate
+        }
+        
+        return FakeSessionData.mutableSession
+    }
+}
