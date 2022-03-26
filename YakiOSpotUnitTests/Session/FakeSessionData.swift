@@ -11,6 +11,7 @@ import Foundation
 final class FakeSessionData {
     // MARK: - IDs
     static let correctID = "correctID"
+    static let incorrectID = ""
     static let newCorrectID = "newCorrectID"
     
     // MARK: - Users
@@ -20,6 +21,7 @@ final class FakeSessionData {
     
     // MARK: - Session
     static let correctSession = Session(id: correctID, creator: creator, date: Date.now, userIDs: nil)
+    static let newCorrectSession = Session(id: newCorrectID, creator: creator, date: Date.now, userIDs: nil)
     static var mutableSession = correctSession
     static var newMutableSession = Session(id: correctID, creator: creator, date: Date.now, userIDs: [correctUser.id])
     
@@ -27,7 +29,10 @@ final class FakeSessionData {
     static let referenceSessions = [correctSession]
     static var mutableSessions = referenceSessions
     static let users = [correctUser]
+    static let correctIDs = [correctID, newCorrectID]
+    
     // MARK: - Errors
     static let noSessionError = "noSessionError"
     static let noUserError = "noUserError"
+    static let incorrectIDError = "incorrectIDError"
 }

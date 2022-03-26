@@ -16,11 +16,14 @@ final class FakeSessionService: SessionEngine {
 
 // MARK: - Post
 extension FakeSessionService {
-    func postSession(date: Date, creator: User, onSuccess: @escaping ((_ sessionID: String) -> Void), onError: @escaping ((_ error: String) -> Void)) {
-        let id = FakeSessionData.newCorrectID
-        let newSession = Session(id: id, creator: creator, date: date)
+    func postSession(date: Date, creator: User, sessionID: String, onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
+        guard sessionID != "" else {
+            onError(FakeSessionData.incorrectIDError)
+            return
+        }
+        let newSession = Session(id: sessionID, creator: creator, date: date)
         FakeSessionData.mutableSessions.append(newSession)
-        onSuccess(id)
+        onSuccess()
     }
     
     func setUserPresent(_ userID: String, session: Session, isPresent: Bool) {
@@ -61,5 +64,56 @@ extension FakeSessionService {
         }
         
         onSuccess(FakeSessionData.users)
+    }
+    
+    func fetchSessionsForIDs(_ sessionIDs: [String], onSuccess: @escaping (([Session]) -> Void), onError: @escaping ((String) -> Void)) {
+        // Get all sessions
+        let allSessions = FakeSessionData.mutableSessions
+        var foundSessions: [Session] = []
+        
+        // Filter all sessions that contains a certain ID
+        for sessionID in sessionIDs {
+            if allSessions.contains(where: { $0.id == sessionID }),
+               let sessionFound = allSessions.first(where: { $0.id == sessionID }) {
+                foundSessions.append(sessionFound)
+            }
+        }
+        
+        if foundSessions.isEmpty {
+            onError(FakeSessionData.noSessionError)
+        } else {
+            onSuccess(foundSessions)
+        }
+    }
+}
+
+// MARK: - Remove
+extension FakeSessionService {
+    func removeOldSessionsIfNeeded(onSuccess: @escaping (([Session], [Session]) -> Void), onError: @escaping ((String) -> Void)) {
+        // Get all sessions
+        var remainingSessions = FakeSessionData.mutableSessions
+        var sessionsRemoved: [Session] = []
+        
+        // Check if session is outdated
+        for session in FakeSessionData.mutableSessions {
+            if self.isSessionOutdated(sessionDate: session.date),
+               let index = FakeSessionData.mutableSessions.firstIndex(where: { $0.id == session.id }) {
+                remainingSessions.remove(at: index)
+                sessionsRemoved.append(session)
+                FakeSessionData.mutableSessions.remove(at: index)
+            }
+        }
+        
+        onSuccess(remainingSessions, sessionsRemoved)
+    }
+    
+    private func isSessionOutdated(sessionDate: Date) -> Bool {
+        if let dayAfter = Calendar.current.date(byAdding: .day, value: 1, to: sessionDate) {
+            if dayAfter < Date.now {
+                return true
+            }
+        }
+        
+        return false
     }
 }

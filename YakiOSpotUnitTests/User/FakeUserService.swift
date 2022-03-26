@@ -27,18 +27,6 @@ extension FakeUserService {
         onSuccess()
     }
     
-    func toggleUserPresence(_ user: User, onSuccess: @escaping ((_ isPresent: Bool) -> Void), onError: @escaping((_ error: String) -> Void)) {
-        var artificialUser = user
-        if let userIsPresent = artificialUser.isPresent,
-            userIsPresent {
-            artificialUser.isPresent = false
-        } else {
-            artificialUser.isPresent = true
-        }
-        
-        onSuccess(artificialUser.isPresent!)
-    }
-    
     func addSessionToUser(sessionID: String, to user: User, onSuccess: @escaping ((User) -> Void), onError: @escaping ((String) -> Void)) {
         var artificialUser = user
         if artificialUser.sessions == nil {
@@ -48,6 +36,34 @@ extension FakeUserService {
         }
         
         onSuccess(artificialUser)
+    }
+    
+    func setUserPresence(onSuccess: @escaping ((User) -> Void), onError: @escaping ((String) -> Void)) {
+        guard FakeUserData.mutableUser.id != "" else {
+            onError(FakeUserData.incorrectUserError)
+            return
+        }
+        
+        FakeUserData.mutableUser.isPresent = true
+        FakeUserData.mutableUser.presenceDate = FakeUserData.correctDate
+        
+        let user = FakeUserData.mutableUser
+        
+        onSuccess(user)
+    }
+    
+    func setUserAbsence(onSuccess: @escaping ((User) -> Void), onError: @escaping ((String) -> Void)) {
+        guard FakeUserData.mutableUser.id != "" else {
+            onError(FakeUserData.incorrectUserError)
+            return
+        }
+        
+        FakeUserData.mutableUser.isPresent = false
+        FakeUserData.mutableUser.presenceDate = nil
+        
+        let user = FakeUserData.mutableUser
+        
+        onSuccess(user)
     }
 }
 
@@ -70,6 +86,57 @@ extension FakeUserService {
             onSuccess(user)
         } else {
             onError(FakeUserData.noUserError)
+        }
+    }
+}
+
+// MARK: - Update
+extension FakeUserService {
+    func updateCurrentUser(_ updatedUser: User, onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
+        guard updatedUser.id != "" else {
+            onError(FakeUserData.incorrectUserError)
+            return
+        }
+        
+        FakeUserData.mutableUser = updatedUser
+        onSuccess()
+    }
+    
+    func updateLocalCurrentUser(id: String, onSuccess: @escaping (() -> Void), onError: @escaping ((String) -> Void)) {
+        // Same as the method above here in the tests
+    }
+}
+
+// MARK: - Remove
+extension FakeUserService {
+    
+    func removeUsersPresence(_ outdatedUsers: [User], onError: @escaping ((String) -> Void)) {
+        for user in outdatedUsers {
+            var artificialUser = user
+            artificialUser.presenceDate = nil
+            artificialUser.isPresent = false
+            
+            for savedUser in FakeUserData.mutableUsers {
+                if savedUser.id == artificialUser.id,
+                   let index = FakeUserData.mutableUsers.firstIndex(where: { $0.id == artificialUser.id }) {
+                    FakeUserData.mutableUsers.remove(at: index)
+                    FakeUserData.mutableUsers.insert(artificialUser, at: index)
+                }
+            }
+        }
+    }
+    
+    func removeSessionsFromUsersIfNeeded(sessions: [Session], onError: @escaping ((String) -> Void)) {
+        for session in sessions {
+            if var creatorSessions = FakeUserData.mutableUser.sessions,
+               creatorSessions.contains(where: { $0 == session.id}),
+               let index = creatorSessions.firstIndex(where: { $0 == session.id }) {
+                creatorSessions.remove(at: index)
+                
+                FakeUserData.mutableUser.sessions = creatorSessions
+            } else {
+                onError(FakeUserData.noSessionError)
+            }
         }
     }
 }

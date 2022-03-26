@@ -198,10 +198,7 @@ extension UserService {
             }
         }
     }
-}
-
-// MARK: - Remove
-extension UserService {
+    
     func removeSessionsFromUsersIfNeeded(sessions: [Session], onError: @escaping((_ error: String) -> Void)) {
         for session in sessions {
             self.getUserFromUID(session.creator.id) { creator in

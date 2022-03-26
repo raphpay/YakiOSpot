@@ -23,7 +23,8 @@ class UserServiceTestsCase: XCTestCase {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
         session = nil
         service = nil
-        FakeUserData.mutableUsers = FakeUserData.referenceUsers
+        FakeUserData.mutableUsers   = FakeUserData.referenceUsers
+        FakeUserData.mutableUser    = FakeUserData.correctUser
     }
 }
 
@@ -59,30 +60,6 @@ extension UserServiceTestsCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testGivenUserIsNotPresent_WhenTogglingPresence_ThenOnSuccessIsCalledAndPresenceIsTrue() {
-        let expectation = XCTestExpectation(description: "Success when switching from not present to present.")
-        
-        service?.session.toggleUserPresence(FakeUserData.correctUser, onSuccess: { isPresent in
-            XCTAssertEqual(isPresent, true)
-            expectation.fulfill()
-        }, onError: { _ in
-            //
-        })
-        wait(for: [expectation], timeout: 0.01)
-    }
-    
-    func testGivenUserIsPresent_WhenTogglingPresence_ThenOnSuccessIsCalledAndPresenceIsFalse() {
-        let expectation = XCTestExpectation(description: "Success when switching from present to not present.")
-        
-        service?.session.toggleUserPresence(FakeUserData.presentUser, onSuccess: { isPresent in
-            XCTAssertEqual(isPresent, false)
-            expectation.fulfill()
-        }, onError: { _ in
-            //
-        })
-        wait(for: [expectation], timeout: 0.01)
-    }
-    
     func testGivenUserHasNoSessionRegistered_WhenAddingSession_ThenOnSuccessIsCalled() {
         let expectation = XCTestExpectation(description: "Success when adding a session to a user with no initial session")
         
@@ -114,16 +91,14 @@ extension UserServiceTestsCase {
         expectation.fulfill()
         wait(for: [expectation], timeout: 0.01)
     }
-}
-
-
-// MARK: - Fetch
-extension UserServiceTestsCase {
-    func testGivenUserExists_WhenGettingUserPseudo_ThenOnSuccessIsCalled() {
-        let expectation = XCTestExpectation(description: "Success when getting correct user pseudo")
+    
+    func testGivenCurrentUserIsCorrect_WhenSettingUserPresent_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when setting current user present")
         
-        service?.session.getUserPseudo(with: FakeUserData.correctID, onSuccess: { pseudo in
-            XCTAssertEqual(pseudo, FakeUserData.correctPseudo)
+        service?.session.setUserPresence(onSuccess: { user in
+            XCTAssertEqual(FakeUserData.mutableUser.isPresent, true)
+            XCTAssertEqual(FakeUserData.mutableUser.presenceDate, FakeUserData.correctDate)
+            XCTAssertEqual(user.id, FakeUserData.mutableUser.id)
             expectation.fulfill()
         }, onError: { _ in
             //
@@ -132,22 +107,55 @@ extension UserServiceTestsCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    
-    func testGivenUserDoesNotExists_WhenGettingUserPseudo_ThenOnErrorIsCalled() {
-        let expectation = XCTestExpectation(description: "Error when getting incorrect user pseudo")
+    func testGivenCurrentUserIsIncorrect_WhenSettingUserPresent_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when setting incorrect current user present.")
         
-        service?.session.getUserPseudo(with: FakeUserData.incorrectID, onSuccess: { _ in
+        FakeUserData.mutableUser = FakeUserData.incorrectUser
+        
+        service?.session.setUserPresence(onSuccess: { _ in
             //
         }, onError: { error in
-            XCTAssertEqual(error, FakeUserData.noUserError)
+            XCTAssertEqual(error, FakeUserData.incorrectUserError)
             expectation.fulfill()
         })
         
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenCurrentUserIsCorrect_WhenSettingUserAbsent_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when setting current user absent")
+        
+        service?.session.setUserAbsence(onSuccess: { user in
+            XCTAssertEqual(FakeUserData.mutableUser.isPresent, false)
+            XCTAssertEqual(FakeUserData.mutableUser.presenceDate, nil)
+            XCTAssertEqual(user, FakeUserData.mutableUser)
+            expectation.fulfill()
+        }, onError: { _ in
+            //
+        })
         
         wait(for: [expectation], timeout: 0.01)
     }
+    
+    func testGivenCurrentUserIsIncorrect_WhenSettingUserAbsent_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when setting incorrect current user absent")
+        
+        FakeUserData.mutableUser = FakeUserData.incorrectUser
+        
+        service?.session.setUserAbsence(onSuccess: { _ in
+            //
+        }, onError: { error in
+            XCTAssertEqual(error, FakeUserData.incorrectUserError)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+}
 
 
+// MARK: - Fetch
+extension UserServiceTestsCase {
     func testGivenUIDIsRegistered_WhenGettingUser_ThenOnSuccessIsCalled() {
         let expectation = XCTestExpectation(description: "Success when getting user from correct UID")
         
@@ -171,6 +179,88 @@ extension UserServiceTestsCase {
             expectation.fulfill()
         })
         
+        wait(for: [expectation], timeout: 0.01)
+    }
+}
+
+
+// MARK: - Update
+extension UserServiceTestsCase {
+    func testGivenCorrectUser_WhenUpdatingCurrentUser_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when updating current user")
+        
+        let updatedUser = FakeUserData.correctUser
+        
+        service?.session.updateCurrentUser(updatedUser, onSuccess: {
+            XCTAssertEqual(FakeUserData.mutableUser, updatedUser)
+            expectation.fulfill()
+        }, onError: { _ in
+            //
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenIncorrectUser_WhenUpdatingCurrentUser_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when updating incorrect current user")
+        
+        let updatedUser = FakeUserData.incorrectUser
+        
+        service?.session.updateCurrentUser(updatedUser, onSuccess: {
+            //
+        }, onError: { error in
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+}
+
+
+// MARK: - Remove
+extension UserServiceTestsCase {
+    func testGivenCorrectUsers_WhenRemovingThem_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when removing correct outdated users")
+        
+        var outdatedUser = FakeUserData.mutableUser
+        outdatedUser.id = "outdatedUser"
+        outdatedUser.presenceDate = FakeUserData.correctDate
+        FakeUserData.mutableUsers.append(outdatedUser)
+        
+        service?.session.removeUsersPresence([outdatedUser], onError: { _ in
+            //
+        })
+        
+        if let updatedUser = FakeUserData.mutableUsers.first(where: { $0.id == outdatedUser.id }) {
+            XCTAssertEqual(updatedUser.isPresent, false)
+            XCTAssertEqual(updatedUser.presenceDate, nil)
+            expectation.fulfill()
+        }
+    
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenUserHasSessions_WhenRemovingSessions_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when removing sessions from user")
+        
+        FakeUserData.mutableUser = FakeUserData.oneSessionUser
+        
+        service?.session.removeSessionsFromUsersIfNeeded(sessions: FakeUserData.sessions, onError: { _ in
+            //
+        })
+        
+        expectation.fulfill()
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenUserHasNoSessions_WhenRemovingSessions_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when removing sessions from user")
+    
+        service?.session.removeSessionsFromUsersIfNeeded(sessions: FakeUserData.sessions, onError: { error in
+            XCTAssertEqual(error, FakeUserData.noSessionError)
+            expectation.fulfill()
+        })
+    
         wait(for: [expectation], timeout: 0.01)
     }
 }

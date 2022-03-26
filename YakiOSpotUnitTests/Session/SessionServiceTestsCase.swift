@@ -31,13 +31,27 @@ class SessionServiceTestsCase: XCTestCase {
 // MARK: - Post
 extension SessionServiceTestsCase {
     func testGivenCreatorIsOK_WhenPostingSession_ThenOnSuccessIsCalled() {
-        let expectation = XCTestExpectation(description: "Success when posting a session")
+        let expectation = XCTestExpectation(description: "Success when posting a session with correct ID")
         
-        service?.session.postSession(date: Date.now, creator: FakeSessionData.creator, onSuccess: { sessionID in
-            XCTAssertEqual(sessionID, FakeSessionData.newCorrectID)
+        service?.session.postSession(date: Date.now, creator: FakeSessionData.creator, sessionID: FakeSessionData.correctID, onSuccess: {
+            XCTAssertEqual(FakeSessionData.mutableSessions.count, FakeSessionData.referenceSessions.count + 1)
             expectation.fulfill()
         }, onError: { error in
             //
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenCreatorIsOKAndIDIsIncorrect_WhenPostingSession_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when posting a session with incorrect ID")
+        
+        // TODO: Issue 40 - Add a real sessionID
+        service?.session.postSession(date: Date.now, creator: FakeSessionData.creator, sessionID: FakeSessionData.incorrectID, onSuccess: {
+            //
+        }, onError: { error in
+            XCTAssertEqual(error, FakeSessionData.incorrectIDError)
+            expectation.fulfill()
         })
         
         wait(for: [expectation], timeout: 0.01)
@@ -97,5 +111,68 @@ extension SessionServiceTestsCase {
         })
         
         wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenCorrectSessionsIDArePassed_WhenFetchingSessionsForID_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when fetching all sessions for correct IDs")
+        
+        // Prepare data
+        FakeSessionData.mutableSessions.append(FakeSessionData.newCorrectSession)
+        
+        service?.session.fetchSessionsForIDs(FakeSessionData.correctIDs, onSuccess: { sessions in
+            XCTAssertEqual(sessions.count, FakeSessionData.mutableSessions.count)
+            expectation.fulfill()
+        }, onError: { _ in
+            //
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenIncorrectSessionsIDArePassed_WhenFetchingSessionsForID_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when fetching all sessions for correct IDs")
+        
+        // Prepare data
+        FakeSessionData.mutableSessions.removeAll()
+        
+        service?.session.fetchSessionsForIDs(FakeSessionData.correctIDs, onSuccess: { _ in
+            //
+        }, onError: { error in
+            XCTAssertEqual(error, FakeSessionData.noSessionError)
+            expectation.fulfill()
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+}
+
+
+// MARK: - Remove
+extension SessionServiceTestsCase {
+    func testGivenOneSessionIsOutdated_WhenRemovingSessions_ThenRemainingSessionsIsChanged() {
+        let expectation = XCTestExpectation(description: "Success when removing existing and outdated session from all sessions")
+        
+        let newSession = changeSessionDate(by: -2)
+        FakeSessionData.mutableSessions.append(newSession)
+        
+        service?.session.removeOldSessionsIfNeeded(onSuccess: { remainingSessions, sessionsRemoved in
+            XCTAssertEqual(sessionsRemoved.count, 1)
+            XCTAssertEqual(remainingSessions.count, 1)
+            XCTAssertEqual(FakeSessionData.mutableSessions.count, 1)
+            expectation.fulfill()
+        }, onError: { error in
+            //
+        })
+        
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    private func changeSessionDate(by days: Int) -> Session {
+        if let newDate = Calendar.current.date(byAdding: .day, value: days, to: Date.now) {
+            FakeSessionData.mutableSession.id = "newDateSession"
+            FakeSessionData.mutableSession.date = newDate
+        }
+        
+        return FakeSessionData.mutableSession
     }
 }
