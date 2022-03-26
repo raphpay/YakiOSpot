@@ -127,6 +127,16 @@ extension FakeUserService {
     }
     
     func removeSessionsFromUsersIfNeeded(sessions: [Session], onError: @escaping ((String) -> Void)) {
-        // TODO: To be done
+        for session in sessions {
+            if var creatorSessions = FakeUserData.mutableUser.sessions,
+               creatorSessions.contains(where: { $0 == session.id}),
+               let index = creatorSessions.firstIndex(where: { $0 == session.id }) {
+                creatorSessions.remove(at: index)
+                
+                FakeUserData.mutableUser.sessions = creatorSessions
+            } else {
+                onError(FakeUserData.noSessionError)
+            }
+        }
     }
 }

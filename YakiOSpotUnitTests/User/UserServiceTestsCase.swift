@@ -239,4 +239,28 @@ extension UserServiceTestsCase {
     
         wait(for: [expectation], timeout: 0.01)
     }
+    
+    func testGivenUserHasSessions_WhenRemovingSessions_ThenOnSuccessIsCalled() {
+        let expectation = XCTestExpectation(description: "Success when removing sessions from user")
+        
+        FakeUserData.mutableUser = FakeUserData.oneSessionUser
+        
+        service?.session.removeSessionsFromUsersIfNeeded(sessions: FakeUserData.sessions, onError: { _ in
+            //
+        })
+        
+        expectation.fulfill()
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGivenUserHasNoSessions_WhenRemovingSessions_ThenOnErrorIsCalled() {
+        let expectation = XCTestExpectation(description: "Error when removing sessions from user")
+    
+        service?.session.removeSessionsFromUsersIfNeeded(sessions: FakeUserData.sessions, onError: { error in
+            XCTAssertEqual(error, FakeUserData.noSessionError)
+            expectation.fulfill()
+        })
+    
+        wait(for: [expectation], timeout: 0.01)
+    }
 }

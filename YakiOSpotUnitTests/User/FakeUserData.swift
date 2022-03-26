@@ -37,12 +37,16 @@ final class FakeUserData {
     static let referenceUsers = [correctUser]
     static var mutableUsers = referenceUsers
     
+    // MARK: - Sessions
+    static let sessions = [Session(id: "Session1", creator: correctUser, date: Date.now)]
+    
     // MARK: - Dates
     static let correctDate = Date(timeIntervalSince1970: 0)
     
     
     // MARK: - Errors
     static let noUserError = "Can't find this user"
+    static let noSessionError = "No sessions"
     static let postError = "Can't add user in local database"
     static let adPostError = "Can't add ad to user in local database"
     static let incorrectUserError = "Incorrect user"
