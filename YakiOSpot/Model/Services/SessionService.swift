@@ -81,25 +81,25 @@ extension SessionService {
 // MARK: - Fetch
 extension SessionService {
     func fetchAllSession(onSuccess: @escaping ((_ sessions: [Session]) -> Void), onError: @escaping((_ error: String) -> Void)) {
-        SESSION_REF.addSnapshotListener { snapshot, error in
+        SESSION_REF.getDocuments { snapshot, error in
             guard error == nil else {
                 onError(error!.localizedDescription)
                 return
             }
             
             guard let snapshot = snapshot else {
-                onError("No available session")
+                onError("No snapshot")
                 return
             }
             
             var sessions: [Session] = []
-            for document in snapshot.documents {
+            for doc in snapshot.documents {
                 do {
-                    if let session = try document.data(as: Session.self) {
+                    if let session = try doc.data(as: Session.self) {
                         sessions.append(session)
                     }
-                } catch let catchedError {
-                    onError(catchedError.localizedDescription)
+                } catch let error {
+                    onError(error.localizedDescription)
                 }
             }
             
@@ -183,15 +183,16 @@ extension SessionService {
             var remainingSessions: [Session] = sessions
             var sessionsRemoved: [Session] = []
             
-            for session in sessions {
+            for session in remainingSessions {
                 if self.isSessionOutdated(sessionDate: session.date),
-                   let index = sessions.firstIndex(where: { $0.id == session.id }) {
+                   let index = sessions.firstIndex(where: { $0.id == session.id }),
+                   !remainingSessions.isEmpty {
                     remainingSessions.remove(at: index)
                     sessionsRemoved.append(session)
                     self.SESSION_REF.document(session.id).delete()
                 }
             }
-            
+
             onSuccess(remainingSessions, sessionsRemoved)
 
         } onError: { error in
